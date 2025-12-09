@@ -1,0 +1,7 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1a3a6d"/>
+  <circle cx="400" cy="300" r="200" fill="#E09F7D" opacity="0.2"/>
+  <rect x="200" y="200" width="400" height="200" rx="20" fill="#F4F4F5" opacity="0.1"/>
+  <text x="400" y="280" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="32" font-weight="bold">All Executive Clean</text>
+  <text x="400" y="320" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="16" opacity="0.7">Professional Cleaning Services</text>
+</svg>

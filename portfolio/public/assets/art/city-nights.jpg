@@ -1,0 +1,11 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#0a0a1a"/>
+  <rect x="100" y="300" width="60" height="250" fill="#CCFF00" opacity="0.6"/>
+  <rect x="200" y="350" width="60" height="200" fill="#E09F7D" opacity="0.5"/>
+  <rect x="300" y="280" width="60" height="270" fill="#bbcdf3" opacity="0.5"/>
+  <rect x="400" y="320" width="60" height="230" fill="#CCFF00" opacity="0.4"/>
+  <rect x="500" y="290" width="60" height="260" fill="#E09F7D" opacity="0.6"/>
+  <rect x="600" y="340" width="60" height="210" fill="#bbcdf3" opacity="0.5"/>
+  <circle cx="400" cy="150" r="50" fill="#F4F4F5" opacity="0.1"/>
+  <text x="400" y="570" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="18">City Nights</text>
+</svg>

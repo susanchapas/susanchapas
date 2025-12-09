@@ -1,0 +1,12 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#102f5d"/>
+  <rect x="100" y="50" width="600" height="400" rx="20" fill="#F4F4F5"/>
+  <rect x="120" y="70" width="560" height="40" fill="#E5E5E5"/>
+  <circle cx="140" cy="90" r="8" fill="#E09F7D"/>
+  <circle cx="165" cy="90" r="8" fill="#CCFF00"/>
+  <circle cx="190" cy="90" r="8" fill="#bbcdf3"/>
+  <rect x="120" y="130" width="200" height="300" fill="#102f5d" opacity="0.1"/>
+  <rect x="340" y="130" width="340" height="150" fill="#CCFF00" opacity="0.2"/>
+  <rect x="340" y="300" width="340" height="130" fill="#bbcdf3" opacity="0.2"/>
+  <text x="400" y="550" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="16" opacity="0.7">Website Design Mockup</text>
+</svg>

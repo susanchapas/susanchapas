@@ -1,0 +1,7 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="500" fill="#102f5d"/>
+  <circle cx="250" cy="200" r="100" fill="#bbcdf3" opacity="0.3"/>
+  <circle cx="250" cy="220" r="70" fill="#E09F7D" opacity="0.5"/>
+  <rect x="175" y="280" width="150" height="180" rx="10" fill="#CCFF00" opacity="0.2"/>
+  <text x="250" y="450" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="20" font-weight="bold">SC</text>
+</svg>

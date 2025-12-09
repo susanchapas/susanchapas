@@ -1,0 +1,9 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="600" fill="#102f5d"/>
+  <circle cx="200" cy="300" r="250" fill="#CCFF00" opacity="0.08"/>
+  <circle cx="1000" cy="300" r="280" fill="#bbcdf3" opacity="0.1"/>
+  <rect x="350" y="180" width="500" height="240" rx="40" fill="#E09F7D" opacity="0.08"/>
+  <text x="600" y="290" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="56" font-weight="bold">Schematic</text>
+  <text x="600" y="340" text-anchor="middle" fill="#CCFF00" font-family="system-ui" font-size="24" letter-spacing="8">MARKETING</text>
+  <text x="600" y="400" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="18" opacity="0.6">Design for Everyone</text>
+</svg>

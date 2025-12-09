@@ -1,0 +1,8 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#E09F7D" opacity="0.3"/>
+  <rect x="0" y="0" width="800" height="200" fill="#CCFF00" opacity="0.2"/>
+  <circle cx="600" cy="150" r="80" fill="#F4F4F5" opacity="0.8"/>
+  <rect x="50" y="350" width="200" height="200" fill="#102f5d" opacity="0.3"/>
+  <rect x="300" y="300" width="150" height="250" fill="#102f5d" opacity="0.4"/>
+  <text x="400" y="550" text-anchor="middle" fill="#102f5d" font-family="system-ui" font-size="18">Morning Light</text>
+</svg>

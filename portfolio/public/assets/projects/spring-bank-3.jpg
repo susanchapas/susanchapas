@@ -1,0 +1,7 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#bbcdf3" opacity="0.3"/>
+  <rect x="200" y="50" width="400" height="500" fill="#102f5d"/>
+  <rect x="250" y="150" width="300" height="80" rx="10" fill="#CCFF00"/>
+  <text x="400" y="200" text-anchor="middle" fill="#102f5d" font-family="system-ui" font-size="28" font-weight="bold">SPRING BANK</text>
+  <text x="400" y="550" text-anchor="middle" fill="#102f5d" font-family="system-ui" font-size="16" opacity="0.7">Exterior Signage</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#102f5d"/>
+  <circle cx="400" cy="400" r="300" fill="#CCFF00" opacity="0.1"/>
+  <circle cx="300" cy="350" r="150" fill="#E09F7D" opacity="0.3"/>
+  <circle cx="500" cy="450" r="180" fill="#bbcdf3" opacity="0.25"/>
+  <path d="M200 300 Q400 100 600 300 Q700 500 500 600 Q300 700 200 500 Z" fill="#CCFF00" opacity="0.15"/>
+  <text x="400" y="400" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="32" font-weight="bold">Mindless Mirth</text>
+  <text x="400" y="440" text-anchor="middle" fill="#E09F7D" font-family="system-ui" font-size="16">Award-Winning Piece</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="600" fill="#102f5d"/>
+  <circle cx="200" cy="300" r="150" fill="#CCFF00" opacity="0.1"/>
+  <circle cx="1000" cy="300" r="200" fill="#bbcdf3" opacity="0.15"/>
+  <rect x="400" y="150" width="400" height="300" rx="30" fill="#E09F7D" opacity="0.1"/>
+  <text x="600" y="320" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="48" font-weight="bold">Spring Bank</text>
+  <text x="600" y="380" text-anchor="middle" fill="#CCFF00" font-family="system-ui" font-size="20">Community Banking Reimagined</text>
+</svg>

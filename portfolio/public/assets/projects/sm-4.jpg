@@ -1,0 +1,13 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#F4F4F5"/>
+  <rect x="100" y="80" width="600" height="440" rx="15" fill="white" stroke="#102f5d" stroke-width="2"/>
+  <rect x="120" y="100" width="560" height="60" fill="#CCFF00"/>
+  <text x="400" y="140" text-anchor="middle" fill="#102f5d" font-family="system-ui" font-size="24" font-weight="bold">ACCESSIBILITY AUDIT</text>
+  <circle cx="200" cy="250" r="50" fill="#22C55E" opacity="0.3"/>
+  <text x="200" y="260" text-anchor="middle" fill="#22C55E" font-family="system-ui" font-size="24" font-weight="bold">A+</text>
+  <rect x="300" y="220" width="350" height="15" rx="7" fill="#E5E5E5"/>
+  <rect x="300" y="220" width="320" height="15" rx="7" fill="#22C55E"/>
+  <rect x="300" y="260" width="350" height="15" rx="7" fill="#E5E5E5"/>
+  <rect x="300" y="260" width="340" height="15" rx="7" fill="#22C55E"/>
+  <text x="400" y="560" text-anchor="middle" fill="#102f5d" font-family="system-ui" font-size="16" opacity="0.7">Accessibility Audit Report</text>
+</svg>
