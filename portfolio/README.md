@@ -2,7 +2,7 @@
 
 A beautiful, responsive portfolio website built with **Next.js 16**, **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
 
-![Portfolio Preview](./public/assets/preview.png)
+- Website: [susanchapas.com](https://susanchapas.com)
 
 ## ✨ Features
 
