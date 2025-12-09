@@ -1,0 +1,54 @@
+name: Deploy static content to Pages
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build static site and prepare `docs/`
+        run: |
+          npm run build
+          if [ -d out ]; then
+            rm -rf docs
+            mv out docs
+            echo "Moved 'out/' -> 'docs/'."
+          elif [ -d docs ]; then
+            echo "Using existing 'docs/' directory."
+          else
+            echo "ERROR: No static output found (no 'out/' and no 'docs/')."
+            echo "Ensure next.config.js sets \"output: 'export'\" or that your build creates a publishable 'docs/' directory."
+            ls -la || true
+            exit 1
+          fi
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
