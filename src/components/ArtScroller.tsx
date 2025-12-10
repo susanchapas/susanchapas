@@ -3,14 +3,16 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import ArtImage from "./ArtImage";
 
 const artPieces = [
-    { src: "/assets/art/mindless-mirth.jpg", alt: "Mindless Mirth" },
-    { src: "/assets/art/abstract-flow.jpg", alt: "Abstract Flow" },
-    { src: "/assets/art/city-nights.jpg", alt: "City Nights" },
-    { src: "/assets/art/digital-dreams.jpg", alt: "Digital Dreams" },
-    { src: "/assets/art/morning-light.jpg", alt: "Morning Light" },
-    { src: "/assets/art/urban-reflections.jpg", alt: "Urban Reflections" },
+    { src: "/gallery/Mindless-Mirth-final.svg", alt: "Mindless Mirth", type: "svg" },
+    { src: "/gallery/eat, drink, & be merry.svg", alt: "Eat, Drink, & Be Merry", type: "svg" },
+    { src: "/gallery/A bike for every rider.svg", alt: "A Bike for Every Rider", type: "svg" },
+    { src: "/gallery/THE NTL photo.jpg", alt: "The NTL", type: "image" },
+    { src: "/gallery/Watercolor Painting.jpg", alt: "Watercolor Painting", type: "image" },
+    { src: "/gallery/Red Hook Launch Photo.jpg", alt: "Red Hook Launch", type: "image" },
+    { src: "/gallery/Binnoy Feature Photo.jpg", alt: "Binnoy Feature", type: "image" },
 ];
 
 export default function ArtScroller() {
@@ -50,11 +52,11 @@ export default function ArtScroller() {
                                 key={`${art.alt}-${index}`}
                                 className="relative h-64 w-96 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-[1.02] group-hover:border-accent-lime/50"
                             >
-                                <Image
+                                <ArtImage
                                     src={art.src}
                                     alt={art.alt}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    className="transition-transform duration-500 group-hover:scale-110"
+                                    containerClassName="h-full w-full"
                                 />
                                 <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
                             </div>

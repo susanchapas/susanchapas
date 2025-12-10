@@ -10,7 +10,7 @@ const projectData = {
   subtitle: "Building an Accessibility-Focused Design Agency",
   description:
     "Founded and scaled a design agency dedicated to making professional branding and web solutions accessible to small businesses, nonprofits, and entrepreneurs.",
-  heroImage: "/assets/projects/schematic-marketing-hero.jpg",
+  heroImage: "/assets/projects/schematic-marketing-hero.svg",
   tags: ["Entrepreneurship", "Accessibility", "UX Design", "Agency"],
   year: "2021 - 2023",
   role: "Founder & Director",
@@ -53,10 +53,10 @@ const caseStudy = {
 };
 
 const gallery = [
-  { src: "/assets/projects/sm-1.jpg", alt: "Client branding project" },
-  { src: "/assets/projects/sm-2.jpg", alt: "Website design mockup" },
-  { src: "/assets/projects/sm-3.jpg", alt: "Marketing collateral" },
-  { src: "/assets/projects/sm-4.jpg", alt: "Accessibility audit report" },
+  { src: "/assets/projects/sm-1.svg", alt: "Client branding project" },
+  { src: "/assets/projects/sm-2.svg", alt: "Website design mockup" },
+  { src: "/assets/projects/sm-3.svg", alt: "Marketing collateral" },
+  { src: "/assets/projects/sm-4.svg", alt: "Accessibility audit report" },
 ];
 
 const tools = [
@@ -83,13 +83,13 @@ export default function SchematicMarketingProject() {
     <div className="lg:pl-20">
       {/* Hero Section */}
       <section className="relative flex min-h-[70vh] items-end py-16 lg:py-24">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={projectData.heroImage}
-            alt={projectData.title}
-            fill
-            className="object-cover"
-            priority
+        <div className="absolute inset-0 z-0 bg-primary">
+          <div className="absolute inset-0 bg-gradient-to-tr from-accent-lime/5 to-accent-blue/5" />
+          <div className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `linear-gradient(rgba(244, 244, 245, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(244, 244, 245, 0.5) 1px, transparent 1px)`,
+              backgroundSize: "40px 40px",
+            }}
           />
           <div className="from-primary via-primary/70 to-primary/30 absolute inset-0 bg-gradient-to-t" />
         </div>
@@ -317,19 +317,19 @@ export default function SchematicMarketingProject() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {gallery.map((image, index) => (
               <motion.div
-                key={image.src}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative aspect-[4/3] overflow-hidden rounded-xl"
+                className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-accent-blue/10 bg-accent-blue/5 flex items-center justify-center"
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <div className="text-center p-6">
+                  <span className="text-accent-lime font-display text-xl font-bold mb-2 block">
+                    {image.alt}
+                  </span>
+                  <span className="text-secondary/50 text-sm">Image coming soon</span>
+                </div>
               </motion.div>
             ))}
           </div>

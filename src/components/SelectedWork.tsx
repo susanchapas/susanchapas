@@ -9,7 +9,7 @@ const projects = [
     description:
       "Launching a new bank branch in Red Hook, Brooklyn — designed the new branch interior & exterior, including ATM videography & animations.",
     href: "/projects/spring-bank",
-    image: "/assets/projects/spring-bank.jpg",
+    image: "/gallery/SB Bike Shop Info Sheet.svg",
     tags: ["Brand Strategy", "Interior Design", "Motion Graphics"],
   },
   {
@@ -17,7 +17,7 @@ const projects = [
     description:
       "Redesigning the brand for professionalism & consistency — website auditing, new marketing materials including capability statement, business cards, and portfolio.",
     href: "/projects/all-executive-clean",
-    image: "/assets/projects/all-executive-clean.jpg",
+    image: "/assets/projects/all-executive-clean-hero.svg",
     tags: ["Brand Identity", "Web Design", "Marketing"],
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     description:
       "Launched and scaled an accessibility-focused design agency for small businesses, nonprofits and entrepreneurs.",
     href: "/projects/schematic-marketing",
-    image: "/assets/projects/schematic-marketing.jpg",
+    image: "/assets/projects/schematic-marketing-hero.svg",
     tags: ["Entrepreneurship", "Accessibility", "UX Design"],
   },
 ];

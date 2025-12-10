@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { useState } from "react";
 import { X } from "lucide-react";
+import ArtMedia from "@/components/ArtMedia";
+import { cn } from "@/lib/utils";
 
 const artworks = [
   {
@@ -13,61 +14,169 @@ const artworks = [
     year: "2022",
     description:
       "Award-winning abstract piece exploring the intersection of joy and unconscious expression.",
-    image: "/assets/art/mindless-mirth.jpg",
-    featured: true,
+    src: "/gallery/Mindless-Mirth-final.svg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-2",
+    objectFit: "cover",
+    imageClassName: "scale-[1.03] origin-top",
   },
   {
     id: 2,
-    title: "Urban Reflections",
-    category: "Photography",
+    title: "ATM Home Screen",
+    category: "Motion",
     year: "2023",
-    description: "A study of light and shadow in the urban landscape of Jersey City.",
-    image: "/assets/art/urban-reflections.jpg",
-    featured: false,
+    description: "Motion graphics for an ATM interface concept.",
+    src: "/gallery/ATM home screen video.mp4",
+    type: "video",
+    className: "md:col-span-2 md:row-span-1",
   },
   {
     id: 3,
-    title: "Digital Dreams",
-    category: "Digital Art",
+    title: "A Bike for Every Rider",
+    category: "Illustration",
     year: "2023",
-    description: "Exploring the boundary between organic forms and digital creation.",
-    image: "/assets/art/digital-dreams.jpg",
-    featured: false,
+    description: "Inclusive illustration celebrating cycling diversity.",
+    src: "/gallery/A bike for every rider.svg",
+    type: "image",
+    className: "md:col-span-2 md:row-span-1",
   },
   {
     id: 4,
-    title: "Morning Light",
-    category: "Photography",
-    year: "2022",
-    description: "Capturing the golden hour in the streets of Brooklyn.",
-    image: "/assets/art/morning-light.jpg",
-    featured: false,
+    title: "Eat, Drink, & Be Merry",
+    category: "Illustration",
+    year: "2023",
+    description: "Festive illustration design.",
+    src: "/gallery/eat, drink, & be merry.svg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
   },
   {
     id: 5,
-    title: "Abstract Flow",
-    category: "Painting",
-    year: "2021",
-    description: "Fluid dynamics expressed through acrylic on canvas.",
-    image: "/assets/art/abstract-flow.jpg",
-    featured: false,
+    title: "EOP Explainer",
+    category: "Motion",
+    year: "2023",
+    description: "Animated explainer video for EOP.",
+    src: "/gallery/EOP Explainer.mp4",
+    type: "video",
+    className: "md:col-span-2 md:row-span-1",
   },
   {
     id: 6,
-    title: "City Nights",
+    title: "SB Bike Shop Info Sheet",
+    category: "Design",
+    year: "2023",
+    description: "Information design for a local bike shop.",
+    src: "/gallery/SB Bike Shop Info Sheet.svg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-2",
+  },
+  {
+    id: 7,
+    title: "The NTL",
     category: "Photography",
     year: "2023",
-    description: "Long exposure photography capturing the energy of the city after dark.",
-    image: "/assets/art/city-nights.jpg",
-    featured: false,
+    description: "Photography feature.",
+    src: "/gallery/THE NTL photo.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
   },
-];
+  {
+    id: 8,
+    title: "Watercolor Painting",
+    category: "Painting",
+    year: "2023",
+    description: "Watercolor artwork.",
+    src: "/gallery/Watercolor Painting.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: 9,
+    title: "Red Hook Launch",
+    category: "Photography",
+    year: "2024",
+    description: "Launch event photography.",
+    src: "/gallery/Red Hook Launch Photo.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: 10,
+    title: "Binnoy Feature",
+    category: "Photography",
+    year: "2023",
+    description: "Feature photography.",
+    src: "/gallery/Binnoy Feature Photo.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: 11,
+    title: "Construction Site",
+    category: "Photography",
+    year: "2023",
+    description: "Site documentation.",
+    src: "/gallery/Construction Site Photo.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: 12,
+    title: "Employee Blog",
+    category: "Photography",
+    year: "2023",
+    description: "Blog feature photography.",
+    src: "/gallery/Employee Blog photo.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: 16,
+    title: "Employee Blog 2",
+    category: "Photography",
+    year: "2023",
+    description: "Blog feature photography.",
+    src: "/gallery/Employee Blog Photo 2.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: 13,
+    title: "Jason Feature",
+    category: "Photography",
+    year: "2023",
+    description: "Feature photography.",
+    src: "/gallery/Jason Feature Photo.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: 14,
+    title: "LinkedIn Cover",
+    category: "Design",
+    year: "2023",
+    description: "Social media branding.",
+    src: "/gallery/LinkedIn Cover Photo.jpg",
+    type: "image",
+    className: "md:col-span-2 md:row-span-1",
+  },
+  {
+    id: 15,
+    title: "Posing at Gallery",
+    category: "Photography",
+    year: "2023",
+    description: "Gallery event photography.",
+    src: "/gallery/Posing at a Gallery Photo.jpg",
+    type: "image",
+    className: "md:col-span-1 md:row-span-1",
+  },
+] as const;
 
-const categories = ["All", "Painting", "Photography", "Digital Art"];
+const categories = ["All", "Painting", "Illustration", "Design", "Motion"];
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedArtwork, setSelectedArtwork] = useState<(typeof artworks)[0] | null>(
+  const [selectedArtwork, setSelectedArtwork] = useState<(typeof artworks)[number] | null>(
     null
   );
 
@@ -103,7 +212,7 @@ export default function GalleryPage() {
             >
               Art &
               <br />
-              <span className="text-gradient">Photography</span>
+              <span className="text-gradient">Motion</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -112,8 +221,8 @@ export default function GalleryPage() {
               className="font-body text-secondary/70 max-w-2xl text-lg"
             >
               Beyond design and development, I express creativity through various visual
-              mediums. This gallery showcases a selection of personal art projects and
-              photography work.
+              mediums. This gallery showcases a selection of personal art projects,
+              illustrations, and motion work.
             </motion.p>
           </motion.div>
         </div>
@@ -133,11 +242,10 @@ export default function GalleryPage() {
                 onClick={() => setActiveCategory(category)}
                 role="tab"
                 aria-selected={activeCategory === category}
-                className={`font-body rounded-full px-4 py-2 text-sm transition-all ${
-                  activeCategory === category
-                    ? "bg-accent-lime text-primary"
-                    : "bg-accent-blue/10 text-secondary hover:bg-accent-blue/20"
-                }`}
+                className={`font-body rounded-full px-4 py-2 text-sm transition-all ${activeCategory === category
+                  ? "bg-accent-lime text-primary"
+                  : "bg-accent-blue/10 text-secondary hover:bg-accent-blue/20"
+                  }`}
               >
                 {category}
               </button>
@@ -151,7 +259,7 @@ export default function GalleryPage() {
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             layout
-            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-6 md:grid-cols-3 auto-rows-[300px]"
           >
             <AnimatePresence mode="popLayout">
               {filteredArtworks.map((artwork, index) => (
@@ -162,38 +270,31 @@ export default function GalleryPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className={`group cursor-pointer ${
-                    artwork.featured ? "md:col-span-2 md:row-span-2" : ""
-                  }`}
+                  className={cn(
+                    "group cursor-pointer relative overflow-hidden rounded-xl border border-accent-blue/10 hover:border-accent-lime/30 transition-colors",
+                    artwork.className
+                  )}
                   onClick={() => setSelectedArtwork(artwork)}
                 >
-                  <div
-                    className={`border-accent-blue/10 hover:border-accent-lime/30 relative overflow-hidden rounded-xl border transition-colors ${
-                      artwork.featured ? "aspect-square" : "aspect-[4/3]"
-                    }`}
-                  >
-                    <Image
-                      src={artwork.image}
-                      alt={artwork.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="from-primary absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                    <div className="absolute right-0 bottom-0 left-0 translate-y-full p-6 transition-transform group-hover:translate-y-0">
-                      <span className="text-accent-lime font-body text-xs tracking-wider uppercase">
-                        {artwork.category}
-                      </span>
-                      <h3 className="font-display text-secondary mt-1 text-xl font-bold">
-                        {artwork.title}
-                      </h3>
-                    </div>
-                    {artwork.featured && (
-                      <div className="absolute top-4 right-4">
-                        <span className="bg-accent-clay text-primary rounded-full px-3 py-1 text-xs font-medium">
-                          Featured
-                        </span>
-                      </div>
+                  <ArtMedia
+                    src={artwork.src}
+                    alt={artwork.title}
+                    type={artwork.type}
+                    className={cn(
+                      "transition-transform duration-500 group-hover:scale-105",
+                      (artwork as any).imageClassName
                     )}
+                    containerClassName="h-full w-full"
+                    objectFit={(artwork as any).objectFit}
+                  />
+                  <div className="from-primary absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="absolute right-0 bottom-0 left-0 translate-y-full p-6 transition-transform group-hover:translate-y-0">
+                    <span className="text-accent-lime font-body text-xs tracking-wider uppercase">
+                      {artwork.category}
+                    </span>
+                    <h3 className="font-display text-secondary mt-1 text-xl font-bold">
+                      {artwork.title}
+                    </h3>
                   </div>
                 </motion.article>
               ))}
@@ -222,7 +323,7 @@ export default function GalleryPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="bg-primary border-accent-blue/20 relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl border"
+              className="bg-primary border-accent-blue/20 relative z-10 w-full max-w-6xl overflow-hidden rounded-2xl border max-h-[90vh] flex flex-col md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -233,29 +334,31 @@ export default function GalleryPage() {
                 <X size={20} />
               </button>
 
-              <div className="grid md:grid-cols-2">
-                <div className="relative aspect-square">
-                  <Image
-                    src={selectedArtwork.image}
+              <div className="relative w-full md:w-2/3 bg-black/5 flex items-center justify-center p-4 md:p-0">
+                <div className="relative w-full h-full min-h-[300px] md:min-h-[500px]">
+                  <ArtMedia
+                    src={selectedArtwork.src}
                     alt={selectedArtwork.title}
-                    fill
-                    className="object-cover"
+                    type={selectedArtwork.type}
+                    containerClassName="h-full w-full"
+                    className="object-contain"
+                    objectFit={(selectedArtwork as any).objectFit || "contain"}
                   />
                 </div>
-                <div className="flex flex-col justify-center p-8 lg:p-12">
-                  <span className="text-accent-lime font-body mb-2 text-sm tracking-wider uppercase">
-                    {selectedArtwork.category} • {selectedArtwork.year}
-                  </span>
-                  <h2
-                    id="artwork-title"
-                    className="font-display text-secondary mb-4 text-3xl font-bold lg:text-4xl"
-                  >
-                    {selectedArtwork.title}
-                  </h2>
-                  <p className="font-body text-secondary/70 leading-relaxed">
-                    {selectedArtwork.description}
-                  </p>
-                </div>
+              </div>
+              <div className="flex flex-col justify-center p-6 md:w-1/3 lg:p-12 overflow-y-auto">
+                <span className="text-accent-lime font-body mb-2 text-sm tracking-wider uppercase">
+                  {selectedArtwork.category} • {selectedArtwork.year}
+                </span>
+                <h2
+                  id="artwork-title"
+                  className="font-display text-secondary mb-4 text-3xl font-bold lg:text-4xl"
+                >
+                  {selectedArtwork.title}
+                </h2>
+                <p className="font-body text-secondary/70 leading-relaxed">
+                  {selectedArtwork.description}
+                </p>
               </div>
             </motion.div>
           </motion.div>

@@ -161,14 +161,13 @@ export default function Hero() {
           >
             <div className="relative h-64 w-64 lg:h-[400px] lg:w-[320px]">
               <div className="absolute inset-0 bg-gradient-to-tr from-accent-lime/20 to-accent-blue/20 rounded-full blur-3xl transform rotate-12" />
-              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
-                <Image
-                  src="/assets/profile.jpg"
-                  alt="Susan Chapas"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center">
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-tr from-accent-lime/20 to-accent-blue/20 flex items-center justify-center">
+                    <span className="text-2xl">✨</span>
+                  </div>
+                  <p className="text-secondary/50 font-body text-sm">Profile photo coming soon</p>
+                </div>
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 h-24 w-24 border-t-2 border-r-2 border-accent-lime/30 rounded-tr-3xl" />

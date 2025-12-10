@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AccessibleButton from "@/components/AccessibleButton";
 import SectionDivider from "@/components/SectionDivider";
+import ArtImage from "@/components/ArtImage";
 
 const timeline = [
   {
@@ -124,15 +125,13 @@ export default function AboutPage() {
               className="relative mx-auto aspect-square max-w-md lg:mx-0"
             >
               <div className="from-accent-lime/20 via-accent-blue/20 to-accent-clay/20 absolute inset-0 rounded-3xl bg-gradient-to-br blur-2xl" />
-              <div className="border-accent-blue/20 relative overflow-hidden rounded-3xl border">
-                <Image
-                  src="/assets/profile.jpg"
-                  alt="Susan Chapas"
-                  width={500}
-                  height={500}
-                  className="object-cover"
-                  priority
-                />
+              <div className="border-accent-blue/20 relative overflow-hidden rounded-3xl border bg-white/5 flex items-center justify-center aspect-square">
+                <div className="text-center p-6">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-tr from-accent-lime/20 to-accent-blue/20 flex items-center justify-center">
+                    <span className="text-3xl">✨</span>
+                  </div>
+                  <p className="text-secondary/50 font-body">Profile photo coming soon</p>
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -173,15 +172,13 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative pb-12 pl-8 lg:pb-16 lg:pl-0 ${
-                  index % 2 === 0 ? "lg:pr-[50%] lg:text-right" : "lg:pl-[50%]"
-                }`}
+                className={`relative pb-12 pl-8 lg:pb-16 lg:pl-0 ${index % 2 === 0 ? "lg:pr-[50%] lg:text-right" : "lg:pl-[50%]"
+                  }`}
               >
                 {/* Timeline dot */}
                 <div
-                  className={`bg-accent-lime absolute top-2 left-0 h-3 w-3 transform rounded-full lg:left-1/2 lg:-translate-x-1/2 ${
-                    index === 0 ? "ring-accent-lime/20 ring-4" : ""
-                  }`}
+                  className={`bg-accent-lime absolute top-2 left-0 h-3 w-3 transform rounded-full lg:left-1/2 lg:-translate-x-1/2 ${index === 0 ? "ring-accent-lime/20 ring-4" : ""
+                    }`}
                 />
 
                 <div className={index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}>
@@ -286,11 +283,10 @@ export default function AboutPage() {
             className="relative mx-auto max-w-3xl"
           >
             <div className="border-accent-blue/20 aspect-[4/3] overflow-hidden rounded-2xl border">
-              <Image
-                src="/assets/art/mindless-mirth.jpg"
+              <ArtImage
+                src="/gallery/Mindless-Mirth-final.svg"
                 alt="Mindless Mirth - Award-winning artwork by Susan Chapas"
-                fill
-                className="object-cover"
+                containerClassName="h-full w-full"
               />
             </div>
             <div className="mt-6 text-center">

@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import AccessibleButton from "@/components/AccessibleButton";
+import ArtMedia from "@/components/ArtMedia";
 
 const projectData = {
   title: "Spring Bank",
   subtitle: "New Branch Launch in Red Hook, Brooklyn",
   description:
     "A comprehensive brand experience design project for the launch of Spring Bank's newest community branch location.",
-  heroImage: "/assets/projects/spring-bank-hero.jpg",
+  heroImage: "/gallery/SB Bike Shop Info Sheet.svg",
   tags: ["Brand Strategy", "Interior Design", "Motion Graphics", "UX Design"],
   year: "2024",
   role: "Marketing & UX Strategist",
@@ -53,10 +54,10 @@ const caseStudy = {
 };
 
 const gallery = [
-  { src: "/assets/projects/spring-bank-1.jpg", alt: "Branch interior design" },
-  { src: "/assets/projects/spring-bank-2.jpg", alt: "ATM interface design" },
-  { src: "/assets/projects/spring-bank-3.jpg", alt: "Exterior signage" },
-  { src: "/assets/projects/spring-bank-4.jpg", alt: "Marketing materials" },
+  { src: "/gallery/Red Hook Launch Photo.jpg", alt: "Branch interior design" },
+  { src: "/gallery/ATM home screen video.mp4", alt: "ATM interface design", type: "video" },
+  { src: "/gallery/SB Bike Shop Info Sheet.svg", alt: "Exterior signage" },
+  { src: "/gallery/A bike for every rider.svg", alt: "Marketing materials" },
 ];
 
 const tools = [
@@ -286,11 +287,12 @@ export default function SpringBankProject() {
                 transition={{ delay: index * 0.1 }}
                 className="group relative aspect-[4/3] overflow-hidden rounded-xl"
               >
-                <Image
+                <ArtMedia
                   src={image.src}
                   alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  type={(image.type as "video" | "image") || "image"}
+                  className="transition-transform duration-500 group-hover:scale-105"
+                  containerClassName="h-full w-full"
                 />
               </motion.div>
             ))}
