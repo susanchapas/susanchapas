@@ -1,13 +1,27 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import AccessibleButton from "./AccessibleButton";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Use MotionValues instead of state to avoid re-renders
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth out the mouse movement
+  const springConfig = { damping: 30, stiffness: 50 };
+  const mouseXSpring = useSpring(mouseX, springConfig);
+  const mouseYSpring = useSpring(mouseY, springConfig);
+
+  // Create transform values for the orbs
+  const orb1X = useTransform(mouseXSpring, (value: number) => value * 2);
+  const orb1Y = useTransform(mouseYSpring, (value: number) => value * 2);
+  const orb2X = useTransform(mouseXSpring, (value: number) => value * -1.5);
+  const orb2Y = useTransform(mouseYSpring, (value: number) => value * -1.5);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -19,15 +33,17 @@ export default function Hero() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
+      // Calculate normalized position (-10 to 10)
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+      mouseX.set(x);
+      mouseY.set(y);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -62,20 +78,20 @@ export default function Hero() {
       <div className="gradient-mesh absolute inset-0">
         {/* Floating orbs */}
         <motion.div
-          className="bg-accent-lime/5 absolute top-1/4 left-1/4 h-96 w-96 rounded-full blur-3xl"
-          animate={{
-            x: mousePosition.x * 2,
-            y: mousePosition.y * 2,
+          className="bg-accent-lime/5 absolute top-1/4 left-1/4 h-96 w-96 rounded-full blur-3xl will-change-transform"
+          style={{
+            x: orb1X,
+            y: orb1Y,
+            transform: "translateZ(0)", // Force GPU
           }}
-          transition={{ type: "spring", stiffness: 50, damping: 30 }}
         />
         <motion.div
-          className="bg-accent-blue/10 absolute right-1/4 bottom-1/4 h-80 w-80 rounded-full blur-3xl"
-          animate={{
-            x: mousePosition.x * -1.5,
-            y: mousePosition.y * -1.5,
+          className="bg-accent-blue/10 absolute right-1/4 bottom-1/4 h-80 w-80 rounded-full blur-3xl will-change-transform"
+          style={{
+            x: orb2X,
+            y: orb2Y,
+            transform: "translateZ(0)", // Force GPU
           }}
-          transition={{ type: "spring", stiffness: 50, damping: 30 }}
         />
       </div>
 
@@ -84,9 +100,9 @@ export default function Hero() {
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(244, 244, 245, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(244, 244, 245, 0.5) 1px, transparent 1px)
-          `,
+linear - gradient(rgba(244, 244, 245, 0.5) 1px, transparent 1px),
+  linear - gradient(90deg, rgba(244, 244, 245, 0.5) 1px, transparent 1px)
+    `,
           backgroundSize: "60px 60px",
         }}
         aria-hidden="true"

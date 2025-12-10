@@ -33,7 +33,7 @@ export default function ArtScroller() {
             <Link href="/gallery" className="block group relative">
                 <div className="flex overflow-hidden">
                     <motion.div
-                        className="flex gap-8 px-4"
+                        className="flex gap-8 px-4 will-change-transform"
                         animate={{
                             x: ["0%", "-50%"],
                         }}
@@ -45,7 +45,11 @@ export default function ArtScroller() {
                                 ease: "linear",
                             },
                         }}
-                        style={{ width: "fit-content" }}
+                        style={{
+                            width: "fit-content",
+                            transform: "translateZ(0)", // Force GPU
+                            backfaceVisibility: "hidden"
+                        }}
                     >
                         {[...artPieces, ...artPieces].map((art, index) => (
                             <div
