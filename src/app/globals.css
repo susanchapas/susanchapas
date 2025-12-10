@@ -6,9 +6,9 @@
   --foreground: #f4f4f5;
   --primary: #102f5d;
   --secondary: #f4f4f5;
-  --accent-lime: #e09f7d;
+  --accent-lime: #ccff00;
   --accent-blue: #bbcdf3;
-  --accent-clay: #ccff00;
+  --accent-clay: #e09f7d;
 
   /* Animation timing */
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
@@ -138,6 +138,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

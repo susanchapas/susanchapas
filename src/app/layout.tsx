@@ -48,7 +48,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
-      <body className="bg-primary text-secondary antialiased">
+      <body
+        className="bg-primary text-secondary antialiased"
+        suppressHydrationWarning
+      >
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>
