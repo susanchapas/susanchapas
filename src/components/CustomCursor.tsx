@@ -13,7 +13,7 @@ export default function CustomCursor() {
   const cursorY = useMotionValue(-100);
 
   // Stiffer spring for snappier feel
-  const springConfig = { damping: 40, stiffness: 800 };
+  const springConfig = { damping: 35, stiffness: 600 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -96,6 +96,9 @@ export default function CustomCursor() {
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
+          z: 0,
+          willChange: "transform",
+          backfaceVisibility: "hidden",
         }}
       >
         <motion.div
@@ -119,6 +122,9 @@ export default function CustomCursor() {
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
+          z: 0,
+          willChange: "transform",
+          backfaceVisibility: "hidden",
         }}
       >
         <motion.div
