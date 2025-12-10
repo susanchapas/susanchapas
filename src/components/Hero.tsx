@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import AccessibleButton from "./AccessibleButton";
 
 export default function Hero() {
@@ -28,23 +29,33 @@ export default function Hero() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: (i: number) => ({
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.15,
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       },
-    }),
+    },
   };
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden lg:pl-20"
+      className="relative flex min-h-screen items-center overflow-hidden pt-32 lg:pl-20 lg:pt-0"
       aria-label="Hero section"
     >
       {/* Animated mesh background */}
@@ -66,14 +77,6 @@ export default function Hero() {
           }}
           transition={{ type: "spring", stiffness: 50, damping: 30 }}
         />
-        <motion.div
-          className="bg-accent-clay/10 absolute top-1/2 right-1/3 h-64 w-64 rounded-full blur-3xl"
-          animate={{
-            x: mousePosition.x * 1,
-            y: mousePosition.y * 1,
-          }}
-          transition={{ type: "spring", stiffness: 50, damping: 30 }}
-        />
       </div>
 
       {/* Grid overlay */}
@@ -89,75 +92,91 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 container mx-auto px-6 text-center lg:px-12"
-      >
-        {/* Eyebrow */}
-        <motion.p
-          custom={0}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="text-accent-lime font-body mb-6 text-sm tracking-widest uppercase lg:text-base"
-        >
-          UX Strategist & Marketing Professional
-        </motion.p>
-
-        {/* Main Heading */}
-        <motion.h1
-          custom={1}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="font-display text-secondary mb-8 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
-        >
-          I build strategies
-          <br />
-          <span className="text-gradient">that drive engagement.</span>
-        </motion.h1>
-
-        {/* Subtext */}
-        <motion.p
-          custom={2}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="font-body text-secondary/70 mx-auto mb-12 max-w-2xl text-lg lg:text-xl"
-        >
-          The Strategic Architect — bridging design, marketing strategy, and technical
-          implementation. Based in Jersey City, NJ.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          custom={3}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-        >
-          <AccessibleButton href="/projects" size="lg">
-            View My Work
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+      <div className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+          {/* Left Column: Text (2/3 width) */}
+          <motion.div
+            style={{ y, opacity }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center lg:col-span-8 lg:text-left"
+          >
+            <motion.p
+              variants={itemVariants}
+              className="text-accent-lime font-body mb-6 text-sm tracking-widest uppercase lg:text-base"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-          </AccessibleButton>
-          <AccessibleButton href="/contact" variant="outline" size="lg">
-            Get in Touch
-          </AccessibleButton>
-        </motion.div>
-      </motion.div>
+              UX Strategist & Marketing Professional
+            </motion.p>
+
+            <motion.h1
+              variants={itemVariants}
+              className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl"
+            >
+              Hi, I&apos;m Susan.
+              <br />
+              <span className="text-gradient">I build strategies that drive engagement.</span>
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="font-body text-secondary/70 mb-8 max-w-2xl text-lg lg:mx-0 lg:text-xl"
+            >
+              The Strategic Architect — bridging design, marketing strategy, and technical
+              implementation. Based in Jersey City, NJ.
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start"
+            >
+              <AccessibleButton href="/projects" size="lg">
+                View My Work
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </AccessibleButton>
+              <AccessibleButton href="/contact" variant="outline" size="lg">
+                Get in Touch
+              </AccessibleButton>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Image (1/3 width) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative mx-auto lg:col-span-4 lg:mx-0 lg:ml-auto"
+          >
+            <div className="relative h-64 w-64 lg:h-[400px] lg:w-[320px]">
+              <div className="absolute inset-0 bg-gradient-to-tr from-accent-lime/20 to-accent-blue/20 rounded-full blur-3xl transform rotate-12" />
+              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+                <Image
+                  src="/assets/profile.jpg"
+                  alt="Susan Chapas"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 h-24 w-24 border-t-2 border-r-2 border-accent-lime/30 rounded-tr-3xl" />
+              <div className="absolute -bottom-4 -left-4 h-24 w-24 border-b-2 border-l-2 border-accent-blue/30 rounded-bl-3xl" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.div

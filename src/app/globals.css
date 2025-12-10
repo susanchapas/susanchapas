@@ -6,9 +6,9 @@
   --foreground: #f4f4f5;
   --primary: #102f5d;
   --secondary: #f4f4f5;
-  --accent-lime: #ccff00;
+  --accent-lime: #e09f7d;
   --accent-blue: #bbcdf3;
-  --accent-clay: #e09f7d;
+  --accent-clay: #ccff00;
 
   /* Animation timing */
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);

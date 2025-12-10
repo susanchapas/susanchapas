@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import GlobalSkillsTicker from "@/components/GlobalSkillsTicker";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -57,6 +58,7 @@ export default function RootLayout({
           <main id="main-content" tabIndex={-1}>
             {children}
           </main>
+          <GlobalSkillsTicker />
           <Footer />
         </SmoothScrollProvider>
       </body>
