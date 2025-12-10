@@ -1,8 +1,0 @@
-<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="600" fill="#1a3a6d"/>
-  <circle cx="150" cy="300" r="180" fill="#E09F7D" opacity="0.15"/>
-  <circle cx="1050" cy="300" r="220" fill="#CCFF00" opacity="0.1"/>
-  <rect x="350" y="200" width="500" height="200" rx="30" fill="#F4F4F5" opacity="0.05"/>
-  <text x="600" y="320" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="48" font-weight="bold">All Executive Clean</text>
-  <text x="600" y="380" text-anchor="middle" fill="#E09F7D" font-family="system-ui" font-size="20">Brand Transformation</text>
-</svg>

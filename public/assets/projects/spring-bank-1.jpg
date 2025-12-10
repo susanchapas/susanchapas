@@ -1,7 +1,0 @@
-<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#102f5d"/>
-  <rect x="100" y="150" width="200" height="300" rx="15" fill="#bbcdf3" opacity="0.2"/>
-  <rect x="350" y="100" width="200" height="400" rx="15" fill="#CCFF00" opacity="0.15"/>
-  <rect x="500" y="200" width="200" height="200" rx="15" fill="#E09F7D" opacity="0.2"/>
-  <text x="400" y="550" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="16" opacity="0.7">Branch Interior Design</text>
-</svg>

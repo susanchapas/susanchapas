@@ -1,8 +1,0 @@
-<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#F4F4F5"/>
-  <path d="M0 300 Q200 100 400 300 Q600 500 800 300" fill="#102f5d" opacity="0.2"/>
-  <path d="M0 350 Q200 150 400 350 Q600 550 800 350" fill="#CCFF00" opacity="0.3"/>
-  <path d="M0 400 Q200 200 400 400 Q600 600 800 400" fill="#bbcdf3" opacity="0.4"/>
-  <circle cx="400" cy="300" r="100" fill="#E09F7D" opacity="0.3"/>
-  <text x="400" y="550" text-anchor="middle" fill="#102f5d" font-family="system-ui" font-size="18">Abstract Flow</text>
-</svg>

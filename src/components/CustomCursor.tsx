@@ -12,7 +12,8 @@ export default function CustomCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 400 };
+  // Stiffer spring for snappier feel
+  const springConfig = { damping: 40, stiffness: 800 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -20,9 +21,10 @@ export default function CustomCursor() {
     (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      setIsVisible(true);
+      // Only set visible if it wasn't before to avoid re-renders
+      if (!isVisible) setIsVisible(true);
     },
-    [cursorX, cursorY]
+    [cursorX, cursorY, isVisible]
   );
 
   const handleMouseDown = useCallback(() => setIsClicking(true), []);
@@ -44,8 +46,8 @@ export default function CustomCursor() {
     const checkTouchDevice = () => {
       setIsTouchDevice(
         "ontouchstart" in window ||
-          navigator.maxTouchPoints > 0 ||
-          window.matchMedia("(pointer: coarse)").matches
+        navigator.maxTouchPoints > 0 ||
+        window.matchMedia("(pointer: coarse)").matches
       );
     };
 

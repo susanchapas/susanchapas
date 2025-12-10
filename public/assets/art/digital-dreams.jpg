@@ -1,8 +1,0 @@
-<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#0a0a1a"/>
-  <circle cx="200" cy="300" r="100" fill="#CCFF00" opacity="0.3"/>
-  <circle cx="400" cy="250" r="150" fill="#bbcdf3" opacity="0.2"/>
-  <circle cx="600" cy="350" r="120" fill="#E09F7D" opacity="0.25"/>
-  <path d="M100 400 Q250 200 400 350 Q550 500 700 300" stroke="#CCFF00" stroke-width="3" fill="none" opacity="0.5"/>
-  <text x="400" y="550" text-anchor="middle" fill="#F4F4F5" font-family="system-ui" font-size="18">Digital Dreams</text>
-</svg>

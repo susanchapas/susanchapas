@@ -1,7 +1,0 @@
-<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#F4F4F5"/>
-  <circle cx="400" cy="250" r="120" fill="#1a3a6d"/>
-  <text x="400" y="260" text-anchor="middle" fill="#CCFF00" font-family="system-ui" font-size="40" font-weight="bold">AEC</text>
-  <text x="400" y="450" text-anchor="middle" fill="#1a3a6d" font-family="system-ui" font-size="24" font-weight="bold">ALL EXECUTIVE CLEAN</text>
-  <text x="400" y="550" text-anchor="middle" fill="#1a3a6d" font-family="system-ui" font-size="16" opacity="0.7">New Logo Design</text>
-</svg>
