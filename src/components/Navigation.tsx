@@ -87,7 +87,7 @@ export default function Navigation() {
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="glass fixed top-0 left-0 z-50 hidden h-screen w-20 flex-col items-center justify-between py-8 lg:flex"
+        className="bg-primary fixed top-0 left-0 z-50 hidden h-dvh w-20 flex-col items-center justify-between py-4 lg:flex lg:py-6"
         role="navigation"
         aria-label="Main navigation"
       >
@@ -99,14 +99,14 @@ export default function Navigation() {
           SC
         </Link>
 
-        <ul className="flex flex-col gap-6">
+        <ul className="flex flex-col gap-3 lg:gap-6">
           {navItems.map((item) => (
             <li key={item.name}>
               <Link
                 href={item.href}
                 className={`group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${pathname === item.href
-                    ? "bg-accent-lime text-primary"
-                    : "text-secondary hover:bg-accent-blue/20"
+                  ? "bg-accent-lime text-primary"
+                  : "text-secondary hover:bg-accent-blue/20"
                   }`}
                 aria-current={pathname === item.href ? "page" : undefined}
               >
@@ -200,8 +200,8 @@ export default function Navigation() {
                     <Link
                       href={item.href}
                       className={`font-display text-4xl font-bold transition-colors ${pathname === item.href
-                          ? "text-accent-lime"
-                          : "text-secondary hover:text-accent-lime"
+                        ? "text-accent-lime"
+                        : "text-secondary hover:text-accent-lime"
                         }`}
                       onClick={() => setIsOpen(false)}
                       aria-current={pathname === item.href ? "page" : undefined}
