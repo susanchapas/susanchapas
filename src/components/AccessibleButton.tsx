@@ -2,6 +2,7 @@
 
 import { motion, HTMLMotionProps } from "framer-motion";
 import Link from "next/link";
+const MotionLink = motion(Link);
 import { forwardRef, ReactNode } from "react";
 
 interface BaseProps {
@@ -81,16 +82,16 @@ const AccessibleButton = forwardRef<
     }
 
     return (
-      <Link href={href} passHref legacyBehavior>
-        <motion.a
-          ref={ref as React.Ref<HTMLAnchorElement>}
-          className={combinedClassName}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          {children}
-        </motion.a>
-      </Link>
+      <MotionLink
+        href={href}
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        className={combinedClassName}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        {...(linkRest as HTMLMotionProps<"a">)}
+      >
+        {children}
+      </MotionLink>
     );
   }
 
