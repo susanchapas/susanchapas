@@ -37,20 +37,20 @@ jest.mock("next/navigation", () => ({
 describe("Home Page", () => {
   it("renders the hero section", () => {
     render(<Home />);
-    
+
     expect(screen.getByText(/I build strategies/i)).toBeInTheDocument();
     expect(screen.getByText(/that drive engagement/i)).toBeInTheDocument();
   });
 
   it("renders the selected work section", () => {
     render(<Home />);
-    
+
     expect(screen.getByText(/Selected Work/i)).toBeInTheDocument();
   });
 
   it("has accessible navigation links", () => {
     render(<Home />);
-    
+
     const viewWorkLink = screen.getByRole("link", { name: /View My Work/i });
     expect(viewWorkLink).toBeInTheDocument();
   });

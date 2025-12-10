@@ -32,7 +32,7 @@ export default function SkillsTicker() {
 
   return (
     <section
-      className="py-8 bg-accent-blue/5 border-y border-accent-blue/10 overflow-hidden"
+      className="bg-accent-blue/5 border-accent-blue/10 overflow-hidden border-y py-8"
       aria-label="Skills marquee"
     >
       <motion.div
@@ -53,11 +53,8 @@ export default function SkillsTicker() {
         }}
       >
         {duplicatedSkills.map((skill, index) => (
-          <div
-            key={`${skill}-${index}`}
-            className="flex items-center gap-8"
-          >
-            <span className="text-lg lg:text-xl font-display text-secondary/80 hover:text-accent-lime transition-colors">
+          <div key={`${skill}-${index}`} className="flex items-center gap-8">
+            <span className="font-display text-secondary/80 hover:text-accent-lime text-lg transition-colors lg:text-xl">
               {skill}
             </span>
             <span className="text-accent-lime text-2xl" aria-hidden="true">

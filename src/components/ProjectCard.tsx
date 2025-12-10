@@ -35,18 +35,18 @@ export default function ProjectCard({
     >
       <Link
         href={href}
-        className="block relative overflow-hidden rounded-2xl bg-accent-blue/5 border border-accent-blue/10 transition-all duration-500 hover:border-accent-lime/30"
+        className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative block overflow-hidden rounded-2xl border transition-all duration-500"
         aria-label={`View ${title} case study`}
       >
         {/* Image Container */}
         <div className="relative aspect-[16/10] overflow-hidden">
           <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent z-10"
+            className="from-primary via-primary/50 absolute inset-0 z-10 bg-gradient-to-t to-transparent"
             initial={{ opacity: 0.6 }}
             whileHover={{ opacity: 0.8 }}
           />
           <motion.div
-            className="relative w-full h-full"
+            className="relative h-full w-full"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -66,13 +66,13 @@ export default function ProjectCard({
             whileHover={{ opacity: 1 }}
           >
             <motion.div
-              className="w-20 h-20 rounded-full bg-accent-lime flex items-center justify-center"
+              className="bg-accent-lime flex h-20 w-20 items-center justify-center rounded-full"
               initial={{ scale: 0 }}
               whileHover={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <svg
-                className="w-8 h-8 text-primary"
+                className="text-primary h-8 w-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -90,31 +90,31 @@ export default function ProjectCard({
 
         {/* Content */}
         <div className="p-6 lg:p-8">
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="mb-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 text-xs font-medium bg-accent-blue/10 text-accent-blue rounded-full"
+                className="bg-accent-blue/10 text-accent-blue rounded-full px-3 py-1 text-xs font-medium"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h3 className="font-display text-2xl lg:text-3xl font-bold text-secondary mb-3 group-hover:text-accent-lime transition-colors">
+          <h3 className="font-display text-secondary group-hover:text-accent-lime mb-3 text-2xl font-bold transition-colors lg:text-3xl">
             {title}
           </h3>
 
           <p className="text-secondary/70 font-body line-clamp-2">{description}</p>
 
           <motion.div
-            className="mt-6 flex items-center gap-2 text-accent-lime font-medium"
+            className="text-accent-lime mt-6 flex items-center gap-2 font-medium"
             initial={{ x: 0 }}
             whileHover={{ x: 8 }}
           >
             View Case Study
             <svg
-              className="w-4 h-4"
+              className="h-4 w-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

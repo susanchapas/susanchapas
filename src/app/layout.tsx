@@ -20,12 +20,22 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Susan Chapas | UX Strategist & Marketing Professional",
-  description: "The Strategic Architect — bridging design, marketing strategy, and technical implementation. UX Designer, Marketing Strategist, and Full-Stack Developer based in Jersey City.",
-  keywords: ["UX Design", "Marketing Strategy", "Full Stack Developer", "React", "Jersey City", "HCI", "Portfolio"],
+  description:
+    "The Strategic Architect — bridging design, marketing strategy, and technical implementation. UX Designer, Marketing Strategist, and Full-Stack Developer based in Jersey City.",
+  keywords: [
+    "UX Design",
+    "Marketing Strategy",
+    "Full Stack Developer",
+    "React",
+    "Jersey City",
+    "HCI",
+    "Portfolio",
+  ],
   authors: [{ name: "Susan Chapas" }],
   openGraph: {
     title: "Susan Chapas | UX Strategist & Marketing Professional",
-    description: "The Strategic Architect — bridging design, marketing strategy, and technical implementation.",
+    description:
+      "The Strategic Architect — bridging design, marketing strategy, and technical implementation.",
     type: "website",
   },
 };
@@ -37,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
-      <body className="antialiased bg-primary text-secondary">
+      <body className="bg-primary text-secondary antialiased">
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>

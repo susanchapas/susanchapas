@@ -72,7 +72,7 @@ export default function AllExecutiveCleanProject() {
   return (
     <div className="lg:pl-20">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-end py-16 lg:py-24">
+      <section className="relative flex min-h-[70vh] items-end py-16 lg:py-24">
         <div className="absolute inset-0 z-0">
           <Image
             src={projectData.heroImage}
@@ -81,7 +81,7 @@ export default function AllExecutiveCleanProject() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/70 to-primary/30" />
+          <div className="from-primary via-primary/70 to-primary/30 absolute inset-0 bg-gradient-to-t" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 lg:px-12">
@@ -92,10 +92,10 @@ export default function AllExecutiveCleanProject() {
           >
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-accent-lime font-body mb-6 hover:gap-4 transition-all"
+              className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 transition-all hover:gap-4"
             >
               <svg
-                className="w-4 h-4 rotate-180"
+                className="h-4 w-4 rotate-180"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -110,35 +110,35 @@ export default function AllExecutiveCleanProject() {
               Back to Projects
             </Link>
 
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="mb-4 flex flex-wrap gap-2">
               {projectData.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 text-xs font-medium bg-accent-blue/20 text-accent-blue rounded-full"
+                  className="bg-accent-blue/20 text-accent-blue rounded-full px-3 py-1 text-xs font-medium"
                 >
                   {tag}
                 </span>
               ))}
             </div>
 
-            <h1 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-secondary mb-4">
+            <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
               {projectData.title}
             </h1>
-            <p className="font-body text-xl text-secondary/80 max-w-2xl mb-8">
+            <p className="font-body text-secondary/80 mb-8 max-w-2xl text-xl">
               {projectData.subtitle}
             </p>
 
             <div className="flex flex-wrap gap-8 text-sm">
               <div>
-                <span className="text-secondary/50 block mb-1">Year</span>
+                <span className="text-secondary/50 mb-1 block">Year</span>
                 <span className="text-secondary font-medium">{projectData.year}</span>
               </div>
               <div>
-                <span className="text-secondary/50 block mb-1">Role</span>
+                <span className="text-secondary/50 mb-1 block">Role</span>
                 <span className="text-secondary font-medium">{projectData.role}</span>
               </div>
               <div>
-                <span className="text-secondary/50 block mb-1">Client</span>
+                <span className="text-secondary/50 mb-1 block">Client</span>
                 <span className="text-secondary font-medium">{projectData.client}</span>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function AllExecutiveCleanProject() {
       </section>
 
       {/* Overview */}
-      <section className="py-16 lg:py-24 bg-primary">
+      <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -156,10 +156,10 @@ export default function AllExecutiveCleanProject() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h2 className="font-display text-2xl lg:text-3xl font-bold text-secondary mb-6">
+            <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
               Overview
             </h2>
-            <p className="font-body text-lg text-secondary/80 leading-relaxed">
+            <p className="font-body text-secondary/80 text-lg leading-relaxed">
               {projectData.description}
             </p>
           </motion.div>
@@ -167,7 +167,7 @@ export default function AllExecutiveCleanProject() {
       </section>
 
       {/* STAR Case Study */}
-      <section className="py-16 lg:py-24 bg-accent-blue/5">
+      <section className="bg-accent-blue/5 py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
           {/* Situation */}
           <motion.div
@@ -177,10 +177,10 @@ export default function AllExecutiveCleanProject() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block">
+            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
               {caseStudy.situation.title}
             </span>
-            <p className="font-body text-lg text-secondary/80 max-w-3xl leading-relaxed">
+            <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
               {caseStudy.situation.content}
             </p>
           </motion.div>
@@ -193,10 +193,10 @@ export default function AllExecutiveCleanProject() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block">
+            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
               {caseStudy.task.title}
             </span>
-            <p className="font-body text-lg text-secondary/80 max-w-3xl leading-relaxed">
+            <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
               {caseStudy.task.content}
             </p>
           </motion.div>
@@ -209,10 +209,10 @@ export default function AllExecutiveCleanProject() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block">
+            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
               {caseStudy.action.title}
             </span>
-            <ul className="space-y-4 max-w-3xl">
+            <ul className="max-w-3xl space-y-4">
               {caseStudy.action.points.map((point, index) => (
                 <motion.li
                   key={index}
@@ -222,7 +222,7 @@ export default function AllExecutiveCleanProject() {
                   transition={{ delay: index * 0.1 }}
                   className="flex items-start gap-4"
                 >
-                  <span className="w-2 h-2 mt-2 rounded-full bg-accent-lime flex-shrink-0" />
+                  <span className="bg-accent-lime mt-2 h-2 w-2 flex-shrink-0 rounded-full" />
                   <span className="font-body text-secondary/80">{point}</span>
                 </motion.li>
               ))}
@@ -236,10 +236,10 @@ export default function AllExecutiveCleanProject() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-8 block">
+            <span className="text-accent-lime font-body mb-8 block text-sm tracking-widest uppercase">
               {caseStudy.result.title}
             </span>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="mb-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
               {caseStudy.result.metrics.map((metric, index) => (
                 <motion.div
                   key={metric.label}
@@ -247,18 +247,18 @@ export default function AllExecutiveCleanProject() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-6 rounded-xl bg-primary border border-accent-blue/10 text-center"
+                  className="bg-primary border-accent-blue/10 rounded-xl border p-6 text-center"
                 >
-                  <div className="font-display text-3xl lg:text-4xl font-bold text-accent-lime mb-2">
+                  <div className="font-display text-accent-lime mb-2 text-3xl font-bold lg:text-4xl">
                     {metric.value}
                   </div>
-                  <div className="font-body text-sm text-secondary/70">
+                  <div className="font-body text-secondary/70 text-sm">
                     {metric.label}
                   </div>
                 </motion.div>
               ))}
             </div>
-            <p className="font-body text-lg text-secondary/80 max-w-3xl leading-relaxed">
+            <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
               {caseStudy.result.content}
             </p>
           </motion.div>
@@ -266,17 +266,17 @@ export default function AllExecutiveCleanProject() {
       </section>
 
       {/* Gallery */}
-      <section className="py-16 lg:py-24 bg-primary">
+      <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-2xl lg:text-3xl font-bold text-secondary mb-12"
+            className="font-display text-secondary mb-12 text-2xl font-bold lg:text-3xl"
           >
             Project Gallery
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {gallery.map((image, index) => (
               <motion.div
                 key={image.src}
@@ -284,7 +284,7 @@ export default function AllExecutiveCleanProject() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative aspect-[4/3] rounded-xl overflow-hidden group"
+                className="group relative aspect-[4/3] overflow-hidden rounded-xl"
               >
                 <Image
                   src={image.src}
@@ -299,13 +299,13 @@ export default function AllExecutiveCleanProject() {
       </section>
 
       {/* Tools & Technologies */}
-      <section className="py-16 lg:py-24 bg-accent-blue/5">
+      <section className="bg-accent-blue/5 py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-2xl lg:text-3xl font-bold text-secondary mb-8"
+            className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl"
           >
             Tools & Technologies
           </motion.h2>
@@ -317,7 +317,7 @@ export default function AllExecutiveCleanProject() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="px-4 py-2 rounded-full bg-primary border border-accent-blue/20 text-secondary font-body text-sm"
+                className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
               >
                 {tool}
               </motion.span>
@@ -327,12 +327,12 @@ export default function AllExecutiveCleanProject() {
       </section>
 
       {/* Navigation */}
-      <section className="py-16 lg:py-24 bg-primary border-t border-accent-blue/10">
+      <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
             <AccessibleButton href="/projects/spring-bank" variant="outline">
               <svg
-                className="w-4 h-4 rotate-180"
+                className="h-4 w-4 rotate-180"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -349,7 +349,7 @@ export default function AllExecutiveCleanProject() {
             <AccessibleButton href="/projects/schematic-marketing">
               Next Project
               <svg
-                className="w-4 h-4"
+                className="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

@@ -33,7 +33,7 @@ const projects = [
 export default function SelectedWork() {
   return (
     <section
-      className="py-24 lg:py-32 lg:pl-20 bg-primary"
+      className="bg-primary py-24 lg:py-32 lg:pl-20"
       aria-labelledby="selected-work-heading"
     >
       <div className="container mx-auto px-6 lg:px-12">
@@ -45,30 +45,26 @@ export default function SelectedWork() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-16 lg:mb-24"
         >
-          <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block">
+          <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
             Portfolio
           </span>
           <h2
             id="selected-work-heading"
-            className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-secondary mb-6"
+            className="font-display text-secondary mb-6 text-4xl font-bold lg:text-5xl xl:text-6xl"
           >
             Selected Work
           </h2>
-          <p className="font-body text-lg text-secondary/70 max-w-2xl">
+          <p className="font-body text-secondary/70 max-w-2xl text-lg">
             A collection of projects where strategy meets execution. Each case study
-            demonstrates the intersection of design thinking, marketing expertise,
-            and technical implementation.
+            demonstrates the intersection of design thinking, marketing expertise, and
+            technical implementation.
           </p>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
           {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              {...project}
-              index={index}
-            />
+            <ProjectCard key={project.title} {...project} index={index} />
           ))}
         </div>
 
@@ -82,12 +78,12 @@ export default function SelectedWork() {
         >
           <motion.a
             href="/projects"
-            className="inline-flex items-center gap-3 text-accent-lime font-display font-semibold text-lg hover:gap-5 transition-all"
+            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all hover:gap-5"
             whileHover={{ x: 5 }}
           >
             View All Projects
             <svg
-              className="w-5 h-5"
+              className="h-5 w-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

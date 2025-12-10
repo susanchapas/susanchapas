@@ -63,20 +63,20 @@ export default function AboutPage() {
   return (
     <div className="lg:pl-20">
       {/* Hero Section */}
-      <section className="min-h-[70vh] flex items-center py-24 lg:py-32 gradient-mesh">
+      <section className="gradient-mesh flex min-h-[70vh] items-center py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+            className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20"
           >
             <div>
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block"
+                className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase"
               >
                 About Me
               </motion.span>
@@ -84,7 +84,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-secondary mb-6"
+                className="font-display text-secondary mb-6 text-4xl font-bold lg:text-5xl xl:text-6xl"
               >
                 The Strategic
                 <br />
@@ -94,11 +94,11 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="font-body text-lg text-secondary/70 mb-8 max-w-lg"
+                className="font-body text-secondary/70 mb-8 max-w-lg text-lg"
               >
-                I bridge design, marketing strategy, and technical implementation 
-                to create meaningful experiences. Bilingual in English and Spanish, 
-                I bring a unique perspective to every project.
+                I bridge design, marketing strategy, and technical implementation to
+                create meaningful experiences. Bilingual in English and Spanish, I bring a
+                unique perspective to every project.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -106,9 +106,7 @@ export default function AboutPage() {
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="flex gap-4"
               >
-                <AccessibleButton href="/contact">
-                  Let&apos;s Connect
-                </AccessibleButton>
+                <AccessibleButton href="/contact">Let&apos;s Connect</AccessibleButton>
                 <AccessibleButton
                   href="/Susan_Chapas_Resume.pdf"
                   variant="outline"
@@ -123,10 +121,10 @@ export default function AboutPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="relative aspect-square max-w-md mx-auto lg:mx-0"
+              className="relative mx-auto aspect-square max-w-md lg:mx-0"
             >
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent-lime/20 via-accent-blue/20 to-accent-clay/20 blur-2xl" />
-              <div className="relative rounded-3xl overflow-hidden border border-accent-blue/20">
+              <div className="from-accent-lime/20 via-accent-blue/20 to-accent-clay/20 absolute inset-0 rounded-3xl bg-gradient-to-br blur-2xl" />
+              <div className="border-accent-blue/20 relative overflow-hidden rounded-3xl border">
                 <Image
                   src="/assets/profile.jpg"
                   alt="Susan Chapas"
@@ -144,7 +142,7 @@ export default function AboutPage() {
       <SectionDivider variant="curved" />
 
       {/* Timeline Section */}
-      <section className="py-24 lg:py-32 bg-primary" aria-labelledby="experience-heading">
+      <section className="bg-primary py-24 lg:py-32" aria-labelledby="experience-heading">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -153,12 +151,12 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block">
+            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
               Experience
             </span>
             <h2
               id="experience-heading"
-              className="font-display text-3xl lg:text-4xl font-bold text-secondary"
+              className="font-display text-secondary text-3xl font-bold lg:text-4xl"
             >
               Professional Journey
             </h2>
@@ -166,7 +164,7 @@ export default function AboutPage() {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-0 lg:left-1/2 top-0 bottom-0 w-px bg-accent-blue/20 transform lg:-translate-x-1/2" />
+            <div className="bg-accent-blue/20 absolute top-0 bottom-0 left-0 w-px transform lg:left-1/2 lg:-translate-x-1/2" />
 
             {timeline.map((item, index) => (
               <motion.div
@@ -175,25 +173,25 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative pl-8 lg:pl-0 pb-12 lg:pb-16 ${
+                className={`relative pb-12 pl-8 lg:pb-16 lg:pl-0 ${
                   index % 2 === 0 ? "lg:pr-[50%] lg:text-right" : "lg:pl-[50%]"
                 }`}
               >
                 {/* Timeline dot */}
                 <div
-                  className={`absolute left-0 lg:left-1/2 top-2 w-3 h-3 rounded-full bg-accent-lime transform lg:-translate-x-1/2 ${
-                    index === 0 ? "ring-4 ring-accent-lime/20" : ""
+                  className={`bg-accent-lime absolute top-2 left-0 h-3 w-3 transform rounded-full lg:left-1/2 lg:-translate-x-1/2 ${
+                    index === 0 ? "ring-accent-lime/20 ring-4" : ""
                   }`}
                 />
 
                 <div className={index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}>
-                  <span className="text-accent-lime font-body text-sm mb-2 block">
+                  <span className="text-accent-lime font-body mb-2 block text-sm">
                     {item.year}
                   </span>
-                  <h3 className="font-display text-xl lg:text-2xl font-bold text-secondary mb-1">
+                  <h3 className="font-display text-secondary mb-1 text-xl font-bold lg:text-2xl">
                     {item.role}
                   </h3>
-                  <p className="text-accent-blue font-body font-medium mb-3">
+                  <p className="text-accent-blue font-body mb-3 font-medium">
                     {item.company}
                   </p>
                   <p className="text-secondary/70 font-body">{item.description}</p>
@@ -205,7 +203,10 @@ export default function AboutPage() {
       </section>
 
       {/* Education Section */}
-      <section className="py-24 lg:py-32 bg-accent-blue/5" aria-labelledby="education-heading">
+      <section
+        className="bg-accent-blue/5 py-24 lg:py-32"
+        aria-labelledby="education-heading"
+      >
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -214,18 +215,18 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block">
+            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
               Education
             </span>
             <h2
               id="education-heading"
-              className="font-display text-3xl lg:text-4xl font-bold text-secondary"
+              className="font-display text-secondary text-3xl font-bold lg:text-4xl"
             >
               Academic Background
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid gap-8 md:grid-cols-2">
             {education.map((item, index) => (
               <motion.div
                 key={item.degree}
@@ -233,15 +234,15 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="p-8 rounded-2xl bg-primary border border-accent-blue/10 hover:border-accent-lime/30 transition-colors"
+                className="bg-primary border-accent-blue/10 hover:border-accent-lime/30 rounded-2xl border p-8 transition-colors"
               >
-                <span className="text-accent-lime font-body text-sm mb-3 block">
+                <span className="text-accent-lime font-body mb-3 block text-sm">
                   {item.year}
                 </span>
-                <h3 className="font-display text-xl font-bold text-secondary mb-2">
+                <h3 className="font-display text-secondary mb-2 text-xl font-bold">
                   {item.degree}
                 </h3>
-                <p className="text-accent-blue font-body font-medium mb-3">
+                <p className="text-accent-blue font-body mb-3 font-medium">
                   {item.school}
                 </p>
                 <p className="text-secondary/70 font-body">{item.description}</p>
@@ -252,28 +253,28 @@ export default function AboutPage() {
       </section>
 
       {/* Art Section */}
-      <section className="py-24 lg:py-32 bg-primary" aria-labelledby="art-heading">
+      <section className="bg-primary py-24 lg:py-32" aria-labelledby="art-heading">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="mb-16 text-center"
           >
-            <span className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block">
+            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
               Creative Side
             </span>
             <h2
               id="art-heading"
-              className="font-display text-3xl lg:text-4xl font-bold text-secondary mb-4"
+              className="font-display text-secondary mb-4 text-3xl font-bold lg:text-4xl"
             >
               Art & Photography
             </h2>
-            <p className="font-body text-lg text-secondary/70 max-w-2xl mx-auto">
-              Beyond design and development, I express creativity through visual arts. 
-              My piece &quot;Mindless Mirth&quot; received recognition for its unique exploration 
-              of human emotion and abstraction.
+            <p className="font-body text-secondary/70 mx-auto max-w-2xl text-lg">
+              Beyond design and development, I express creativity through visual arts. My
+              piece &quot;Mindless Mirth&quot; received recognition for its unique
+              exploration of human emotion and abstraction.
             </p>
           </motion.div>
 
@@ -282,9 +283,9 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative max-w-3xl mx-auto"
+            className="relative mx-auto max-w-3xl"
           >
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-accent-blue/20">
+            <div className="border-accent-blue/20 aspect-[4/3] overflow-hidden rounded-2xl border">
               <Image
                 src="/assets/art/mindless-mirth.jpg"
                 alt="Mindless Mirth - Award-winning artwork by Susan Chapas"
@@ -293,17 +294,17 @@ export default function AboutPage() {
               />
             </div>
             <div className="mt-6 text-center">
-              <h3 className="font-display text-xl font-bold text-secondary mb-2">
+              <h3 className="font-display text-secondary mb-2 text-xl font-bold">
                 Mindless Mirth
               </h3>
               <p className="text-accent-clay font-body mb-6">Award-Winning Piece</p>
               <Link
                 href="/gallery"
-                className="inline-flex items-center gap-2 text-accent-lime font-display font-semibold hover:gap-4 transition-all"
+                className="text-accent-lime font-display inline-flex items-center gap-2 font-semibold transition-all hover:gap-4"
               >
                 View Full Gallery
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

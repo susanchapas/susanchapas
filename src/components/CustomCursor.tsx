@@ -16,11 +16,14 @@ export default function CustomCursor() {
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    cursorX.set(e.clientX);
-    cursorY.set(e.clientY);
-    setIsVisible(true);
-  }, [cursorX, cursorY]);
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+      setIsVisible(true);
+    },
+    [cursorX, cursorY]
+  );
 
   const handleMouseDown = useCallback(() => setIsClicking(true), []);
   const handleMouseUp = useCallback(() => setIsClicking(false), []);
@@ -32,17 +35,19 @@ export default function CustomCursor() {
     const checkTouchDevice = () => {
       setIsTouchDevice(
         "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        window.matchMedia("(pointer: coarse)").matches
+          navigator.maxTouchPoints > 0 ||
+          window.matchMedia("(pointer: coarse)").matches
       );
     };
-    
+
     checkTouchDevice();
-    
+
     if (isTouchDevice) return;
 
     // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
     if (prefersReducedMotion) return;
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -70,13 +75,20 @@ export default function CustomCursor() {
       window.removeEventListener("mouseup", handleMouseUp);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
       document.body.removeEventListener("mouseenter", handleMouseEnter);
-      
+
       interactiveElements.forEach((el) => {
         el.removeEventListener("mouseenter", handleElementEnter);
         el.removeEventListener("mouseleave", handleElementLeave);
       });
     };
-  }, [isTouchDevice, handleMouseMove, handleMouseDown, handleMouseUp, handleMouseLeave, handleMouseEnter]);
+  }, [
+    isTouchDevice,
+    handleMouseMove,
+    handleMouseDown,
+    handleMouseUp,
+    handleMouseLeave,
+    handleMouseEnter,
+  ]);
 
   // Re-scan for interactive elements periodically (for dynamic content)
   useEffect(() => {
@@ -107,14 +119,14 @@ export default function CustomCursor() {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] mix-blend-difference"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
         }}
       >
         <motion.div
-          className="relative -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-lime"
+          className="bg-accent-lime relative -translate-x-1/2 -translate-y-1/2 rounded-full"
           animate={{
             width: isClicking ? 8 : isHovering ? 48 : 12,
             height: isClicking ? 8 : isHovering ? 48 : 12,
@@ -130,14 +142,14 @@ export default function CustomCursor() {
 
       {/* Outer ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998]"
+        className="pointer-events-none fixed top-0 left-0 z-[9998]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
         }}
       >
         <motion.div
-          className="relative -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-accent-lime/50"
+          className="border-accent-lime/50 relative -translate-x-1/2 -translate-y-1/2 rounded-full border-2"
           animate={{
             width: isClicking ? 24 : isHovering ? 64 : 40,
             height: isClicking ? 24 : isHovering ? 64 : 40,

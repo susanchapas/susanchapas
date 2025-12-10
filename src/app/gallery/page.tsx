@@ -11,7 +11,8 @@ const artworks = [
     title: "Mindless Mirth",
     category: "Painting",
     year: "2022",
-    description: "Award-winning abstract piece exploring the intersection of joy and unconscious expression.",
+    description:
+      "Award-winning abstract piece exploring the intersection of joy and unconscious expression.",
     image: "/assets/art/mindless-mirth.jpg",
     featured: true,
   },
@@ -66,7 +67,9 @@ const categories = ["All", "Painting", "Photography", "Digital Art"];
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedArtwork, setSelectedArtwork] = useState<typeof artworks[0] | null>(null);
+  const [selectedArtwork, setSelectedArtwork] = useState<(typeof artworks)[0] | null>(
+    null
+  );
 
   const filteredArtworks =
     activeCategory === "All"
@@ -76,7 +79,7 @@ export default function GalleryPage() {
   return (
     <div className="lg:pl-20">
       {/* Hero Section */}
-      <section className="py-24 lg:py-32 gradient-mesh">
+      <section className="gradient-mesh py-24 lg:py-32">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -88,7 +91,7 @@ export default function GalleryPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-accent-lime font-body text-sm uppercase tracking-widest mb-4 block"
+              className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase"
             >
               Creative Work
             </motion.span>
@@ -96,7 +99,7 @@ export default function GalleryPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-secondary mb-6"
+              className="font-display text-secondary mb-6 text-4xl font-bold lg:text-5xl xl:text-6xl"
             >
               Art &
               <br />
@@ -106,7 +109,7 @@ export default function GalleryPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="font-body text-lg text-secondary/70 max-w-2xl"
+              className="font-body text-secondary/70 max-w-2xl text-lg"
             >
               Beyond design and development, I express creativity through various visual
               mediums. This gallery showcases a selection of personal art projects and
@@ -117,16 +120,20 @@ export default function GalleryPage() {
       </section>
 
       {/* Filter Tabs */}
-      <section className="py-8 bg-primary border-b border-accent-blue/10 sticky top-0 lg:top-0 z-30">
+      <section className="bg-primary border-accent-blue/10 sticky top-0 z-30 border-b py-8 lg:top-0">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex flex-wrap gap-3" role="tablist" aria-label="Filter artworks by category">
+          <div
+            className="flex flex-wrap gap-3"
+            role="tablist"
+            aria-label="Filter artworks by category"
+          >
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 role="tab"
                 aria-selected={activeCategory === category}
-                className={`px-4 py-2 rounded-full font-body text-sm transition-all ${
+                className={`font-body rounded-full px-4 py-2 text-sm transition-all ${
                   activeCategory === category
                     ? "bg-accent-lime text-primary"
                     : "bg-accent-blue/10 text-secondary hover:bg-accent-blue/20"
@@ -140,11 +147,11 @@ export default function GalleryPage() {
       </section>
 
       {/* Gallery Grid */}
-      <section className="py-16 lg:py-24 bg-primary" aria-label="Artwork gallery">
+      <section className="bg-primary py-16 lg:py-24" aria-label="Artwork gallery">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             <AnimatePresence mode="popLayout">
               {filteredArtworks.map((artwork, index) => (
@@ -161,7 +168,7 @@ export default function GalleryPage() {
                   onClick={() => setSelectedArtwork(artwork)}
                 >
                   <div
-                    className={`relative overflow-hidden rounded-xl border border-accent-blue/10 hover:border-accent-lime/30 transition-colors ${
+                    className={`border-accent-blue/10 hover:border-accent-lime/30 relative overflow-hidden rounded-xl border transition-colors ${
                       artwork.featured ? "aspect-square" : "aspect-[4/3]"
                     }`}
                   >
@@ -171,18 +178,18 @@ export default function GalleryPage() {
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform">
-                      <span className="text-accent-lime text-xs font-body uppercase tracking-wider">
+                    <div className="from-primary absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute right-0 bottom-0 left-0 translate-y-full p-6 transition-transform group-hover:translate-y-0">
+                      <span className="text-accent-lime font-body text-xs tracking-wider uppercase">
                         {artwork.category}
                       </span>
-                      <h3 className="font-display text-xl font-bold text-secondary mt-1">
+                      <h3 className="font-display text-secondary mt-1 text-xl font-bold">
                         {artwork.title}
                       </h3>
                     </div>
                     {artwork.featured && (
                       <div className="absolute top-4 right-4">
-                        <span className="px-3 py-1 bg-accent-clay text-primary text-xs font-medium rounded-full">
+                        <span className="bg-accent-clay text-primary rounded-full px-3 py-1 text-xs font-medium">
                           Featured
                         </span>
                       </div>
@@ -208,19 +215,19 @@ export default function GalleryPage() {
             aria-modal="true"
             aria-labelledby="artwork-title"
           >
-            <div className="absolute inset-0 bg-primary/95 backdrop-blur-sm" />
-            
+            <div className="bg-primary/95 absolute inset-0 backdrop-blur-sm" />
+
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative z-10 max-w-5xl w-full bg-primary border border-accent-blue/20 rounded-2xl overflow-hidden"
+              className="bg-primary border-accent-blue/20 relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl border"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedArtwork(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-accent-blue/10 flex items-center justify-center text-secondary hover:bg-accent-lime hover:text-primary transition-colors"
+                className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full transition-colors"
                 aria-label="Close modal"
               >
                 <X size={20} />
@@ -235,13 +242,13 @@ export default function GalleryPage() {
                     className="object-cover"
                   />
                 </div>
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <span className="text-accent-lime text-sm font-body uppercase tracking-wider mb-2">
+                <div className="flex flex-col justify-center p-8 lg:p-12">
+                  <span className="text-accent-lime font-body mb-2 text-sm tracking-wider uppercase">
                     {selectedArtwork.category} • {selectedArtwork.year}
                   </span>
                   <h2
                     id="artwork-title"
-                    className="font-display text-3xl lg:text-4xl font-bold text-secondary mb-4"
+                    className="font-display text-secondary mb-4 text-3xl font-bold lg:text-4xl"
                   >
                     {selectedArtwork.title}
                   </h2>

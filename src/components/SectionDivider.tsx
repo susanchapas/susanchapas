@@ -20,12 +20,7 @@ export default function SectionDivider({ variant = "wave" }: SectionDividerProps
   const renderPath = () => {
     switch (variant) {
       case "diagonal":
-        return (
-          <path
-            d="M0,100 L1440,0 L1440,100 Z"
-            fill="url(#dividerGradient)"
-          />
-        );
+        return <path d="M0,100 L1440,0 L1440,100 Z" fill="url(#dividerGradient)" />;
       case "curved":
         return (
           <path
@@ -48,13 +43,13 @@ export default function SectionDivider({ variant = "wave" }: SectionDividerProps
     <motion.div
       ref={ref}
       style={{ y, opacity }}
-      className="relative w-full h-24 overflow-hidden pointer-events-none"
+      className="pointer-events-none relative h-24 w-full overflow-hidden"
       aria-hidden="true"
     >
       <svg
         viewBox="0 0 1440 100"
         preserveAspectRatio="none"
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 h-full w-full"
       >
         <defs>
           <linearGradient id="dividerGradient" x1="0%" y1="0%" x2="100%" y2="0%">

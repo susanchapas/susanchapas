@@ -3,13 +3,13 @@
 /* Brand Color System - Susan Chapas Portfolio */
 :root {
   --background: #102f5d;
-  --foreground: #F4F4F5;
+  --foreground: #f4f4f5;
   --primary: #102f5d;
-  --secondary: #F4F4F5;
-  --accent-lime: #CCFF00;
+  --secondary: #f4f4f5;
+  --accent-lime: #ccff00;
   --accent-blue: #bbcdf3;
-  --accent-clay: #E09F7D;
-  
+  --accent-clay: #e09f7d;
+
   /* Animation timing */
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -40,7 +40,7 @@ html {
   html {
     scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -110,7 +110,7 @@ body {
 
 /* Smooth gradient backgrounds */
 .gradient-mesh {
-  background: 
+  background:
     radial-gradient(ellipse at 20% 80%, rgba(187, 205, 243, 0.15) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 20%, rgba(204, 255, 0, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 40% 40%, rgba(224, 159, 125, 0.1) 0%, transparent 50%),
