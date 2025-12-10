@@ -9,7 +9,7 @@ const projects = [
     description:
       "Launching a new bank branch in Red Hook, Brooklyn — designed the new branch interior & exterior, including ATM videography & animations.",
     href: "/projects/spring-bank",
-    image: "/assets/projects/spring-bank.jpg",
+    image: "/gallery/Red Hook Launch Photo.jpg",
     tags: ["Brand Strategy", "Interior Design", "Motion Graphics"],
   },
   {
