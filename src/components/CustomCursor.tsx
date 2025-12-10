@@ -30,6 +30,15 @@ export default function CustomCursor() {
   const handleMouseLeave = useCallback(() => setIsVisible(false), []);
   const handleMouseEnter = useCallback(() => setIsVisible(true), []);
 
+  // Event delegation for hover detection
+  const handleMouseOver = useCallback((e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const isInteractive = target.closest(
+      'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+    );
+    setIsHovering(!!isInteractive);
+  }, []);
+
   useEffect(() => {
     // Check if touch device
     const checkTouchDevice = () => {
@@ -53,65 +62,27 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mouseover", handleMouseOver);
     document.body.addEventListener("mouseleave", handleMouseLeave);
     document.body.addEventListener("mouseenter", handleMouseEnter);
-
-    // Add hover detection for interactive elements
-    const interactiveElements = document.querySelectorAll(
-      'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])'
-    );
-
-    const handleElementEnter = () => setIsHovering(true);
-    const handleElementLeave = () => setIsHovering(false);
-
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleElementEnter);
-      el.addEventListener("mouseleave", handleElementLeave);
-    });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mouseover", handleMouseOver);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
       document.body.removeEventListener("mouseenter", handleMouseEnter);
-
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleElementEnter);
-        el.removeEventListener("mouseleave", handleElementLeave);
-      });
     };
   }, [
     isTouchDevice,
     handleMouseMove,
     handleMouseDown,
     handleMouseUp,
+    handleMouseOver,
     handleMouseLeave,
     handleMouseEnter,
   ]);
-
-  // Re-scan for interactive elements periodically (for dynamic content)
-  useEffect(() => {
-    if (isTouchDevice) return;
-
-    const interval = setInterval(() => {
-      const interactiveElements = document.querySelectorAll(
-        'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])'
-      );
-
-      const handleElementEnter = () => setIsHovering(true);
-      const handleElementLeave = () => setIsHovering(false);
-
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleElementEnter);
-        el.removeEventListener("mouseleave", handleElementLeave);
-        el.addEventListener("mouseenter", handleElementEnter);
-        el.addEventListener("mouseleave", handleElementLeave);
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [isTouchDevice]);
 
   if (isTouchDevice) return null;
 
@@ -119,7 +90,7 @@ export default function CustomCursor() {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] mix-blend-difference"
+        className="pointer-events-none fixed top-0 left-0 z-[99999] mix-blend-difference"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -142,7 +113,7 @@ export default function CustomCursor() {
 
       {/* Outer ring */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9998]"
+        className="pointer-events-none fixed top-0 left-0 z-[99998]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -166,6 +137,8 @@ export default function CustomCursor() {
       {/* Hide default cursor */}
       <style jsx global>{`
         @media (pointer: fine) {
+          html,
+          body,
           * {
             cursor: none !important;
           }
