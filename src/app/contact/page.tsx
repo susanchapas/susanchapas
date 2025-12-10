@@ -83,8 +83,7 @@ export default function ContactPage() {
   };
 
   const inputClasses = (hasError: boolean) =>
-    `w-full px-4 py-3 rounded-xl bg-accent-blue/5 border ${
-      hasError ? "border-red-500" : "border-accent-blue/10"
+    `w-full px-4 py-3 rounded-xl bg-accent-blue/5 border ${hasError ? "border-red-500" : "border-accent-blue/10"
     } text-secondary font-body placeholder:text-secondary/40 focus:outline-none focus:ring-2 focus:ring-accent-lime focus:border-transparent transition-all`;
 
   return (
@@ -150,10 +149,10 @@ export default function ContactPage() {
                     Email
                   </h3>
                   <a
-                    href="mailto:hello@susanchapas.com"
+                    href="mailto:susanchapas39@gmail.com"
                     className="font-body text-secondary hover:text-accent-lime text-xl transition-colors"
                   >
-                    hello@susanchapas.com
+                    susanchapas39@gmail.com
                   </a>
                 </div>
 

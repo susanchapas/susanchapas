@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { MapPin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -87,10 +88,10 @@ export default function Footer() {
             </h3>
             <div className="space-y-4">
               <a
-                href="mailto:hello@susanchapas.com"
+                href="mailto:susanchapas39@gmail.com"
                 className="text-secondary/70 hover:text-accent-lime font-body block transition-colors"
               >
-                hello@susanchapas.com
+                susanchapas39@gmail.com
               </a>
 
               <div className="flex gap-4 pt-2">
@@ -129,9 +130,10 @@ export default function Footer() {
           <p className="text-secondary/50 font-body text-sm">
             © {currentYear} Susan Chapas. All rights reserved.
           </p>
-          <p className="text-secondary/50 font-body text-sm">
-            Designed & Built with ❤️ in Jersey City
-          </p>
+          <div className="flex items-center gap-2 text-secondary/50 font-body text-sm">
+            <MapPin className="h-4 w-4" />
+            <span>Jersey City</span>
+          </div>
         </motion.div>
       </motion.div>
     </footer>
