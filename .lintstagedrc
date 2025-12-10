@@ -1,5 +1,5 @@
 {
-  "*.md": {
-    "prettier/prettier": "off"
-  }
+  "*.md": [
+    "prettier --write"
+  ]
 }
