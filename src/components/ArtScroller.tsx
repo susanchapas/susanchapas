@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import ArtImage from "./ArtImage";
 
 const artPieces = [
@@ -59,7 +60,10 @@ export default function ArtScroller() {
                                 <ArtImage
                                     src={art.src}
                                     alt={art.alt}
-                                    className="transition-transform duration-500 group-hover:scale-110"
+                                    className={cn(
+                                        "transition-transform duration-500 group-hover:scale-110",
+                                        art.alt === "Mindless Mirth" && "scale-125 group-hover:scale-[1.35]"
+                                    )}
                                     containerClassName="h-full w-full"
                                 />
                                 <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
