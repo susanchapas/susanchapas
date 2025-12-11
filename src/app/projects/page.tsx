@@ -5,6 +5,15 @@ import ProjectCard from "@/components/ProjectCard";
 
 const projects = [
   {
+    title: "Schematic Marketing",
+    description:
+      "Launched and scaled an accessibility-focused design agency for small businesses, nonprofits and entrepreneurs.",
+    href: "/projects/schematic-marketing",
+    image: "/assets/projects/schematic-marketing.jpg",
+    tags: ["Entrepreneurship", "Accessibility", "UX Design"],
+    badge: "< >",
+  },
+  {
     title: "Spring Bank",
     description:
       "Launching a new bank branch in Red Hook, Brooklyn — designed the new branch interior & exterior, including ATM videography & animations.",
@@ -19,14 +28,6 @@ const projects = [
     href: "/projects/all-executive-clean",
     image: "/assets/projects/all-executive-clean.jpg",
     tags: ["Brand Identity", "Web Design", "Marketing"],
-  },
-  {
-    title: "Schematic Marketing",
-    description:
-      "Launched and scaled an accessibility-focused design agency for small businesses, nonprofits and entrepreneurs.",
-    href: "/projects/schematic-marketing",
-    image: "/assets/projects/schematic-marketing.jpg",
-    tags: ["Entrepreneurship", "Accessibility", "UX Design"],
   },
 ];
 

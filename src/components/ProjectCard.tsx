@@ -11,6 +11,7 @@ interface ProjectCardProps {
   image: string;
   tags: string[];
   index: number;
+  badge?: string;
 }
 
 export default function ProjectCard({
@@ -20,6 +21,7 @@ export default function ProjectCard({
   image,
   tags,
   index,
+  badge,
 }: ProjectCardProps) {
   return (
     <motion.article
@@ -35,7 +37,7 @@ export default function ProjectCard({
     >
       <Link
         href={href}
-        className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative block overflow-hidden rounded-2xl border transition-all duration-500"
+        className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-500"
         aria-label={`View ${title} case study`}
       >
         {/* Image Container */}
@@ -89,8 +91,13 @@ export default function ProjectCard({
         </div>
 
         {/* Content */}
-        <div className="p-6 lg:p-8">
+        <div className="flex flex-1 flex-col p-6 lg:p-8">
           <div className="mb-4 flex flex-wrap gap-2">
+            {badge && (
+              <span className="bg-accent-lime/10 text-accent-lime rounded-full px-3 py-1 text-xs font-medium font-mono">
+                {badge}
+              </span>
+            )}
             {tags.map((tag) => (
               <span
                 key={tag}
@@ -108,7 +115,7 @@ export default function ProjectCard({
           <p className="text-secondary/70 font-body line-clamp-2">{description}</p>
 
           <motion.div
-            className="text-accent-lime mt-6 flex items-center gap-2 font-medium"
+            className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium"
             initial={{ x: 0 }}
             whileHover={{ x: 8 }}
           >
