@@ -54,7 +54,7 @@ const caseStudy = {
 };
 
 const gallery = [
-  { src: "/gallery/Red Hook Launch Photo.jpg", alt: "Branch interior design" },
+  { src: "/gallery/Red Hook Launch Photo.webp", alt: "Branch interior design" },
   { src: "/gallery/ATM home screen video.mp4", alt: "ATM interface design", type: "video" },
   { src: "/gallery/SB Bike Shop Info Sheet.svg", alt: "Exterior signage" },
   { src: "/gallery/A bike for every rider.svg", alt: "Marketing materials" },

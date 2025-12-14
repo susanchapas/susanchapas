@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import AccessibleButton from "@/components/AccessibleButton";
+import ProjectHero from "@/components/ProjectHero";
 
 const projectData = {
   title: "All Executive Clean",
   subtitle: "Brand Redesign for Professional Cleaning Services",
   description:
     "A comprehensive brand transformation project focused on elevating professionalism and consistency across all marketing touchpoints.",
-  heroImage: "/assets/projects/all-executive-clean-hero.svg",
+  heroImage: "/gallery/Construction Site Photo.jpg",
   tags: ["Brand Identity", "Web Design", "Marketing Materials", "Strategy"],
   year: "2023",
   role: "Marketing & Business Development Manager",
@@ -72,79 +73,69 @@ export default function AllExecutiveCleanProject() {
   return (
     <div className="lg:pl-20">
       {/* Hero Section */}
-      <section className="relative flex min-h-[70vh] items-end py-16 lg:py-24">
-        <div className="absolute inset-0 z-0 bg-primary">
-          <div className="absolute inset-0 bg-gradient-to-tr from-accent-lime/5 to-accent-blue/5" />
-          <div className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `linear-gradient(rgba(244, 244, 245, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(244, 244, 245, 0.5) 1px, transparent 1px)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-          <div className="from-primary via-primary/70 to-primary/30 absolute inset-0 bg-gradient-to-t" />
-        </div>
-
-        <div className="relative z-10 container mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      <ProjectHero
+        src={projectData.heroImage}
+        alt={projectData.title}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Link
+            href="/projects"
+            className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 transition-all hover:gap-4"
           >
-            <Link
-              href="/projects"
-              className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 transition-all hover:gap-4"
+            <svg
+              className="h-4 w-4 rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="h-4 w-4 rotate-180"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              />
+            </svg>
+            Back to Projects
+          </Link>
+
+          <div className="mb-4 flex flex-wrap gap-2">
+            {projectData.tags.map((tag) => (
+              <span
+                key={tag}
+                className="bg-accent-blue/20 text-accent-blue rounded-full px-3 py-1 text-xs font-medium"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-              Back to Projects
-            </Link>
+                {tag}
+              </span>
+            ))}
+          </div>
 
-            <div className="mb-4 flex flex-wrap gap-2">
-              {projectData.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-accent-blue/20 text-accent-blue rounded-full px-3 py-1 text-xs font-medium"
-                >
-                  {tag}
-                </span>
-              ))}
+          <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
+            {projectData.title}
+          </h1>
+          <p className="font-body text-secondary/80 mb-8 max-w-2xl text-xl">
+            {projectData.subtitle}
+          </p>
+
+          <div className="flex flex-wrap gap-8 text-sm">
+            <div>
+              <span className="text-secondary/50 mb-1 block">Year</span>
+              <span className="text-secondary font-medium">{projectData.year}</span>
             </div>
-
-            <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
-              {projectData.title}
-            </h1>
-            <p className="font-body text-secondary/80 mb-8 max-w-2xl text-xl">
-              {projectData.subtitle}
-            </p>
-
-            <div className="flex flex-wrap gap-8 text-sm">
-              <div>
-                <span className="text-secondary/50 mb-1 block">Year</span>
-                <span className="text-secondary font-medium">{projectData.year}</span>
-              </div>
-              <div>
-                <span className="text-secondary/50 mb-1 block">Role</span>
-                <span className="text-secondary font-medium">{projectData.role}</span>
-              </div>
-              <div>
-                <span className="text-secondary/50 mb-1 block">Client</span>
-                <span className="text-secondary font-medium">{projectData.client}</span>
-              </div>
+            <div>
+              <span className="text-secondary/50 mb-1 block">Role</span>
+              <span className="text-secondary font-medium">{projectData.role}</span>
             </div>
-          </motion.div>
-        </div>
-      </section>
+            <div>
+              <span className="text-secondary/50 mb-1 block">Client</span>
+              <span className="text-secondary font-medium">{projectData.client}</span>
+            </div>
+          </div>
+        </motion.div>
+      </ProjectHero>
 
       {/* Overview */}
       <section className="bg-primary py-16 lg:py-24">

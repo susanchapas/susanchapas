@@ -12,7 +12,7 @@ const artPieces = [
     { src: "/gallery/A bike for every rider.svg", alt: "A Bike for Every Rider", type: "svg" },
     { src: "/gallery/THE NTL photo.jpg", alt: "The NTL", type: "image" },
     { src: "/gallery/Watercolor Painting.jpg", alt: "Watercolor Painting", type: "image" },
-    { src: "/gallery/Red Hook Launch Photo.jpg", alt: "Red Hook Launch", type: "image" },
+    { src: "/gallery/Red Hook Launch Photo.webp", alt: "Red Hook Launch", type: "image" },
     { src: "/gallery/Binnoy Feature Photo.jpg", alt: "Binnoy Feature", type: "image" },
 ];
 
