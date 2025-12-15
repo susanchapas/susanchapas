@@ -28,6 +28,7 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -56,19 +57,54 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
+    // Honeypot check - bots fill this hidden field, humans don't
+    if (honeypot) {
+      // Silently "succeed" to not alert bots
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          subject: `[Portfolio Contact] ${formData.subject}`,
+          message: formData.message,
+          from_name: "Portfolio Contact Form",
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitError("Something went wrong. Please try again or email me directly.");
+      }
+    } catch {
+      setSubmitError("Failed to send message. Please try again or email me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -286,6 +322,32 @@ export default function ContactPage() {
                     )}
                   </div>
 
+                  {/* Honeypot field - hidden from humans and screen readers */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                      top: "-9999px",
+                      opacity: 0,
+                      height: 0,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <label htmlFor="website">
+                      Website (leave blank)
+                    </label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div>
                     <label
                       htmlFor="email"
@@ -419,6 +481,17 @@ export default function ContactPage() {
                       </>
                     )}
                   </AccessibleButton>
+
+                  {submitError && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="font-body mt-4 text-center text-sm text-red-400"
+                      role="alert"
+                    >
+                      {submitError}
+                    </motion.p>
+                  )}
                 </form>
               )}
             </motion.div>
