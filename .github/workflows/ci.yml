@@ -113,13 +113,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Start server
-        run: npm start &
+      - name: Start server and wait
+        run: |
+          npm start &
+          npx wait-on http://localhost:3000 --timeout 60000
         env:
           PORT: 3000
 
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000
-
       - name: Run axe accessibility tests
-        run: npx @axe-core/cli http://localhost:3000 --exit
+        run: npx --no-install @axe-core/cli http://localhost:3000 --exit

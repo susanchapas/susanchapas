@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@axe-core/react": "^4.11.0",
+    "@axe-core/cli": "^4.11.0",
     "@eslint/eslintrc": "^3.3.3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
