@@ -130,7 +130,7 @@ export default function Footer() {
           <p className="text-secondary/50 font-body text-sm">
             © {currentYear} Susan Chapas. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-secondary/50 font-body text-sm">
+          <div className="text-secondary/50 font-body flex items-center gap-2 text-sm">
             <MapPin className="h-4 w-4" />
             <span>Jersey City</span>
           </div>

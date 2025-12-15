@@ -176,9 +176,9 @@ const categories = ["All", "Painting", "Illustration", "Design", "Motion"];
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedArtwork, setSelectedArtwork] = useState<(typeof artworks)[number] | null>(
-    null
-  );
+  const [selectedArtwork, setSelectedArtwork] = useState<
+    (typeof artworks)[number] | null
+  >(null);
 
   const filteredArtworks =
     activeCategory === "All"
@@ -242,10 +242,11 @@ export default function GalleryPage() {
                 onClick={() => setActiveCategory(category)}
                 role="tab"
                 aria-selected={activeCategory === category}
-                className={`font-body rounded-full px-4 py-2 text-sm transition-all ${activeCategory === category
-                  ? "bg-accent-lime text-primary"
-                  : "bg-accent-blue/10 text-secondary hover:bg-accent-blue/20"
-                  }`}
+                className={`font-body rounded-full px-4 py-2 text-sm transition-all ${
+                  activeCategory === category
+                    ? "bg-accent-lime text-primary"
+                    : "bg-accent-blue/10 text-secondary hover:bg-accent-blue/20"
+                }`}
               >
                 {category}
               </button>
@@ -259,7 +260,7 @@ export default function GalleryPage() {
         <div className="container mx-auto px-6 lg:px-12">
           <motion.div
             layout
-            className="grid grid-cols-1 gap-6 md:grid-cols-3 auto-rows-[300px]"
+            className="grid auto-rows-[300px] grid-cols-1 gap-6 md:grid-cols-3"
           >
             <AnimatePresence mode="popLayout">
               {filteredArtworks.map((artwork, index) => (
@@ -271,7 +272,7 @@ export default function GalleryPage() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className={cn(
-                    "group cursor-pointer relative overflow-hidden rounded-xl border border-accent-blue/10 hover:border-accent-lime/30 transition-colors",
+                    "group border-accent-blue/10 hover:border-accent-lime/30 relative cursor-pointer overflow-hidden rounded-xl border transition-colors",
                     artwork.className
                   )}
                   onClick={() => setSelectedArtwork(artwork)}
@@ -323,7 +324,7 @@ export default function GalleryPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="bg-primary border-accent-blue/20 relative z-10 w-full max-w-6xl overflow-hidden rounded-2xl border max-h-[90vh] flex flex-col md:flex-row"
+              className="bg-primary border-accent-blue/20 relative z-10 flex max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border md:flex-row"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -334,8 +335,8 @@ export default function GalleryPage() {
                 <X size={20} />
               </button>
 
-              <div className="relative w-full md:w-2/3 bg-black/5 flex items-center justify-center p-4 md:p-0">
-                <div className="relative w-full h-full min-h-[300px] md:min-h-[500px]">
+              <div className="relative flex w-full items-center justify-center bg-black/5 p-4 md:w-2/3 md:p-0">
+                <div className="relative h-full min-h-[300px] w-full md:min-h-[500px]">
                   <ArtMedia
                     src={selectedArtwork.src}
                     alt={selectedArtwork.title}
@@ -346,7 +347,7 @@ export default function GalleryPage() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col justify-center p-6 md:w-1/3 lg:p-12 overflow-y-auto">
+              <div className="flex flex-col justify-center overflow-y-auto p-6 md:w-1/3 lg:p-12">
                 <span className="text-accent-lime font-body mb-2 text-sm tracking-wider uppercase">
                   {selectedArtwork.category} • {selectedArtwork.year}
                 </span>

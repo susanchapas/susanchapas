@@ -4,12 +4,12 @@ import { usePathname } from "next/navigation";
 import SkillsTicker from "./SkillsTicker";
 
 export default function GlobalSkillsTicker() {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    // Don't render on home page
-    if (pathname === "/") {
-        return null;
-    }
+  // Don't render on home page
+  if (pathname === "/") {
+    return null;
+  }
 
-    return <SkillsTicker />;
+  return <SkillsTicker />;
 }

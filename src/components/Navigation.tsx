@@ -104,10 +104,11 @@ export default function Navigation() {
             <li key={item.name}>
               <Link
                 href={item.href}
-                className={`group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${pathname === item.href
-                  ? "bg-accent-lime text-primary"
-                  : "text-secondary hover:bg-accent-blue/20"
-                  }`}
+                className={`group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
+                  pathname === item.href
+                    ? "bg-accent-lime text-primary"
+                    : "text-secondary hover:bg-accent-blue/20"
+                }`}
                 aria-current={pathname === item.href ? "page" : undefined}
               >
                 <div className="relative h-5 w-5">
@@ -115,8 +116,9 @@ export default function Navigation() {
                     src={item.icon}
                     alt={item.name}
                     fill
-                    className={`object-contain transition-colors ${pathname === item.href ? "brightness-0" : ""
-                      }`}
+                    className={`object-contain transition-colors ${
+                      pathname === item.href ? "brightness-0" : ""
+                    }`}
                   />
                 </div>
                 <span className="bg-primary text-secondary pointer-events-none absolute left-14 rounded px-3 py-1 text-sm font-medium whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
@@ -157,8 +159,9 @@ export default function Navigation() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-6 transition-all duration-300 lg:hidden ${scrolled ? "glass" : "bg-transparent"
-          }`}
+        className={`fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-6 transition-all duration-300 lg:hidden ${
+          scrolled ? "glass" : "bg-transparent"
+        }`}
       >
         <Link
           href="/"
@@ -199,10 +202,11 @@ export default function Navigation() {
                   <motion.li key={item.name} custom={i} variants={linkVariants}>
                     <Link
                       href={item.href}
-                      className={`font-display text-4xl font-bold transition-colors ${pathname === item.href
-                        ? "text-accent-lime"
-                        : "text-secondary hover:text-accent-lime"
-                        }`}
+                      className={`font-display text-4xl font-bold transition-colors ${
+                        pathname === item.href
+                          ? "text-accent-lime"
+                          : "text-secondary hover:text-accent-lime"
+                      }`}
                       onClick={() => setIsOpen(false)}
                       aria-current={pathname === item.href ? "page" : undefined}
                     >

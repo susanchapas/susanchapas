@@ -119,7 +119,8 @@ export default function ContactPage() {
   };
 
   const inputClasses = (hasError: boolean) =>
-    `w-full px-4 py-3 rounded-xl bg-accent-blue/5 border ${hasError ? "border-red-500" : "border-accent-blue/10"
+    `w-full px-4 py-3 rounded-xl bg-accent-blue/5 border ${
+      hasError ? "border-red-500" : "border-accent-blue/10"
     } text-secondary font-body placeholder:text-secondary/40 focus:outline-none focus:ring-2 focus:ring-accent-lime focus:border-transparent transition-all`;
 
   return (
@@ -334,9 +335,7 @@ export default function ContactPage() {
                       overflow: "hidden",
                     }}
                   >
-                    <label htmlFor="website">
-                      Website (leave blank)
-                    </label>
+                    <label htmlFor="website">Website (leave blank)</label>
                     <input
                       type="text"
                       id="website"

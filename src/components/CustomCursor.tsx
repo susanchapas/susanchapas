@@ -46,8 +46,8 @@ export default function CustomCursor() {
     const checkTouchDevice = () => {
       setIsTouchDevice(
         "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        window.matchMedia("(pointer: coarse)").matches
+          navigator.maxTouchPoints > 0 ||
+          window.matchMedia("(pointer: coarse)").matches
       );
     };
 

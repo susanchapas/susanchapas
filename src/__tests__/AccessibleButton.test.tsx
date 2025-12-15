@@ -1,17 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import AccessibleButton from "@/components/AccessibleButton";
+import React from "react";
 
 // Mock framer-motion
-jest.mock("framer-motion", () => ({
-  motion: {
+jest.mock("framer-motion", () => {
+  const React = require("react");
+  const createMotionComponent = (Component: any) => {
+    return React.forwardRef((props: any, ref: any) => {
+      return React.createElement(Component, { ...props, ref });
+    });
+  };
+
+  const motion = Object.assign((Component: any) => createMotionComponent(Component), {
     button: ({ children, ...props }: React.PropsWithChildren<object>) => (
       <button {...props}>{children}</button>
     ),
     a: ({ children, ...props }: React.PropsWithChildren<object>) => (
       <a {...props}>{children}</a>
     ),
-  },
-}));
+  });
+  return { motion };
+});
 
 describe("AccessibleButton", () => {
   it("renders as a button by default", () => {

@@ -1,9 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import Home from "@/app/page";
+import React from "react";
 
 // Mock framer-motion
-jest.mock("framer-motion", () => ({
-  motion: {
+jest.mock("framer-motion", () => {
+  const React = require("react");
+  const createMotionComponent = (Component: any) => {
+    return React.forwardRef((props: any, ref: any) => {
+      return React.createElement(Component, { ...props, ref });
+    });
+  };
+
+  const motion = Object.assign((Component: any) => createMotionComponent(Component), {
     div: ({ children, ...props }: React.PropsWithChildren<object>) => (
       <div {...props}>{children}</div>
     ),
@@ -22,12 +30,17 @@ jest.mock("framer-motion", () => ({
     article: ({ children, ...props }: React.PropsWithChildren<object>) => (
       <article {...props}>{children}</article>
     ),
-  },
-  useScroll: () => ({ scrollYProgress: { current: 0 } }),
-  useTransform: () => 0,
-  useReducedMotion: () => false,
-  AnimatePresence: ({ children }: React.PropsWithChildren) => children,
-}));
+  });
+  return {
+    motion,
+    useScroll: () => ({ scrollYProgress: { current: 0 } }),
+    useTransform: () => 0,
+    useReducedMotion: () => false,
+    useMotionValue: () => ({ set: jest.fn(), get: jest.fn() }),
+    useSpring: () => ({ set: jest.fn(), get: jest.fn() }),
+    AnimatePresence: ({ children }: React.PropsWithChildren) => children,
+  };
+});
 
 // Mock next/navigation
 jest.mock("next/navigation", () => ({

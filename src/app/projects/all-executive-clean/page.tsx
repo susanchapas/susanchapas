@@ -73,10 +73,7 @@ export default function AllExecutiveCleanProject() {
   return (
     <div className="lg:pl-20">
       {/* Hero Section */}
-      <ProjectHero
-        src={projectData.heroImage}
-        alt={projectData.title}
-      >
+      <ProjectHero src={projectData.heroImage} alt={projectData.title}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -275,10 +272,10 @@ export default function AllExecutiveCleanProject() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-accent-blue/10 bg-accent-blue/5 flex items-center justify-center"
+                className="group border-accent-blue/10 bg-accent-blue/5 relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl border"
               >
-                <div className="text-center p-6">
-                  <span className="text-accent-lime font-display text-xl font-bold mb-2 block">
+                <div className="p-6 text-center">
+                  <span className="text-accent-lime font-display mb-2 block text-xl font-bold">
                     {image.alt}
                   </span>
                   <span className="text-secondary/50 text-sm">Image coming soon</span>

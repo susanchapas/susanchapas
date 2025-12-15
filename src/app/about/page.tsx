@@ -125,9 +125,9 @@ export default function AboutPage() {
               className="relative mx-auto aspect-square max-w-md lg:mx-0"
             >
               <div className="from-accent-lime/20 via-accent-blue/20 to-accent-clay/20 absolute inset-0 rounded-3xl bg-gradient-to-br blur-2xl" />
-              <div className="border-accent-blue/20 relative overflow-hidden rounded-3xl border bg-white/5 flex items-center justify-center aspect-square">
-                <div className="text-center p-6">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-tr from-accent-lime/20 to-accent-blue/20 flex items-center justify-center">
+              <div className="border-accent-blue/20 relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border bg-white/5">
+                <div className="p-6 text-center">
+                  <div className="from-accent-lime/20 to-accent-blue/20 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr">
                     <span className="text-3xl">✨</span>
                   </div>
                   <p className="text-secondary/50 font-body">Profile photo coming soon</p>
@@ -172,13 +172,15 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative pb-12 pl-8 lg:pb-16 lg:pl-0 ${index % 2 === 0 ? "lg:pr-[50%] lg:text-right" : "lg:pl-[50%]"
-                  }`}
+                className={`relative pb-12 pl-8 lg:pb-16 lg:pl-0 ${
+                  index % 2 === 0 ? "lg:pr-[50%] lg:text-right" : "lg:pl-[50%]"
+                }`}
               >
                 {/* Timeline dot */}
                 <div
-                  className={`bg-accent-lime absolute top-2 left-0 h-3 w-3 transform rounded-full lg:left-1/2 lg:-translate-x-1/2 ${index === 0 ? "ring-accent-lime/20 ring-4" : ""
-                    }`}
+                  className={`bg-accent-lime absolute top-2 left-0 h-3 w-3 transform rounded-full lg:left-1/2 lg:-translate-x-1/2 ${
+                    index === 0 ? "ring-accent-lime/20 ring-4" : ""
+                  }`}
                 />
 
                 <div className={index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}>

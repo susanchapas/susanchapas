@@ -48,10 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
-      <body
-        className="bg-primary text-secondary antialiased"
-        suppressHydrationWarning
-      >
+      <body className="bg-primary text-secondary antialiased" suppressHydrationWarning>
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>

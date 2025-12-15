@@ -94,7 +94,7 @@ export default function ProjectCard({
         <div className="flex flex-1 flex-col p-6 lg:p-8">
           <div className="mb-4 flex flex-wrap gap-2">
             {badge && (
-              <span className="bg-accent-lime/10 text-accent-lime rounded-full px-3 py-1 text-xs font-medium font-mono">
+              <span className="bg-accent-lime/10 text-accent-lime rounded-full px-3 py-1 font-mono text-xs font-medium">
                 {badge}
               </span>
             )}

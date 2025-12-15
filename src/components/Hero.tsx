@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import AccessibleButton from "./AccessibleButton";
@@ -71,7 +77,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-screen items-center overflow-hidden pt-32 lg:pl-20 lg:pt-0"
+      className="relative flex min-h-screen items-center overflow-hidden pt-32 lg:pt-0 lg:pl-20"
       aria-label="Hero section"
     >
       {/* Animated mesh background */}
@@ -131,7 +137,9 @@ linear - gradient(rgba(244, 244, 245, 0.5) 1px, transparent 1px),
             >
               Hi, I&apos;m Susan.
               <br />
-              <span className="text-gradient">I build strategies that drive engagement.</span>
+              <span className="text-gradient">
+                I build strategies that drive engagement.
+              </span>
             </motion.h1>
 
             <motion.p
@@ -176,18 +184,20 @@ linear - gradient(rgba(244, 244, 245, 0.5) 1px, transparent 1px),
             className="relative mx-auto lg:col-span-4 lg:mx-0 lg:ml-auto"
           >
             <div className="relative h-64 w-64 lg:h-[400px] lg:w-[320px]">
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent-lime/20 to-accent-blue/20 rounded-full blur-3xl transform rotate-12" />
-              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm flex items-center justify-center">
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-tr from-accent-lime/20 to-accent-blue/20 flex items-center justify-center">
+              <div className="from-accent-lime/20 to-accent-blue/20 absolute inset-0 rotate-12 transform rounded-full bg-gradient-to-tr blur-3xl" />
+              <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+                <div className="p-6 text-center">
+                  <div className="from-accent-lime/20 to-accent-blue/20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr">
                     <span className="text-2xl">✨</span>
                   </div>
-                  <p className="text-secondary/50 font-body text-sm">Profile photo coming soon</p>
+                  <p className="text-secondary/50 font-body text-sm">
+                    Profile photo coming soon
+                  </p>
                 </div>
               </div>
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 h-24 w-24 border-t-2 border-r-2 border-accent-lime/30 rounded-tr-3xl" />
-              <div className="absolute -bottom-4 -left-4 h-24 w-24 border-b-2 border-l-2 border-accent-blue/30 rounded-bl-3xl" />
+              <div className="border-accent-lime/30 absolute -top-4 -right-4 h-24 w-24 rounded-tr-3xl border-t-2 border-r-2" />
+              <div className="border-accent-blue/30 absolute -bottom-4 -left-4 h-24 w-24 rounded-bl-3xl border-b-2 border-l-2" />
             </div>
           </motion.div>
         </div>

@@ -55,7 +55,11 @@ const caseStudy = {
 
 const gallery = [
   { src: "/gallery/Red Hook Launch Photo.webp", alt: "Branch interior design" },
-  { src: "/gallery/ATM home screen video.mp4", alt: "ATM interface design", type: "video" },
+  {
+    src: "/gallery/ATM home screen video.mp4",
+    alt: "ATM interface design",
+    type: "video",
+  },
   { src: "/gallery/SB Bike Shop Info Sheet.svg", alt: "Exterior signage" },
   { src: "/gallery/A bike for every rider.svg", alt: "Marketing materials" },
 ];
@@ -73,10 +77,7 @@ export default function SpringBankProject() {
   return (
     <div className="lg:pl-20">
       {/* Hero Section */}
-      <ProjectHero
-        src="/gallery/Red Hook Project Hero.webp"
-        alt={projectData.title}
-      >
+      <ProjectHero src="/gallery/Red Hook Project Hero.webp" alt={projectData.title}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
