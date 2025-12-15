@@ -6,9 +6,11 @@ import React from "react";
 jest.mock("framer-motion", () => {
   const React = require("react");
   const createMotionComponent = (Component: any) => {
-    return React.forwardRef((props: any, ref: any) => {
+    const MotionComponent = React.forwardRef((props: any, ref: any) => {
       return React.createElement(Component, { ...props, ref });
     });
+    MotionComponent.displayName = `Motion${Component}`;
+    return MotionComponent;
   };
 
   const motion = Object.assign((Component: any) => createMotionComponent(Component), {
