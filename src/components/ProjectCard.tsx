@@ -23,6 +23,7 @@ export default function ProjectCard({
   index,
   badge,
 }: ProjectCardProps) {
+  const encodedImage = encodeURI(image);
   return (
     <motion.article
       initial={{ opacity: 0, y: 60 }}
@@ -53,9 +54,10 @@ export default function ProjectCard({
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
-              src={image}
+              src={encodedImage}
               alt={`${title} project preview`}
               fill
+              unoptimized
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

@@ -14,12 +14,13 @@ export default function ProjectHero({
   children,
   className = "",
 }: ProjectHeroProps) {
+  const encodedSrc = encodeURI(src);
   return (
     <section
       className={`relative flex min-h-[70vh] items-end py-16 lg:py-24 ${className}`}
     >
       <div className="absolute inset-0 z-0">
-        <Image src={src} alt={alt} fill className="object-cover" priority />
+        <Image src={encodedSrc} alt={alt} fill className="object-cover" priority />
         {/* Blue filter overlay */}
         <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply" />
         {/* Gradient for extra text readability at the bottom */}

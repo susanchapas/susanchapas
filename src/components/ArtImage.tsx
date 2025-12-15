@@ -17,10 +17,12 @@ export default function ArtImage({
   objectFit = "cover",
   ...props
 }: ArtImageProps) {
+  const encodedSrc = encodeURI(src);
+
   return (
     <div className={cn("relative overflow-hidden", containerClassName)}>
       <Image
-        src={src}
+        src={encodedSrc}
         alt={alt}
         className={cn(
           objectFit === "contain" ? "object-contain" : "object-cover",
