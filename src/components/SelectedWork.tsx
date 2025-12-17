@@ -38,9 +38,9 @@ export default function SelectedWork() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
           {featuredProjects.map((project, index) => (
-            <ProjectCard 
-              key={project.title} 
-              {...project} 
+            <ProjectCard
+              key={project.title}
+              {...project}
               index={index}
               priority={index === 0}
             />
