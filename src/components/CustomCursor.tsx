@@ -89,7 +89,7 @@ export default function CustomCursor() {
   if (isTouchDevice) return null;
 
   return (
-    <>
+    <div aria-hidden="true">
       {/* Main cursor dot */}
       <motion.div
         className="pointer-events-none fixed top-0 left-0 z-[99999] mix-blend-difference"
@@ -152,6 +152,6 @@ export default function CustomCursor() {
           }
         }
       `}</style>
-    </>
+    </div>
   );
 }

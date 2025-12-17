@@ -12,6 +12,7 @@ interface ProjectCardProps {
   tags: string[];
   index: number;
   badge?: string;
+  priority?: boolean;
 }
 
 export default function ProjectCard({
@@ -22,6 +23,7 @@ export default function ProjectCard({
   tags,
   index,
   badge,
+  priority = false,
 }: ProjectCardProps) {
   const encodedImage = encodeURI(image);
   return (
@@ -58,6 +60,7 @@ export default function ProjectCard({
               alt={`${title} project preview`}
               fill
               unoptimized
+              priority={priority}
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

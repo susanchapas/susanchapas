@@ -2,34 +2,7 @@
 
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
-
-const projects = [
-  {
-    title: "Schematic Marketing",
-    description:
-      "Launched and scaled an accessibility-focused design agency for small businesses, nonprofits and entrepreneurs.",
-    href: "/projects/schematic-marketing",
-    image: "/assets/projects/schematic-marketing-hero.svg",
-    tags: ["Entrepreneurship", "Accessibility", "UX Design"],
-    badge: "< >",
-  },
-  {
-    title: "Spring Bank",
-    description:
-      "Launching a new bank branch in Red Hook, Brooklyn — designed the new branch interior & exterior, including ATM videography & animations.",
-    href: "/projects/spring-bank",
-    image: "/gallery/Red Hook Launch Photo.webp",
-    tags: ["Brand Strategy", "Interior Design", "Motion Graphics"],
-  },
-  {
-    title: "All Executive Clean",
-    description:
-      "Redesigning the brand for professionalism & consistency — website auditing, new marketing materials including capability statement, business cards, and portfolio.",
-    href: "/projects/all-executive-clean",
-    image: "/gallery/Construction Site Photo.jpg",
-    tags: ["Brand Identity", "Web Design", "Marketing"],
-  },
-];
+import { featuredProjects } from "@/lib/projects";
 
 export default function SelectedWork() {
   return (
@@ -64,8 +37,13 @@ export default function SelectedWork() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.title} {...project} index={index} />
+          {featuredProjects.map((project, index) => (
+            <ProjectCard 
+              key={project.title} 
+              {...project} 
+              index={index}
+              priority={index === 0}
+            />
           ))}
         </div>
 

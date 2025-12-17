@@ -66,8 +66,8 @@ export default function SkillsTicker() {
 
       {/* Screen reader accessible list */}
       <div className="sr-only">
-        <h2>Skills</h2>
-        <ul>
+        <p id="skills-heading">Skills and Expertise</p>
+        <ul aria-labelledby="skills-heading">
           {skills.map((skill) => (
             <li key={skill}>{skill}</li>
           ))}
