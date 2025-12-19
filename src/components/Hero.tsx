@@ -112,16 +112,11 @@ export default function Hero() {
             <div className="relative h-64 w-64 lg:h-[400px] lg:w-[320px]">
               <div className="from-accent-lime/20 to-accent-blue/20 absolute inset-0 rotate-12 transform rounded-full bg-gradient-to-tr blur-3xl" />
               <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
-                <div className="p-6 text-center">
-                  <div className="from-accent-lime/20 to-accent-blue/20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr">
-                    <span className="text-2xl" aria-hidden="true">
-                      ✨
-                    </span>
-                  </div>
-                  <p className="text-secondary/50 font-body text-sm">
-                    Profile photo coming soon
-                  </p>
-                </div>
+                <img
+                  src="/gallery/susan%20profile%20pic.jpg"
+                  alt="Susan Chapas profile"
+                  className="h-full w-full object-cover"
+                />
               </div>
               {/* Decorative elements */}
               <div className="border-accent-lime/30 absolute -top-4 -right-4 h-24 w-24 rounded-tr-3xl border-t-2 border-r-2" />

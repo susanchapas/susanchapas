@@ -14,7 +14,7 @@ export const projects: Project[] = [
     description:
       "Launched and scaled an accessibility-focused design agency for small businesses, nonprofits and entrepreneurs.",
     href: "/projects/schematic-marketing",
-    image: "/assets/projects/schematic-marketing-hero.svg",
+    image: "/gallery/schematic marketing project cover.png",
     tags: ["Entrepreneurship", "Accessibility", "UX Design"],
     badge: "< >",
   },
