@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
-import CustomCursor from "@/components/CustomCursor";
+import LazyCustomCursor from "@/components/LazyCustomCursor";
 import Footer from "@/components/Footer";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import GlobalSkillsTicker from "@/components/GlobalSkillsTicker";
@@ -118,6 +118,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
       <head>
+        {/* Preconnect to font origins for faster loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://linkedin.com" />
+        <link rel="dns-prefetch" href="https://github.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -127,7 +133,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>
-        <CustomCursor />
+        <LazyCustomCursor />
         <Navigation />
         <SmoothScrollProvider>
           <main id="main-content" tabIndex={-1}>

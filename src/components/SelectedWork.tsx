@@ -7,7 +7,7 @@ import { featuredProjects } from "@/lib/projects";
 export default function SelectedWork() {
   return (
     <section
-      className="bg-primary py-24 lg:py-32 lg:pl-20"
+      className="bg-primary content-visibility-auto py-24 lg:py-32 lg:pl-20"
       aria-labelledby="selected-work-heading"
     >
       <div className="container mx-auto px-6 lg:px-12">
@@ -16,7 +16,7 @@ export default function SelectedWork() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mb-16 lg:mb-24"
         >
           <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
@@ -52,13 +52,12 @@ export default function SelectedWork() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <motion.a
+          <a
             href="/projects"
-            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all hover:gap-5"
-            whileHover={{ x: 5 }}
+            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all duration-300 hover:gap-5"
           >
             View All Projects
             <svg
@@ -66,6 +65,7 @@ export default function SelectedWork() {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -74,7 +74,7 @@ export default function SelectedWork() {
                 d="M14 5l7 7m0 0l-7 7m7-7H3"
               />
             </svg>
-          </motion.a>
+          </a>
         </motion.div>
       </div>
     </section>

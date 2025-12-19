@@ -28,61 +28,46 @@ export default function ProjectCard({
   const encodedImage = encodeURI(image);
   return (
     <motion.article
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: 0.8,
-        delay: index * 0.15,
+        duration: 0.5,
+        delay: index * 0.1,
         ease: [0.22, 1, 0.36, 1],
       }}
       className="group"
     >
       <Link
         href={href}
-        className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-500"
+        className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300"
         aria-label={`View ${title} case study`}
       >
         {/* Image Container */}
         <div className="relative aspect-[16/10] overflow-hidden">
-          <motion.div
-            className="from-primary via-primary/50 absolute inset-0 z-10 bg-gradient-to-t to-transparent"
-            initial={{ opacity: 0.6 }}
-            whileHover={{ opacity: 0.8 }}
-          />
-          <motion.div
-            className="relative h-full w-full"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="from-primary via-primary/50 absolute inset-0 z-10 bg-gradient-to-t to-transparent" />
+          <div className="relative h-full w-full transition-transform duration-500 group-hover:scale-105">
             <Image
               src={encodedImage}
               alt={`${title} project preview`}
               fill
               unoptimized
               priority={priority}
+              loading={priority ? "eager" : "lazy"}
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-          </motion.div>
+          </div>
 
-          {/* Hover Overlay */}
-          <motion.div
-            className="absolute inset-0 z-20 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-          >
-            <motion.div
-              className="bg-accent-lime flex h-20 w-20 items-center justify-center rounded-full"
-              initial={{ scale: 0 }}
-              whileHover={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            >
+          {/* Hover Overlay - simplified for performance */}
+          <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div className="bg-accent-lime flex h-20 w-20 scale-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-100">
               <svg
                 className="text-primary h-8 w-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -91,8 +76,8 @@ export default function ProjectCard({
                   d="M14 5l7 7m0 0l-7 7m7-7H3"
                 />
               </svg>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
 
         {/* Content */}
@@ -119,17 +104,14 @@ export default function ProjectCard({
 
           <p className="text-secondary/70 font-body line-clamp-2">{description}</p>
 
-          <motion.div
-            className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium"
-            initial={{ x: 0 }}
-            whileHover={{ x: 8 }}
-          >
+          <div className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium transition-transform duration-300 group-hover:translate-x-2">
             View Case Study
             <svg
               className="h-4 w-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="round"
@@ -138,7 +120,7 @@ export default function ProjectCard({
                 d="M14 5l7 7m0 0l-7 7m7-7H3"
               />
             </svg>
-          </motion.div>
+          </div>
         </div>
       </Link>
     </motion.article>

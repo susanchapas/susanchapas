@@ -31,7 +31,7 @@ export const projects: Project[] = [
     description:
       "Redesigning the brand for professionalism & consistency — website auditing, new marketing materials including capability statement, business cards, and portfolio.",
     href: "/projects/all-executive-clean",
-    image: "/gallery/Construction Site Photo.jpg",
+    image: "/gallery/Construction Site Photo.webp",
     tags: ["Brand Identity", "Web Design", "Marketing"],
   },
 ];

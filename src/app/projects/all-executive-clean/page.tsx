@@ -11,7 +11,7 @@ const projectData = {
   subtitle: "Brand Redesign for Professional Cleaning Services",
   description:
     "A comprehensive brand transformation project focused on elevating professionalism and consistency across all marketing touchpoints.",
-  heroImage: "/gallery/Construction Site Photo.jpg",
+  heroImage: "/gallery/Construction Site Photo.webp",
   tags: ["Brand Identity", "Web Design", "Marketing Materials", "Strategy"],
   year: "2023",
   role: "Marketing & Business Development Manager",

@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import ArtImage from "./ArtImage";
@@ -18,15 +16,15 @@ const artPieces = [
     alt: "A Bike for Every Rider",
     type: "svg",
   },
-  { src: "/gallery/THE NTL photo.jpg", alt: "The NTL", type: "image" },
-  { src: "/gallery/Watercolor Painting.jpg", alt: "Watercolor Painting", type: "image" },
+  { src: "/gallery/THE NTL photo.webp", alt: "The NTL", type: "image" },
+  { src: "/gallery/Watercolor Painting.webp", alt: "Watercolor Painting", type: "image" },
   { src: "/gallery/Red Hook Launch Photo.webp", alt: "Red Hook Launch", type: "image" },
-  { src: "/gallery/Binnoy Feature Photo.jpg", alt: "Binnoy Feature", type: "image" },
+  { src: "/gallery/Binnoy Feature Photo.webp", alt: "Binnoy Feature", type: "image" },
 ];
 
 export default function ArtScroller() {
   return (
-    <section className="bg-primary overflow-hidden border-t border-white/5 py-24">
+    <section className="bg-primary content-visibility-auto overflow-hidden border-t border-white/5 py-24">
       <div className="container mx-auto mb-12 px-6 text-center lg:px-12">
         <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
           Creative Side
@@ -41,25 +39,15 @@ export default function ArtScroller() {
 
       <Link href="/gallery" className="group relative block">
         <div className="flex overflow-hidden">
-          <motion.div
-            className="flex gap-8 px-4 will-change-transform"
-            animate={{
-              x: ["0%", "-50%"],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 40,
-                ease: "linear",
-              },
-            }}
+          {/* CSS-based infinite scroll - much more performant than JS animation */}
+          <div
+            className="flex gap-8 px-4 animate-marquee hover:[animation-play-state:paused]"
             style={{
-              width: "fit-content",
-              transform: "translateZ(0)", // Force GPU
-              backfaceVisibility: "hidden",
+              width: "max-content",
+              willChange: "transform",
             }}
           >
+            {/* Double the items for seamless loop */}
             {[...artPieces, ...artPieces].map((art, index) => (
               <div
                 key={`${art.alt}-${index}`}
@@ -68,6 +56,7 @@ export default function ArtScroller() {
                 <ArtImage
                   src={art.src}
                   alt={art.alt}
+                  loading="lazy"
                   className={cn(
                     "transition-transform duration-500 group-hover:scale-110",
                     art.alt === "Mindless Mirth" && "scale-125 group-hover:scale-[1.35]"
@@ -77,7 +66,7 @@ export default function ArtScroller() {
                 <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">

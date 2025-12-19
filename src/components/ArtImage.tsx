@@ -15,6 +15,7 @@ export default function ArtImage({
   className,
   containerClassName,
   objectFit = "cover",
+  loading = "lazy",
   ...props
 }: ArtImageProps) {
   const encodedSrc = encodeURI(src);
@@ -29,6 +30,8 @@ export default function ArtImage({
           className
         )}
         fill
+        loading={loading}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
         {...props}
       />
     </div>

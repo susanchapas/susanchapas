@@ -54,6 +54,8 @@ const caseStudy = {
 };
 
 const gallery = [
+  { src: "/gallery/SPRING BANK - INSIDE WALL SIGN.webp", alt: "Inside wall sign" },
+  { src: "/gallery/SPRING BANK - 2ND.pdf", alt: "Spring Bank design document", type: "pdf" },
   { src: "/gallery/Red Hook Launch Photo.webp", alt: "Branch interior design" },
   {
     src: "/gallery/ATM home screen video.mp4",
@@ -278,13 +280,22 @@ export default function SpringBankProject() {
                 transition={{ delay: index * 0.1 }}
                 className="group relative aspect-[4/3] overflow-hidden rounded-xl"
               >
-                <ArtMedia
-                  src={image.src}
-                  alt={image.alt}
-                  type={(image.type as "video" | "image") || "image"}
-                  className="transition-transform duration-500 group-hover:scale-105"
-                  containerClassName="h-full w-full"
-                />
+                {image.type === "pdf" ? (
+                  <embed
+                    src={image.src}
+                    type="application/pdf"
+                    className="h-full w-full"
+                    title={image.alt}
+                  />
+                ) : (
+                  <ArtMedia
+                    src={image.src}
+                    alt={image.alt}
+                    type={(image.type as "video" | "image") || "image"}
+                    className="transition-transform duration-500 group-hover:scale-105"
+                    containerClassName="h-full w-full"
+                  />
+                )}
               </motion.div>
             ))}
           </div>

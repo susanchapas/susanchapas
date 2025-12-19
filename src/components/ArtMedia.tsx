@@ -39,6 +39,7 @@ export default function ArtMedia({
           muted={muted}
           playsInline={playsInline}
           aria-label={alt}
+          preload="metadata"
         />
       </div>
     );
@@ -51,6 +52,7 @@ export default function ArtMedia({
       className={className}
       containerClassName={containerClassName}
       objectFit={objectFit}
+      loading="lazy"
     />
   );
 }

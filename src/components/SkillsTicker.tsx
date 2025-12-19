@@ -1,8 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useReducedMotion } from "framer-motion";
-
 const skills = [
   "CRM Integration",
   "UX Research",
@@ -25,8 +22,6 @@ const skills = [
 ];
 
 export default function SkillsTicker() {
-  const shouldReduceMotion = useReducedMotion();
-
   // Duplicate skills for seamless loop
   const duplicatedSkills = [...skills, ...skills];
 
@@ -35,22 +30,10 @@ export default function SkillsTicker() {
       className="bg-accent-blue/5 border-accent-blue/10 overflow-hidden border-y py-8"
       aria-label="Skills marquee"
     >
-      <motion.div
-        className="flex gap-8 whitespace-nowrap"
-        animate={
-          shouldReduceMotion
-            ? {}
-            : {
-                x: [0, -50 * skills.length],
-              }
-        }
-        transition={{
-          x: {
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          },
-        }}
+      {/* CSS-based animation - much more efficient than JS */}
+      <div
+        className="flex gap-8 whitespace-nowrap animate-marquee"
+        style={{ width: "max-content" }}
       >
         {duplicatedSkills.map((skill, index) => (
           <div key={`${skill}-${index}`} className="flex items-center gap-8">
@@ -62,7 +45,7 @@ export default function SkillsTicker() {
             </span>
           </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* Screen reader accessible list */}
       <div className="sr-only">
