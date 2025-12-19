@@ -32,7 +32,7 @@ export default function SkillsTicker() {
     >
       {/* CSS-based animation - much more efficient than JS */}
       <div
-        className="flex gap-8 whitespace-nowrap animate-marquee"
+        className="animate-marquee flex gap-8 whitespace-nowrap"
         style={{ width: "max-content" }}
       >
         {duplicatedSkills.map((skill, index) => (

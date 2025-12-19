@@ -52,14 +52,14 @@ export default function Hero() {
             className="animate-fade-in-up text-center lg:col-span-8 lg:text-left"
           >
             <p
-              className="text-accent-lime font-body mb-6 text-sm tracking-widest uppercase lg:text-base opacity-0 animate-fade-in"
+              className="text-accent-lime font-body animate-fade-in mb-6 text-sm tracking-widest uppercase opacity-0 lg:text-base"
               style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             >
               UX Strategist & Marketing Professional
             </p>
 
             <h1
-              className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl opacity-0 animate-fade-in"
+              className="font-display text-secondary animate-fade-in mb-6 text-4xl leading-[1.1] font-bold opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
               style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
             >
               Hi, I&apos;m Susan.
@@ -70,7 +70,7 @@ export default function Hero() {
             </h1>
 
             <p
-              className="font-body text-secondary/70 mb-8 max-w-2xl text-lg lg:mx-0 lg:text-xl opacity-0 animate-fade-in"
+              className="font-body text-secondary/70 animate-fade-in mb-8 max-w-2xl text-lg opacity-0 lg:mx-0 lg:text-xl"
               style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
             >
               The Strategic Architect — bridging design, marketing strategy, and technical
@@ -78,7 +78,7 @@ export default function Hero() {
             </p>
 
             <div
-              className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start opacity-0 animate-fade-in"
+              className="animate-fade-in flex flex-col items-center gap-4 opacity-0 sm:flex-row lg:justify-start"
               style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
             >
               <AccessibleButton href="/projects" size="lg">
@@ -106,7 +106,7 @@ export default function Hero() {
 
           {/* Right Column: Placeholder - simplified for performance */}
           <div
-            className="relative mx-auto lg:col-span-4 lg:mx-0 lg:ml-auto opacity-0 animate-fade-in-scale"
+            className="animate-fade-in-scale relative mx-auto opacity-0 lg:col-span-4 lg:mx-0 lg:ml-auto"
             style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
           >
             <div className="relative h-64 w-64 lg:h-[400px] lg:w-[320px]">
@@ -114,7 +114,9 @@ export default function Hero() {
               <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
                 <div className="p-6 text-center">
                   <div className="from-accent-lime/20 to-accent-blue/20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-tr">
-                    <span className="text-2xl" aria-hidden="true">✨</span>
+                    <span className="text-2xl" aria-hidden="true">
+                      ✨
+                    </span>
                   </div>
                   <p className="text-secondary/50 font-body text-sm">
                     Profile photo coming soon
@@ -131,12 +133,12 @@ export default function Hero() {
 
       {/* Scroll indicator - CSS animation instead of Framer Motion */}
       <div
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 opacity-0 animate-fade-in"
+        className="animate-fade-in absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 opacity-0"
         style={{ animationDelay: "1.5s", animationFillMode: "forwards" }}
       >
         <span className="text-secondary/50 font-body text-sm">Scroll</span>
         <div className="border-secondary/30 flex h-10 w-6 justify-center rounded-full border-2 pt-2">
-          <div className="bg-accent-lime h-1.5 w-1.5 rounded-full animate-bounce-slow" />
+          <div className="bg-accent-lime animate-bounce-slow h-1.5 w-1.5 rounded-full" />
         </div>
       </div>
     </section>

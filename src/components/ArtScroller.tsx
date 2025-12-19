@@ -41,7 +41,7 @@ export default function ArtScroller() {
         <div className="flex overflow-hidden">
           {/* CSS-based infinite scroll - much more performant than JS animation */}
           <div
-            className="flex gap-8 px-4 animate-marquee hover:[animation-play-state:paused]"
+            className="animate-marquee flex gap-8 px-4 hover:[animation-play-state:paused]"
             style={{
               width: "max-content",
               willChange: "transform",
