@@ -47,7 +47,7 @@ const timeline = [
 
 const education = [
   {
-    degree: "M.S. Human-Computer Interaction",
+    degree: "BS in human computer interaction",
     school: "New Jersey Institute of Technology (NJIT)",
     year: "In Progress",
     description: "Focus on UX Research, Accessibility, and Design Systems",
