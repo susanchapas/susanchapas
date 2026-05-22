@@ -31,9 +31,6 @@
 - **Technical hybrid** — MIT xPRO Full Stack; CRM migrations, automation, and systems thinking
 - Based in Jersey City, NJ - building intentional, accessible digital experiences
 
-### Reach me
-
-- 🌐 Portfolio — [susanchapas.com](https://susanchapas.com)
-- 💼 LinkedIn — [@susan-chapas](https://linkedin.com/in/susan-chapas)
+---
 
 <p align="center"><sub>Built with intention — design, strategy, and code in one place.</sub></p>
