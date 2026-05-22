@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://susanchapas.com"><img src="https://img.shields.io/badge/Portfolio-susanchapas.com-CCFF00?style=for-the-badge&labelColor=102f5d" alt="Portfolio" /></a>
-  <a href="https://linkedin.com/in/susanchapas"><img src="https://img.shields.io/badge/LinkedIn-@susan-chapas-bbcdf3?style=for-the-badge&labelColor=102f5d" alt="LinkedIn" /></a>
+  <a href="https://linkedin.com/in/susan-chapas"><img src="https://img.shields.io/badge/LinkedIn-@susan--chapas-bbcdf3?style=for-the-badge&labelColor=102f5d" alt="LinkedIn" /></a>
 </p>
 
 ---
@@ -34,6 +34,6 @@
 ### Reach me
 
 - 🌐 Portfolio — [susanchapas.com](https://susanchapas.com)
-- 💼 LinkedIn — [@susanchapas](https://linkedin.com/in/susan-chapas)
+- 💼 LinkedIn — [@susan-chapas](https://linkedin.com/in/susan-chapas)
 
 <p align="center"><sub>Built with intention — design, strategy, and code in one place.</sub></p>
