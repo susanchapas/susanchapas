@@ -18,16 +18,6 @@
 - 🛠️ **Technical hybrid** — MIT xPRO Full Stack; CRM migrations, automation, and systems thinking
 - 📍 Based in Jersey City, building intentional, accessible digital experiences
 
-### Selected Work
-
-| Project                 | Focus                      |
-| ----------------------- | -------------------------- |
-| **Spring Bank**         | Brand & digital experience |
-| **All Executive Clean** | Marketing site & systems   |
-| **Schematic Marketing** | Strategy & growth          |
-
-> Explore the full case studies at **[susanchapas.com](https://susanchapas.com)**
-
 ### Tech & Tools
 
 <p>
