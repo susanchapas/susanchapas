@@ -11,13 +11,6 @@
 
 ---
 
-### About
-
-- 🎨 **UX Designer & Researcher** — HCI @ NJIT
-- 📈 **Marketing Strategist** — turning brand strategy into measurable growth
-- 🛠️ **Technical hybrid** — MIT xPRO Full Stack; CRM migrations, automation, and systems thinking
-- 📍 Based in Jersey City, building intentional, accessible digital experiences
-
 ### Tech & Tools
 
 <p>
@@ -30,6 +23,13 @@
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" alt="Figma" />
   <img src="https://img.shields.io/badge/Adobe_Illustrator-FF9A00?style=flat-square&logo=adobeillustrator&logoColor=white" alt="Adobe Illustrator" />
 </p>
+
+### About
+
+- **UX Designer & Researcher** — HCI @ NJIT
+- **Marketing Strategist** — turning brand strategy into measurable growth
+- **Technical hybrid** — MIT xPRO Full Stack; CRM migrations, automation, and systems thinking
+- Based in Jersey City, NJ - building intentional, accessible digital experiences
 
 ### Reach me
 
