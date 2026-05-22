@@ -33,4 +33,4 @@
 
 ---
 
-<p align="center"><sub>Built with intention — design, strategy, and code in one place.</sub></p>
+<p align="center"><sub>thx for visiting!</sub></p>
