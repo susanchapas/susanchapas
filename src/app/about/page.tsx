@@ -127,10 +127,15 @@ export default function AboutPage() {
               <div className="from-accent-lime/20 via-accent-blue/20 to-accent-clay/20 absolute inset-0 rounded-3xl bg-gradient-to-br blur-2xl" />
               <div className="border-accent-blue/20 relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border bg-white/5">
                 <div className="p-6 text-center">
-                  <div className="from-accent-lime/20 to-accent-blue/20 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr">
-                    <span className="text-3xl">✨</span>
+                  <div className="mx-auto mb-6 h-48 w-48 overflow-hidden rounded-full">
+                    <Image
+                      src={encodeURI("/gallery/susan profile pic.jpg")}
+                      alt="Susan Chapas profile photo"
+                      width={192}
+                      height={192}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
-                  <p className="text-secondary/50 font-body">Profile photo coming soon</p>
                 </div>
               </div>
             </motion.div>
@@ -286,7 +291,7 @@ export default function AboutPage() {
           >
             <div className="border-accent-blue/20 aspect-[4/3] overflow-hidden rounded-2xl border">
               <ArtImage
-                src="/gallery/Mindless-Mirth-final.svg"
+                src="/gallery/Mindless-Mirth-final.webp"
                 alt="Mindless Mirth - Award-winning artwork by Susan Chapas"
                 containerClassName="h-full w-full"
               />

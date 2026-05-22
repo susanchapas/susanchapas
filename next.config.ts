@@ -4,13 +4,9 @@ const nextConfig: NextConfig = {
   // Enable static HTML export
   output: 'export',
   
-  // Image configuration for static export
+  // Static export serves images as-is; the optimizer and its sizing config are inert.
   images: {
     unoptimized: true,
-    formats: ['image/avif', 'image/webp'],
-    // Ensure proper sizing hints
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   
   // Enable React Compiler for better performance

@@ -5,16 +5,16 @@ import { cn } from "@/lib/utils";
 import ArtImage from "./ArtImage";
 
 const artPieces = [
-  { src: "/gallery/Mindless-Mirth-final.svg", alt: "Mindless Mirth", type: "svg" },
+  { src: "/gallery/Mindless-Mirth-final.webp", alt: "Mindless Mirth", type: "image" },
   {
-    src: "/gallery/eat, drink, & be merry.svg",
+    src: "/gallery/eat, drink, & be merry.webp",
     alt: "Eat, Drink, & Be Merry",
-    type: "svg",
+    type: "image",
   },
   {
-    src: "/gallery/A bike for every rider.svg",
+    src: "/gallery/A bike for every rider.webp",
     alt: "A Bike for Every Rider",
-    type: "svg",
+    type: "image",
   },
   { src: "/gallery/THE NTL photo.webp", alt: "The NTL", type: "image" },
   { src: "/gallery/Watercolor Painting.webp", alt: "Watercolor Painting", type: "image" },

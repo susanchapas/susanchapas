@@ -5,6 +5,7 @@ import Link from "next/link";
 import AccessibleButton from "@/components/AccessibleButton";
 import ArtMedia from "@/components/ArtMedia";
 import ProjectHero from "@/components/ProjectHero";
+import SectionTabs from "@/components/SectionTabs";
 
 const projectData = {
   title: "Spring Bank",
@@ -67,13 +68,13 @@ const gallery = [
     type: "video",
   },
   { src: "/gallery/SB Bike Shop Info Sheet.svg", alt: "Exterior signage" },
-  { src: "/gallery/A bike for every rider.svg", alt: "Marketing materials" },
+  { src: "/gallery/A bike for every rider.webp", alt: "Marketing materials" },
 ];
 
 const tools = [
   "Figma",
   "Adobe Creative Suite",
-  "After Effects",
+  "Adobe After Effects",
   "Miro",
   "Asana",
   "Google Analytics",
@@ -164,175 +165,192 @@ export default function SpringBankProject() {
         </div>
       </section>
 
-      {/* STAR Case Study */}
-      <section className="bg-accent-blue/5 py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          {/* Situation */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16"
-          >
-            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-              {caseStudy.situation.title}
-            </span>
-            <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
-              {caseStudy.situation.content}
-            </p>
-          </motion.div>
+      <SectionTabs
+        tabs={[
+          {
+            id: "case-study",
+            label: "Case Study",
+            content: (
+              <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <div className="container mx-auto px-6 lg:px-12">
+                  {/* Situation */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-16"
+                  >
+                    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
+                      {caseStudy.situation.title}
+                    </span>
+                    <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
+                      {caseStudy.situation.content}
+                    </p>
+                  </motion.div>
 
-          {/* Task */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16"
-          >
-            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-              {caseStudy.task.title}
-            </span>
-            <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
-              {caseStudy.task.content}
-            </p>
-          </motion.div>
+                  {/* Task */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-16"
+                  >
+                    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
+                      {caseStudy.task.title}
+                    </span>
+                    <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
+                      {caseStudy.task.content}
+                    </p>
+                  </motion.div>
 
-          {/* Action */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16"
-          >
-            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-              {caseStudy.action.title}
-            </span>
-            <ul className="max-w-3xl space-y-4">
-              {caseStudy.action.points.map((point, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-4"
-                >
-                  <span className="bg-accent-lime mt-2 h-2 w-2 flex-shrink-0 rounded-full" />
-                  <span className="font-body text-secondary/80">{point}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+                  {/* Action */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-16"
+                  >
+                    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
+                      {caseStudy.action.title}
+                    </span>
+                    <ul className="max-w-3xl space-y-4">
+                      {caseStudy.action.points.map((point, index) => (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.1 }}
+                          className="flex items-start gap-4"
+                        >
+                          <span className="bg-accent-lime mt-2 h-2 w-2 flex-shrink-0 rounded-full" />
+                          <span className="font-body text-secondary/80">{point}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
 
-          {/* Result */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="text-accent-lime font-body mb-8 block text-sm tracking-widest uppercase">
-              {caseStudy.result.title}
-            </span>
-            <div className="mb-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
-              {caseStudy.result.metrics.map((metric, index) => (
-                <motion.div
-                  key={metric.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-primary border-accent-blue/10 rounded-xl border p-6 text-center"
-                >
-                  <div className="font-display text-accent-lime mb-2 text-3xl font-bold lg:text-4xl">
-                    {metric.value}
+                  {/* Result */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <span className="text-accent-lime font-body mb-8 block text-sm tracking-widest uppercase">
+                      {caseStudy.result.title}
+                    </span>
+                    <div className="mb-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
+                      {caseStudy.result.metrics.map((metric, index) => (
+                        <motion.div
+                          key={metric.label}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.1 }}
+                          className="bg-primary border-accent-blue/10 rounded-xl border p-6 text-center"
+                        >
+                          <div className="font-display text-accent-lime mb-2 text-3xl font-bold lg:text-4xl">
+                            {metric.value}
+                          </div>
+                          <div className="font-body text-secondary/70 text-sm">
+                            {metric.label}
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                    <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
+                      {caseStudy.result.content}
+                    </p>
+                  </motion.div>
+                </div>
+              </section>
+            ),
+          },
+          {
+            id: "gallery",
+            label: "Gallery",
+            content: (
+              <section className="bg-primary py-16 lg:py-24">
+                <div className="container mx-auto px-6 lg:px-12">
+                  <motion.h2
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="font-display text-secondary mb-12 text-2xl font-bold lg:text-3xl"
+                  >
+                    Project Gallery
+                  </motion.h2>
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    {gallery.map((image, index) => (
+                      <motion.div
+                        key={image.src}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="group relative aspect-[4/3] overflow-hidden rounded-xl"
+                      >
+                        {image.type === "pdf" ? (
+                          <embed
+                            src={image.src}
+                            type="application/pdf"
+                            className="h-full w-full"
+                            title={image.alt}
+                          />
+                        ) : (
+                          <ArtMedia
+                            src={image.src}
+                            alt={image.alt}
+                            type={(image.type as "video" | "image") || "image"}
+                            className="transition-transform duration-500 group-hover:scale-105"
+                            containerClassName="h-full w-full"
+                          />
+                        )}
+                      </motion.div>
+                    ))}
                   </div>
-                  <div className="font-body text-secondary/70 text-sm">
-                    {metric.label}
+                </div>
+              </section>
+            ),
+          },
+          {
+            id: "tools",
+            label: "Tools",
+            content: (
+              <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <div className="container mx-auto px-6 lg:px-12">
+                  <motion.h2
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl"
+                  >
+                    Tools & Technologies
+                  </motion.h2>
+                  <div className="flex flex-wrap gap-3">
+                    {tools.map((tool, index) => (
+                      <motion.span
+                        key={tool}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                        className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
+                      >
+                        {tool}
+                      </motion.span>
+                    ))}
                   </div>
-                </motion.div>
-              ))}
-            </div>
-            <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
-              {caseStudy.result.content}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Gallery */}
-      <section className="bg-primary py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-secondary mb-12 text-2xl font-bold lg:text-3xl"
-          >
-            Project Gallery
-          </motion.h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {gallery.map((image, index) => (
-              <motion.div
-                key={image.src}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative aspect-[4/3] overflow-hidden rounded-xl"
-              >
-                {image.type === "pdf" ? (
-                  <embed
-                    src={image.src}
-                    type="application/pdf"
-                    className="h-full w-full"
-                    title={image.alt}
-                  />
-                ) : (
-                  <ArtMedia
-                    src={image.src}
-                    alt={image.alt}
-                    type={(image.type as "video" | "image") || "image"}
-                    className="transition-transform duration-500 group-hover:scale-105"
-                    containerClassName="h-full w-full"
-                  />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tools & Technologies */}
-      <section className="bg-accent-blue/5 py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl"
-          >
-            Tools & Technologies
-          </motion.h2>
-          <div className="flex flex-wrap gap-3">
-            {tools.map((tool, index) => (
-              <motion.span
-                key={tool}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
-              >
-                {tool}
-              </motion.span>
-            ))}
-          </div>
-        </div>
-      </section>
+                </div>
+              </section>
+            ),
+          },
+        ]}
+      />
 
       {/* Navigation */}
       <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">
@@ -354,7 +372,7 @@ export default function SpringBankProject() {
               </svg>
               All Projects
             </AccessibleButton>
-            <AccessibleButton href="/projects/all-executive-clean">
+            <AccessibleButton href="/projects/archlog">
               Next Project
               <svg
                 className="h-4 w-4"
