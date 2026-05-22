@@ -1,4 +1,4 @@
-<h1 align="center">Hi, I'm Susan Chapas</h1>
+<h1 align="center">Susan Chapas</h1>
 
 <p align="center">
   <strong>The Strategic Architect</strong> — bridging design, marketing strategy, and technical implementation.
