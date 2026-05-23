@@ -251,3 +251,66 @@ body {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
 }
+
+/* Circuit trace power-flow */
+@keyframes trace-flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.trace-flow {
+  stroke-dasharray: 2 6;
+  animation: trace-flow 1.1s linear infinite;
+}
+
+.trace-flow-slow {
+  stroke-dasharray: 1.5 7;
+  animation: trace-flow 3.4s linear infinite;
+}
+
+/* Circuit board faceplate */
+.switchboard {
+  box-shadow:
+    inset 0 1px 0 rgba(187, 205, 243, 0.08),
+    inset 0 0 40px rgba(0, 0, 0, 0.35);
+  background-image:
+    radial-gradient(rgba(187, 205, 243, 0.05) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+.switch-module {
+  box-shadow: inset 0 1px 0 rgba(187, 205, 243, 0.06);
+}
+
+.switchboard-screw {
+  position: absolute;
+  z-index: 10;
+  height: 7px;
+  width: 7px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, rgba(187, 205, 243, 0.55), rgba(16, 47, 93, 0.9));
+  box-shadow: inset 0 0 0 1px rgba(187, 205, 243, 0.2);
+}
+
+@keyframes comp-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.animate-comp-pulse {
+  animation: comp-pulse 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-flow,
+  .trace-flow-slow,
+  .animate-comp-pulse {
+    animation: none;
+  }
+}
