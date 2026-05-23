@@ -204,10 +204,12 @@ function TileFace({ facet }: { facet: Facet }) {
 function PhysicsBoard({
   selected,
   onSelect,
+  onActivate,
   resetRef,
 }: {
   selected: string;
   onSelect: (id: string) => void;
+  onActivate: () => void;
   resetRef: React.RefObject<(() => void) | null>;
 }) {
   const boardRef = useRef<HTMLDivElement>(null);
@@ -223,7 +225,7 @@ function PhysicsBoard({
 
     (async () => {
       const Matter = await import("matter-js");
-      const { Engine, Bodies, Body, Composite, Mouse, MouseConstraint } = Matter;
+      const { Engine, Bodies, Body, Composite, Events, Mouse, MouseConstraint } = Matter;
       if (stop) return;
 
       let W = board.clientWidth;
@@ -257,6 +259,8 @@ function PhysicsBoard({
       });
 
       Composite.add(engine.world, [...tiles, mouseConstraint]);
+
+      Events.on(mouseConstraint, "startdrag", () => onActivate());
 
       resetRef.current = () => {
         tiles.forEach((b, i) => {
@@ -322,7 +326,7 @@ function PhysicsBoard({
       cancelAnimationFrame(raf);
       cleanups.forEach((fn) => fn());
     };
-  }, [onSelect]);
+  }, [onSelect, onActivate]);
 
   return (
     <div
@@ -496,21 +500,26 @@ export default function AboutStudioWall() {
   const reduce = useReducedMotion();
   const [selected, setSelected] = useState<string>(FACETS[0].id);
   const [open, setOpen] = useState(false);
+  const [activated, setActivated] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const openRef = useRef(false);
   const resetRef = useRef<(() => void) | null>(null);
   const node = FACETS.find((f) => f.id === selected)!;
 
+  const handleActivate = useCallback(() => setActivated(true), []);
+
   const isDesktop = () =>
     typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
 
-  const springRef = useRef<HTMLElement | null>(null);
+  const fadeAnchorRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
-    springRef.current = document.getElementById("role-spring-bank");
+    fadeAnchorRef.current = document.querySelector(
+      '[aria-labelledby="selected-work-heading"] article',
+    );
   }, []);
 
   const { scrollYProgress } = useScroll({
-    target: springRef,
+    target: fadeAnchorRef,
     offset: ["start end", "start center"],
   });
   const sheetOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -561,18 +570,31 @@ export default function AboutStudioWall() {
           </span>
           <span className="lg:hidden">Tap a tile to read more.</span>
         </p>
-        <button
+        <motion.button
           type="button"
           onClick={() => resetRef.current?.()}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: activated ? 1 : 0 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          aria-hidden={!activated}
+          tabIndex={activated ? 0 : -1}
+          style={{ pointerEvents: activated ? "auto" : "none" }}
           className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary hidden shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none lg:inline-flex"
         >
           <RotateCcw className="h-4 w-4" aria-hidden="true" />
           Reset board
-        </button>
+        </motion.button>
       </div>
 
       <div ref={wrapperRef} className="relative scroll-mt-20 lg:scroll-mt-12">
-        {!reduce && <PhysicsBoard selected={selected} onSelect={handleSelect} resetRef={resetRef} />}
+        {!reduce && (
+          <PhysicsBoard
+            selected={selected}
+            onSelect={handleSelect}
+            onActivate={handleActivate}
+            resetRef={resetRef}
+          />
+        )}
 
         <div
           style={{

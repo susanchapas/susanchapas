@@ -32,7 +32,6 @@ export default function Footer() {
               <ul className="space-y-3">
                 {[
                   { name: "Home", href: "/" },
-                  { name: "About", href: "/about" },
                   { name: "Projects", href: "/projects" },
                   { name: "Gallery", href: "/gallery" },
                   { name: "Contact", href: "/contact" },
@@ -65,7 +64,7 @@ export default function Footer() {
 
               <div className="flex gap-4 pt-2">
                 <a
-                  href="https://linkedin.com/in/susanchapas"
+                  href="https://linkedin.com/in/susan-chapas"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-10 w-10 items-center justify-center rounded-full transition-all"

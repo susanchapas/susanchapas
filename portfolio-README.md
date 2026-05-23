@@ -78,31 +78,31 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## 📜 Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Fix ESLint issues |
-| `npm run format` | Format code with Prettier |
-| `npm run format:check` | Check code formatting |
-| `npm run type-check` | Run TypeScript type checking |
-| `npm run test` | Run tests |
-| `npm run test:watch` | Run tests in watch mode |
-| `npm run test:ci` | Run tests with coverage |
+| Command                | Description                  |
+| ---------------------- | ---------------------------- |
+| `npm run dev`          | Start development server     |
+| `npm run build`        | Build for production         |
+| `npm run start`        | Start production server      |
+| `npm run lint`         | Run ESLint                   |
+| `npm run lint:fix`     | Fix ESLint issues            |
+| `npm run format`       | Format code with Prettier    |
+| `npm run format:check` | Check code formatting        |
+| `npm run type-check`   | Run TypeScript type checking |
+| `npm run test`         | Run tests                    |
+| `npm run test:watch`   | Run tests in watch mode      |
+| `npm run test:ci`      | Run tests with coverage      |
 
 ## 🎨 Brand System
 
 ### Colors
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Primary BG | `#102f5d` | Main background (Midnight Carbon) |
-| Secondary Text | `#F4F4F5` | Body text (Paper White) |
-| Accent Lime | `#CCFF00` | Primary accent (Electric Lime) |
-| Accent Blue | `#bbcdf3` | Secondary accent |
-| Accent Clay | `#E09F7D` | Tertiary accent (Soft Clay) |
+| Color          | Hex       | Usage                             |
+| -------------- | --------- | --------------------------------- |
+| Primary BG     | `#102f5d` | Main background (Midnight Carbon) |
+| Secondary Text | `#F4F4F5` | Body text (Paper White)           |
+| Accent Lime    | `#CCFF00` | Primary accent (Electric Lime)    |
+| Accent Blue    | `#bbcdf3` | Secondary accent                  |
+| Accent Clay    | `#E09F7D` | Tertiary accent (Soft Clay)       |
 
 ### Typography
 
@@ -171,8 +171,9 @@ This project is licensed under the MIT License.
 ## 👤 Author
 
 **Susan Chapas**
+
 - Website: [susanchapas.com](https://susanchapas.com)
-- LinkedIn: [@susanchapas](https://linkedin.com/in/susanchapas)
+- LinkedIn: [@susan-chapas](https://linkedin.com/in/susan-chapas)
 - GitHub: [@susanchapas](https://github.com/susanchapas)
 
 ---

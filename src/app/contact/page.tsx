@@ -208,7 +208,7 @@ export default function ContactPage() {
                   </h3>
                   <div className="flex gap-4">
                     <a
-                      href="https://linkedin.com/in/susanchapas"
+                      href="https://linkedin.com/in/susan-chapas"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-all"

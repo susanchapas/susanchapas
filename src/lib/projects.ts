@@ -44,5 +44,6 @@ export const projects: Project[] = [
   },
 ];
 
-// Featured projects for home page (can be a subset)
-export const featuredProjects = projects;
+export const featuredProjects = projects
+  .filter((p) => p.href !== "/projects/schematic-marketing")
+  .slice(0, 3);

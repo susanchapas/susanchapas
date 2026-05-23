@@ -92,7 +92,7 @@ const jsonLd = {
   description:
     "The Strategic Architect — bridging design, marketing strategy, and technical implementation.",
   url: baseUrl,
-  sameAs: ["https://linkedin.com/in/susanchapas", "https://github.com/susanchapas"],
+  sameAs: ["https://linkedin.com/in/susan-chapas", "https://github.com/susanchapas"],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Jersey City",

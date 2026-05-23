@@ -9,7 +9,6 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "/", icon: "/home-icon.svg" },
-  { name: "About", href: "/about", icon: "/about-icon.svg" },
   { name: "Projects", href: "/projects", icon: "/project-icon.svg" },
   { name: "Gallery", href: "/gallery", icon: "/gallery-icon.svg" },
   { name: "Contact", href: "/contact", icon: "/contact-icon.svg" },
@@ -131,7 +130,7 @@ export default function Navigation() {
 
         <div className="flex flex-col gap-4">
           <a
-            href="https://linkedin.com/in/susanchapas"
+            href="https://linkedin.com/in/susan-chapas"
             target="_blank"
             rel="noopener noreferrer"
             className="text-secondary hover:text-accent-lime transition-colors"
@@ -224,7 +223,7 @@ export default function Navigation() {
               className="absolute bottom-12 flex gap-8"
             >
               <a
-                href="https://linkedin.com/in/susanchapas"
+                href="https://linkedin.com/in/susan-chapas"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-secondary hover:text-accent-lime transition-colors"
