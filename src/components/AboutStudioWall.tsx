@@ -215,8 +215,18 @@ function PhysicsBoard({
   const boardRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [ready, setReady] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const update = () => setEnabled(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     const board = boardRef.current;
     if (!board) return;
     let raf = 0;
@@ -395,7 +405,7 @@ function PhysicsBoard({
       cancelAnimationFrame(raf);
       cleanups.forEach((fn) => fn());
     };
-  }, [onSelect, onActivate]);
+  }, [enabled, onSelect, onActivate]);
 
   return (
     <div
