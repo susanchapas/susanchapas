@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import AboutStudioWall from "@/components/AboutStudioWall";
@@ -149,6 +149,14 @@ function CurrentRoles() {
 }
 
 export default function Home() {
+  const { scrollY } = useScroll();
+  const [scrollHintDismissed, setScrollHintDismissed] = useState(false);
+  useMotionValueEvent(scrollY, "change", (value) => {
+    if (value > 160 && !scrollHintDismissed) {
+      setScrollHintDismissed(true);
+    }
+  });
+
   return (
     <div className="bg-primary relative overflow-hidden">
       <div className="relative z-10 lg:pl-20">
@@ -219,6 +227,29 @@ export default function Home() {
           <div className="relative z-10 container mx-auto mt-24 max-w-7xl px-6 lg:px-12 lg:mt-32">
             <AboutStudioWall />
           </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: scrollHintDismissed ? 0 : 1 }}
+            transition={{
+              duration: scrollHintDismissed ? 0.4 : 0.8,
+              delay: scrollHintDismissed ? 0 : 1.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-[calc(100vh-5.5rem)] hidden -translate-x-1/2 flex-col items-center gap-3 landscape:flex"
+          >
+            <span className="text-accent-lime font-display text-xs font-semibold tracking-[0.35em] uppercase">
+              Scroll
+            </span>
+            <span className="border-accent-lime/60 bg-accent-lime/10 flex h-11 w-11 items-center justify-center rounded-full border-2 backdrop-blur-sm">
+              <ChevronDown
+                className="text-accent-lime animate-bounce-slow h-6 w-6"
+                strokeWidth={2.5}
+                aria-hidden="true"
+              />
+            </span>
+          </motion.div>
         </section>
 
         <SelectedWork />

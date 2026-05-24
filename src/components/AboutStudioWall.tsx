@@ -55,7 +55,7 @@ const FACETS: Facet[] = [
       "I'm a UX strategist, front-end developer, and artist. I like the whole arc of a thing — figuring out what people actually need, designing it so it works for everyone, then building it until it's real.",
     Icon: MousePointer2,
     pin: "lime",
-    image: "/gallery/susan profile pic.jpg",
+    image: "/assets/misc/susan-umbrella.png",
     rot: -6,
     pos: { x: 0.1, y: 0.28 },
   },
