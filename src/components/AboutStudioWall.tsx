@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Body } from "matter-js";
+import type { Body, Mouse as MatterMouse } from "matter-js";
 import {
   ArrowRight,
   Brush,
@@ -252,7 +252,18 @@ function PhysicsBoard({
         return body;
       });
 
-      const mouse = Mouse.create(board);
+      const mouse = Mouse.create(board) as MatterMouse & {
+        mousemove: (e: Event) => void;
+        mouseup: (e: Event) => void;
+      };
+      board.removeEventListener("mousemove", mouse.mousemove);
+      board.removeEventListener("mouseup", mouse.mouseup);
+      board.removeEventListener("touchmove", mouse.mousemove);
+      board.removeEventListener("touchend", mouse.mouseup);
+      window.addEventListener("mousemove", mouse.mousemove, { passive: true });
+      window.addEventListener("mouseup", mouse.mouseup, { passive: true });
+      window.addEventListener("touchmove", mouse.mousemove, { passive: false });
+      window.addEventListener("touchend", mouse.mouseup, { passive: false });
       const mouseConstraint = MouseConstraint.create(engine, {
         mouse,
         constraint: { stiffness: 0.2, render: { visible: false } },
@@ -260,7 +271,36 @@ function PhysicsBoard({
 
       Composite.add(engine.world, [...tiles, mouseConstraint]);
 
-      Events.on(mouseConstraint, "startdrag", () => onActivate());
+      const releaseMouse = () => {
+        mouse.button = -1;
+      };
+      window.addEventListener("blur", releaseMouse);
+      window.addEventListener("pointerup", releaseMouse);
+      cleanups.push(() => {
+        window.removeEventListener("mousemove", mouse.mousemove);
+        window.removeEventListener("mouseup", mouse.mouseup);
+        window.removeEventListener("touchmove", mouse.mousemove);
+        window.removeEventListener("touchend", mouse.mouseup);
+        window.removeEventListener("blur", releaseMouse);
+        window.removeEventListener("pointerup", releaseMouse);
+      });
+
+      let stretchX = 0;
+      let stretchY = 0;
+      Events.on(mouseConstraint, "startdrag", () => {
+        stretchX = 0;
+        stretchY = 0;
+        onActivate();
+      });
+      Events.on(mouseConstraint, "enddrag", (event) => {
+        const body = (event as unknown as { body?: Body }).body;
+        if (!body || (stretchX === 0 && stretchY === 0)) return;
+        const SLING = 0.12;
+        Body.setVelocity(body, {
+          x: body.velocity.x - stretchX * SLING,
+          y: body.velocity.y - stretchY * SLING,
+        });
+      });
 
       resetRef.current = () => {
         tiles.forEach((b, i) => {
@@ -271,11 +311,28 @@ function PhysicsBoard({
         });
       };
 
-      const MAX_SPEED = 26;
+      const MAX_SPEED = 45;
+      const BORDER_PULL = 0.012;
       let last = performance.now();
       const update = (now: number) => {
         const dt = Math.min(now - last, 1000 / 30);
         last = now;
+        if (mouseConstraint.body) {
+          stretchX =
+            mouse.position.x > W
+              ? mouse.position.x - W
+              : mouse.position.x < 0
+                ? mouse.position.x
+                : 0;
+          stretchY =
+            mouse.position.y > H
+              ? mouse.position.y - H
+              : mouse.position.y < 0
+                ? mouse.position.y
+                : 0;
+          mouse.position.x = Math.max(0, Math.min(W, mouse.position.x));
+          mouse.position.y = Math.max(0, Math.min(H, mouse.position.y));
+        }
         Engine.update(engine, dt);
         tiles.forEach((b, i) => {
           const speed = Math.hypot(b.velocity.x, b.velocity.y);
@@ -289,6 +346,18 @@ function PhysicsBoard({
             const { min, max } = b.bounds;
             const bw = max.x - min.x;
             const bh = max.y - min.y;
+            let ax = 0;
+            let ay = 0;
+            if (max.x > W) ax -= BORDER_PULL * Math.sin(Math.PI * Math.min(1, (max.x - W) / bw));
+            if (min.x < 0) ax += BORDER_PULL * Math.sin(Math.PI * Math.min(1, -min.x / bw));
+            if (max.y > H) ay -= BORDER_PULL * Math.sin(Math.PI * Math.min(1, (max.y - H) / bh));
+            if (min.y < 0) ay += BORDER_PULL * Math.sin(Math.PI * Math.min(1, -min.y / bh));
+            if (ax || ay) {
+              Body.setVelocity(b, {
+                x: b.velocity.x + ax * dt,
+                y: b.velocity.y + ay * dt,
+              });
+            }
             let tx = 0;
             let ty = 0;
             if (min.x > W) tx = -(W + bw);
@@ -524,23 +593,11 @@ export default function AboutStudioWall() {
   });
   const sheetOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const handleSelect = useCallback(
-    (id: string) => {
-      setSelected(id);
-      const wasOpen = openRef.current;
-      openRef.current = true;
-      setOpen(true);
-      if (wasOpen) return;
-      if (!isDesktop()) return;
-      requestAnimationFrame(() => {
-        wrapperRef.current?.scrollIntoView({
-          behavior: reduce ? "auto" : "smooth",
-          block: "start",
-        });
-      });
-    },
-    [reduce],
-  );
+  const handleSelect = useCallback((id: string) => {
+    setSelected(id);
+    openRef.current = true;
+    setOpen(true);
+  }, []);
 
   const handleClose = useCallback(() => {
     openRef.current = false;
