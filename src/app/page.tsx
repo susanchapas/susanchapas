@@ -2,11 +2,16 @@
 
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { ChevronDown } from "lucide-react";
 import AboutStudioWall from "@/components/AboutStudioWall";
 import AccessibleButton from "@/components/AccessibleButton";
 import SelectedWork from "@/components/SelectedWork";
-import ArtScroller from "@/components/ArtScroller";
+
+const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
+  ssr: false,
+  loading: () => <div className="h-[40rem]" aria-hidden="true" />,
+});
 
 type Role = {
   id: string;

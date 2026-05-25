@@ -56,7 +56,7 @@ const FACETS: Facet[] = [
       "I'm a UX strategist, front-end developer, and artist. I like the whole arc of a thing — figuring out what people actually need, designing it so it works for everyone, then building it until it's real.",
     Icon: MousePointer2,
     pin: "lime",
-    image: "/assets/misc/susan-umbrella.png",
+    image: "/assets/misc/susan-umbrella.webp",
     rot: -6,
     pos: { x: 0.1, y: 0.28 },
   },
@@ -587,7 +587,10 @@ export default function AboutStudioWall() {
   const node = FACETS.find((f) => f.id === selected)!;
 
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- portal needs document, mount flag is the standard SSR-safe gate
+    setMounted(true);
+  }, []);
 
   const handleActivate = useCallback(() => setActivated(true), []);
 
