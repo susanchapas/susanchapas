@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode, useRef, useState } from "react";
+import { getLenis } from "@/lib/lenis";
 
 export type SectionTab = {
   id: string;
@@ -12,20 +13,41 @@ export type SectionTab = {
 export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
   const [activeId, setActiveId] = useState(tabs[0]?.id);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const anchorRef = useRef<HTMLDivElement | null>(null);
 
   const activeTab = tabs.find((tab) => tab.id === activeId) ?? tabs[0];
+
+  function scrollToTabsTop() {
+    const anchor = anchorRef.current;
+    if (!anchor) return;
+    const stickyOffset = window.matchMedia("(min-width: 1024px)").matches ? 0 : 64;
+    const target = anchor.getBoundingClientRect().top + window.scrollY - stickyOffset;
+    if (target >= window.scrollY - 1) return;
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(target, { duration: 0.6 });
+    } else {
+      window.scrollTo({ top: target, behavior: "smooth" });
+    }
+  }
+
+  function selectTab(id: string) {
+    if (id !== activeId) scrollToTabsTop();
+    setActiveId(id);
+  }
 
   function handleKeyDown(e: React.KeyboardEvent, index: number) {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
     e.preventDefault();
     const dir = e.key === "ArrowRight" ? 1 : -1;
     const next = (index + dir + tabs.length) % tabs.length;
-    setActiveId(tabs[next].id);
+    selectTab(tabs[next].id);
     tabRefs.current[next]?.focus();
   }
 
   return (
     <>
+      <div ref={anchorRef} aria-hidden className="h-0" />
       <div className="bg-primary sticky top-16 z-30 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)] lg:top-0">
         <div className="container mx-auto px-6 py-4 lg:px-12">
           <div
@@ -46,7 +68,7 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
                   aria-selected={selected}
                   aria-controls={`panel-${tab.id}`}
                   tabIndex={selected ? 0 : -1}
-                  onClick={() => setActiveId(tab.id)}
+                  onClick={() => selectTab(tab.id)}
                   onKeyDown={(e) => handleKeyDown(e, i)}
                   className={`font-body relative shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide whitespace-nowrap transition-colors duration-200 ${
                     selected
@@ -77,10 +99,12 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+            }}
           >
             {activeTab.content}
           </motion.div>
