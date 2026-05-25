@@ -3,6 +3,7 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import AboutStudioWall from "@/components/AboutStudioWall";
 import AccessibleButton from "@/components/AccessibleButton";
@@ -190,42 +191,74 @@ export default function Home() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-12"
           >
-            <span className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 text-sm tracking-widest uppercase lg:text-base">
-              UX Strategist &amp; Marketing Professional
-            </span>
-            <h1 className="font-display text-secondary mb-6 max-w-4xl text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl">
-              I&apos;m a designer
-              <br />
-              who refuses to
-              <br />
-              <span className="text-gradient">stop at the mockup.</span>
-            </h1>
-            <p className="font-body text-secondary/70 mb-8 max-w-2xl text-lg lg:text-xl">
-              Susan Chapas — UX strategist, front-end developer, and award-winning artist. I figure
-              out what people actually need, design it to work for everyone, then build and ship it
-              myself.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <AccessibleButton href="/projects" size="lg">
-                View My Work
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </AccessibleButton>
-              <AccessibleButton href="/contact" variant="outline" size="lg">
-                Get in Touch
-              </AccessibleButton>
+            <div
+              className="pointer-events-none absolute inset-0 flex items-center justify-center xl:hidden"
+              aria-hidden="true"
+            >
+              <Image
+                src="/assets/misc/coffeedark3.png"
+                alt=""
+                width={1630}
+                height={2005}
+                priority
+                sizes="90vw"
+                className="h-auto w-[min(95vw,32rem)] opacity-[0.12] select-none"
+                draggable={false}
+              />
+            </div>
+            <div className="relative grid items-center gap-10 xl:grid-cols-[auto_minmax(0,1fr)] xl:gap-16">
+              <div>
+                <span className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 text-sm tracking-widest uppercase lg:text-base">
+                  UX Strategist &amp; Marketing Professional
+                </span>
+                <h1 className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl">
+                  <span className="whitespace-nowrap">I&apos;m a designer</span>
+                  <br />
+                  <span className="whitespace-nowrap">who refuses to</span>
+                  <br />
+                  <span className="text-gradient whitespace-nowrap">stop at the</span>{" "}
+                  <span className="text-gradient whitespace-nowrap">mockup.</span>
+                </h1>
+                <p className="font-body text-secondary/70 mb-8 max-w-2xl text-lg lg:text-xl">
+                  Susan Chapas — UX strategist, front-end developer, and award-winning artist. I
+                  figure out what people actually need, design it to work for everyone, then build
+                  and ship it myself.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <AccessibleButton href="/projects" size="lg">
+                    View My Work
+                    <svg
+                      className="h-5 w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </AccessibleButton>
+                  <AccessibleButton href="/contact" variant="outline" size="lg">
+                    Get in Touch
+                  </AccessibleButton>
+                </div>
+              </div>
+              <div className="hidden justify-self-end self-end xl:block">
+                <Image
+                  src="/assets/misc/coffeedark3.png"
+                  alt=""
+                  width={1630}
+                  height={2005}
+                  priority
+                  sizes="22rem"
+                  className="h-auto w-full max-w-[22rem] select-none"
+                  draggable={false}
+                />
+              </div>
             </div>
           </motion.div>
 
