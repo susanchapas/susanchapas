@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { Body, Mouse as MatterMouse } from "matter-js";
 import {
   ArrowRight,
@@ -585,6 +586,9 @@ export default function AboutStudioWall() {
   const resetRef = useRef<(() => void) | null>(null);
   const node = FACETS.find((f) => f.id === selected)!;
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const handleActivate = useCallback(() => setActivated(true), []);
 
   const isDesktop = () =>
@@ -704,27 +708,31 @@ export default function AboutStudioWall() {
         </AnimatePresence>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-sheet"
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 32, stiffness: 320 }}
-            style={{ opacity: sheetOpacity }}
-            role="dialog"
-            aria-modal="false"
-            className="fixed right-0 bottom-0 left-0 z-50 max-h-[70vh] overflow-y-auto lg:hidden"
-          >
-            <DrawerContent
-              node={node}
-              onClose={handleClose}
-              className="rounded-t-2xl shadow-[0_-20px_45px_-12px_rgba(0,0,0,0.7)]"
-            />
-          </motion.div>
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                key="mobile-sheet"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{ type: "spring", damping: 32, stiffness: 320 }}
+                style={{ opacity: sheetOpacity }}
+                role="dialog"
+                aria-modal="false"
+                className="fixed right-0 bottom-0 left-0 z-50 max-h-[70vh] overflow-y-auto lg:hidden"
+              >
+                <DrawerContent
+                  node={node}
+                  onClose={handleClose}
+                  className="rounded-t-2xl shadow-[0_-20px_45px_-12px_rgba(0,0,0,0.7)]"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </div>
   );
 }
