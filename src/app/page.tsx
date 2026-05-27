@@ -196,7 +196,7 @@ export default function Home() {
               aria-hidden="true"
             >
               <Image
-                src="/assets/misc/coffeedark3.png"
+                src="/assets/misc/susan-hero.png"
                 alt=""
                 width={1630}
                 height={2005}
@@ -249,7 +249,7 @@ export default function Home() {
               </div>
               <div className="hidden justify-self-end self-end xl:block">
                 <Image
-                  src="/assets/misc/coffeedark3.png"
+                  src="/assets/misc/susan-hero.png"
                   alt=""
                   width={1630}
                   height={2005}
