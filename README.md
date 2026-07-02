@@ -1,7 +1,7 @@
 <h1 align="center">Susan Chapas</h1>
 
 <p align="center">
-  <strong>The Strategic Architect</strong> — bridging design, marketing strategy, and technical implementation.
+  <strong>Marketing & UX Strategist</strong> — bridging design, marketing strategy, and technical implementation.
 </p>
 
 <p align="center">
