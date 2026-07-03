@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { createPortal } from "react-dom";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
@@ -160,6 +161,29 @@ const productScreens = [
   },
 ];
 
+const challengeImages = [
+  {
+    src: "/assets/projects/chimera/chimera og dashboard blurred.png",
+    alt: "Chimera dashboard overview",
+    title: "Dashboard overview",
+  },
+  {
+    src: "/assets/projects/chimera/chimera security camera app.png",
+    alt: "Chimera security camera app interface",
+    title: "Current app interface",
+  },
+  {
+    src: "/assets/projects/chimera/home hero.png",
+    alt: "Chimera project hero screen",
+    title: "Project hero",
+  },
+  {
+    src: "/assets/projects/chimera/chimera og dashboard blurred.png",
+    alt: "Chimera dashboard detail",
+    title: "Dashboard detail",
+  },
+] as const;
+
 const nextSteps = [
   {
     title: "Smarter data rules",
@@ -240,10 +264,52 @@ function Eyebrow({ children }: { children: ReactNode }) {
 }
 
 /**
- * Image slot. Leave `src` empty to show a labeled placeholder; add a `src`
- * (drop the file in /public/gallery/ or /public/assets/projects/chimera/) and
- * it renders the real image with the same framing.
+ * Tall device-shaped slot for a single mobile screen. Leave `src` empty for the
+ * placeholder; add a `src` to render the exported screen with the same framing.
  */
+function PhoneSlot({
+  src,
+  alt = "",
+  label = "Mobile screen",
+}: {
+  src?: string;
+  alt?: string;
+  label?: string;
+}) {
+  return (
+    <div className="group border-accent-blue/20 bg-accent-blue/5 relative aspect-[9/19.5] w-full overflow-hidden rounded-[2rem] border">
+      {src ? (
+        <Image
+          src={encodeURI(src)}
+          alt={alt}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        />
+      ) : (
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+          <span className="border-accent-blue/30 mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-dashed">
+            <svg
+              className="text-accent-blue/60 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z"
+              />
+            </svg>
+          </span>
+          <p className="font-display text-secondary/80 text-xs font-semibold">{label}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function ImageSlot({
   src,
   alt = "",
@@ -291,63 +357,210 @@ function ImageSlot({
             </svg>
           </span>
           <p className="font-display text-secondary/80 text-sm font-semibold">{label}</p>
-          {hint && (
-            <p className="font-body text-secondary/40 mt-1 max-w-xs text-xs">{hint}</p>
-          )}
+          {hint && <p className="font-body text-secondary/40 mt-1 max-w-xs text-xs">{hint}</p>}
         </div>
       )}
     </div>
   );
 }
 
-/**
- * Tall device-shaped slot for a single mobile screen. Leave `src` empty for the
- * placeholder; add a `src` to render the exported screen with the same framing.
- */
-function PhoneSlot({
-  src,
-  alt = "",
-  label = "Mobile screen",
+function ChallengeGrid({
+  images,
+  onOpen,
 }: {
-  src?: string;
-  alt?: string;
-  label?: string;
+  images: readonly (typeof challengeImages)[number][];
+  onOpen: (index: number) => void;
 }) {
   return (
-    <div className="group border-accent-blue/20 bg-accent-blue/5 relative aspect-[9/19.5] w-full overflow-hidden rounded-[2rem] border">
-      {src ? (
-        <Image
-          src={encodeURI(src)}
-          alt={alt}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        />
-      ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-          <span className="border-accent-blue/30 mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-dashed">
-            <svg
-              className="text-accent-blue/60 h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z"
-              />
-            </svg>
-          </span>
-          <p className="font-display text-secondary/80 text-xs font-semibold">{label}</p>
-        </div>
-      )}
+    <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+      {images.map((image, index) => (
+        <button
+          key={image.title}
+          type="button"
+          onClick={() => onOpen(index)}
+          className="group border-accent-blue/15 bg-primary/40 focus-visible:border-accent-lime focus-visible:ring-accent-lime/30 relative aspect-square overflow-hidden rounded-2xl border text-left focus-visible:outline-none focus-visible:ring-2"
+          aria-label={`Open ${image.title}`}
+        >
+          <Image
+            src={encodeURI(image.src)}
+            alt={image.alt}
+            fill
+            sizes="(min-width: 1024px) 24vw, (min-width: 640px) 36vw, 46vw"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-80 transition-opacity group-hover:opacity-100" />
+          <div className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/35 px-2.5 py-1 text-[0.65rem] tracking-wider uppercase text-white/90 backdrop-blur">
+            {String(index + 1).padStart(2, "0")}
+          </div>
+          <div className="absolute inset-x-0 bottom-0 p-4">
+            <p className="font-body text-sm font-medium text-white">{image.title}</p>
+          </div>
+        </button>
+      ))}
     </div>
+  );
+}
+
+function ChallengeCarouselModal({
+  images,
+  activeIndex,
+  onClose,
+  onNavigate,
+}: {
+  images: readonly (typeof challengeImages)[number][];
+  activeIndex: number | null;
+  onClose: () => void;
+  onNavigate: (nextIndex: number) => void;
+}) {
+  const [mounted, setMounted] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  const navigate = useCallback(
+    (dir: 1 | -1) => {
+      if (activeIndex === null) return;
+      onNavigate((activeIndex + dir + images.length) % images.length);
+    },
+    [activeIndex, images.length, onNavigate]
+  );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+    const root = document.documentElement;
+    const prevHtmlOverflow = root.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+    root.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    const id = requestAnimationFrame(() => closeRef.current?.focus());
+
+    return () => {
+      root.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+      cancelAnimationFrame(id);
+    };
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key === "ArrowRight") navigate(1);
+      if (event.key === "ArrowLeft") navigate(-1);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [activeIndex, navigate, onClose]);
+
+  if (!mounted || activeIndex === null) return null;
+
+  const image = images[activeIndex];
+
+  return createPortal(
+    <AnimatePresence>
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8"
+        role="dialog"
+        aria-modal="true"
+        aria-label={image.title}
+      >
+        <motion.button
+          type="button"
+          onClick={onClose}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="bg-primary/80 absolute inset-0 backdrop-blur-sm"
+          aria-label="Close image carousel"
+        />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 18 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.98, y: 10 }}
+          transition={{ type: "spring", stiffness: 180, damping: 22, mass: 0.7 }}
+          className="border-accent-lime/25 bg-primary relative flex w-full max-w-6xl flex-col overflow-hidden rounded-3xl border shadow-2xl"
+        >
+          <div className="relative flex min-h-[48vh] items-center justify-center bg-black/40 sm:min-h-[60vh]">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={image.src + image.title}
+                initial={{ opacity: 0, x: 26 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -26 }}
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={encodeURI(image.src)}
+                  alt={image.alt}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              aria-label="Previous image"
+              className="bg-primary/75 text-secondary hover:bg-accent-lime hover:text-primary absolute left-3 z-10 flex h-11 w-11 items-center justify-center rounded-full backdrop-blur transition-colors"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigate(1)}
+              aria-label="Next image"
+              className="bg-primary/75 text-secondary hover:bg-accent-lime hover:text-primary absolute right-3 z-10 flex h-11 w-11 items-center justify-center rounded-full backdrop-blur transition-colors"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          <div className="border-accent-blue/15 flex flex-wrap items-center justify-between gap-3 border-t px-5 py-4 sm:px-6">
+            <div>
+              <p className="text-accent-lime font-body text-xs tracking-widest uppercase">
+                Challenge gallery
+              </p>
+              <p className="font-display text-secondary mt-1 text-lg font-semibold">
+                {image.title}
+              </p>
+            </div>
+            <p className="text-secondary/60 font-body text-sm">
+              {activeIndex + 1} of {images.length}
+            </p>
+          </div>
+
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={onClose}
+            aria-label="Close carousel"
+            className="bg-primary/75 text-secondary hover:bg-accent-lime hover:text-primary absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full backdrop-blur transition-colors"
+          >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 6l12 12M6 18L18 6" />
+            </svg>
+          </button>
+        </motion.div>
+      </div>
+    </AnimatePresence>,
+    document.body
   );
 }
 
 export default function ChimeraProject() {
+  const [challengeIndex, setChallengeIndex] = useState<number | null>(null);
+
   return (
     <div className="lg:pl-20">
       <ProjectHero src={projectData.heroImage} alt={projectData.title}>
@@ -466,13 +679,10 @@ export default function ChimeraProject() {
                       </p>
                     </Reveal>
 
-                    {/* Swap in a screenshot or photo of the current app in use */}
                     <Reveal delay={0.1}>
-                      <ImageSlot
-                        ratio="aspect-[4/3]"
-                        label="The current app"
-                        hint="Screenshots of the existing interface, or a photo of Jay using it"
-                        sizes="(min-width: 1024px) 50vw, 100vw"
+                      <ChallengeGrid
+                        images={challengeImages}
+                        onOpen={(index) => setChallengeIndex(index)}
                       />
                     </Reveal>
                   </div>
@@ -921,6 +1131,13 @@ export default function ChimeraProject() {
           },
         ]}
       />
+
+        <ChallengeCarouselModal
+          images={challengeImages}
+          activeIndex={challengeIndex}
+          onClose={() => setChallengeIndex(null)}
+          onNavigate={setChallengeIndex}
+        />
 
       {/* Navigation */}
       <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">

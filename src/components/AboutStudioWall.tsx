@@ -597,16 +597,9 @@ export default function AboutStudioWall() {
   const isDesktop = () =>
     typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
 
-  const fadeAnchorRef = useRef<HTMLElement | null>(null);
-  useEffect(() => {
-    fadeAnchorRef.current = document.querySelector(
-      '[aria-labelledby="selected-work-heading"] article',
-    );
-  }, []);
-
   const { scrollYProgress } = useScroll({
-    target: fadeAnchorRef,
-    offset: ["start end", "start center"],
+    target: wrapperRef,
+    offset: ["start start", "end start"],
   });
   const sheetOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 

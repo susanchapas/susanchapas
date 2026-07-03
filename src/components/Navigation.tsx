@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "/", icon: "/home-icon.svg" },
+  { name: "About", href: "/about", icon: "/about-icon.svg" },
   { name: "Projects", href: "/projects", icon: "/project-icon.svg" },
   { name: "Gallery", href: "/gallery", icon: "/gallery-icon.svg" },
   { name: "Contact", href: "/contact", icon: "/contact-icon.svg" },
