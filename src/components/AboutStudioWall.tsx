@@ -17,15 +17,20 @@ import {
   ArrowRight,
   Brush,
   Code2,
+  Coffee,
   Compass,
+  Gamepad2,
   GraduationCap,
   HeartHandshake,
   Languages,
   Layers,
+  MapPin,
   MousePointer2,
+  Palette,
   PenTool,
   RotateCcw,
   Rocket,
+  Utensils,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -53,121 +58,178 @@ const FACETS: Facet[] = [
     kicker: "Based in Jersey City",
     title: "Hi, I'm Susan Chapas",
     detail:
-      "I'm a UX strategist, front-end developer, and artist. I like the whole arc of a thing — figuring out what people actually need, designing it so it works for everyone, then building it until it's real.",
+      "I'm a UX strategist, front-end developer, and artist. I love the whole arc: learning what people need, designing it to work for everyone, then building it.",
     Icon: MousePointer2,
     pin: "lime",
     image: "/assets/misc/susan-umbrella.webp",
-    rot: -6,
-    pos: { x: 0.1, y: 0.28 },
+    rot: -7,
+    pos: { x: 0.16, y: 0.28 },
   },
   {
     id: "art",
     kicker: "Award-winning art",
     title: "Mindless Mirth",
     detail:
-      "Off the clock, I paint. My piece “Mindless Mirth” was recognized for exploring human emotion through abstraction. It's the part of me that cares how work feels, not just how it functions.",
+      "Off the clock, I paint. My piece “Mindless Mirth” won recognition for exploring human emotion through abstraction. Art keeps me tuned to how work feels.",
     Icon: Brush,
     pin: "clay",
     image: "/gallery/Mindless-Mirth-final.webp",
     href: "/gallery",
     linkLabel: "See the gallery",
-    rot: -4,
-    pos: { x: 0.9, y: 0.28 },
+    rot: 6,
+    pos: { x: 0.82, y: 0.26 },
   },
   {
     id: "design",
     kicker: "How I approach work",
     title: "Designed for everyone",
     detail:
-      "Accessibility isn't a box I tick at the end — it's where I start. If it doesn't work for someone using a screen reader, a keyboard, or a second language, it isn't finished yet.",
+      "Accessibility is my starting point. If it works for someone using a screen reader, a keyboard, or a second language, it's ready to ship.",
     Icon: PenTool,
     pin: "clay",
     tags: ["UX Research", "Figma", "Accessibility", "Branding"],
-    rot: 4,
-    pos: { x: 0.3, y: 0.28 },
+    rot: 9,
+    pos: { x: 0.27, y: 0.17 },
   },
   {
     id: "founder",
     kicker: "Did the scary thing",
     title: "I built an agency",
     detail:
-      "At Schematic Marketing I ran the whole show — pitching, branding, building, invoicing, all of it. Founding something from nothing teaches you fast what actually matters.",
+      "At Schematic Marketing I ran everything: pitching, branding, building, invoicing. Founding a company from scratch teaches you fast what matters.",
     Icon: Rocket,
     pin: "lime",
     tags: ["Schematic Marketing", "Branding", "Web"],
-    rot: -5,
-    pos: { x: 0.3, y: 0.72 },
+    rot: 7,
+    pos: { x: 0.2, y: 0.72 },
   },
   {
     id: "code",
     kicker: "Designer who codes",
     title: "Then I ship it",
     detail:
-      "I don't hand off a mockup and hope. I build the front end myself, so the design that goes live is the design I drew. The handoff is just me handing it to me.",
+      "I build the front end myself, so the design that ships is the design I drew. The handoff is just me handing it to me.",
     Icon: Code2,
     pin: "lime",
     tags: ["Next.js", "TypeScript", "React"],
-    rot: -3,
-    pos: { x: 0.5, y: 0.28 },
+    rot: -8,
+    pos: { x: 0.72, y: 0.38 },
   },
   {
     id: "sectors",
     kicker: "Banks to nonprofits",
     title: "Sector-fluent",
     detail:
-      "I've run marketing across banking, real estate, healthcare, and nonprofits — different stakeholders, same instinct. Learn the room first, then make work that fits it.",
+      "I've run marketing across banking, real estate, healthcare, and nonprofits. I learn the room first, then make work that fits it.",
     Icon: Compass,
     pin: "clay",
     tags: ["Banking", "Real Estate", "Healthcare", "Nonprofits"],
-    rot: 5,
-    pos: { x: 0.5, y: 0.72 },
+    rot: 10,
+    pos: { x: 0.56, y: 0.71 },
   },
   {
     id: "voice",
     kicker: "Bilingual",
     title: "Hablo español",
     detail:
-      "Fully fluent in English and Spanish. I move between audiences, teams, and communities and keep the meaning intact — not just the words.",
+      "Fully fluent in English and Spanish. I move between audiences, teams, and communities while keeping the meaning intact.",
     Icon: Languages,
     pin: "blue",
     tags: ["English / Español", "Community Outreach"],
-    rot: 5,
-    pos: { x: 0.7, y: 0.28 },
+    rot: -9,
+    pos: { x: 0.9, y: 0.56 },
   },
   {
     id: "learning",
     kicker: "Still a student",
     title: "Always learning",
     detail:
-      "I'm finishing a BS in Human-Computer Interaction at NJIT, after a full-stack program at MIT xPRO. I'd rather keep learning than pretend I'm done.",
+      "I'm finishing a BS in Human-Computer Interaction at NJIT, after a full-stack program at MIT xPRO. I like to keep learning.",
     Icon: GraduationCap,
     pin: "blue",
     tags: ["HCI @ NJIT", "MIT xPRO"],
-    rot: 6,
-    pos: { x: 0.1, y: 0.72 },
+    rot: -4,
+    pos: { x: 0.3, y: 0.4 },
   },
   {
     id: "range",
     kicker: "Five hats, one head",
     title: "I don't pick a lane",
     detail:
-      "Marketing, UX, front-end code, fine art, and two languages. Most people specialize in one of these — I'm wired to connect all of them.",
+      "Marketing, UX, front-end code, fine art, and two languages. I'm wired to connect all of them.",
     Icon: Layers,
     pin: "clay",
-    rot: 3,
-    pos: { x: 0.7, y: 0.72 },
+    rot: -6,
+    pos: { x: 0.53, y: 0.84 },
   },
   {
     id: "community",
     kicker: "Plugged into my city",
     title: "Community-rooted",
     detail:
-      "From bank outreach to event planning, I gravitate to work that actually touches the neighborhood it lives in.",
+      "From bank outreach to event planning, I gravitate to work that touches its neighborhood.",
     Icon: HeartHandshake,
     pin: "blue",
     tags: ["Community Outreach", "Event Planning"],
+    rot: 8,
+    pos: { x: 0.74, y: 0.86 },
+  },
+  {
+    id: "location",
+    kicker: "Jersey City & NYC",
+    title: "A metro-area local",
+    detail:
+      "Based in Jersey City, with most of my days spent across the river in NYC. The whole metro is home turf.",
+    Icon: MapPin,
+    pin: "blue",
+    rot: 6,
+    pos: { x: 0.45, y: 0.12 },
+  },
+  {
+    id: "design-love",
+    kicker: "All kinds of design",
+    title: "Digital and print",
+    detail:
+      "I love design in every format. Digital work like graphics and illustration, plus print pieces like banners and brochures.",
+    Icon: Palette,
+    pin: "clay",
+    tags: ["Graphics", "Illustration", "Print"],
+    rot: 7,
+    pos: { x: 0.11, y: 0.88 },
+  },
+  {
+    id: "nintendo",
+    kicker: "Off-hours obsession",
+    title: "Chasing Korok seeds",
+    detail:
+      "Big Nintendo fan, especially The Legend of Zelda. When I'm not designing, you'll find me hunting down Korok seeds.",
+    Icon: Gamepad2,
+    pin: "lime",
+    tags: ["Nintendo", "Zelda"],
+    rot: -8,
+    pos: { x: 0.12, y: 0.56 },
+  },
+  {
+    id: "food",
+    kicker: "Adventurous eater",
+    title: "No picky eaters allowed",
+    detail:
+      "I love trying new food, so picky eaters don't last long in my circle. Current NYC guilty pleasure: Top Thai on 55 Carmine.",
+    Icon: Utensils,
+    pin: "clay",
     rot: -6,
-    pos: { x: 0.9, y: 0.72 },
+    pos: { x: 0.9, y: 0.84 },
+  },
+  {
+    id: "coffee",
+    kicker: "Fueled by caffeine",
+    title: "Certified coffee addict",
+    detail:
+      "My family grows coffee in Honduras, and it's pretty much all I drink. It counts as water, right?",
+    Icon: Coffee,
+    pin: "lime",
+    rot: 8,
+    pos: { x: 0.88, y: 0.13 },
   },
 ];
 
@@ -203,13 +265,9 @@ function TileFace({ facet }: { facet: Facet }) {
 }
 
 function PhysicsBoard({
-  selected,
-  onSelect,
   onActivate,
   resetRef,
 }: {
-  selected: string;
-  onSelect: (id: string) => void;
   onActivate: () => void;
   resetRef: React.RefObject<(() => void) | null>;
 }) {
@@ -380,6 +438,7 @@ function PhysicsBoard({
           const node = nodeRefs.current[i];
           if (!node) return;
           node.style.transform = `translate(${b.position.x - sizes[i].hw}px, ${b.position.y - sizes[i].hh}px) rotate(${b.angle}rad)`;
+          node.style.setProperty("--tile-angle", `${b.angle}rad`);
         });
         raf = requestAnimationFrame(update);
       };
@@ -406,17 +465,24 @@ function PhysicsBoard({
       cancelAnimationFrame(raf);
       cleanups.forEach((fn) => fn());
     };
-  }, [enabled, onSelect, onActivate]);
+  }, [enabled, onActivate]);
 
   return (
     <div
       ref={boardRef}
-      className="border-accent-clay/20 bg-accent-clay/[0.06] relative hidden h-[32rem] w-full touch-none overflow-hidden rounded-3xl border lg:block"
+      className="border-accent-clay/20 bg-accent-clay/[0.06] relative hidden h-[32rem] w-full touch-none overflow-hidden rounded-3xl border lg:absolute lg:inset-0 lg:block lg:h-full lg:rounded-none lg:border-0"
       style={{
         backgroundImage: "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
         backgroundSize: "22px 22px",
       }}
     >
+      <div className="pointer-events-none absolute inset-0 z-0 flex flex-col items-center justify-center px-8 text-center">
+        <h1 className="text-gradient font-display text-5xl font-bold sm:text-6xl">About Me</h1>
+        <p className="font-body text-secondary/70 mt-6 max-w-xl text-lg lg:text-xl">
+          Everything that shapes how I work, laid out on the board below. Grab a tile, toss it
+          around, and check out whatever catches your eye.
+        </p>
+      </div>
       {FACETS.map((f, i) => (
         <button
           key={f.id}
@@ -424,19 +490,37 @@ function PhysicsBoard({
             nodeRefs.current[i] = el;
           }}
           type="button"
-          onClick={(e) => {
-            if (e.detail === 0) onSelect(f.id);
-          }}
-          onFocus={() => onSelect(f.id)}
+          aria-describedby={`facet-tip-${f.id}`}
           style={{ transform: `translate(${f.pos.x * 1100}px, ${f.pos.y * 512}px)` }}
           className={cn(
-            "bg-secondary text-primary absolute top-0 left-0 flex w-44 cursor-grab touch-none flex-col gap-2 rounded-xl p-4 text-left shadow-xl outline-none select-none will-change-transform active:cursor-grabbing",
+            "group bg-secondary text-primary absolute top-0 left-0 z-10 flex w-44 cursor-grab touch-none flex-col gap-2 rounded-xl p-4 text-left shadow-xl outline-none select-none will-change-transform hover:z-20 focus-visible:z-20 active:cursor-grabbing",
+            "ring-1 ring-black/5 hover:ring-accent-lime hover:shadow-accent-lime/30 hover:ring-2",
             "focus-visible:ring-accent-lime focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-primary",
             ready ? "opacity-100" : "opacity-0",
-            selected === f.id ? "ring-accent-lime shadow-accent-lime/30 ring-2" : "ring-1 ring-black/5",
           )}
         >
           <TileFace facet={f} />
+          <span
+            role="tooltip"
+            id={`facet-tip-${f.id}`}
+            style={{
+              transform: `rotate(calc(var(--tile-angle, 0rad) * -1)) translate(-50%, ${
+                f.pos.y > 0.6 ? "calc(-100% - 0.6rem)" : "0.6rem"
+              })`,
+            }}
+            className="ring-accent-lime/20 pointer-events-none absolute top-1/2 left-1/2 z-10 w-64 origin-top-left rounded-xl bg-[#091a35] p-4 text-left opacity-0 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.75)] ring-1 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+          >
+            <span
+              aria-hidden="true"
+              className={cn(
+                "absolute left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-[#091a35]",
+                f.pos.y > 0.6 ? "bottom-0 translate-y-1/2" : "top-0 -translate-y-1/2",
+              )}
+            />
+            <span className="text-secondary/80 font-body block text-sm leading-relaxed">
+              {f.detail}
+            </span>
+          </span>
         </button>
       ))}
     </div>
@@ -578,6 +662,7 @@ function DrawerContent({
 
 export default function AboutStudioWall() {
   const reduce = useReducedMotion();
+  const heroMode = !reduce;
   const [selected, setSelected] = useState<string>(FACETS[0].id);
   const [open, setOpen] = useState(false);
   const [activated, setActivated] = useState(false);
@@ -628,40 +713,50 @@ export default function AboutStudioWall() {
   }, [open, handleClose]);
 
   return (
-    <div>
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <p className="text-secondary/40 font-body flex items-center gap-2 text-sm">
-          <MousePointer2 className="h-4 w-4" aria-hidden="true" />
-          <span className="hidden lg:inline">
-            Grab a tile and toss it — they knock into each other. Click one to open the drawer.
-          </span>
-          <span className="lg:hidden">Tap a tile to read more.</span>
-        </p>
-        <motion.button
-          type="button"
-          onClick={() => resetRef.current?.()}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: activated ? 1 : 0 }}
-          transition={{ duration: 3, ease: "easeOut" }}
-          aria-hidden={!activated}
-          tabIndex={activated ? 0 : -1}
-          style={{ pointerEvents: activated ? "auto" : "none" }}
-          className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary hidden shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none lg:inline-flex"
+    <div
+      className={cn(
+        "mx-auto max-w-7xl px-6",
+        heroMode && "lg:mx-0 lg:h-[100dvh] lg:max-w-none lg:px-0",
+      )}
+    >
+      <div
+        ref={wrapperRef}
+        className={cn("relative scroll-mt-20 lg:scroll-mt-12", heroMode && "lg:h-full")}
+      >
+        <div
+          className={cn(
+            "mb-4 flex items-center justify-between gap-3",
+            heroMode &&
+              "lg:pointer-events-none lg:absolute lg:inset-x-0 lg:top-0 lg:z-20 lg:mb-0 lg:px-8 lg:pt-6",
+          )}
         >
-          <RotateCcw className="h-4 w-4" aria-hidden="true" />
-          Reset board
-        </motion.button>
-      </div>
+          <p
+            className={cn(
+              "text-secondary/40 font-body flex items-center gap-2 text-sm",
+              heroMode && "lg:hidden",
+            )}
+          >
+            <MousePointer2 className="h-4 w-4" aria-hidden="true" />
+            <span className="hidden lg:inline">Click a tile to read more.</span>
+            <span className="lg:hidden">Tap a tile to read more.</span>
+          </p>
+          <motion.button
+            type="button"
+            onClick={() => resetRef.current?.()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: activated ? 1 : 0 }}
+            transition={{ duration: 3, ease: "easeOut" }}
+            aria-hidden={!activated}
+            tabIndex={activated ? 0 : -1}
+            style={{ pointerEvents: activated ? "auto" : "none" }}
+            className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary ml-auto hidden shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none lg:inline-flex"
+          >
+            <RotateCcw className="h-4 w-4" aria-hidden="true" />
+            Reset board
+          </motion.button>
+        </div>
 
-      <div ref={wrapperRef} className="relative scroll-mt-20 lg:scroll-mt-12">
-        {!reduce && (
-          <PhysicsBoard
-            selected={selected}
-            onSelect={handleSelect}
-            onActivate={handleActivate}
-            resetRef={resetRef}
-          />
-        )}
+        {!reduce && <PhysicsBoard onActivate={handleActivate} resetRef={resetRef} />}
 
         <div
           style={{
@@ -685,7 +780,7 @@ export default function AboutStudioWall() {
         </div>
 
         <AnimatePresence initial={false}>
-          {open && (
+          {!heroMode && open && (
             <motion.div
               key="desktop-drawer"
               initial={{ height: 0, opacity: 0 }}

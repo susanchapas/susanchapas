@@ -1,20 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import AboutStudioWall from "@/components/AboutStudioWall";
-import CurrentExperience from "@/components/CurrentExperience";
-
-const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
-  ssr: false,
-  loading: () => <div className="h-[40rem]" aria-hidden="true" />,
-});
 
 export default function AboutPage() {
   return (
     <div className="bg-primary relative overflow-hidden lg:pl-20">
-      <section className="gradient-mesh relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24">
-        <div className="container mx-auto max-w-7xl px-6 lg:px-12">
+      <section className="gradient-mesh relative overflow-hidden pt-28 pb-16 motion-safe:lg:py-0">
+        <div className="container mx-auto max-w-7xl px-6 lg:px-12 motion-safe:lg:hidden">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -33,14 +26,10 @@ export default function AboutPage() {
               around, and pull up whatever catches your eye.
             </p>
           </motion.div>
-
-          <AboutStudioWall />
         </div>
+
+        <AboutStudioWall />
       </section>
-
-      <CurrentExperience />
-
-      <ArtScroller />
     </div>
   );
 }
