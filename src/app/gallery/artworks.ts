@@ -130,8 +130,8 @@ export const artworks: readonly Artwork[] = [
     title: "Posing at Gallery",
     category: "Photography",
     year: "2019",
-    width: 2286,
-    height: 2658,
+    width: 2237,
+    height: 2531,
     description:
       "Shot in a Soho gallery, where my friend looked impossibly cool against an indie artist's stained glass. I leaned into the contrast of light and dark already in the scene.\n\nIn Adobe Lightroom I pushed the colors and sharpened his outline against the glass, letting the silhouette and the stained glass play off each other.",
     medium: "Digital photography, edited in Adobe Lightroom",
