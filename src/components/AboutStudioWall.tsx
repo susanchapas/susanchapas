@@ -721,7 +721,7 @@ export default function AboutStudioWall() {
           className={cn(
             "mb-4 flex items-center justify-between gap-3",
             heroMode &&
-              "lg:pointer-events-none lg:absolute lg:inset-x-0 lg:top-0 lg:z-20 lg:mb-0 lg:px-8 lg:pt-6",
+              "lg:pointer-events-none lg:absolute lg:inset-x-0 lg:top-0 lg:z-30 lg:mb-0 lg:px-8 lg:pt-6",
           )}
         >
           <p
