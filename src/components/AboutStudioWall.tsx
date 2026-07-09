@@ -327,12 +327,8 @@ function PhysicsBoard({
       };
       board.removeEventListener("mousemove", mouse.mousemove);
       board.removeEventListener("mouseup", mouse.mouseup);
-      board.removeEventListener("touchmove", mouse.mousemove);
-      board.removeEventListener("touchend", mouse.mouseup);
       window.addEventListener("mousemove", mouse.mousemove, { passive: true });
       window.addEventListener("mouseup", mouse.mouseup, { passive: true });
-      window.addEventListener("touchmove", mouse.mousemove, { passive: false });
-      window.addEventListener("touchend", mouse.mouseup, { passive: false });
       const mouseConstraint = MouseConstraint.create(engine, {
         mouse,
         constraint: { stiffness: 0.2, render: { visible: false } },
@@ -348,8 +344,6 @@ function PhysicsBoard({
       cleanups.push(() => {
         window.removeEventListener("mousemove", mouse.mousemove);
         window.removeEventListener("mouseup", mouse.mouseup);
-        window.removeEventListener("touchmove", mouse.mousemove);
-        window.removeEventListener("touchend", mouse.mouseup);
         window.removeEventListener("blur", releaseMouse);
         window.removeEventListener("pointerup", releaseMouse);
       });
