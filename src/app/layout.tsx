@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Host_Grotesk, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import LazyCustomCursor from "@/components/LazyCustomCursor";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import SiteChrome from "@/components/SiteChrome";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const hostGrotesk = Host_Grotesk({
+  variable: "--font-host-grotesk",
   subsets: ["latin"],
   display: "swap",
   preload: true,
@@ -115,7 +115,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${hostGrotesk.variable} ${dmSans.variable}`}>
       <head>
         {/* Preconnect to font origins for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
