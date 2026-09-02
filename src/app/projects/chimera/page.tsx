@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { createPortal } from "react-dom";
-import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
@@ -412,7 +412,7 @@ function ChallengeCarouselModal({
   onClose: () => void;
   onNavigate: (nextIndex: number) => void;
 }) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   const navigate = useCallback(
@@ -422,10 +422,6 @@ function ChallengeCarouselModal({
     },
     [activeIndex, images.length, onNavigate]
   );
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (activeIndex === null) return;

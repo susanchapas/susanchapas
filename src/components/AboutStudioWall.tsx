@@ -459,6 +459,7 @@ function PhysicsBoard({
       cancelAnimationFrame(raf);
       cleanups.forEach((fn) => fn());
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, onActivate]);
 
   return (
