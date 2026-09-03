@@ -242,7 +242,10 @@ const PIN_BAR: Record<PinColor, string> = {
 function TileFace({ facet }: { facet: Facet }) {
   return (
     <>
-      <span aria-hidden="true" className={cn("h-1 w-full rounded-full", PIN_BAR[facet.pin])} />
+      <span
+        aria-hidden="true"
+        className={cn("h-1 w-full rounded-full", PIN_BAR[facet.pin])}
+      />
       {facet.image && (
         <span className="bg-primary/5 relative block aspect-[4/3] w-full overflow-hidden rounded-md">
           <Image
@@ -411,10 +414,14 @@ function PhysicsBoard({
             const bh = max.y - min.y;
             let ax = 0;
             let ay = 0;
-            if (max.x > W) ax -= BORDER_PULL * Math.sin(Math.PI * Math.min(1, (max.x - W) / bw));
-            if (min.x < 0) ax += BORDER_PULL * Math.sin(Math.PI * Math.min(1, -min.x / bw));
-            if (max.y > H) ay -= BORDER_PULL * Math.sin(Math.PI * Math.min(1, (max.y - H) / bh));
-            if (min.y < 0) ay += BORDER_PULL * Math.sin(Math.PI * Math.min(1, -min.y / bh));
+            if (max.x > W)
+              ax -= BORDER_PULL * Math.sin(Math.PI * Math.min(1, (max.x - W) / bw));
+            if (min.x < 0)
+              ax += BORDER_PULL * Math.sin(Math.PI * Math.min(1, -min.x / bw));
+            if (max.y > H)
+              ay -= BORDER_PULL * Math.sin(Math.PI * Math.min(1, (max.y - H) / bh));
+            if (min.y < 0)
+              ay += BORDER_PULL * Math.sin(Math.PI * Math.min(1, -min.y / bh));
             if (ax || ay) {
               Body.setVelocity(b, {
                 x: b.velocity.x + ax * dt,
@@ -459,7 +466,7 @@ function PhysicsBoard({
       cancelAnimationFrame(raf);
       cleanups.forEach((fn) => fn());
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, onActivate]);
 
   return (
@@ -467,15 +474,18 @@ function PhysicsBoard({
       ref={boardRef}
       className="border-accent-clay/20 bg-accent-clay/[0.06] relative hidden h-[32rem] w-full touch-none overflow-hidden rounded-3xl border lg:absolute lg:inset-0 lg:block lg:h-full lg:rounded-none lg:border-0"
       style={{
-        backgroundImage: "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
+        backgroundImage:
+          "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
         backgroundSize: "22px 22px",
       }}
     >
       <div className="pointer-events-none absolute inset-0 z-0 flex flex-col items-center justify-center px-8 text-center">
-        <h1 className="text-gradient font-display text-5xl font-bold sm:text-6xl">About Me</h1>
+        <h1 className="text-gradient font-display text-5xl font-bold sm:text-6xl">
+          About Me
+        </h1>
         <p className="font-body text-secondary/70 mt-6 max-w-xl text-lg lg:text-xl">
-          Everything that shapes how I work, laid out on the board below. Grab a tile, toss it
-          around, and check out whatever catches your eye.
+          Everything that shapes how I work, laid out on the board below. Grab a tile,
+          toss it around, and check out whatever catches your eye.
         </p>
       </div>
       {FACETS.map((f, i) => (
@@ -488,10 +498,10 @@ function PhysicsBoard({
           aria-describedby={`facet-tip-${f.id}`}
           style={{ transform: `translate(${f.pos.x * 1100}px, ${f.pos.y * 512}px)` }}
           className={cn(
-            "group bg-secondary text-primary absolute top-0 left-0 z-10 flex w-44 cursor-grab touch-none flex-col gap-2 rounded-xl p-4 text-left shadow-xl outline-none select-none will-change-transform hover:z-20 focus-visible:z-20 active:cursor-grabbing",
-            "ring-1 ring-black/5 hover:ring-accent-lime hover:shadow-accent-lime/30 hover:ring-2",
-            "focus-visible:ring-accent-lime focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-primary",
-            ready ? "opacity-100" : "opacity-0",
+            "group bg-secondary text-primary absolute top-0 left-0 z-10 flex w-44 cursor-grab touch-none flex-col gap-2 rounded-xl p-4 text-left shadow-xl will-change-transform outline-none select-none hover:z-20 focus-visible:z-20 active:cursor-grabbing",
+            "hover:ring-accent-lime hover:shadow-accent-lime/30 ring-1 ring-black/5 hover:ring-2",
+            "focus-visible:ring-accent-lime focus-visible:ring-offset-primary focus-visible:ring-2 focus-visible:ring-offset-2",
+            ready ? "opacity-100" : "opacity-0"
           )}
         >
           <TileFace facet={f} />
@@ -509,7 +519,7 @@ function PhysicsBoard({
               aria-hidden="true"
               className={cn(
                 "absolute left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-[#091a35]",
-                f.pos.y > 0.6 ? "bottom-0 translate-y-1/2" : "top-0 -translate-y-1/2",
+                f.pos.y > 0.6 ? "bottom-0 translate-y-1/2" : "top-0 -translate-y-1/2"
               )}
             />
             <span className="text-secondary/80 font-body block text-sm leading-relaxed">
@@ -548,11 +558,11 @@ function MobileTile({
         onClick={() => onSelect(facet.id)}
         onFocus={() => onSelect(facet.id)}
         className={cn(
-          "bg-secondary text-primary flex w-full flex-col gap-2 rounded-xl p-4 text-left shadow-xl outline-none transition-shadow",
-          "focus-visible:ring-accent-lime focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-primary",
+          "bg-secondary text-primary flex w-full flex-col gap-2 rounded-xl p-4 text-left shadow-xl transition-shadow outline-none",
+          "focus-visible:ring-accent-lime focus-visible:ring-offset-primary focus-visible:ring-2 focus-visible:ring-offset-2",
           selected
             ? "ring-accent-lime shadow-accent-lime/30 ring-2"
-            : "ring-1 ring-black/5 hover:shadow-2xl",
+            : "ring-1 ring-black/5 hover:shadow-2xl"
         )}
       >
         <TileFace facet={facet} />
@@ -582,7 +592,7 @@ function DrawerContent({
       aria-live="polite"
       className={cn(
         "ring-accent-lime/20 relative overflow-hidden bg-[#091a35] px-8 pt-11 pb-8 ring-1",
-        className,
+        className
       )}
     >
       <motion.span
@@ -593,7 +603,7 @@ function DrawerContent({
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "absolute inset-x-0 top-0 h-1.5 origin-left rounded-t-none",
-          PIN_BAR[node.pin],
+          PIN_BAR[node.pin]
         )}
       />
       <span
@@ -711,7 +721,7 @@ export default function AboutStudioWall() {
     <div
       className={cn(
         "mx-auto max-w-7xl px-6",
-        heroMode && "lg:mx-0 lg:h-[100dvh] lg:max-w-none lg:px-0",
+        heroMode && "lg:mx-0 lg:h-[100dvh] lg:max-w-none lg:px-0"
       )}
     >
       <div
@@ -722,13 +732,13 @@ export default function AboutStudioWall() {
           className={cn(
             "mb-4 flex items-center justify-between gap-3",
             heroMode &&
-              "lg:pointer-events-none lg:absolute lg:inset-x-0 lg:top-0 lg:z-30 lg:mb-0 lg:px-8 lg:pt-6",
+              "lg:pointer-events-none lg:absolute lg:inset-x-0 lg:top-0 lg:z-30 lg:mb-0 lg:px-8 lg:pt-6"
           )}
         >
           <p
             className={cn(
               "text-secondary/40 font-body flex items-center gap-2 text-sm",
-              heroMode && "lg:hidden",
+              heroMode && "lg:hidden"
             )}
           >
             <MousePointer2 className="h-4 w-4" aria-hidden="true" />
@@ -755,12 +765,13 @@ export default function AboutStudioWall() {
 
         <div
           style={{
-            backgroundImage: "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
+            backgroundImage:
+              "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
             backgroundSize: "22px 22px",
           }}
           className={cn(
             "border-accent-clay/20 bg-accent-clay/[0.06] grid grid-cols-2 items-start gap-2 rounded-3xl border p-3 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5",
-            reduce ? "grid" : "lg:hidden",
+            reduce ? "grid" : "lg:hidden"
           )}
         >
           {FACETS.map((f) => (
@@ -817,7 +828,7 @@ export default function AboutStudioWall() {
               </motion.div>
             )}
           </AnimatePresence>,
-          document.body,
+          document.body
         )}
     </div>
   );

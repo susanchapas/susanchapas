@@ -113,9 +113,7 @@ export default function ArtworkModal({
             <div
               className={cn(
                 "relative flex min-h-0 items-center justify-center bg-black/30",
-                stacked
-                  ? "h-[38vh] shrink-0"
-                  : "min-h-[40vh] md:min-h-[60vh] md:w-1/3"
+                stacked ? "h-[38vh] shrink-0" : "min-h-[40vh] md:min-h-[60vh] md:w-1/3"
               )}
             >
               <ArtMedia

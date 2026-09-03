@@ -75,7 +75,7 @@ function RoleCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="bg-black/25 flex flex-col rounded-xl p-6 backdrop-blur-sm lg:p-8"
+      className="flex flex-col rounded-xl bg-black/25 p-6 backdrop-blur-sm lg:p-8"
     >
       <span className="text-accent-lime font-display text-sm font-semibold tracking-widest tabular-nums">
         {role.year}
@@ -118,7 +118,9 @@ function RoleCard({
                   <h4 className="font-display text-secondary mt-1 mb-2 text-lg font-bold">
                     {previousRole.role}
                   </h4>
-                  <p className="text-secondary/70 font-body">{previousRole.description}</p>
+                  <p className="text-secondary/70 font-body">
+                    {previousRole.description}
+                  </p>
                 </div>
               </motion.div>
             )}

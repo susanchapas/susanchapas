@@ -35,11 +35,15 @@ jest.mock("framer-motion", () => {
   });
   return {
     motion,
-    useScroll: () => ({ scrollYProgress: { current: 0 } }),
+    useScroll: () => ({
+      scrollY: { get: () => 0, on: jest.fn() },
+      scrollYProgress: { get: () => 0, on: jest.fn() },
+    }),
     useTransform: () => 0,
     useReducedMotion: () => false,
     useMotionValue: () => ({ set: jest.fn(), get: jest.fn() }),
     useSpring: () => ({ set: jest.fn(), get: jest.fn() }),
+    useMotionValueEvent: jest.fn(),
     AnimatePresence: ({ children }: React.PropsWithChildren) => children,
   };
 });
@@ -53,8 +57,8 @@ describe("Home Page", () => {
   it("renders the hero section", () => {
     render(<Home />);
 
-    expect(screen.getByText(/I build strategies/i)).toBeInTheDocument();
-    expect(screen.getByText(/that drive engagement/i)).toBeInTheDocument();
+    expect(screen.getByText(/I'm a designer/i)).toBeInTheDocument();
+    expect(screen.getByText(/stop at the/i)).toBeInTheDocument();
   });
 
   it("renders the selected work section", () => {

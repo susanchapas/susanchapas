@@ -76,13 +76,15 @@ export default function Home() {
                   <br />
                   <span className="whitespace-nowrap">who refuses to</span>
                   <br />
-                  <span className="text-gradient whitespace-nowrap">stop at the</span>{" "}
+                  <span className="text-gradient whitespace-nowrap">
+                    stop at the
+                  </span>{" "}
                   <span className="text-gradient whitespace-nowrap">mockup.</span>
                 </h1>
                 <p className="font-body text-secondary/70 mb-8 max-w-2xl text-lg lg:text-xl">
-                  Susan Chapas — UX strategist, front-end developer, and award-winning artist. I
-                  figure out what people actually need, design it to work for everyone, then build
-                  and ship it myself.
+                  Susan Chapas — UX strategist, front-end developer, and award-winning
+                  artist. I figure out what people actually need, design it to work for
+                  everyone, then build and ship it myself.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <AccessibleButton href="/projects" size="lg">
@@ -107,7 +109,7 @@ export default function Home() {
                   </AccessibleButton>
                 </div>
               </div>
-              <div className="hidden justify-self-end self-end xl:block">
+              <div className="hidden self-end justify-self-end xl:block">
                 <Image
                   src="/assets/misc/susan-hero.png"
                   alt=""
@@ -131,7 +133,7 @@ export default function Home() {
               ease: [0.22, 1, 0.36, 1],
             }}
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-[calc(100vh-5.5rem)] hidden -translate-x-1/2 flex-col items-center gap-3 landscape:flex"
+            className="pointer-events-none absolute top-[calc(100vh-5.5rem)] left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 landscape:flex"
           >
             <span className="text-accent-lime font-display text-xs font-semibold tracking-[0.35em] uppercase">
               Scroll

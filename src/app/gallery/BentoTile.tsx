@@ -57,7 +57,10 @@ export default function BentoTile({
         className="block h-full w-full cursor-pointer text-left"
       >
         <div className="relative h-full w-full">
-          <motion.div style={imgStyle} className="absolute inset-0 overflow-hidden rounded-xl">
+          <motion.div
+            style={imgStyle}
+            className="absolute inset-0 overflow-hidden rounded-xl"
+          >
             <ArtMedia
               src={artwork.src}
               alt={artwork.title}

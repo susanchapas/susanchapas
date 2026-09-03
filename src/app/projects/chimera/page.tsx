@@ -4,7 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { createPortal } from "react-dom";
-import { ReactNode, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
@@ -357,7 +364,9 @@ function ImageSlot({
             </svg>
           </span>
           <p className="font-display text-secondary/80 text-sm font-semibold">{label}</p>
-          {hint && <p className="font-body text-secondary/40 mt-1 max-w-xs text-xs">{hint}</p>}
+          {hint && (
+            <p className="font-body text-secondary/40 mt-1 max-w-xs text-xs">{hint}</p>
+          )}
         </div>
       )}
     </div>
@@ -378,7 +387,7 @@ function ChallengeGrid({
           key={image.title}
           type="button"
           onClick={() => onOpen(index)}
-          className="group border-accent-blue/15 bg-primary/40 focus-visible:border-accent-lime focus-visible:ring-accent-lime/30 relative aspect-square overflow-hidden rounded-2xl border text-left focus-visible:outline-none focus-visible:ring-2"
+          className="group border-accent-blue/15 bg-primary/40 focus-visible:border-accent-lime focus-visible:ring-accent-lime/30 relative aspect-square overflow-hidden rounded-2xl border text-left focus-visible:ring-2 focus-visible:outline-none"
           aria-label={`Open ${image.title}`}
         >
           <Image
@@ -389,7 +398,7 @@ function ChallengeGrid({
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0 opacity-80 transition-opacity group-hover:opacity-100" />
-          <div className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/35 px-2.5 py-1 text-[0.65rem] tracking-wider uppercase text-white/90 backdrop-blur">
+          <div className="absolute top-3 right-3 rounded-full border border-white/20 bg-black/35 px-2.5 py-1 text-[0.65rem] tracking-wider text-white/90 uppercase backdrop-blur">
             {String(index + 1).padStart(2, "0")}
           </div>
           <div className="absolute inset-x-0 bottom-0 p-4">
@@ -412,7 +421,11 @@ function ChallengeCarouselModal({
   onClose: () => void;
   onNavigate: (nextIndex: number) => void;
 }) {
-  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const closeRef = useRef<HTMLButtonElement>(null);
 
   const navigate = useCallback(
@@ -505,8 +518,18 @@ function ChallengeCarouselModal({
               aria-label="Previous image"
               className="bg-primary/75 text-secondary hover:bg-accent-lime hover:text-primary absolute left-3 z-10 flex h-11 w-11 items-center justify-center rounded-full backdrop-blur transition-colors"
             >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </button>
 
@@ -516,8 +539,18 @@ function ChallengeCarouselModal({
               aria-label="Next image"
               className="bg-primary/75 text-secondary hover:bg-accent-lime hover:text-primary absolute right-3 z-10 flex h-11 w-11 items-center justify-center rounded-full backdrop-blur transition-colors"
             >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </button>
           </div>
@@ -543,8 +576,18 @@ function ChallengeCarouselModal({
             aria-label="Close carousel"
             className="bg-primary/75 text-secondary hover:bg-accent-lime hover:text-primary absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full backdrop-blur transition-colors"
           >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 6l12 12M6 18L18 6" />
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 6l12 12M6 18L18 6"
+              />
             </svg>
           </button>
         </motion.div>
@@ -1099,8 +1142,8 @@ export default function ChimeraProject() {
                           Designing for Jay kept the work honest. Every decision answered
                           to a person who knew exactly how his system worked and exactly
                           where it frustrated him. The heuristic evaluation did the heavy
-                          lifting, turning a fuzzy sense of clutter into a concrete list of
-                          fixes.
+                          lifting, turning a fuzzy sense of clutter into a concrete list
+                          of fixes.
                         </p>
                         <p className="font-body text-secondary/80 text-lg leading-relaxed">
                           With another sprint I would put the prototype back in Jay&apos;s
@@ -1128,12 +1171,12 @@ export default function ChimeraProject() {
         ]}
       />
 
-        <ChallengeCarouselModal
-          images={challengeImages}
-          activeIndex={challengeIndex}
-          onClose={() => setChallengeIndex(null)}
-          onNavigate={setChallengeIndex}
-        />
+      <ChallengeCarouselModal
+        images={challengeImages}
+        activeIndex={challengeIndex}
+        onClose={() => setChallengeIndex(null)}
+        onNavigate={setChallengeIndex}
+      />
 
       {/* Navigation */}
       <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">

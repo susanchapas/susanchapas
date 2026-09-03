@@ -22,8 +22,8 @@ export default function AboutPage() {
               <span className="text-gradient">and a few more hats.</span>
             </h1>
             <p className="font-body text-secondary/70 max-w-2xl text-lg lg:text-xl">
-              Everything that shapes how I work, laid out on the board below. Grab a tile, toss it
-              around, and pull up whatever catches your eye.
+              Everything that shapes how I work, laid out on the board below. Grab a tile,
+              toss it around, and pull up whatever catches your eye.
             </p>
           </motion.div>
         </div>
