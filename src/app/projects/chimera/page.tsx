@@ -26,13 +26,13 @@ const projectData = {
   tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   year: "2026",
   role: "UX Researcher & Product Designer",
-  team: "3-person team",
+  team: "Solo designer",
   platform: "Figma, Mobile",
 };
 
 const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
-  { label: "Team", value: "3 designers" },
+  { label: "Team", value: "Solo designer" },
   { label: "Stakeholder", value: "Jay, the engineer who built the system" },
   { label: "Platform", value: "iOS, mobile-first" },
 ];
