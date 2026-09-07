@@ -59,10 +59,10 @@ export default function Home() {
                 <h1 className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl">
                   <span className="whitespace-nowrap">I&apos;m a designer</span>
                   <br />
-                  <span className="whitespace-nowrap">who refuses to</span>
+                  <span className="whitespace-nowrap">who enjoys going</span>
                   <br />
                   <span className="text-gradient whitespace-nowrap">
-                    stop at the
+                    beyond the
                   </span>{" "}
                   <span className="text-gradient whitespace-nowrap">mockup.</span>
                 </h1>

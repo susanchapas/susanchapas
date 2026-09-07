@@ -65,20 +65,12 @@ const posters = [
   },
 ];
 
-const tools = [
-  "Adobe Illustrator",
-  "Procreate",
-  "SCORE Financial Model",
-  "Figma",
-];
+const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma"];
 
 export default function SousSenseProject() {
   return (
     <div className="lg:pl-20">
-      <ProjectHero
-        src="/gallery/sous sense cover photo.svg"
-        alt="Sous Sense brand cover"
-      >
+      <ProjectHero src="/gallery/sous sense cover photo.svg" alt="Sous Sense brand cover">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -125,21 +117,15 @@ export default function SousSenseProject() {
           <div className="flex flex-wrap gap-8 text-sm">
             <div>
               <span className="text-secondary/50 mb-1 block">Year</span>
-              <span className="text-secondary font-medium">
-                {projectData.year}
-              </span>
+              <span className="text-secondary font-medium">{projectData.year}</span>
             </div>
             <div>
               <span className="text-secondary/50 mb-1 block">Role</span>
-              <span className="text-secondary font-medium">
-                {projectData.role}
-              </span>
+              <span className="text-secondary font-medium">{projectData.role}</span>
             </div>
             <div>
               <span className="text-secondary/50 mb-1 block">Type</span>
-              <span className="text-secondary font-medium">
-                {projectData.type}
-              </span>
+              <span className="text-secondary font-medium">{projectData.type}</span>
             </div>
           </div>
         </motion.div>
@@ -223,9 +209,7 @@ export default function SousSenseProject() {
                           className="flex items-start gap-4"
                         >
                           <span className="bg-accent-lime mt-2 h-2 w-2 flex-shrink-0 rounded-full" />
-                          <span className="font-body text-secondary/80">
-                            {point}
-                          </span>
+                          <span className="font-body text-secondary/80">{point}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -284,13 +268,12 @@ export default function SousSenseProject() {
                       Brand Identity
                     </h2>
                     <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                      The name comes from &ldquo;sous chef,&rdquo; the
-                      second-in-command in a professional kitchen. The product
-                      works in the background, keeping track of inventory and
-                      freshness so you can focus on cooking. The wordmark uses a
-                      serif typeface with a chef&rsquo;s hat woven into the
-                      letterform, and the visual identity uses warm tones that
-                      suit a kitchen environment.
+                      The name comes from &ldquo;sous chef,&rdquo; the second-in-command
+                      in a professional kitchen. The product works in the background,
+                      keeping track of inventory and freshness so you can focus on
+                      cooking. The wordmark uses a serif typeface with a chef&rsquo;s hat
+                      woven into the letterform, and the visual identity uses warm tones
+                      that suit a kitchen environment.
                     </p>
                   </motion.div>
 
@@ -305,9 +288,8 @@ export default function SousSenseProject() {
                       Advertising
                     </h2>
                     <p className="font-body text-secondary/80 mb-10 max-w-3xl text-lg leading-relaxed">
-                      These posters were designed for the consumer product
-                      launch. They explain what the product does and why
-                      it&rsquo;s worth buying.
+                      These posters were designed for the consumer product launch. They
+                      explain what the product does and why it&rsquo;s worth buying.
                     </p>
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                       {posters.map((poster, index) => (
@@ -341,10 +323,9 @@ export default function SousSenseProject() {
                       Revenue Model
                     </h2>
                     <p className="font-body text-secondary/80 mb-8 max-w-3xl text-lg leading-relaxed">
-                      The business model pairs one-time hardware sales with
-                      recurring software subscriptions. The hardware is
-                      intentionally limited without the app, so every kit sold
-                      becomes a subscriber.
+                      The business model pairs one-time hardware sales with recurring
+                      software subscriptions. The hardware is intentionally limited
+                      without the app, so every kit sold becomes a subscriber.
                     </p>
                     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
                       {[
