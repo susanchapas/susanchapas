@@ -34,6 +34,14 @@ export const projects: Project[] = [
     tags: ["UX Research", "Product Design", "Prototyping"],
   },
   {
+    title: "BrandComms",
+    description:
+      "A product concept for an AI-powered brand management platform that simplifies design approval for students, universities, and partners through automated compliance feedback and built-in brand education.",
+    href: "/projects/brandcomms",
+    image: "/assets/projects/brandcomms/brandcomms-cover.webp",
+    tags: ["UX Research", "Product Design", "AI/ML Concept"],
+  },
+  {
     title: "Sous Sense",
     description:
       "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",

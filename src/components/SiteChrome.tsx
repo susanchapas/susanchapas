@@ -6,7 +6,15 @@ import Footer from "./Footer";
 
 export default function SiteChrome() {
   const pathname = usePathname();
-  if (pathname === "/about") return null;
+
+  if (pathname === "/about") {
+    return (
+      <div className="lg:hidden">
+        <GlobalSkillsTicker />
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <>
