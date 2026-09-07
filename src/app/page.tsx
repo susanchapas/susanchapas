@@ -7,7 +7,6 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import AccessibleButton from "@/components/AccessibleButton";
 import SelectedWork from "@/components/SelectedWork";
-import CurrentExperience from "@/components/CurrentExperience";
 
 const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
   ssr: false,
@@ -149,8 +148,6 @@ export default function Home() {
         </section>
 
         <SelectedWork />
-
-        <CurrentExperience />
 
         <ArtScroller />
       </div>

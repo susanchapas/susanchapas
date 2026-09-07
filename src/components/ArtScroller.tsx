@@ -24,7 +24,7 @@ const artPieces = [
 
 export default function ArtScroller() {
   return (
-    <section className="bg-primary content-visibility-auto overflow-hidden border-t border-white/5 py-24">
+    <section className="gradient-mesh content-visibility-auto overflow-hidden border-t border-white/5 py-24">
       <div className="container mx-auto mb-12 px-6 text-center lg:px-12">
         <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
           Creative Side
