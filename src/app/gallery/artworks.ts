@@ -113,6 +113,20 @@ export const artworks: readonly Artwork[] = [
     type: "image",
   },
   {
+    id: 20,
+    title: "File Finder",
+    category: "UX/UI",
+    year: "2026",
+    width: 1280,
+    height: 720,
+    description:
+      "File Finder is a research-led product concept that helps a professor find teaching materials by topic and context instead of by folder. The system uses tagging, fuzzy search, and AI-suggested metadata to organize resources at the moment of upload, so retrieval during live lectures is fast and forgiving. Built as a team effort for IT-485: Prototyping in UX.",
+    medium: "Product UI, designed in Figma",
+    links: [{ label: "View case study", href: "/projects/file-finder" }],
+    src: "/assets/projects/file-finder/file finder cover photo.webp",
+    type: "image",
+  },
+  {
     id: 18,
     title: "Chimera 2.0",
     category: "UX/UI",

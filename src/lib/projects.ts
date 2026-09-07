@@ -30,7 +30,7 @@ export const projects: Project[] = [
     description:
       "A research-led product concept that helps a professor find teaching materials by topic and context instead of by folder, preserving momentum during live lectures.",
     href: "/projects/file-finder",
-    image: "/assets/projects/file-finder/File-Finder-Hero.webp",
+    image: "/assets/projects/file-finder/file finder cover photo.webp",
     tags: ["UX Research", "Product Design", "Prototyping"],
   },
   {
