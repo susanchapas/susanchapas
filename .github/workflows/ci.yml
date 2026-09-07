@@ -120,5 +120,8 @@ jobs:
         env:
           PORT: 3000
 
+      - name: Install matching ChromeDriver
+        run: npx browser-driver-manager install chrome
+
       - name: Run axe accessibility tests
         run: npx --no-install @axe-core/cli http://localhost:3000 --exit
