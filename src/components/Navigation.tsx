@@ -97,10 +97,11 @@ export default function Navigation() {
           aria-label="Susan Chapas - Home"
         >
           <Image
-            src="/assets/misc/website favicon.svg"
+            src="/assets/misc/navbar-favicon.png"
             alt="Susan Chapas logo"
             width={40}
             height={40}
+            quality={90}
           />
         </Link>
 
@@ -173,10 +174,11 @@ export default function Navigation() {
           aria-label="Susan Chapas - Home"
         >
           <Image
-            src="/assets/misc/website favicon.svg"
+            src="/assets/misc/navbar-favicon.png"
             alt="Susan Chapas logo"
             width={32}
             height={32}
+            quality={90}
           />
         </Link>
 
