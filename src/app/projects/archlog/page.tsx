@@ -14,7 +14,7 @@ const projectData = {
     "Documenting design thinking: a decision-tracking tool for architecture studios",
   description:
     "Architecture students are graded on the strength of their process, yet that process lives in notebooks, Miro boards, and “shower thoughts.” ArchLog is a research-led product concept that captures each design move at the moment it happens, so the reasoning survives all the way to critique.",
-  heroImage: "/gallery/ArchLog Hero.webp",
+  heroImage: "/assets/projects/archlog/ArchLog-Hero.webp",
   tags: ["UX Research", "Product Design", "Prototyping"],
   year: "2026",
   role: "UX Researcher & Product Designer",

@@ -14,7 +14,7 @@ export const projects: Project[] = [
     description:
       "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
     href: "/projects/sous-sense",
-    image: "/gallery/sous sense cover photo.svg",
+    image: "/assets/projects/sous-sense/Sous-Sense-Hero.webp",
     tags: ["Brand Identity", "Package Design", "Business Strategy"],
   },
   {

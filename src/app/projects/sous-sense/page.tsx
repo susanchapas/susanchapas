@@ -70,7 +70,7 @@ const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma
 export default function SousSenseProject() {
   return (
     <div className="lg:pl-20">
-      <ProjectHero src="/gallery/sous sense cover photo.svg" alt="Sous Sense brand cover">
+      <ProjectHero src="/assets/projects/sous-sense/Sous-Sense-Hero.webp" alt="Sous Sense brand cover">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

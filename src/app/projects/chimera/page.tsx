@@ -22,7 +22,7 @@ const projectData = {
     "Redesigning a self-built home security system into a camera app people can actually navigate",
   description:
     "Jay built his own home security camera system from the ground up. The infrastructure is solid, yet the app he wrapped around it grew feature by feature until everyday tasks like finding an event or exporting a clip felt like work. Chimera 2.0 is a mobile-first redesign grounded in a deep heuristic analysis, rebuilding the app around the timeline so the core actions take fewer taps and less guesswork.",
-  heroImage: "/assets/projects/chimera/home hero.webp",
+  heroImage: "/assets/projects/chimera/Chimera-Hero.webp",
   tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   year: "2026",
   role: "UX Researcher & Product Designer",
