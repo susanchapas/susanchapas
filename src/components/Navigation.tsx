@@ -93,10 +93,15 @@ export default function Navigation() {
       >
         <Link
           href="/"
-          className="text-accent-lime font-display text-2xl font-bold transition-transform hover:scale-110"
+          className="transition-transform hover:scale-110"
           aria-label="Susan Chapas - Home"
         >
-          SC
+          <Image
+            src="/assets/misc/website favicon.svg"
+            alt="Susan Chapas logo"
+            width={40}
+            height={40}
+          />
         </Link>
 
         <ul className="flex flex-col gap-3 lg:gap-6">
@@ -165,10 +170,14 @@ export default function Navigation() {
       >
         <Link
           href="/"
-          className="text-accent-lime font-display text-2xl font-bold"
           aria-label="Susan Chapas - Home"
         >
-          SC
+          <Image
+            src="/assets/misc/website favicon.svg"
+            alt="Susan Chapas logo"
+            width={32}
+            height={32}
+          />
         </Link>
 
         <button
