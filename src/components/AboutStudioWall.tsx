@@ -513,12 +513,12 @@ function PhysicsBoard({
                 f.pos.y > 0.6 ? "calc(-100% - 0.6rem)" : "0.6rem"
               })`,
             }}
-            className="ring-accent-lime/20 pointer-events-none absolute top-1/2 left-1/2 z-10 w-64 origin-top-left rounded-xl bg-panel p-4 text-left opacity-0 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.75)] ring-1 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+            className="ring-accent-lime/20 bg-panel pointer-events-none absolute top-1/2 left-1/2 z-10 w-64 origin-top-left rounded-xl p-4 text-left opacity-0 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.75)] ring-1 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
           >
             <span
               aria-hidden="true"
               className={cn(
-                "absolute left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-panel",
+                "bg-panel absolute left-1/2 h-3 w-3 -translate-x-1/2 rotate-45",
                 f.pos.y > 0.6 ? "bottom-0 translate-y-1/2" : "top-0 -translate-y-1/2"
               )}
             />
@@ -591,7 +591,7 @@ function DrawerContent({
     <div
       aria-live="polite"
       className={cn(
-        "ring-accent-lime/20 relative overflow-hidden bg-panel px-8 pt-11 pb-8 ring-1",
+        "ring-accent-lime/20 bg-panel relative overflow-hidden px-8 pt-11 pb-8 ring-1",
         className
       )}
     >

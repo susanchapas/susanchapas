@@ -317,7 +317,7 @@ export default function ContactPage() {
                       aria-describedby={errors.name ? "name-error" : undefined}
                     />
                     {errors.name && (
-                      <p id="name-error" className="font-body mt-2 text-sm text-danger">
+                      <p id="name-error" className="font-body text-danger mt-2 text-sm">
                         {errors.name}
                       </p>
                     )}
@@ -366,7 +366,7 @@ export default function ContactPage() {
                       aria-describedby={errors.email ? "email-error" : undefined}
                     />
                     {errors.email && (
-                      <p id="email-error" className="font-body mt-2 text-sm text-danger">
+                      <p id="email-error" className="font-body text-danger mt-2 text-sm">
                         {errors.email}
                       </p>
                     )}
@@ -397,7 +397,7 @@ export default function ContactPage() {
                     {errors.subject && (
                       <p
                         id="subject-error"
-                        className="font-body mt-2 text-sm text-danger"
+                        className="font-body text-danger mt-2 text-sm"
                       >
                         {errors.subject}
                       </p>
@@ -425,7 +425,7 @@ export default function ContactPage() {
                     {errors.message && (
                       <p
                         id="message-error"
-                        className="font-body mt-2 text-sm text-danger"
+                        className="font-body text-danger mt-2 text-sm"
                       >
                         {errors.message}
                       </p>
@@ -485,7 +485,7 @@ export default function ContactPage() {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="font-body mt-4 text-center text-sm text-danger"
+                      className="font-body text-danger mt-4 text-center text-sm"
                       role="alert"
                     >
                       {submitError}

@@ -122,7 +122,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} ${hankenGrotesk.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${instrumentSans.variable} ${hankenGrotesk.variable} ${geistMono.variable}`}
+    >
       <head>
         {/* Preconnect to font origins for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
