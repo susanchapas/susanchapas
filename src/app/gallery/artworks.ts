@@ -49,6 +49,20 @@ export const categories: readonly ("All" | ArtCategory)[] = [
 
 export const artworks: readonly Artwork[] = [
   {
+    id: 19,
+    title: "Sous Sense",
+    category: "Digital Design",
+    year: "2026",
+    width: 960,
+    height: 540,
+    description:
+      "Brand identity for Sous Sense, a modular IoT food intelligence product concept developed for an entrepreneurship course at NJIT. The wordmark uses a serif typeface with a chef's hat woven into the letterform. The project includes package design, advertising posters, and a full business plan with five-year financial projections.",
+    medium: "Brand identity, Adobe Illustrator and Procreate",
+    links: [{ label: "View case study", href: "/projects/sous-sense" }],
+    src: "/gallery/sous sense cover photo.svg",
+    type: "image",
+  },
+  {
     id: 1,
     title: "Mindless Mirth",
     category: "Digital Design",

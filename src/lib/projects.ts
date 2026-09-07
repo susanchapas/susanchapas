@@ -10,6 +10,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Sous Sense",
+    description:
+      "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
+    href: "/projects/sous-sense",
+    image: "/gallery/sous sense cover photo.svg",
+    tags: ["Brand Identity", "Package Design", "Business Strategy"],
+  },
+  {
     title: "ArchLog",
     description:
       "A research-driven product concept that helps architecture students capture design decisions as they make them — turning a fragmented process into a critique-ready narrative.",
