@@ -61,7 +61,7 @@ export function useMagneticTilt({
   const shadowX = useTransform(rotateY, [-maxRot, maxRot], [26, -26]);
   const shadowY = useTransform(rotateX, [-maxRot, maxRot], [-26, 26]);
   const glow = useTransform(hover, [0, 1], [0, 0.32]);
-  const boxShadow = useMotionTemplate`${shadowX}px ${shadowY}px 45px -12px rgba(0,0,0,0.6), 0 0 38px -6px rgba(204,255,0,${glow})`;
+  const boxShadow = useMotionTemplate`${shadowX}px ${shadowY}px 45px -12px rgba(0,0,0,0.6), 0 0 38px -6px rgba(111,205,157,${glow})`;
 
   function setGlare(e: React.PointerEvent) {
     const el = ref.current;

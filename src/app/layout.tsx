@@ -1,23 +1,30 @@
 import type { Metadata } from "next";
-import { Host_Grotesk, DM_Sans } from "next/font/google";
+import { Instrument_Sans, Hanken_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import LazyCustomCursor from "@/components/LazyCustomCursor";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import SiteChrome from "@/components/SiteChrome";
 
-const hostGrotesk = Host_Grotesk({
-  variable: "--font-host-grotesk",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
   display: "swap",
   preload: true,
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const hankenGrotesk = Hanken_Grotesk({
+  variable: "--font-hanken-grotesk",
   subsets: ["latin"],
   display: "swap",
   preload: true,
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 // Base URL for production
@@ -115,7 +122,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${hostGrotesk.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${instrumentSans.variable} ${hankenGrotesk.variable} ${geistMono.variable}`}>
       <head>
         {/* Preconnect to font origins for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

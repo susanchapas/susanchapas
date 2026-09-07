@@ -79,7 +79,7 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
                   {selected && (
                     <motion.span
                       layoutId="section-tab-pill"
-                      className="bg-accent-lime absolute inset-0 rounded-full shadow-[0_4px_14px_-2px_rgba(204,255,0,0.45)]"
+                      className="bg-accent-lime absolute inset-0 rounded-full shadow-[0_4px_14px_-2px_rgba(111,205,157,0.45)]"
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
                     />
                   )}

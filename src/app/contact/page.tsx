@@ -120,7 +120,7 @@ export default function ContactPage() {
 
   const inputClasses = (hasError: boolean) =>
     `w-full px-4 py-3 rounded-xl bg-accent-blue/5 border ${
-      hasError ? "border-red-500" : "border-accent-blue/10"
+      hasError ? "border-danger" : "border-accent-blue/10"
     } text-secondary font-body placeholder:text-secondary/40 focus:outline-none focus:ring-2 focus:ring-accent-lime focus:border-transparent transition-all`;
 
   return (
@@ -317,7 +317,7 @@ export default function ContactPage() {
                       aria-describedby={errors.name ? "name-error" : undefined}
                     />
                     {errors.name && (
-                      <p id="name-error" className="font-body mt-2 text-sm text-red-400">
+                      <p id="name-error" className="font-body mt-2 text-sm text-danger">
                         {errors.name}
                       </p>
                     )}
@@ -366,7 +366,7 @@ export default function ContactPage() {
                       aria-describedby={errors.email ? "email-error" : undefined}
                     />
                     {errors.email && (
-                      <p id="email-error" className="font-body mt-2 text-sm text-red-400">
+                      <p id="email-error" className="font-body mt-2 text-sm text-danger">
                         {errors.email}
                       </p>
                     )}
@@ -397,7 +397,7 @@ export default function ContactPage() {
                     {errors.subject && (
                       <p
                         id="subject-error"
-                        className="font-body mt-2 text-sm text-red-400"
+                        className="font-body mt-2 text-sm text-danger"
                       >
                         {errors.subject}
                       </p>
@@ -425,7 +425,7 @@ export default function ContactPage() {
                     {errors.message && (
                       <p
                         id="message-error"
-                        className="font-body mt-2 text-sm text-red-400"
+                        className="font-body mt-2 text-sm text-danger"
                       >
                         {errors.message}
                       </p>
@@ -485,7 +485,7 @@ export default function ContactPage() {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="font-body mt-4 text-center text-sm text-red-400"
+                      className="font-body mt-4 text-center text-sm text-danger"
                       role="alert"
                     >
                       {submitError}

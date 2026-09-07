@@ -21,10 +21,7 @@ export default function ProjectHero({
     >
       <div className="absolute inset-0 z-0">
         <Image src={encodedSrc} alt={alt} fill className="object-cover" priority />
-        {/* Blue filter overlay */}
-        <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply" />
-        {/* Gradient for extra text readability at the bottom */}
-        <div className="from-primary via-primary/40 absolute inset-0 bg-gradient-to-t to-transparent opacity-90" />
+        <div className="from-primary via-primary/55 absolute inset-0 bg-gradient-to-t to-transparent" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 lg:px-12">{children}</div>

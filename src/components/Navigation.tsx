@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "/", icon: "/home-icon.svg" },
@@ -160,7 +159,7 @@ export default function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-6 transition-all duration-300 lg:hidden ${
-          scrolled ? "glass" : "bg-transparent"
+          scrolled ? "glass" : "border-b border-transparent bg-transparent"
         }`}
       >
         <Link
@@ -173,12 +172,23 @@ export default function Navigation() {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-secondary hover:text-accent-lime relative z-50 flex h-10 w-10 items-center justify-center transition-colors"
+          className="text-secondary hover:text-accent-lime relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-[6px] transition-colors"
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <span
+            className="block h-[2px] w-5 rounded-full bg-current transition-transform duration-300"
+            style={isOpen ? { transform: "translateY(8px) rotate(45deg)" } : undefined}
+          />
+          <span
+            className="block h-[2px] w-5 rounded-full bg-current transition-opacity duration-300"
+            style={isOpen ? { opacity: 0 } : undefined}
+          />
+          <span
+            className="block h-[2px] w-5 rounded-full bg-current transition-transform duration-300"
+            style={isOpen ? { transform: "translateY(-8px) rotate(-45deg)" } : undefined}
+          />
         </button>
       </motion.header>
 

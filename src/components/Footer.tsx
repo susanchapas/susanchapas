@@ -102,11 +102,11 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-accent-blue/10 mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
-          <p className="font-body text-sm text-white">
+          <p className="font-body text-secondary/70 text-sm">
             © {currentYear} Susan Chapas. All rights reserved.
           </p>
-          <div className="font-body flex items-center gap-2 text-sm text-white">
-            <MapPin className="h-4 w-4 text-white" aria-hidden="true" />
+          <div className="font-body text-secondary/70 flex items-center gap-2 text-sm">
+            <MapPin className="h-4 w-4" aria-hidden="true" />
             <span>Jersey City</span>
           </div>
         </div>

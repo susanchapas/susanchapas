@@ -6,9 +6,14 @@
   --foreground: #f4f4f5;
   --primary: #102f5d;
   --secondary: #f4f4f5;
-  --accent-lime: #ccff00;
+  --accent-lime: #6fcd9d;
   --accent-blue: #bbcdf3;
   --accent-clay: #e09f7d;
+  --midnight-deep: #091a35;
+  --danger: #f87171;
+  --mint-ink: #2f7d5a;
+  --clay-ink: #b56a3f;
+  --sky-ink: #3f6ab5;
 
   /* Animation timing */
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
@@ -23,8 +28,14 @@
   --color-accent-lime: var(--accent-lime);
   --color-accent-blue: var(--accent-blue);
   --color-accent-clay: var(--accent-clay);
-  --font-display: var(--font-host-grotesk);
-  --font-body: var(--font-dm-sans);
+  --color-panel: var(--midnight-deep);
+  --color-danger: var(--danger);
+  --color-mint-ink: var(--mint-ink);
+  --color-clay-ink: var(--clay-ink);
+  --color-sky-ink: var(--sky-ink);
+  --font-display: var(--font-instrument-sans);
+  --font-body: var(--font-hanken-grotesk);
+  --font-mono: var(--font-geist-mono);
 }
 
 /* Global Styles */
@@ -74,8 +85,8 @@ body {
 
 .skip-to-content:focus {
   top: 0;
-  outline: 3px solid var(--accent-clay);
-  outline-offset: 2px;
+  outline: 3px solid var(--accent-lime);
+  outline-offset: 3px;
 }
 
 /* Custom scrollbar */
@@ -112,7 +123,7 @@ body {
 .gradient-mesh {
   background:
     radial-gradient(ellipse at 20% 80%, rgba(187, 205, 243, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(204, 255, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(111, 205, 157, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 40% 40%, rgba(224, 159, 125, 0.1) 0%, transparent 50%),
     var(--primary);
 }
@@ -127,7 +138,7 @@ body {
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent-lime) 0%, var(--accent-blue) 100%);
+  background: linear-gradient(135deg, var(--accent-lime) 0%, var(--accent-clay) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

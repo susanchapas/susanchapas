@@ -34,7 +34,7 @@ const variantStyles = {
   outline:
     "border-2 border-accent-lime text-accent-lime hover:bg-accent-lime hover:text-primary active:scale-[0.98]",
   ghost:
-    "text-secondary hover:text-accent-lime hover:bg-accent-blue/10 active:scale-[0.98]",
+    "text-secondary hover:text-accent-lime hover:bg-accent-lime/10 active:scale-[0.98]",
 };
 
 const sizeStyles = {
