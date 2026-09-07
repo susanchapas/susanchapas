@@ -1,12 +1,10 @@
 "use client";
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
 import AccessibleButton from "@/components/AccessibleButton";
 import SelectedWork from "@/components/SelectedWork";
+import ScrollHint from "@/components/ScrollHint";
 
 const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
   ssr: false,
@@ -14,14 +12,6 @@ const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
 });
 
 export default function Home() {
-  const { scrollY } = useScroll();
-  const [scrollHintDismissed, setScrollHintDismissed] = useState(false);
-  useMotionValueEvent(scrollY, "change", (value) => {
-    if (value > 160 && !scrollHintDismissed) {
-      setScrollHintDismissed(true);
-    }
-  });
-
   return (
     <div className="bg-primary relative overflow-hidden">
       <div className="relative z-10 lg:pl-20">
@@ -44,12 +34,7 @@ export default function Home() {
             }}
             aria-hidden="true"
           />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 container mx-auto max-w-7xl px-6 lg:px-12"
-          >
+          <div className="animate-hero-enter relative z-10 container mx-auto max-w-7xl px-6 lg:px-12">
             <div
               className="pointer-events-none absolute inset-0 flex items-center justify-center xl:hidden"
               aria-hidden="true"
@@ -57,10 +42,11 @@ export default function Home() {
               <Image
                 src="/assets/misc/susan-hero.webp"
                 alt=""
-                width={1630}
-                height={2005}
+                width={1024}
+                height={1338}
                 priority
-                sizes="90vw"
+                fetchPriority="high"
+                sizes="(max-width: 640px) 90vw, 32rem"
                 className="h-auto w-[min(95vw,32rem)] opacity-[0.12] select-none"
                 draggable={false}
               />
@@ -112,39 +98,19 @@ export default function Home() {
                 <Image
                   src="/assets/misc/susan-hero.webp"
                   alt=""
-                  width={1630}
-                  height={2005}
+                  width={1024}
+                  height={1338}
                   priority
+                  fetchPriority="high"
                   sizes="22rem"
                   className="h-auto w-full max-w-[22rem] select-none"
                   draggable={false}
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: scrollHintDismissed ? 0 : 1 }}
-            transition={{
-              duration: scrollHintDismissed ? 0.4 : 0.8,
-              delay: scrollHintDismissed ? 0 : 1.6,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            aria-hidden="true"
-            className="pointer-events-none absolute top-[calc(100vh-5.5rem)] left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 landscape:flex"
-          >
-            <span className="text-accent-lime font-display text-xs font-semibold tracking-[0.35em] uppercase">
-              Scroll
-            </span>
-            <span className="border-accent-lime/60 bg-accent-lime/10 flex h-11 w-11 items-center justify-center rounded-full border-2 backdrop-blur-sm">
-              <ChevronDown
-                className="text-accent-lime animate-bounce-slow h-6 w-6"
-                strokeWidth={2.5}
-                aria-hidden="true"
-              />
-            </span>
-          </motion.div>
+          <ScrollHint />
         </section>
 
         <SelectedWork />

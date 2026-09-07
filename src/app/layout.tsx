@@ -25,6 +25,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"],
+  preload: false,
 });
 
 // Base URL for production
@@ -127,7 +128,6 @@ export default function RootLayout({
       className={`${instrumentSans.variable} ${hankenGrotesk.variable} ${geistMono.variable}`}
     >
       <head>
-        <link rel="preload" href="/assets/misc/susan-hero.webp" as="image" type="image/webp" />
         <link rel="dns-prefetch" href="https://linkedin.com" />
         <link rel="dns-prefetch" href="https://github.com" />
         <script

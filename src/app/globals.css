@@ -165,6 +165,17 @@ body {
   }
 }
 
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+.animate-hero-enter {
+  animation: hero-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Performance-optimized CSS animations */
 @keyframes fade-in {
   from {
@@ -243,6 +254,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .animate-hero-enter,
   .animate-fade-in,
   .animate-fade-in-up,
   .animate-fade-in-scale {

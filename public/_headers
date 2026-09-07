@@ -1,49 +1,29 @@
 # Netlify Headers Configuration
 # https://docs.netlify.com/routing/headers/
 
-# Cache static assets for 1 year (immutable)
+# Cache hashed build assets forever
 /_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache all static media, fonts, and documents
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/gallery/*
   Cache-Control: public, max-age=31536000, immutable
 
 /*.svg
   Cache-Control: public, max-age=31536000, immutable
 
-/*.jpg
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.jpeg
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.png
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.webp
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.avif
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.gif
-  Cache-Control: public, max-age=31536000, immutable
-
 /*.ico
   Cache-Control: public, max-age=31536000, immutable
 
-/*.woff
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.woff2
-  Cache-Control: public, max-age=31536000, immutable
-
-/*.mp4
-  Cache-Control: public, max-age=31536000, immutable
-
-# Cache HTML pages for 1 hour with stale-while-revalidate
+# HTML pages — revalidate immediately
 /*.html
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=0, must-revalidate
 
 /
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Security headers
 /*
