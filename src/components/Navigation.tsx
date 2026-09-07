@@ -87,7 +87,7 @@ export default function Navigation() {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 z-50 hidden h-dvh w-20 flex-col items-center justify-between py-4 lg:flex lg:py-6"
-        style={{ backgroundColor: "#091A35" }}
+        style={{ backgroundColor: "#102f5d" }}
         role="navigation"
         aria-label="Main navigation"
       >
@@ -203,7 +203,7 @@ export default function Navigation() {
             exit="closed"
             variants={menuVariants}
             className="fixed inset-0 z-40 flex flex-col items-center justify-center lg:hidden"
-            style={{ backgroundColor: "#091A35" }}
+            style={{ backgroundColor: "#102f5d" }}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
