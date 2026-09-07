@@ -18,6 +18,14 @@ export const projects: Project[] = [
     tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   },
   {
+    title: "Sous Sense",
+    description:
+      "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
+    href: "/projects/sous-sense",
+    image: "/gallery/sous sense cover photo.svg",
+    tags: ["Brand Identity", "Package Design", "Business Strategy"],
+  },
+  {
     title: "ArchLog",
     description:
       "A research-driven product concept that helps architecture students capture design decisions as they make them — turning a fragmented process into a critique-ready narrative.",
@@ -40,14 +48,6 @@ export const projects: Project[] = [
     href: "/projects/brandcomms",
     image: "/assets/projects/brandcomms/brandcomms-cover.webp",
     tags: ["UX Research", "Product Design", "AI/ML Concept"],
-  },
-  {
-    title: "Sous Sense",
-    description:
-      "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
-    href: "/projects/sous-sense",
-    image: "/gallery/sous sense cover photo.svg",
-    tags: ["Brand Identity", "Package Design", "Business Strategy"],
   },
   {
     title: "Schematic Marketing",
