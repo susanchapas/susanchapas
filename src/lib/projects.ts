@@ -10,12 +10,12 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Sous Sense",
+    title: "Chimera 2.0",
     description:
-      "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
-    href: "/projects/sous-sense",
-    image: "/gallery/sous sense cover photo.svg",
-    tags: ["Brand Identity", "Package Design", "Business Strategy"],
+      "A mobile-first redesign of a self-built home security camera app, grounded in a deep heuristic analysis that rebuilds every core flow around the timeline.",
+    href: "/projects/chimera",
+    image: "/assets/projects/chimera/chimera security camera app.webp",
+    tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   },
   {
     title: "ArchLog",
@@ -26,12 +26,12 @@ export const projects: Project[] = [
     tags: ["UX Research", "Product Design", "Prototyping"],
   },
   {
-    title: "Chimera 2.0",
+    title: "Sous Sense",
     description:
-      "A mobile-first redesign of a self-built home security camera app, grounded in a deep heuristic analysis that rebuilds every core flow around the timeline.",
-    href: "/projects/chimera",
-    image: "/assets/projects/chimera/chimera security camera app.webp",
-    tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
+      "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
+    href: "/projects/sous-sense",
+    image: "/gallery/sous sense cover photo.svg",
+    tags: ["Brand Identity", "Package Design", "Business Strategy"],
   },
   {
     title: "Schematic Marketing",
