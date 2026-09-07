@@ -14,7 +14,7 @@ const projectData = {
     "A teaching resource tool that organizes files by intent, not by folder",
   description:
     "Prof. S teaches across multiple courses and semesters. His files live in Google Drive, organized by class and color-coded, but none of that helps when a student asks a question mid-lecture and he needs to find the right resource in seconds. File Finder is a research-led product concept that lets him tag, search, and surface materials by topic and teaching context instead of by where they were originally saved.",
-  heroImage: "/assets/projects/file-finder/File-Finder-Hero.webp",
+  heroImage: "/assets/projects/file-finder/File-Finder-Hero.png",
   tags: ["UX Research", "Product Design", "Prototyping"],
   year: "2026",
   role: "UX Researcher & Product Designer",
