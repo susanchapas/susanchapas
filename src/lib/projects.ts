@@ -26,6 +26,14 @@ export const projects: Project[] = [
     tags: ["UX Research", "Product Design", "Prototyping"],
   },
   {
+    title: "File Finder",
+    description:
+      "A research-led product concept that helps a professor find teaching materials by topic and context instead of by folder, preserving momentum during live lectures.",
+    href: "/projects/file-finder",
+    image: "/assets/projects/file-finder/File-Finder-Hero.webp",
+    tags: ["UX Research", "Product Design", "Prototyping"],
+  },
+  {
     title: "Sous Sense",
     description:
       "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
