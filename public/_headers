@@ -25,8 +25,9 @@
 /
   Cache-Control: public, max-age=0, must-revalidate
 
-# Security headers
+# Catch-all for route pages (non-extension URLs)
 /*
+  Cache-Control: public, max-age=0, must-revalidate
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
