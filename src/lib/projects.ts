@@ -22,7 +22,7 @@ export const projects: Project[] = [
     description:
       "A mobile-first redesign of a self-built home security camera app, grounded in a deep heuristic analysis that rebuilds every core flow around the timeline.",
     href: "/projects/chimera",
-    image: "/assets/projects/chimera/chimera security camera app.png",
+    image: "/assets/projects/chimera/chimera security camera app.webp",
     tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   },
   {
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     description:
       "Launched and scaled an accessibility-focused design agency for small businesses, nonprofits and entrepreneurs.",
     href: "/projects/schematic-marketing",
-    image: "/gallery/schematic marketing project cover.png",
+    image: "/gallery/schematic marketing project cover.webp",
     tags: ["Entrepreneurship", "Accessibility", "UX Design"],
     badge: "< >",
   },

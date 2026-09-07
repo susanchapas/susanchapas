@@ -109,7 +109,7 @@ export const artworks: readonly Artwork[] = [
       "Chimera 2.0 is a mobile-first redesign of a self-built home security camera app. The original infrastructure was solid, but the app had grown feature by feature until everyday tasks like finding an event or exporting a clip felt like work.\n\nGrounded in a deep heuristic analysis, the redesign rebuilds the app around a central timeline so the core actions take fewer taps and less guesswork.",
     medium: "Product UI, designed in Figma",
     links: [{ label: "View case study", href: "/projects/chimera" }],
-    src: "/assets/projects/chimera/chimera security camera app.png",
+    src: "/assets/projects/chimera/chimera security camera app.webp",
     type: "image",
   },
   {

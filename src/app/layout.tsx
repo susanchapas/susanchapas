@@ -127,10 +127,7 @@ export default function RootLayout({
       className={`${instrumentSans.variable} ${hankenGrotesk.variable} ${geistMono.variable}`}
     >
       <head>
-        {/* Preconnect to font origins for faster loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* DNS prefetch for external resources */}
+        <link rel="preload" href="/assets/misc/susan-hero.webp" as="image" type="image/webp" />
         <link rel="dns-prefetch" href="https://linkedin.com" />
         <link rel="dns-prefetch" href="https://github.com" />
         <script
