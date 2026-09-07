@@ -130,7 +130,7 @@ export default function RootLayout({
       <head>
         <link
           rel="preload"
-          href="/assets/misc/susan-hero.webp"
+          href="/assets/misc/hero-portrait.webp"
           as="image"
           type="image/webp"
         />

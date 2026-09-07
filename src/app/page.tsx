@@ -40,10 +40,10 @@ export default function Home() {
               aria-hidden="true"
             >
               <Image
-                src="/assets/misc/susan-hero.webp"
+                src="/assets/misc/hero-portrait.webp"
                 alt=""
-                width={1024}
-                height={1338}
+                width={1633}
+                height={2134}
                 priority
                 fetchPriority="high"
                 sizes="(max-width: 640px) 90vw, 32rem"
@@ -96,10 +96,10 @@ export default function Home() {
               </div>
               <div className="hidden self-end justify-self-end xl:block">
                 <Image
-                  src="/assets/misc/susan-hero.webp"
+                  src="/assets/misc/hero-portrait.webp"
                   alt=""
-                  width={1024}
-                  height={1338}
+                  width={1633}
+                  height={2134}
                   priority
                   fetchPriority="high"
                   sizes="22rem"
