@@ -25,7 +25,7 @@ const projectData = {
 const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
   { label: "Team", value: "3 designers (Neta, Petra, Susan)" },
-  { label: "Course", value: "IT-485: Prototyping in UX" },
+  { label: "Timeline", value: "2 weeks" },
   { label: "Methods", value: "Semi-structured interview, student survey, affinity mapping" },
 ];
 
