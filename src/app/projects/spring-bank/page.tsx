@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import BackToProjects from "@/components/BackToProjects";
 import AccessibleButton from "@/components/AccessibleButton";
 import ArtMedia from "@/components/ArtMedia";
 import ProjectHero from "@/components/ProjectHero";
@@ -90,25 +90,7 @@ export default function SpringBankProject() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <Link
-            href="/projects"
-            className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 transition-all hover:gap-4"
-          >
-            <svg
-              className="h-4 w-4 rotate-180"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-            Back to Projects
-          </Link>
+          <BackToProjects />
 
           <div className="mb-4 flex flex-wrap gap-2">
             {projectData.tags.map((tag) => (
