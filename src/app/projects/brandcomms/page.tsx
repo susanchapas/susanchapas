@@ -688,31 +688,6 @@ export default function BrandCommsProject() {
 
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal>
-                      <Eyebrow>Tools Used</Eyebrow>
-                      <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
-                        Tools &amp; Technologies
-                      </h2>
-                    </Reveal>
-                    <div className="flex flex-wrap gap-3">
-                      {tools.map((tool, index) => (
-                        <motion.span
-                          key={tool}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.05 }}
-                          className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
-                        >
-                          {tool}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Solution</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
@@ -748,82 +723,6 @@ export default function BrandCommsProject() {
                   </div>
                 </section>
 
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Key Path Scenario</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Maya&apos;s flyer, from upload to approval
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        To ground the concept, we modeled a complete scenario using our
-                        primary persona, Maya Torres. Maya is the president of NJIT&apos;s
-                        Society of Hispanic and Latine Appreciation. She designs a flyer
-                        for the club&apos;s Multicultural Night and needs it approved
-                        before printing.
-                      </p>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {[
-                        {
-                          when: "November 23, 8:45 PM",
-                          where: "Maya's family home",
-                          what: "Maya designs a flyer for SHLA's Multicultural Night over Thanksgiving break. Free from campus pressure, she experiments with layout, color, and language until the event's tone feels right.",
-                        },
-                        {
-                          when: "November 27, 4:10 PM",
-                          where: "NJIT Campus Center",
-                          what: "She presents the flyer to her club's board. The group approves the design and is ready to move forward.",
-                        },
-                        {
-                          when: "December 1, 3:22 PM",
-                          where: "NJIT campus cafe",
-                          what: "Maya opens BrandComms, starts a new submission, enters event details, and uploads the flyer. The AI scans the design, extracts event information, and suggests improvements. She accepts the changes and submits for review.",
-                        },
-                        {
-                          when: "December 5, 9:14 AM",
-                          where: "NJIT campus lawn",
-                          what: "Maya receives an email confirming the flyer has passed marketing review. She checks BrandComms, sees the status confirmed, and continues with her day.",
-                        },
-                        {
-                          when: "December 7, 8:37 PM",
-                          where: "Maya's dorm at NJIT",
-                          what: "A notification from compliance arrives with one minor suggestion: add the university logo to the bottom-right corner. The AI shows a preview of the fix. Maya accepts it and logs off.",
-                        },
-                        {
-                          when: "December 8, 9:52 AM",
-                          where: "NJIT Van Houten Library",
-                          what: "An email confirms the flyer has passed all checks. From her BrandComms dashboard, Maya sees the finalized flyer, a prewritten caption, and posting options ready for distribution.",
-                        },
-                      ].map((step, index) => (
-                        <Tile
-                          key={step.when}
-                          delay={(index % 2) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 rounded-2xl border p-7 transition-colors"
-                        >
-                          <div className="mb-4 flex items-start justify-between">
-                            <div>
-                              <span className="font-display text-secondary text-sm font-bold">
-                                {step.when}
-                              </span>
-                              <span className="text-secondary/50 font-body mt-0.5 block text-xs">
-                                {step.where}
-                              </span>
-                            </div>
-                            <span className="bg-accent-lime/10 text-accent-lime font-display flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold">
-                              {index + 1}
-                            </span>
-                          </div>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {step.what}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal>
@@ -849,6 +748,31 @@ export default function BrandCommsProject() {
                         </motion.li>
                       ))}
                     </ul>
+                  </div>
+                </section>
+
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal>
+                      <Eyebrow>Tools Used</Eyebrow>
+                      <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
+                        Tools &amp; Technologies
+                      </h2>
+                    </Reveal>
+                    <div className="flex flex-wrap gap-3">
+                      {tools.map((tool, index) => (
+                        <motion.span
+                          key={tool}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.05 }}
+                          className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
+                        >
+                          {tool}
+                        </motion.span>
+                      ))}
+                    </div>
                   </div>
                 </section>
               </>
