@@ -49,25 +49,6 @@ export const projects: Project[] = [
     image: "/assets/projects/brandcomms/brandcomms-cover-photov3.png",
     tags: ["UX Research", "Product Design", "AI/ML Concept"],
   },
-  {
-    title: "Schematic Marketing",
-    description:
-      "Launched and scaled an accessibility-focused design agency for small businesses, nonprofits and entrepreneurs.",
-    href: "/projects/schematic-marketing",
-    image: "/gallery/schematic marketing project cover.webp",
-    tags: ["Entrepreneurship", "Accessibility", "UX Design"],
-    badge: "< >",
-  },
-  {
-    title: "Spring Bank",
-    description:
-      "Launching a new bank branch in Red Hook, Brooklyn — designed the new branch interior & exterior, including ATM videography & animations.",
-    href: "/projects/spring-bank",
-    image: "/gallery/Red Hook Launch Photo.webp",
-    tags: ["Brand Strategy", "Interior Design", "Motion Graphics"],
-  },
 ];
 
-export const featuredProjects = projects
-  .filter((p) => p.href !== "/projects/schematic-marketing")
-  .slice(0, 3);
+export const featuredProjects = projects.slice(0, 3);
