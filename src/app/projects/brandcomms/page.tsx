@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useState, useCallback, useRef } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
@@ -209,6 +209,150 @@ function Eyebrow({ children }: { children: ReactNode }) {
     <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
       {children}
     </span>
+  );
+}
+
+const screenshots = [
+  {
+    src: "/assets/projects/brandcomms/Dashboard.webp",
+    alt: "BrandComms dashboard showing project status and submission list",
+    title: "Submission Dashboard",
+    description:
+      "A centralized view of all submissions with status indicators, so students always know where their projects stand.",
+  },
+  {
+    src: "/assets/projects/brandcomms/Branding-AI-Review.webp",
+    alt: "AI review screen with before-and-after slider and compliance summary",
+    title: "AI Compliance Review",
+    description:
+      "The AI scans uploaded designs against brand standards and flags issues with specific fixes. A before-and-after slider shows exactly what changed.",
+  },
+  {
+    src: "/assets/projects/brandcomms/Branding-AI-Edits-1stRound.webp",
+    alt: "Final design preview with summary of automated fixes",
+    title: "AI Edit Summary",
+    description:
+      "After auto-corrections, students review a summary of every change before submitting to human review.",
+  },
+  {
+    src: "/assets/projects/brandcomms/Branding-Human-Review.webp",
+    alt: "Human compliance review with action items and progress tracker",
+    title: "Human Compliance Review",
+    description:
+      "Compliance officers leave structured feedback with suggested additions. Students accept or respond to each item inline.",
+  },
+];
+
+function ScreenshotCarousel() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const touchStart = useRef<number | null>(null);
+
+  const go = useCallback(
+    (dir: 1 | -1) => {
+      setDirection(dir);
+      setCurrent((prev) => (prev + dir + screenshots.length) % screenshots.length);
+    },
+    [],
+  );
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  }, []);
+
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStart.current === null) return;
+      const delta = e.changedTouches[0].clientX - touchStart.current;
+      if (Math.abs(delta) > 50) go(delta < 0 ? 1 : -1);
+      touchStart.current = null;
+    },
+    [go],
+  );
+
+  const slide = screenshots[current];
+
+  return (
+    <div
+      className="relative"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      <div className="bg-accent-blue/5 border-accent-blue/10 overflow-hidden rounded-2xl border">
+        <div className="relative aspect-[16/10] w-full overflow-hidden">
+          <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <motion.div
+              key={slide.src}
+              custom={direction}
+              initial={{ opacity: 0, x: direction * 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -60 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                sizes="(min-width: 1024px) 70vw, 100vw"
+                className="object-cover object-top"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex items-start justify-between gap-4 p-6">
+          <div className="min-w-0">
+            <h3 className="font-display text-secondary mb-1 text-lg font-bold">
+              {slide.title}
+            </h3>
+            <p className="font-body text-secondary/70 text-sm leading-relaxed">
+              {slide.description}
+            </p>
+          </div>
+          <span className="text-secondary/40 font-body shrink-0 text-sm">
+            {current + 1}/{screenshots.length}
+          </span>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        onClick={() => go(-1)}
+        className="bg-primary/80 border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime absolute top-[20%] left-3 -translate-y-1/2 rounded-full border p-2 backdrop-blur-sm transition-colors"
+        aria-label="Previous screenshot"
+      >
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        onClick={() => go(1)}
+        className="bg-primary/80 border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime absolute top-[20%] right-3 -translate-y-1/2 rounded-full border p-2 backdrop-blur-sm transition-colors"
+        aria-label="Next screenshot"
+      >
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <div className="mt-4 flex justify-center gap-2">
+        {screenshots.map((s, i) => (
+          <button
+            key={s.title}
+            type="button"
+            onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+            className={`h-2 rounded-full transition-all ${
+              i === current
+                ? "bg-accent-lime w-6"
+                : "bg-secondary/20 hover:bg-secondary/40 w-2"
+            }`}
+            aria-label={`Go to ${s.title}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -519,62 +663,7 @@ export default function BrandCommsProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-8 md:grid-cols-2">
-                      {[
-                        {
-                          src: "/assets/projects/brandcomms/Dashboard.webp",
-                          alt: "BrandComms dashboard showing project status and submission list",
-                          title: "Submission Dashboard",
-                          description:
-                            "A centralized view of all submissions with status indicators, so students always know where their projects stand.",
-                        },
-                        {
-                          src: "/assets/projects/brandcomms/Branding-AI-Review.webp",
-                          alt: "AI review screen with before-and-after slider and compliance summary",
-                          title: "AI Compliance Review",
-                          description:
-                            "The AI scans uploaded designs against brand standards and flags issues with specific fixes. A before-and-after slider shows exactly what changed.",
-                        },
-                        {
-                          src: "/assets/projects/brandcomms/Branding-AI-Edits-1stRound.webp",
-                          alt: "Final design preview with summary of automated fixes",
-                          title: "AI Edit Summary",
-                          description:
-                            "After auto-corrections, students review a summary of every change before submitting to human review.",
-                        },
-                        {
-                          src: "/assets/projects/brandcomms/Branding-Human-Review.webp",
-                          alt: "Human compliance review with action items and progress tracker",
-                          title: "Human Compliance Review",
-                          description:
-                            "Compliance officers leave structured feedback with suggested additions. Students accept or respond to each item inline.",
-                        },
-                      ].map((screenshot, i) => (
-                        <Tile
-                          key={screenshot.title}
-                          delay={(i % 2) * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 overflow-hidden rounded-2xl border transition-colors"
-                        >
-                          <div className="relative aspect-[16/10] w-full overflow-hidden">
-                            <Image
-                              src={screenshot.src}
-                              alt={screenshot.alt}
-                              fill
-                              sizes="(min-width: 768px) 50vw, 100vw"
-                              className="object-cover object-top"
-                            />
-                          </div>
-                          <div className="p-6">
-                            <h3 className="font-display text-secondary mb-2 text-lg font-bold">
-                              {screenshot.title}
-                            </h3>
-                            <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                              {screenshot.description}
-                            </p>
-                          </div>
-                        </Tile>
-                      ))}
-                    </div>
+                    <ScreenshotCarousel />
                   </div>
                 </section>
 
