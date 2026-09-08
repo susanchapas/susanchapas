@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
@@ -503,6 +504,80 @@ export default function BrandCommsProject() {
             label: "Product",
             content: (
               <>
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>The Product</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        What BrandComms looks like
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        The platform gives every stakeholder a clear view of where a
+                        submission stands. Students see AI feedback on their designs
+                        before human review. Compliance officers see structured
+                        recommendations instead of raw uploads. Every step is visible.
+                      </p>
+                    </Reveal>
+
+                    <div className="grid gap-8 md:grid-cols-2">
+                      {[
+                        {
+                          src: "/assets/projects/brandcomms/Dashboard.webp",
+                          alt: "BrandComms dashboard showing project status and submission list",
+                          title: "Submission Dashboard",
+                          description:
+                            "A centralized view of all submissions with status indicators, so students always know where their projects stand.",
+                        },
+                        {
+                          src: "/assets/projects/brandcomms/Branding-AI-Review.webp",
+                          alt: "AI review screen with before-and-after slider and compliance summary",
+                          title: "AI Compliance Review",
+                          description:
+                            "The AI scans uploaded designs against brand standards and flags issues with specific fixes. A before-and-after slider shows exactly what changed.",
+                        },
+                        {
+                          src: "/assets/projects/brandcomms/Branding-AI-Edits-1stRound.webp",
+                          alt: "Final design preview with summary of automated fixes",
+                          title: "AI Edit Summary",
+                          description:
+                            "After auto-corrections, students review a summary of every change before submitting to human review.",
+                        },
+                        {
+                          src: "/assets/projects/brandcomms/Branding-Human-Review.webp",
+                          alt: "Human compliance review with action items and progress tracker",
+                          title: "Human Compliance Review",
+                          description:
+                            "Compliance officers leave structured feedback with suggested additions. Students accept or respond to each item inline.",
+                        },
+                      ].map((screenshot, i) => (
+                        <Tile
+                          key={screenshot.title}
+                          delay={(i % 2) * 0.08}
+                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 overflow-hidden rounded-2xl border transition-colors"
+                        >
+                          <div className="relative aspect-[16/10] w-full overflow-hidden">
+                            <Image
+                              src={screenshot.src}
+                              alt={screenshot.alt}
+                              fill
+                              sizes="(min-width: 768px) 50vw, 100vw"
+                              className="object-cover object-top"
+                            />
+                          </div>
+                          <div className="p-6">
+                            <h3 className="font-display text-secondary mb-2 text-lg font-bold">
+                              {screenshot.title}
+                            </h3>
+                            <p className="font-body text-secondary/70 text-sm leading-relaxed">
+                              {screenshot.description}
+                            </p>
+                          </div>
+                        </Tile>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
