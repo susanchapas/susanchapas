@@ -206,19 +206,6 @@ export const artworks: readonly Artwork[] = [
     type: "video",
   },
   {
-    id: 4,
-    title: "Eat, Drink, & Be Merry",
-    category: "Digital Design",
-    year: "2025",
-    width: 612,
-    height: 792,
-    description:
-      "Made for a holiday party I planned and executed for the Spring Bank team in 2025. We held it at a restaurant without buying out the venue, so I created this sign to point Spring Bank employees toward where they should go.",
-    medium: "Printed graphic, made in Adobe Illustrator",
-    src: "/gallery/eat, drink, & be merry.webp",
-    type: "image",
-  },
-  {
     id: 9,
     title: "Red Hook Launch",
     category: "Photography",
@@ -248,44 +235,6 @@ export const artworks: readonly Artwork[] = [
       },
     ],
     src: "/gallery/Binnoy Feature Photo.webp",
-    type: "image",
-  },
-  {
-    id: 13,
-    title: "Jason Feature",
-    category: "Photography",
-    year: "2023",
-    width: 4032,
-    height: 3024,
-    description:
-      "Posed in the Astoria office for his employee feature, since Jason's story leaned toward career growth. He was really proud of his then in-progress MBA, which he has since earned. A hard-working employee proud of all his business deals and how hard he worked on them, Jason consistently went above and beyond, so the desk portrait felt right for him.",
-    medium: "Portrait photography, edited in Adobe Lightroom",
-    links: [
-      {
-        label: "Read the feature",
-        href: "https://www.spring.bank/jason-leads-with-integrity/",
-      },
-    ],
-    src: "/gallery/Jason Feature Photo.webp",
-    type: "image",
-  },
-  {
-    id: 17,
-    title: "Spring Bank Nonprofit Banking",
-    category: "Digital Design",
-    year: "2026",
-    width: 1545,
-    height: 1999,
-    description:
-      "One page from a multi-page PDF that Spring Bank sends to nonprofit leads in the community, laying out its nonprofit banking offering.",
-    medium: "Print and digital layout, made in Adobe Illustrator",
-    links: [
-      {
-        label: "View the PDF",
-        href: "/gallery/Spring Bank Nonprofit Banking.pdf",
-      },
-    ],
-    src: "/gallery/Spring Bank Nonprofit Banking.webp",
     type: "image",
   },
 ];
