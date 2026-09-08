@@ -131,21 +131,6 @@ const strengths = [
   },
 ];
 
-const limitations = [
-  {
-    title: "Single-user focus",
-    body: "The research centered on one professor's workflow. While the student survey validated some patterns, a broader faculty study would strengthen the findings.",
-  },
-  {
-    title: "No longitudinal testing",
-    body: "We designed and validated within a course timeline. We did not observe whether the system holds up over a full semester of accumulated files.",
-  },
-  {
-    title: "Integration assumptions",
-    body: "Features like Google Calendar integration and content scanning assume technical feasibility that was not prototyped at a functional level.",
-  },
-];
-
 const recommendations = [
   {
     title: "Organize by use, not by origin",
@@ -583,80 +568,6 @@ export default function FileFinderProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Solution</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Three design concepts for a flexible resource system
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        File Finder organizes resources visually, by intent, topic,
-                        and reusability. It lets Prof. S find files dynamically and
-                        contextually instead of forcing materials into rigid,
-                        origin-based folders. Students can also collaborate and find
-                        specific examples by searching for topics and keywords.
-                      </p>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-3">
-                      {designConcepts.map((concept, i) => (
-                        <Tile
-                          key={concept.name}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
-                            {concept.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {concept.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>System Strengths</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        What the system does well
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        The system preserves teaching momentum, restoring time and
-                        attention to learning instead of searching. It lets Prof. S
-                        spend more time on higher-priority tasks.
-                      </p>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {strengths.map((s, i) => (
-                        <Tile
-                          key={s.category}
-                          delay={(i % 2) * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-4 text-lg font-bold transition-colors">
-                            {s.category}
-                          </h3>
-                          <ul className="space-y-2">
-                            {s.items.map((item) => (
-                              <li
-                                key={item}
-                                className="font-body text-secondary/70 flex items-start text-sm leading-relaxed"
-                              >
-                                <span className="bg-accent-lime/20 mt-1.5 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Product Tour</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Designed for the teaching desk
@@ -730,41 +641,75 @@ export default function FileFinderProject() {
                     </Reveal>
                   </div>
                 </section>
-              </>
-            ),
-          },
-          {
-            id: "learnings",
-            label: "Learnings",
-            content: (
-              <>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Limitations</Eyebrow>
-                      <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        What we would caveat
+                      <Eyebrow>The Solution</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Three design concepts for a flexible resource system
                       </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        File Finder organizes resources visually, by intent, topic,
+                        and reusability. It lets Prof. S find files dynamically and
+                        contextually instead of forcing materials into rigid,
+                        origin-based folders. Students can also collaborate and find
+                        specific examples by searching for topics and keywords.
+                      </p>
                     </Reveal>
 
                     <div className="grid gap-6 md:grid-cols-3">
-                      {limitations.map((item, i) => (
+                      {designConcepts.map((concept, i) => (
                         <Tile
-                          key={item.title}
-                          delay={i * 0.08}
-                          className="group bg-primary/40 hover:bg-primary flex gap-5 rounded-2xl p-5 transition-colors"
+                          key={concept.name}
+                          delay={(i % 3) * 0.08}
+                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
                         >
-                          <span className="bg-primary text-accent-lime font-display flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-transform group-hover:scale-110">
-                            {i + 1}
-                          </span>
-                          <div>
-                            <h3 className="font-display text-secondary mb-2 font-bold">
-                              {item.title}
-                            </h3>
-                            <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                              {item.body}
-                            </p>
-                          </div>
+                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
+                            {concept.name}
+                          </h3>
+                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
+                            {concept.body}
+                          </p>
+                        </Tile>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>System Strengths</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        What the system does well
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        The system preserves teaching momentum, restoring time and
+                        attention to learning instead of searching. It lets Prof. S
+                        spend more time on higher-priority tasks.
+                      </p>
+                    </Reveal>
+
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {strengths.map((s, i) => (
+                        <Tile
+                          key={s.category}
+                          delay={(i % 2) * 0.08}
+                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
+                        >
+                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-4 text-lg font-bold transition-colors">
+                            {s.category}
+                          </h3>
+                          <ul className="space-y-2">
+                            {s.items.map((item) => (
+                              <li
+                                key={item}
+                                className="font-body text-secondary/70 flex items-start text-sm leading-relaxed"
+                              >
+                                <span className="bg-accent-lime/20 mt-1.5 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
                         </Tile>
                       ))}
                     </div>
@@ -810,41 +755,6 @@ export default function FileFinderProject() {
                         be fast, flexible, and forgiving.
                       </p>
                     </Tile>
-                  </div>
-                </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <div className="grid items-center gap-10 lg:grid-cols-2">
-                      <Reveal>
-                        <Eyebrow>Reflection</Eyebrow>
-                        <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                          What I&apos;d do with more time
-                        </h2>
-                        <p className="font-body text-secondary/80 mb-4 text-lg leading-relaxed">
-                          The most important thing we learned was how to reframe the
-                          question. We walked in thinking the problem was organization.
-                          The research pointed us toward retrieval. That reframe changed
-                          every feature we prioritized.
-                        </p>
-                        <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                          With more time, I would run usability testing with Prof. S
-                          during a live class session to see whether File Finder holds up
-                          under the pressure of teaching in front of students. I would
-                          also expand the study to additional faculty members to test
-                          whether the tagging and search model generalizes beyond one
-                          person&apos;s workflow.
-                        </p>
-                      </Reveal>
-
-                      <Reveal delay={0.1}>
-                        <ImageSlot
-                          ratio="aspect-[4/3]"
-                          label="Behind the process"
-                          hint="Team working session, affinity mapping, or design wall"
-                          sizes="(min-width: 1024px) 50vw, 100vw"
-                        />
-                      </Reveal>
-                    </div>
                   </div>
                 </section>
               </>

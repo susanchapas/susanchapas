@@ -115,25 +115,6 @@ const productScreens = [
   },
 ];
 
-const limitations = [
-  {
-    title: "Brief project timeline",
-    body: "A 6-week window limited deeper iteration, extended testing, and long-term refinement of the prototype.",
-  },
-  {
-    title: "Limited student availability",
-    body: "Recruiting and scheduling architecture students was hard against demanding studio schedules, critiques, and heavy workloads.",
-  },
-  {
-    title: "Small participant pool",
-    body: "Every method ran with a relatively small group, which may not fully represent the broader architecture-student experience.",
-  },
-  {
-    title: "Broad, evolving problem space",
-    body: "Scoping was itself a challenge. Research surfaced a wide range of needs and interpretations of what it means to “design better.”",
-  },
-];
-
 const recommendations = [
   {
     title: "Make the design process visible",
@@ -637,6 +618,77 @@ export default function ArchLogProject() {
             label: "Product",
             content: (
               <>
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>Product Tour</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Designed for the studio desk
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        We designed ArchLog desktop-first. Architecture design happens
+                        mostly on laptops and desktops, so we built the Figma prototype
+                        for the larger canvas students already work on. The layout stays
+                        calm and document-like, so logging a decision feels as quick as
+                        jotting a note.
+                      </p>
+                    </Reveal>
+
+                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                      {productScreens.map((screen, i) => (
+                        <Tile key={i} delay={(i % 3) * 0.08} className="group h-full">
+                          <figure className="h-full">
+                            <div
+                              className="ring-accent-blue/0 group-hover:ring-accent-lime/40 overflow-hidden rounded-2xl ring-2 transition-all"
+                              style={{ backgroundColor: "#EAEFF9" }}
+                            >
+                              <Image
+                                src={encodeURI(screen.src)}
+                                alt={screen.alt}
+                                width={2560}
+                                height={1600}
+                                className="h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                              />
+                            </div>
+                            <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
+                              {screen.caption}
+                            </figcaption>
+                          </figure>
+                        </Tile>
+                      ))}
+                    </div>
+
+                    <Reveal
+                      delay={0.1}
+                      className="mt-12 flex flex-wrap justify-center gap-4"
+                    >
+                      <AccessibleButton
+                        href="https://www.figma.com/"
+                        external
+                        variant="primary"
+                      >
+                        View Figma Prototype
+                        <svg
+                          className="h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </AccessibleButton>
+                      <AccessibleButton href="#" variant="outline">
+                        Watch Video Walkthrough
+                      </AccessibleButton>
+                    </Reveal>
+                  </div>
+                </section>
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
@@ -664,120 +716,6 @@ export default function ArchLogProject() {
                           <p className="font-body text-secondary/70 text-sm leading-relaxed">
                             {feature.body}
                           </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Product Tour</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Designed for the studio desk
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        We designed ArchLog desktop-first. Architecture design happens
-                        mostly on laptops and desktops, so we built the Figma prototype
-                        for the larger canvas students already work on. The layout stays
-                        calm and document-like, so logging a decision feels as quick as
-                        jotting a note.
-                      </p>
-                    </Reveal>
-
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                      {productScreens.map((screen, i) => (
-                        <Tile key={i} delay={(i % 3) * 0.08} className="group h-full">
-                          <figure className="h-full">
-                            {/* Panel hex matches the recommended #EAEFF9 backdrop baked into each PNG */}
-                            <div
-                              className="ring-accent-blue/0 group-hover:ring-accent-lime/40 overflow-hidden rounded-2xl ring-2 transition-all"
-                              style={{ backgroundColor: "#EAEFF9" }}
-                            >
-                              <Image
-                                src={encodeURI(screen.src)}
-                                alt={screen.alt}
-                                width={2560}
-                                height={1600}
-                                className="h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.05]"
-                                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                              />
-                            </div>
-                            <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
-                              {screen.caption}
-                            </figcaption>
-                          </figure>
-                        </Tile>
-                      ))}
-                    </div>
-
-                    <Reveal
-                      delay={0.1}
-                      className="mt-12 flex flex-wrap justify-center gap-4"
-                    >
-                      {/* Replace href with your published Figma prototype URL */}
-                      <AccessibleButton
-                        href="https://www.figma.com/"
-                        external
-                        variant="primary"
-                      >
-                        View Figma Prototype
-                        <svg
-                          className="h-4 w-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </AccessibleButton>
-                      {/* Replace href with your hosted walkthrough video (e.g. /gallery/archlog-prototype.mp4) */}
-                      <AccessibleButton href="#" variant="outline">
-                        Watch Video Walkthrough
-                      </AccessibleButton>
-                    </Reveal>
-                  </div>
-                </section>
-              </>
-            ),
-          },
-          {
-            id: "learnings",
-            label: "Learnings",
-            content: (
-              <>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Limitations &amp; Challenges</Eyebrow>
-                      <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        What we&apos;d caveat, and why
-                      </h2>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {limitations.map((item, i) => (
-                        <Tile
-                          key={item.title}
-                          delay={(i % 2) * 0.08}
-                          className="group bg-primary/40 hover:bg-primary flex gap-5 rounded-2xl p-5 transition-colors"
-                        >
-                          <span className="bg-primary text-accent-lime font-display flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-transform group-hover:scale-110">
-                            {i + 1}
-                          </span>
-                          <div>
-                            <h3 className="font-display text-secondary mb-2 font-bold">
-                              {item.title}
-                            </h3>
-                            <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                              {item.body}
-                            </p>
-                          </div>
                         </Tile>
                       ))}
                     </div>
@@ -822,42 +760,6 @@ export default function ArchLogProject() {
                         the tools students reach for.
                       </p>
                     </Tile>
-                  </div>
-                </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <div className="grid items-center gap-10 lg:grid-cols-2">
-                      <Reveal>
-                        <Eyebrow>Reflection</Eyebrow>
-                        <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                          What I&apos;d do with another sprint
-                        </h2>
-                        <p className="font-body text-secondary/80 mb-4 text-lg leading-relaxed">
-                          The sharpest lesson was that good research can move scope. We
-                          walked in assuming the problem was ideation. The data redirected
-                          us toward traceability, and the strongest concept grew out of
-                          that pivot.
-                        </p>
-                        <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                          With more time I&apos;d run a longitudinal study across a full
-                          studio project to test whether in-the-moment logging survives
-                          deadline pressure. I&apos;d measure the share of decisions
-                          captured live and the time it takes to prep a critique. Those
-                          are the metrics that would prove ArchLog earns its place on the
-                          desk.
-                        </p>
-                      </Reveal>
-
-                      {/* Swap in a process snapshot: team working, whiteboard, or the design wall */}
-                      <Reveal delay={0.1}>
-                        <ImageSlot
-                          ratio="aspect-[4/3]"
-                          label="Behind the process"
-                          hint="Team working session, whiteboard, or the design wall"
-                          sizes="(min-width: 1024px) 50vw, 100vw"
-                        />
-                      </Reveal>
-                    </div>
                   </div>
                 </section>
               </>

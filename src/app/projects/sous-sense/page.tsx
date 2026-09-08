@@ -384,38 +384,32 @@ export default function SousSenseProject() {
                       ))}
                     </div>
                   </motion.div>
-                </div>
-              </section>
-            ),
-          },
-          {
-            id: "tools",
-            label: "Tools",
-            content: (
-              <section className="bg-accent-blue/5 py-16 lg:py-24">
-                <div className="container mx-auto px-6 lg:px-12">
-                  <motion.h2
+
+                  <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl"
+                    transition={{ duration: 0.8 }}
+                    className="mt-16"
                   >
-                    Tools & Technologies
-                  </motion.h2>
-                  <div className="flex flex-wrap gap-3">
-                    {tools.map((tool, index) => (
-                      <motion.span
-                        key={tool}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                        className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
-                      >
-                        {tool}
-                      </motion.span>
-                    ))}
-                  </div>
+                    <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
+                      Tools & Technologies
+                    </h2>
+                    <div className="flex flex-wrap gap-3">
+                      {tools.map((tool, index) => (
+                        <motion.span
+                          key={tool}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.05 }}
+                          className="bg-accent-blue/5 border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
+                        >
+                          {tool}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
               </section>
             ),

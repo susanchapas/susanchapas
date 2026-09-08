@@ -191,27 +191,6 @@ const challengeImages = [
   },
 ] as const;
 
-const nextSteps = [
-  {
-    title: "Smarter data rules",
-    body: "Automated deletion by date or by percentage of storage remaining, so the system maintains itself.",
-  },
-  {
-    title: "AI detection",
-    body: "Object and motion detection that surfaces the moments worth watching before anyone goes looking.",
-  },
-  {
-    title: "Account flows",
-    body: "Registration, forgot-password, and two-factor authentication to round out the experience.",
-  },
-];
-
-const outcomes = [
-  "More predictable navigation",
-  "Faster access to core actions",
-  "Reduced cognitive load",
-  "A scalable structure for advanced features",
-];
 
 function Reveal({
   children,
@@ -1066,103 +1045,6 @@ export default function ChimeraProject() {
                         Watch Video Walkthrough
                       </AccessibleButton>
                     </Reveal>
-                  </div>
-                </section>
-              </>
-            ),
-          },
-          {
-            id: "learnings",
-            label: "Learnings",
-            content: (
-              <>
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Outcome</Eyebrow>
-                      <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        What the redesign delivers
-                      </h2>
-                    </Reveal>
-
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                      {outcomes.map((outcome, i) => (
-                        <Tile
-                          key={outcome}
-                          delay={(i % 4) * 0.08}
-                          className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <span className="font-display text-accent-lime mb-3 block text-2xl font-bold">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <p className="font-body text-secondary/80 leading-relaxed">
-                            {outcome}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>What&apos;s Next</Eyebrow>
-                      <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        Where Chimera goes from here
-                      </h2>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-3">
-                      {nextSteps.map((step, i) => (
-                        <Tile
-                          key={step.title}
-                          delay={i * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 font-bold transition-colors">
-                            {step.title}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {step.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <div className="grid items-center gap-10 lg:grid-cols-2">
-                      <Reveal>
-                        <Eyebrow>Reflection</Eyebrow>
-                        <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                          Designing for one real user
-                        </h2>
-                        <p className="font-body text-secondary/80 mb-4 text-lg leading-relaxed">
-                          Designing for Jay kept the work honest. Every decision answered
-                          to a person who knew exactly how his system worked and exactly
-                          where it frustrated him. The heuristic evaluation did the heavy
-                          lifting, turning a fuzzy sense of clutter into a concrete list
-                          of fixes.
-                        </p>
-                        <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                          With another sprint I would put the prototype back in Jay&apos;s
-                          hands, watch him run a real export end to end, and measure how
-                          many taps the new flows actually save. That number is what would
-                          prove the redesign earns its place on his phone.
-                        </p>
-                      </Reveal>
-
-                      {/* Swap in a process snapshot: working session, whiteboard, or design wall */}
-                      <Reveal delay={0.1}>
-                        <ImageSlot
-                          ratio="aspect-[4/3]"
-                          label="Behind the process"
-                          hint="Working session with Jay, whiteboard, or the design wall"
-                          sizes="(min-width: 1024px) 50vw, 100vw"
-                        />
-                      </Reveal>
-                    </div>
                   </div>
                 </section>
               </>
