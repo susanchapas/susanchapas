@@ -906,69 +906,6 @@ export default function ChimeraProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Design Principles</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Five principles guided every screen
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Each principle traces back to a friction we found, so the redesign
-                        stays accountable to the research at every step.
-                      </p>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {principles.map((p, i) => (
-                        <Tile
-                          key={p.name}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
-                            {p.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {p.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Solution</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        A dashboard that puts the timeline first
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        We rebuilt the app around a single dashboard hub. Four primary
-                        actions sit one tap away, navigation depth drops, and viewing
-                        stays cleanly separated from processing.
-                      </p>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {features.map((feature, i) => (
-                        <Tile
-                          key={feature.name}
-                          delay={(i % 2) * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
-                            {feature.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {feature.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Product Tour</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Built for the phone in your pocket
@@ -1027,6 +964,69 @@ export default function ChimeraProject() {
                         Watch Video Walkthrough
                       </AccessibleButton>
                     </Reveal>
+                  </div>
+                </section>
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>Design Principles</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Five principles guided every screen
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        Each principle traces back to a friction we found, so the redesign
+                        stays accountable to the research at every step.
+                      </p>
+                    </Reveal>
+
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                      {principles.map((p, i) => (
+                        <Tile
+                          key={p.name}
+                          delay={(i % 3) * 0.08}
+                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
+                        >
+                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
+                            {p.name}
+                          </h3>
+                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
+                            {p.body}
+                          </p>
+                        </Tile>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>The Solution</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        A dashboard that puts the timeline first
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        We rebuilt the app around a single dashboard hub. Four primary
+                        actions sit one tap away, navigation depth drops, and viewing
+                        stays cleanly separated from processing.
+                      </p>
+                    </Reveal>
+
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {features.map((feature, i) => (
+                        <Tile
+                          key={feature.name}
+                          delay={(i % 2) * 0.08}
+                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
+                        >
+                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
+                            {feature.name}
+                          </h3>
+                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
+                            {feature.body}
+                          </p>
+                        </Tile>
+                      ))}
+                    </div>
                   </div>
                 </section>
               </>
