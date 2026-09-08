@@ -649,8 +649,8 @@ export default function BrandCommsProject() {
             content: (
               <>
                 <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
+                  <div className="container mx-auto grid items-start gap-12 px-6 lg:grid-cols-5 lg:px-12">
+                    <Reveal className="lg:col-span-2">
                       <Eyebrow>The Product</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         What BrandComms looks like
@@ -663,7 +663,9 @@ export default function BrandCommsProject() {
                       </p>
                     </Reveal>
 
-                    <ScreenshotCarousel />
+                    <div className="lg:col-span-3">
+                      <ScreenshotCarousel />
+                    </div>
                   </div>
                 </section>
 
