@@ -273,71 +273,108 @@ function ScreenshotCarousel() {
   const slide = screenshots[current];
 
   return (
-    <div
-      className="relative"
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-    >
-      <div className="bg-accent-blue/5 border-accent-blue/10 overflow-hidden rounded-2xl border">
-        <div className="relative aspect-[16/10] w-full overflow-hidden">
-          <AnimatePresence mode="wait" initial={false} custom={direction}>
-            <motion.div
-              key={slide.src}
-              custom={direction}
-              initial={{ opacity: 0, x: direction * 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -60 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                fill
-                sizes="(min-width: 1024px) 70vw, 100vw"
-                className="object-cover object-top"
-              />
-            </motion.div>
-          </AnimatePresence>
+    <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
+          aria-label="Previous screenshot"
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
+          <div className="relative aspect-[16/10] w-full overflow-hidden">
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.div
+                key={slide.src}
+                custom={direction}
+                initial={{ opacity: 0, x: direction * 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -60 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  fill
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  className="object-cover object-top"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="flex items-start justify-between gap-4 p-5">
+            <div className="min-w-0">
+              <h3 className="font-display text-secondary mb-1 text-lg font-bold">
+                {slide.title}
+              </h3>
+              <p className="font-body text-secondary/70 text-sm leading-relaxed">
+                {slide.description}
+              </p>
+            </div>
+            <span className="text-secondary/40 font-body shrink-0 text-sm">
+              {current + 1}/{screenshots.length}
+            </span>
+          </div>
         </div>
 
-        <div className="flex items-start justify-between gap-4 p-6">
-          <div className="min-w-0">
-            <h3 className="font-display text-secondary mb-1 text-lg font-bold">
-              {slide.title}
-            </h3>
-            <p className="font-body text-secondary/70 text-sm leading-relaxed">
-              {slide.description}
-            </p>
-          </div>
-          <span className="text-secondary/40 font-body shrink-0 text-sm">
-            {current + 1}/{screenshots.length}
-          </span>
-        </div>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
+          aria-label="Next screenshot"
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
 
-      <button
-        type="button"
-        onClick={() => go(-1)}
-        className="bg-primary/80 border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime absolute top-[20%] left-3 -translate-y-1/2 rounded-full border p-2 backdrop-blur-sm transition-colors"
-        aria-label="Previous screenshot"
-      >
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button
-        type="button"
-        onClick={() => go(1)}
-        className="bg-primary/80 border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime absolute top-[20%] right-3 -translate-y-1/2 rounded-full border p-2 backdrop-blur-sm transition-colors"
-        aria-label="Next screenshot"
-      >
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+      <div className="mt-4 flex items-center justify-center gap-4 lg:hidden">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
+          aria-label="Previous screenshot"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <div className="flex gap-2">
+          {screenshots.map((s, i) => (
+            <button
+              key={s.title}
+              type="button"
+              onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+              className={`h-2 rounded-full transition-all ${
+                i === current
+                  ? "bg-accent-lime w-6"
+                  : "bg-secondary/20 hover:bg-secondary/40 w-2"
+              }`}
+              aria-label={`Go to ${s.title}`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
+          aria-label="Next screenshot"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
 
-      <div className="mt-4 flex justify-center gap-2">
+      <div className="mt-4 hidden justify-center gap-2 lg:flex">
         {screenshots.map((s, i) => (
           <button
             key={s.title}
@@ -649,8 +686,8 @@ export default function BrandCommsProject() {
             content: (
               <>
                 <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto grid items-start gap-12 px-6 lg:grid-cols-5 lg:px-12">
-                    <Reveal className="lg:col-span-2">
+                  <div className="container mx-auto grid items-start gap-12 px-6 lg:grid-cols-3 lg:px-12">
+                    <Reveal>
                       <Eyebrow>The Product</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         What BrandComms looks like
@@ -663,7 +700,7 @@ export default function BrandCommsProject() {
                       </p>
                     </Reveal>
 
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-2">
                       <ScreenshotCarousel />
                     </div>
                   </div>
