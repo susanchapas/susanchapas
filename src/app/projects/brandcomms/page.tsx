@@ -119,40 +119,6 @@ const resolvedProblems = [
   "Delays and defensiveness caused by inconsistent feedback",
 ];
 
-const limitations = [
-  {
-    title: "Concept-stage project",
-    body: "BrandComms exists as a design concept with stakeholder analysis, personas, scenarios, and storyboards. No interactive prototype was built within the project timeline.",
-  },
-  {
-    title: "Single-institution focus",
-    body: "All research centered on NJIT's brand compliance ecosystem. Other universities may have different structures, tools, and pain points.",
-  },
-  {
-    title: "No direct user testing",
-    body: "Personas and scenarios were built from stakeholder analysis and domain research. Validating the concept with a working prototype and participant sessions would be the logical next step.",
-  },
-  {
-    title: "AI scope is aspirational",
-    body: "The AI compliance agents are specified at a functional level. Training data, accuracy requirements, and integration with existing university systems remain open questions.",
-  },
-];
-
-const recommendations = [
-  {
-    title: "Write brand guidelines for the people who use them",
-    body: "Students and non-designers need visual, example-based documentation. Reducing reliance on technical language would cut down on confusion and misinterpretation.",
-  },
-  {
-    title: "Make the approval process visible",
-    body: "Status tracking, timeline estimates, and feedback history should be available to the person who submitted. Transparency reduces anxiety and repeat inquiries.",
-  },
-  {
-    title: "Invest in automated compliance for routine checks",
-    body: "AI can handle straightforward validations like logo placement, color values, and font usage. This frees compliance officers to spend their time on nuanced brand decisions that require human judgment.",
-  },
-];
-
 const tools = ["Lovable", "Miro", "Google Workspace", "Canva"];
 
 function Reveal({
@@ -497,31 +463,45 @@ export default function BrandCommsProject() {
             content: (
               <section className="bg-accent-blue/5 py-16 lg:py-24">
                 <div className="container mx-auto px-6 lg:px-12">
-                  <Reveal className="mb-12 max-w-3xl">
-                    <Eyebrow>The Challenge</Eyebrow>
-                    <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                      University brand guidelines are typically written as 50-to-60-page
-                      documents for trained designers. Most students are not trained
-                      designers. When a club president needs to print flyers for an event,
-                      or a student org wants to post on social media, they have to navigate
-                      rules they were never taught to read.
-                    </p>
-                    <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
-                      The submission process compounds the confusion: materials go into
-                      a compliance portal, and days or weeks pass with no status update.
-                      Rejections arrive as one-line emails with no explanation of what
-                      to fix. This leaves students guessing, revising blindly, and
-                      sometimes printing unapproved work because the deadline
-                      won&apos;t wait.
-                    </p>
-                    <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
-                      On the staff side, compliance officers and marketing teams review
-                      a high volume of submissions by hand with no centralized way to
-                      track them. The workload is repetitive, and the feedback they give
-                      is inconsistent because there is no shared standard for how to
-                      evaluate and communicate.
-                    </p>
-                  </Reveal>
+                  <div className="mb-12 grid items-start gap-10 lg:grid-cols-5">
+                    <Reveal className="lg:col-span-3">
+                      <Eyebrow>The Challenge</Eyebrow>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        University brand guidelines are typically written as 50-to-60-page
+                        documents for trained designers. Most students are not trained
+                        designers. When a club president needs to print flyers for an event,
+                        or a student org wants to post on social media, they have to navigate
+                        rules they were never taught to read.
+                      </p>
+                      <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
+                        The submission process compounds the confusion: materials go into
+                        a compliance portal, and days or weeks pass with no status update.
+                        Rejections arrive as one-line emails with no explanation of what
+                        to fix. This leaves students guessing, revising blindly, and
+                        sometimes printing unapproved work because the deadline
+                        won&apos;t wait.
+                      </p>
+                      <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
+                        On the staff side, compliance officers and marketing teams review
+                        a high volume of submissions by hand with no centralized way to
+                        track them. The workload is repetitive, and the feedback they give
+                        is inconsistent because there is no shared standard for how to
+                        evaluate and communicate.
+                      </p>
+                    </Reveal>
+
+                    <Reveal delay={0.1} className="lg:col-span-2">
+                      <div className="bg-primary/40 border-accent-blue/10 overflow-hidden rounded-2xl border">
+                        <Image
+                          src="/assets/projects/brandcomms/Brand-Request-Current.png"
+                          alt="Current brand request workflow showing a confusing, multi-step approval process"
+                          width={800}
+                          height={600}
+                          className="h-auto w-full"
+                        />
+                      </div>
+                    </Reveal>
+                  </div>
 
                   <Reveal delay={0.1}>
                     <div className="border-accent-lime bg-primary/40 rounded-r-2xl border-l-4 p-8 lg:p-10">
@@ -708,6 +688,31 @@ export default function BrandCommsProject() {
 
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal>
+                      <Eyebrow>Tools Used</Eyebrow>
+                      <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
+                        Tools &amp; Technologies
+                      </h2>
+                    </Reveal>
+                    <div className="flex flex-wrap gap-3">
+                      {tools.map((tool, index) => (
+                        <motion.span
+                          key={tool}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.05 }}
+                          className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
+                        >
+                          {tool}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Solution</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
@@ -743,7 +748,7 @@ export default function BrandCommsProject() {
                   </div>
                 </section>
 
-                <section className="bg-primary py-16 lg:py-24">
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Key Path Scenario</Eyebrow>
@@ -795,7 +800,7 @@ export default function BrandCommsProject() {
                         <Tile
                           key={step.when}
                           delay={(index % 2) * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 rounded-2xl border p-7 transition-colors"
+                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 rounded-2xl border p-7 transition-colors"
                         >
                           <div className="mb-4 flex items-start justify-between">
                             <div>
@@ -819,7 +824,7 @@ export default function BrandCommsProject() {
                   </div>
                 </section>
 
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal>
                       <Eyebrow>Problems Addressed</Eyebrow>
@@ -844,142 +849,6 @@ export default function BrandCommsProject() {
                         </motion.li>
                       ))}
                     </ul>
-                  </div>
-                </section>
-              </>
-            ),
-          },
-          {
-            id: "learnings",
-            label: "Learnings",
-            content: (
-              <>
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Limitations &amp; Challenges</Eyebrow>
-                      <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        What we&apos;d caveat, and why
-                      </h2>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {limitations.map((item, i) => (
-                        <Tile
-                          key={item.title}
-                          delay={(i % 2) * 0.08}
-                          className="group bg-accent-blue/5 hover:bg-accent-blue/10 flex gap-5 rounded-2xl p-5 transition-colors"
-                        >
-                          <span className="bg-primary text-accent-lime font-display flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-transform group-hover:scale-110">
-                            {i + 1}
-                          </span>
-                          <div>
-                            <h3 className="font-display text-secondary mb-2 font-bold">
-                              {item.title}
-                            </h3>
-                            <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                              {item.body}
-                            </p>
-                          </div>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>What We Recommend</Eyebrow>
-                      <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        For universities, beyond the tool
-                      </h2>
-                    </Reveal>
-
-                    <div className="mb-8 grid gap-6 md:grid-cols-3">
-                      {recommendations.map((rec, i) => (
-                        <Tile
-                          key={rec.title}
-                          delay={i * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 font-bold transition-colors">
-                            {rec.title}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {rec.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-
-                <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="max-w-3xl">
-                      <Eyebrow>Reflection</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        What I&apos;d do with more time
-                      </h2>
-                      <p className="font-body text-secondary/80 mb-4 text-lg leading-relaxed">
-                        The strongest finding from this project was how mismatched the
-                        brand compliance system is with its primary audience. The
-                        guidelines exist for good reasons, and students generally want
-                        to follow them. The breakdown happens in translation: rules written
-                        in design language, a submission portal that offers no guidance,
-                        and feedback that arrives too late to be useful.
-                      </p>
-                      <p className="font-body text-secondary/80 mb-4 text-lg leading-relaxed">
-                        BrandComms proposes that AI can serve as the translator between
-                        institutional standards and the people who need to meet them.
-                        With more time, I would build an interactive prototype and test
-                        it with students and compliance staff at NJIT to measure whether
-                        the platform reduces revision cycles and improves submission
-                        quality.
-                      </p>
-                    </Reveal>
-
-                    <Tile
-                      delay={0.1}
-                      className="bg-accent-blue/5 border-accent-lime mt-8 max-w-3xl rounded-r-2xl border-l-4 p-8 lg:p-10"
-                    >
-                      <h3 className="font-display text-accent-lime mb-2 text-xl font-bold">
-                        Good systems teach, they don&apos;t just enforce.
-                      </h3>
-                      <p className="font-body text-secondary/80 leading-relaxed">
-                        The most important design decision in BrandComms was making
-                        compliance feedback educational. Every flagged issue comes with
-                        an explanation and a suggested fix, so students learn the rules
-                        by using the tool. Over time, the system produces fewer flags
-                        because users internalize the standards.
-                      </p>
-                    </Tile>
-                  </div>
-                </section>
-
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal>
-                      <Eyebrow>Tools Used</Eyebrow>
-                      <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
-                        Tools &amp; Technologies
-                      </h2>
-                    </Reveal>
-                    <div className="flex flex-wrap gap-3">
-                      {tools.map((tool, index) => (
-                        <motion.span
-                          key={tool}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.05 }}
-                          className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
-                        >
-                          {tool}
-                        </motion.span>
-                      ))}
-                    </div>
                   </div>
                 </section>
               </>

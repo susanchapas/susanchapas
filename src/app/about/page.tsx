@@ -214,7 +214,7 @@ export default function AboutPage() {
 
               <motion.div
                 style={{ y: photoY }}
-                className="relative mx-auto w-full max-w-xs"
+                className="relative mx-auto w-full max-w-md"
               >
                 <motion.div
                   initial={{ opacity: 0, scale: 0.92 }}
@@ -226,12 +226,12 @@ export default function AboutPage() {
                   }}
                   className="border-accent-blue/15 relative overflow-hidden rounded-3xl border bg-white/5 p-2.5"
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+                  <div className="relative aspect-[3/2] overflow-hidden rounded-2xl">
                     <Image
-                      src="/assets/misc/susan-umbrella.webp"
+                      src="/assets/misc/lake-erie.jpg"
                       alt="Susan Chapas"
                       fill
-                      sizes="280px"
+                      sizes="(max-width: 640px) 100vw, 400px"
                       className="object-cover"
                       priority
                     />
