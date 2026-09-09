@@ -211,18 +211,18 @@ function ResetAnimation() {
         Reset board
       </motion.div>
 
-      <div className="relative h-28 w-56">
+      <div className="relative h-28 w-64">
         {[
-          { x: -40, y: 20, r: 12, color: "bg-mint-ink", delay: 0 },
-          { x: 40, y: -15, r: -8, color: "bg-clay-ink", delay: 0.04 },
-          { x: 0, y: 30, r: 6, color: "bg-sky-ink", delay: 0.08 },
+          { x: -90, y: -18, r: 14, color: "bg-mint-ink", delay: 0 },
+          { x: 30, y: -22, r: -10, color: "bg-clay-ink", delay: 0.04 },
+          { x: -30, y: 22, r: 8, color: "bg-sky-ink", delay: 0.08 },
         ].map((tile, i) => (
           <motion.div
             key={i}
-            className="bg-secondary absolute top-1/2 left-1/2 flex w-24 flex-col gap-1 rounded-lg p-2 shadow-lg ring-1 ring-black/5"
+            className="bg-secondary absolute top-1/2 left-1/2 flex w-20 flex-col gap-1 rounded-lg p-2 shadow-lg ring-1 ring-black/5"
             animate={{
-              x: [tile.x, tile.x, -48 + i * 48, -48 + i * 48],
-              y: [tile.y, tile.y, -24, -24],
+              x: [tile.x, tile.x, -72 + i * 26, -72 + i * 26],
+              y: [tile.y, tile.y, -20, -20],
               rotate: [tile.r, tile.r, 0, 0],
             }}
             transition={{
@@ -316,15 +316,15 @@ export default function PinboardDemo({
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={m(reduce, { duration: 0.25, ease: EASE_SMOOTH })}
+            transition={m(reduce, { duration: 0.8, ease: EASE_SMOOTH })}
             className="bg-primary/80 absolute inset-0 backdrop-blur-sm"
           />
 
           <motion.div
-            initial={reduce ? false : { opacity: 0, scale: 0.96, y: 16 }}
+            initial={reduce ? false : { opacity: 0, scale: 0.97, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97, y: 8 }}
-            transition={m(reduce, { duration: 0.32, ease: EASE_SMOOTH })}
+            transition={m(reduce, { duration: 0.9, ease: EASE_SMOOTH })}
             className="border-accent-lime/30 bg-primary relative flex w-full max-w-md flex-col overflow-hidden rounded-2xl border shadow-2xl"
           >
             <button

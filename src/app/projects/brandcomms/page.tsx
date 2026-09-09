@@ -61,26 +61,31 @@ const personas = [
     name: "Maya Torres",
     archetype: "The Organizer",
     description: "22, student club president. Designs flyers and t-shirts for events. Wants to follow brand rules but finds the process inaccessible and unresponsive.",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/maya%20torres.png",
   },
   {
     name: "Sophia Sharp",
     archetype: "The Digital Voice",
     description: "21, social media chair. Needs fast turnarounds for posts and campaigns. Delayed approvals mean missed opportunities.",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/sofia%20sharp.png",
   },
   {
     name: "Karina Mitev",
     archetype: "The Storykeeper",
     description: "42, assistant director of strategic communications. Oversees brand consistency across all student and external projects.",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/karina%20mitev.png",
   },
   {
     name: "Anthony Vega",
     archetype: "The Gatekeeper",
     description: "42, compliance officer. Enforces design standards and ensures submissions meet visual and legal criteria. Workload is high and largely manual.",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/anthony%20vega.png",
   },
   {
     name: "Dr. Evelyn Cho",
     archetype: "The Mentor",
     description: "46, assistant professor. Supervises student projects that use university branding. Constantly mediates between students and the marketing department.",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/evelyn%20cho.png",
   },
 ];
 
@@ -359,6 +364,156 @@ function ScreenshotCarousel() {
   );
 }
 
+function PersonaCarousel() {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const touchStart = useRef<number | null>(null);
+
+  const go = useCallback(
+    (dir: 1 | -1) => {
+      setDirection(dir);
+      setCurrent((prev) => (prev + dir + personas.length) % personas.length);
+    },
+    [],
+  );
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  }, []);
+
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStart.current === null) return;
+      const delta = e.changedTouches[0].clientX - touchStart.current;
+      if (Math.abs(delta) > 50) go(delta < 0 ? 1 : -1);
+      touchStart.current = null;
+    },
+    [go],
+  );
+
+  const persona = personas[current];
+
+  return (
+    <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
+          aria-label="Previous persona"
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
+          <div className="relative aspect-[16/10] w-full overflow-hidden">
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.div
+                key={persona.image}
+                custom={direction}
+                initial={{ opacity: 0, x: direction * 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction * -60 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={persona.image}
+                  alt={`Persona sheet for ${persona.name}, ${persona.archetype}`}
+                  fill
+                  sizes="(min-width: 1024px) 60vw, 100vw"
+                  className="object-cover object-top"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="flex items-start justify-between gap-4 p-5">
+            <div className="min-w-0">
+              <span className="text-accent-blue font-body mb-1 block text-xs font-semibold tracking-widest uppercase">
+                {persona.archetype}
+              </span>
+              <h3 className="font-display text-secondary text-lg font-bold">
+                {persona.name}
+              </h3>
+            </div>
+            <span className="text-secondary/40 font-body shrink-0 text-sm">
+              {current + 1}/{personas.length}
+            </span>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => go(1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
+          aria-label="Next persona"
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="mt-4 flex items-center justify-center gap-4 lg:hidden">
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
+          aria-label="Previous persona"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <div className="flex gap-2">
+          {personas.map((p, i) => (
+            <button
+              key={p.name}
+              type="button"
+              onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+              className={`h-2 rounded-full transition-all ${
+                i === current
+                  ? "bg-accent-lime w-6"
+                  : "bg-secondary/20 hover:bg-secondary/40 w-2"
+              }`}
+              aria-label={`Go to ${p.name}`}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
+          aria-label="Next persona"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="mt-4 hidden justify-center gap-2 lg:flex">
+        {personas.map((p, i) => (
+          <button
+            key={p.name}
+            type="button"
+            onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+            className={`h-2 rounded-full transition-all ${
+              i === current
+                ? "bg-accent-lime w-6"
+                : "bg-secondary/20 hover:bg-secondary/40 w-2"
+            }`}
+            aria-label={`Go to ${p.name}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function BrandCommsProject() {
   return (
     <div className="lg:pl-20">
@@ -555,8 +710,8 @@ export default function BrandCommsProject() {
                 </section>
 
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
+                  <div className="container mx-auto grid items-start gap-12 px-6 lg:grid-cols-3 lg:px-12">
+                    <Reveal>
                       <Eyebrow>Personas</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Ten personas across the compliance ecosystem
@@ -570,24 +725,8 @@ export default function BrandCommsProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {personas.map((persona, i) => (
-                        <Tile
-                          key={persona.name}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <span className="text-accent-blue group-hover:text-accent-lime font-body mb-1 block text-xs font-semibold tracking-widest uppercase transition-colors">
-                            {persona.archetype}
-                          </span>
-                          <h3 className="font-display text-secondary mb-3 text-lg font-bold">
-                            {persona.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {persona.description}
-                          </p>
-                        </Tile>
-                      ))}
+                    <div className="lg:col-span-2">
+                      <PersonaCarousel />
                     </div>
                   </div>
                 </section>
