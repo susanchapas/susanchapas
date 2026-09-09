@@ -6,6 +6,7 @@ export interface Project {
   image: string;
   tags: string[];
   badge?: string;
+  inactive?: boolean;
 }
 
 export const projects: Project[] = [
@@ -48,6 +49,26 @@ export const projects: Project[] = [
     href: "/projects/brandcomms",
     image: "/assets/projects/brandcomms/brandcomms-cover-photov3.png",
     tags: ["UX Research", "Product Design", "AI/ML Concept"],
+  },
+  {
+    title: "BLV Accessibility Research",
+    description:
+      "A research publication exploring how blind and low-vision people use Meta Glasses as an AI-powered, hands-free accessibility tool — examining benefits, challenges, workarounds, and verification strategies.",
+    href: "#",
+    image: "",
+    tags: ["Accessibility", "UX Research", "Publication"],
+    badge: "In Progress",
+    inactive: true,
+  },
+  {
+    title: "Internship Data Scraper",
+    description:
+      "A personal tool that aggregates internship listings across hiring platforms into one place, cutting through fragmented alerts and tracking applications and progress per role.",
+    href: "#",
+    image: "",
+    tags: ["Python", "Web Scraping", "Productivity Tool"],
+    badge: "In Progress",
+    inactive: true,
   },
 ];
 
