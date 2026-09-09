@@ -22,6 +22,7 @@ import {
   Gamepad2,
   GraduationCap,
   HeartHandshake,
+  HelpCircle,
   Languages,
   Layers,
   MapPin,
@@ -34,6 +35,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PinboardDemo from "./PinboardDemo";
 
 type PinColor = "lime" | "clay" | "blue";
 
@@ -671,6 +673,7 @@ export default function AboutStudioWall() {
   const [selected, setSelected] = useState<string>(FACETS[0].id);
   const [open, setOpen] = useState(false);
   const [activated, setActivated] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const openRef = useRef(false);
   const resetRef = useRef<(() => void) | null>(null);
@@ -745,20 +748,30 @@ export default function AboutStudioWall() {
             <span className="hidden lg:inline">Click a tile to read more.</span>
             <span className="lg:hidden">Tap a tile to read more.</span>
           </p>
-          <motion.button
-            type="button"
-            onClick={() => resetRef.current?.()}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: activated ? 1 : 0 }}
-            transition={{ duration: 3, ease: "easeOut" }}
-            aria-hidden={!activated}
-            tabIndex={activated ? 0 : -1}
-            style={{ pointerEvents: activated ? "auto" : "none" }}
-            className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary ml-auto hidden shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none lg:inline-flex"
-          >
-            <RotateCcw className="h-4 w-4" aria-hidden="true" />
-            Reset board
-          </motion.button>
+          <div className="ml-auto hidden items-center gap-2 lg:flex">
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
+              aria-label="How to use the board"
+              className="border-accent-blue/20 text-secondary/50 hover:text-accent-lime hover:border-accent-lime/50 flex h-9 w-9 items-center justify-center rounded-full border bg-white/5 transition-colors"
+            >
+              <HelpCircle className="h-4 w-4" />
+            </button>
+            <motion.button
+              type="button"
+              onClick={() => resetRef.current?.()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: activated ? 1 : 0 }}
+              transition={{ duration: 3, ease: "easeOut" }}
+              aria-hidden={!activated}
+              tabIndex={activated ? 0 : -1}
+              style={{ pointerEvents: activated ? "auto" : "none" }}
+              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none inline-flex"
+            >
+              <RotateCcw className="h-4 w-4" aria-hidden="true" />
+              Reset board
+            </motion.button>
+          </div>
         </div>
 
         {!reduce && <PhysicsBoard onActivate={handleActivate} resetRef={resetRef} />}
@@ -830,6 +843,8 @@ export default function AboutStudioWall() {
           </AnimatePresence>,
           document.body
         )}
+
+      <PinboardDemo open={demoOpen} onClose={() => setDemoOpen(false)} />
     </div>
   );
 }
