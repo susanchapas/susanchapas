@@ -58,7 +58,7 @@ describe("Home Page", () => {
     render(<Home />);
 
     expect(screen.getByText(/I'm a designer/i)).toBeInTheDocument();
-    expect(screen.getByText(/stop at the/i)).toBeInTheDocument();
+    expect(screen.getByText(/beyond the/i)).toBeInTheDocument();
   });
 
   it("renders the selected work section", () => {

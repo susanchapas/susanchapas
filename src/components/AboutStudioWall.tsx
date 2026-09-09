@@ -673,7 +673,7 @@ export default function AboutStudioWall() {
   const [selected, setSelected] = useState<string>(FACETS[0].id);
   const [open, setOpen] = useState(false);
   const [activated, setActivated] = useState(false);
-  const [demoOpen, setDemoOpen] = useState(false);
+  const [demoOpen, setDemoOpen] = useState(heroMode);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const openRef = useRef(false);
   const resetRef = useRef<(() => void) | null>(null);
@@ -753,7 +753,7 @@ export default function AboutStudioWall() {
               type="button"
               onClick={() => setDemoOpen(true)}
               aria-label="How to use the board"
-              className="border-accent-blue/20 text-secondary/50 hover:text-accent-lime hover:border-accent-lime/50 flex h-9 w-9 items-center justify-center rounded-full border bg-white/5 transition-colors"
+              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               <HelpCircle className="h-4 w-4" />
             </button>
