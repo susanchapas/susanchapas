@@ -316,15 +316,15 @@ export default function PinboardDemo({
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={m(reduce, { duration: 0.8, ease: EASE_SMOOTH })}
+            transition={m(reduce, { duration: 2, ease: EASE_SMOOTH })}
             className="bg-primary/80 absolute inset-0 backdrop-blur-sm"
           />
 
           <motion.div
-            initial={reduce ? false : { opacity: 0, scale: 0.97, y: 12 }}
+            initial={reduce ? false : { opacity: 0, scale: 0.98, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97, y: 8 }}
-            transition={m(reduce, { duration: 0.9, ease: EASE_SMOOTH })}
+            transition={m(reduce, { duration: 2.2, ease: EASE_SMOOTH })}
             className="border-accent-lime/30 bg-primary relative flex w-full max-w-md flex-col overflow-hidden rounded-2xl border shadow-2xl"
           >
             <button
