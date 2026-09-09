@@ -687,6 +687,7 @@ export default function AboutStudioWall() {
 
   useEffect(() => {
     if (!heroMode) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
     const timer = setTimeout(() => setDemoOpen(true), 2500);
     return () => clearTimeout(timer);
   }, [heroMode]);
