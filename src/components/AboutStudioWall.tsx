@@ -673,7 +673,7 @@ export default function AboutStudioWall() {
   const [selected, setSelected] = useState<string>(FACETS[0].id);
   const [open, setOpen] = useState(false);
   const [activated, setActivated] = useState(false);
-  const [demoOpen, setDemoOpen] = useState(heroMode);
+  const [demoOpen, setDemoOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const openRef = useRef(false);
   const resetRef = useRef<(() => void) | null>(null);
@@ -684,6 +684,12 @@ export default function AboutStudioWall() {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- portal needs document, mount flag is the standard SSR-safe gate
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!heroMode) return;
+    const timer = setTimeout(() => setDemoOpen(true), 2500);
+    return () => clearTimeout(timer);
+  }, [heroMode]);
 
   const handleActivate = useCallback(() => setActivated(true), []);
 
@@ -748,7 +754,7 @@ export default function AboutStudioWall() {
             <span className="hidden lg:inline">Click a tile to read more.</span>
             <span className="lg:hidden">Tap a tile to read more.</span>
           </p>
-          <div className="ml-auto hidden items-center gap-2 lg:flex">
+          <div className="ml-auto hidden items-center gap-2 lg:flex lg:pointer-events-auto">
             <button
               type="button"
               onClick={() => setDemoOpen(true)}

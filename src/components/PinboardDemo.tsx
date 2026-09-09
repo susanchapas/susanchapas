@@ -98,15 +98,15 @@ function GrabAnimation() {
       <motion.div
         className="bg-secondary flex w-32 flex-col gap-1.5 rounded-xl p-3 text-left shadow-xl ring-1 ring-black/5"
         animate={{
-          x: [0, 0, 60, 90, 90],
-          y: [0, 0, -20, -10, -10],
-          rotate: [4, 4, -8, 12, 12],
-          scale: [1, 1.05, 1.05, 1, 1],
+          x: [0, 0, 12, 0, -10, 0, 0, 160, 160],
+          y: [0, 0, -4, 0, 3, 0, 0, -50, -50],
+          rotate: [4, 4, -2, 4, 6, 4, 4, -18, -18],
+          scale: [1, 1.05, 1.05, 1.05, 1.05, 1.05, 1.05, 0.95, 0.95],
         }}
         transition={{
-          duration: 3.5,
+          duration: 4.5,
           repeat: Infinity,
-          times: [0, 0.15, 0.5, 0.7, 1],
+          times: [0, 0.1, 0.2, 0.3, 0.4, 0.48, 0.55, 0.72, 1],
           ease: "easeInOut",
         }}
       >
@@ -124,14 +124,14 @@ function GrabAnimation() {
         className="bg-secondary absolute top-1/2 left-1/3 -z-10 flex w-28 -translate-y-1/2 flex-col gap-1 rounded-xl p-3 text-left opacity-40 shadow-lg ring-1 ring-black/5"
         style={{ rotate: -6 }}
         animate={{
-          x: [0, 0, 30, 50],
-          y: [0, 0, 10, 15],
-          rotate: [-6, -6, -2, 4],
+          x: [0, 0, 0, 0, 60, 60],
+          y: [0, 0, 0, 0, 25, 25],
+          rotate: [-6, -6, -6, -6, 10, 10],
         }}
         transition={{
-          duration: 3.5,
+          duration: 4.5,
           repeat: Infinity,
-          times: [0, 0.5, 0.65, 1],
+          times: [0, 0.55, 0.65, 0.72, 0.85, 1],
           ease: "easeInOut",
         }}
       >
@@ -144,14 +144,14 @@ function GrabAnimation() {
         viewBox="0 0 24 24"
         className="absolute top-[38%] left-[28%] z-20 h-7 w-7 drop-shadow-lg"
         animate={{
-          x: [0, 0, 60, 100, 100],
-          y: [0, 0, -20, -10, -10],
-          scale: [1, 0.9, 0.9, 1, 1],
+          x: [0, 0, 12, 0, -10, 0, 0, 160, 160],
+          y: [0, 0, -4, 0, 3, 0, 0, -50, -50],
+          scale: [1, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1, 1],
         }}
         transition={{
-          duration: 3.5,
+          duration: 4.5,
           repeat: Infinity,
-          times: [0, 0.15, 0.5, 0.7, 1],
+          times: [0, 0.1, 0.2, 0.3, 0.4, 0.48, 0.55, 0.72, 1],
           ease: "easeInOut",
         }}
       >
@@ -162,11 +162,11 @@ function GrabAnimation() {
           stroke="currentColor"
           strokeWidth="0.5"
           strokeLinejoin="round"
-          animate={{ scale: [1, 0.85, 0.85, 1, 1] }}
+          animate={{ scale: [1, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 1, 1] }}
           transition={{
-            duration: 3.5,
+            duration: 4.5,
             repeat: Infinity,
-            times: [0, 0.15, 0.65, 0.7, 1],
+            times: [0, 0.1, 0.2, 0.3, 0.4, 0.48, 0.72, 0.75, 1],
           }}
         />
       </motion.svg>
@@ -178,7 +178,7 @@ function ResetAnimation() {
   return (
     <div className="relative flex h-full flex-col items-center justify-center gap-4">
       <motion.div
-        className="bg-accent-blue flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold shadow-md"
+        className="bg-accent-blue text-primary flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold shadow-md"
         animate={{
           scale: [1, 1, 0.92, 1.05, 1, 1],
         }}
@@ -332,18 +332,14 @@ export default function PinboardDemo({
               type="button"
               onClick={onClose}
               aria-label="Close demo"
-              className="bg-primary/70 text-secondary hover:bg-accent-lime hover:text-primary absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full backdrop-blur transition-colors"
+              className="bg-secondary/90 text-primary hover:bg-accent-lime absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full shadow-lg transition-colors"
             >
-              <X size={16} />
+              <X size={18} strokeWidth={2.5} />
             </button>
 
             <div
               className="relative h-52 overflow-hidden"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
-                backgroundSize: "22px 22px",
-              }}
+              style={{ backgroundColor: "#102f5d" }}
             >
               <AnimatePresence mode="wait">
                 <motion.div
