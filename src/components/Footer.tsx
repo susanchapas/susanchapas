@@ -17,10 +17,6 @@ export default function Footer() {
                 Susan Chapas
               </h2>
             </Link>
-            <p className="text-secondary/70 font-body max-w-xs">
-              The Strategic Architect — bridging design, marketing strategy, and technical
-              implementation.
-            </p>
           </div>
 
           {/* Quick Links */}

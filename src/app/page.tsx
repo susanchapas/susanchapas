@@ -54,7 +54,7 @@ export default function Home() {
             <div className="relative grid items-center gap-10 xl:grid-cols-[auto_minmax(0,1fr)] xl:gap-16">
               <div>
                 <span className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 text-sm tracking-widest uppercase lg:text-base">
-                  UX Strategist &amp; Marketing Professional
+                  SUSAN CHAPAS
                 </span>
                 <h1 className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl">
                   <span className="whitespace-nowrap">I&apos;m a designer</span>
@@ -66,11 +66,7 @@ export default function Home() {
                   </span>{" "}
                   <span className="text-gradient whitespace-nowrap">mockup.</span>
                 </h1>
-                <p className="font-body text-secondary/70 mb-8 max-w-2xl text-lg lg:text-xl">
-                  Susan Chapas — UX strategist, front-end developer, and award-winning
-                  artist. I figure out what people actually need, design it to work for
-                  everyone, then build and ship it myself.
-                </p>
+
                 <div className="flex flex-wrap gap-4">
                   <AccessibleButton href="/projects" size="lg">
                     View My Work
