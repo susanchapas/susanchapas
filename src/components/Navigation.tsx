@@ -226,23 +226,9 @@ export default function Navigation() {
                                   : "border-transparent hover:bg-accent-blue/10"
                               }`}
                             >
-                              <button
-                                onClick={() =>
-                                  setProjectsOpen(!projectsOpen)
-                                }
-                                className="text-secondary/40 hover:text-secondary flex h-9 w-7 shrink-0 items-center justify-center transition-colors"
-                                aria-label={
-                                  projectsOpen
-                                    ? "Collapse projects"
-                                    : "Expand projects"
-                                }
-                                aria-expanded={projectsOpen}
-                              >
-                                <FolderChevron open={projectsOpen} />
-                              </button>
                               <Link
                                 href="/projects"
-                                className={`flex flex-1 items-center gap-3 py-2 pr-3 transition-colors ${
+                                className={`flex flex-1 items-center gap-3 py-2 pl-3 transition-colors ${
                                   active
                                     ? "text-accent-lime"
                                     : "text-secondary/70 hover:text-secondary"
@@ -265,6 +251,20 @@ export default function Navigation() {
                                   /projects
                                 </span>
                               </Link>
+                              <button
+                                onClick={() =>
+                                  setProjectsOpen(!projectsOpen)
+                                }
+                                className="text-secondary/40 hover:text-secondary ml-auto flex h-9 w-7 shrink-0 items-center justify-center pr-2 transition-colors"
+                                aria-label={
+                                  projectsOpen
+                                    ? "Collapse projects"
+                                    : "Expand projects"
+                                }
+                                aria-expanded={projectsOpen}
+                              >
+                                <FolderChevron open={projectsOpen} />
+                              </button>
                             </div>
                             <AnimatePresence>
                               {projectsOpen && (
