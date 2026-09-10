@@ -685,13 +685,6 @@ export default function AboutStudioWall() {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (!heroMode) return;
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;
-    const timer = setTimeout(() => setDemoOpen(true), 2500);
-    return () => clearTimeout(timer);
-  }, [heroMode]);
-
   const handleActivate = useCallback(() => setActivated(true), []);
 
   const isDesktop = () =>
@@ -756,14 +749,6 @@ export default function AboutStudioWall() {
             <span className="lg:hidden">Tap a tile to read more.</span>
           </p>
           <div className="ml-auto hidden items-center gap-2 lg:flex lg:pointer-events-auto">
-            <button
-              type="button"
-              onClick={() => setDemoOpen(true)}
-              aria-label="How to use the board"
-              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-            >
-              <HelpCircle className="h-4 w-4" />
-            </button>
             <motion.button
               type="button"
               onClick={() => resetRef.current?.()}
@@ -778,6 +763,14 @@ export default function AboutStudioWall() {
               <RotateCcw className="h-4 w-4" aria-hidden="true" />
               Reset board
             </motion.button>
+            <button
+              type="button"
+              onClick={() => setDemoOpen(true)}
+              aria-label="How to use the board"
+              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+            >
+              <HelpCircle className="h-4 w-4" />
+            </button>
           </div>
         </div>
 
