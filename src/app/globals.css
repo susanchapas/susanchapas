@@ -341,6 +341,12 @@ body {
   animation: comp-pulse 2.8s ease-in-out infinite;
 }
 
+@keyframes help-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .trace-flow,
   .trace-flow-slow,

@@ -674,6 +674,8 @@ export default function AboutStudioWall() {
   const [open, setOpen] = useState(false);
   const [activated, setActivated] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
+  const [helpGlow, setHelpGlow] = useState(false);
+  const [helpDismissed, setHelpDismissed] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const openRef = useRef(false);
   const resetRef = useRef<(() => void) | null>(null);
@@ -686,6 +688,11 @@ export default function AboutStudioWall() {
   }, []);
 
   const handleActivate = useCallback(() => setActivated(true), []);
+
+  useEffect(() => {
+    const t = setTimeout(() => setHelpGlow(true), 3000);
+    return () => clearTimeout(t);
+  }, []);
 
   const isDesktop = () =>
     typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches;
@@ -763,14 +770,34 @@ export default function AboutStudioWall() {
               <RotateCcw className="h-4 w-4" aria-hidden="true" />
               Reset board
             </motion.button>
-            <button
-              type="button"
-              onClick={() => setDemoOpen(true)}
-              aria-label="How to use the board"
-              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-            >
-              <HelpCircle className="h-4 w-4" />
-            </button>
+            <div className="relative">
+              {helpGlow && !helpDismissed && (
+                <motion.span
+                  aria-hidden="true"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1, 0.55, 1] }}
+                  transition={{ duration: 2.5, ease: "easeOut" }}
+                  className="pointer-events-none absolute inset-[-5px] rounded-full"
+                  style={{
+                    background:
+                      "conic-gradient(#fff 0%, var(--accent-lime) 15%, #091a35 35%, var(--accent-clay) 50%, #fff 65%, var(--accent-blue) 80%, #091a35 95%, #fff 100%)",
+                    mask: "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
+                    WebkitMask:
+                      "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
+                    filter: "drop-shadow(0 0 10px var(--accent-lime)) drop-shadow(0 0 4px #fff)",
+                    animation: "help-ring-spin 3s linear infinite",
+                  }}
+                />
+              )}
+              <button
+                type="button"
+                onClick={() => { setHelpDismissed(true); setDemoOpen(true); }}
+                aria-label="How to use the board"
+                className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary relative flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+              >
+                <HelpCircle className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
 
