@@ -279,7 +279,7 @@ function ImageSlot({
 
 export default function FileFinderProject() {
   return (
-    <div className="lg:pl-20">
+    <div className="">
       <ProjectHero src={projectData.heroImage} alt={projectData.title}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}

@@ -14,7 +14,7 @@ const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
 export default function Home() {
   return (
     <div className="bg-primary relative overflow-hidden">
-      <div className="relative z-10 lg:pl-20">
+      <div className="relative z-10">
         <section className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-24 pb-12 lg:pt-40 lg:pb-28">
           <div className="gradient-mesh absolute inset-0">
             <div
@@ -56,7 +56,7 @@ export default function Home() {
                 <span className="text-accent-lime font-body mb-6 inline-flex items-center gap-2 text-sm tracking-widest uppercase lg:text-base">
                   SUSAN CHAPAS
                 </span>
-                <h1 className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl">
+                <h1 className="font-display text-secondary mb-10 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl">
                   <span className="whitespace-nowrap">I&apos;m a designer</span>
                   <br />
                   <span className="whitespace-nowrap">who enjoys going</span>

@@ -20,27 +20,7 @@ export default function GalleryPage() {
   const activeArtwork = artworks.find((art) => art.id === activeId) ?? null;
 
   return (
-    <div className="lg:pl-20">
-      <section className="gradient-mesh py-16 lg:py-20">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={m(reduce, { duration: 0.8, ease: [0.22, 1, 0.36, 1] })}
-            className="max-w-3xl"
-          >
-            <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-              Selected Work
-            </span>
-            <h1 className="font-display text-secondary mb-6 text-4xl font-bold lg:text-5xl xl:text-6xl">
-              Paint, Pixels
-              <br />
-              <span className="text-gradient">&amp; Motion</span>
-            </h1>
-          </motion.div>
-        </div>
-      </section>
-
+    <div className="">
       <section className="bg-primary border-accent-blue/10 sticky top-0 z-30 border-b py-6">
         <div className="container mx-auto px-6 lg:px-12">
           <div

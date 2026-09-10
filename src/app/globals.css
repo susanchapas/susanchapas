@@ -269,6 +269,14 @@ body {
   }
 }
 
+/* Nav-aware content offset */
+@media (min-width: 1024px) {
+  .nav-content {
+    padding-left: var(--nav-width, 260px);
+    transition: padding-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
 /* Content visibility for below-fold sections */
 .content-visibility-auto {
   content-visibility: auto;

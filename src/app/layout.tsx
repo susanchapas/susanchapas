@@ -148,10 +148,12 @@ export default function RootLayout({
         <LazyCustomCursor />
         <Navigation />
         <SmoothScrollProvider>
-          <main id="main-content" tabIndex={-1}>
-            {children}
-          </main>
-          <SiteChrome />
+          <div className="nav-content">
+            <main id="main-content" tabIndex={-1}>
+              {children}
+            </main>
+            <SiteChrome />
+          </div>
         </SmoothScrollProvider>
       </body>
     </html>

@@ -7,7 +7,7 @@ import { featuredProjects } from "@/lib/projects";
 export default function SelectedWork() {
   return (
     <section
-      className="bg-primary content-visibility-auto py-24 lg:py-32 lg:pl-20"
+      className="bg-primary content-visibility-auto py-24 lg:py-32"
       aria-labelledby="selected-work-heading"
     >
       <div className="container mx-auto px-6 lg:px-12">

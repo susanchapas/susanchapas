@@ -516,7 +516,7 @@ function PersonaCarousel() {
 
 export default function BrandCommsProject() {
   return (
-    <div className="lg:pl-20">
+    <div className="">
       <ProjectHero src="/assets/projects/brandcomms/BrandComms-Hero.webp" alt={projectData.title}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}

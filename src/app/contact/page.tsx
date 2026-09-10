@@ -124,48 +124,7 @@ export default function ContactPage() {
     } text-secondary font-body placeholder:text-secondary/40 focus:outline-none focus:ring-2 focus:ring-accent-lime focus:border-transparent transition-all`;
 
   return (
-    <div className="lg:pl-20">
-      {/* Hero Section */}
-      <section className="gradient-mesh py-24 lg:py-32">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl"
-          >
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase"
-            >
-              Get in Touch
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="font-display text-secondary mb-6 text-4xl font-bold lg:text-5xl xl:text-6xl"
-            >
-              Let&apos;s Create
-              <br />
-              <span className="text-gradient">Something Great</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="font-body text-secondary/70 max-w-2xl text-lg"
-            >
-              I&apos;m always open to discussing new opportunities, creative projects, or
-              ways we can collaborate. Drop me a message!
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
+    <div className="">
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">

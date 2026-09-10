@@ -82,7 +82,7 @@ const tools = [
 
 export default function SpringBankProject() {
   return (
-    <div className="lg:pl-20">
+    <div className="">
       {/* Hero Section */}
       <ProjectHero src="/gallery/Red Hook Project Hero.webp" alt={projectData.title}>
         <motion.div

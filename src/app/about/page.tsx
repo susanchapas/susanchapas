@@ -139,7 +139,7 @@ export default function AboutPage() {
   const textY = useTransform(scrollYProgress, [0, 1], [0, -20]);
 
   return (
-    <div className="bg-primary relative overflow-hidden lg:pl-20">
+    <div className="bg-primary relative overflow-hidden">
       {/* Desktop: full-screen pinboard */}
       <section className="gradient-mesh relative hidden overflow-hidden lg:block lg:py-0">
         <AboutStudioWall />

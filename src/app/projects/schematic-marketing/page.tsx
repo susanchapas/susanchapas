@@ -81,7 +81,7 @@ const services = [
 
 export default function SchematicMarketingProject() {
   return (
-    <div className="lg:pl-20">
+    <div className="">
       {/* Hero Section */}
       <section className="relative flex min-h-[70vh] items-end py-16 lg:py-24">
         <div className="bg-primary absolute inset-0 z-0">
