@@ -476,16 +476,6 @@ export default function Navigation() {
                       {"isFolder" in item ? (
                         <>
                           <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => setProjectsOpen(!projectsOpen)}
-                              className="text-secondary/40 hover:text-secondary transition-colors"
-                              aria-expanded={projectsOpen}
-                              aria-label={
-                                projectsOpen ? "Collapse projects" : "Expand projects"
-                              }
-                            >
-                              <FolderChevron open={projectsOpen} size={14} />
-                            </button>
                             <Link
                               href="/projects"
                               className={`font-body text-2xl font-bold transition-colors ${
@@ -498,6 +488,16 @@ export default function Navigation() {
                             >
                               /projects
                             </Link>
+                            <button
+                              onClick={() => setProjectsOpen(!projectsOpen)}
+                              className="text-secondary/40 hover:text-secondary transition-colors"
+                              aria-expanded={projectsOpen}
+                              aria-label={
+                                projectsOpen ? "Collapse projects" : "Expand projects"
+                              }
+                            >
+                              <FolderChevron open={projectsOpen} size={14} />
+                            </button>
                           </div>
                           <AnimatePresence>
                             {projectsOpen && (
