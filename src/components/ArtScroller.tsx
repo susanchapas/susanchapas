@@ -6,16 +6,6 @@ import ArtImage from "./ArtImage";
 
 const artPieces = [
   { src: "/gallery/Mindless-Mirth-final.webp", alt: "Mindless Mirth", type: "image" },
-  {
-    src: "/gallery/eat, drink, & be merry.webp",
-    alt: "Eat, Drink, & Be Merry",
-    type: "image",
-  },
-  {
-    src: "/gallery/A bike for every rider.webp",
-    alt: "A Bike for Every Rider",
-    type: "image",
-  },
   { src: "/gallery/THE NTL photo.webp", alt: "The NTL", type: "image" },
   { src: "/gallery/Watercolor Painting.webp", alt: "Watercolor Painting", type: "image" },
   { src: "/gallery/Red Hook Launch Photo.webp", alt: "Red Hook Launch", type: "image" },
