@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ReactNode } from "react";
 import BackToProjects from "@/components/BackToProjects";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
@@ -65,7 +66,41 @@ const posters = [
   },
 ];
 
+const atAGlance = [
+  { label: "My role", value: "Founder & Designer" },
+  { label: "Team", value: "Solo" },
+  { label: "Timeline", value: "Ongoing" },
+  { label: "Disciplines", value: "Brand identity, package design, advertising, business strategy" },
+];
+
 const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma"];
+
+function Tile({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ type: "spring", stiffness: 280, damping: 22, mass: 0.7, delay }}
+      whileHover={{
+        y: -8,
+        scale: 1.03,
+        transition: { type: "spring", stiffness: 400, damping: 24 },
+      }}
+      className={`will-change-transform ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function SousSenseProject() {
   return (
@@ -114,13 +149,13 @@ export default function SousSenseProject() {
       </ProjectHero>
 
       <section className="bg-primary py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
+        <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            className="lg:col-span-2"
           >
             <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
               Overview
@@ -129,6 +164,25 @@ export default function SousSenseProject() {
               {projectData.description}
             </p>
           </motion.div>
+
+          <Tile
+            delay={0.1}
+            className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
+          >
+            <h3 className="font-display text-secondary mb-5 text-sm tracking-widest uppercase">
+              At a glance
+            </h3>
+            <dl className="space-y-4">
+              {atAGlance.map((item) => (
+                <div key={item.label}>
+                  <dt className="text-secondary/50 text-xs tracking-wide uppercase">
+                    {item.label}
+                  </dt>
+                  <dd className="font-body text-secondary mt-0.5">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Tile>
         </div>
       </section>
 

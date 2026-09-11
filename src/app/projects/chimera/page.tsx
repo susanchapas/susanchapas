@@ -102,22 +102,32 @@ const principles = [
   {
     name: "Immediate access to live state",
     body: "Open the app and the cameras are right there, no hunting for the feed that matters most.",
+    src: "",
+    alt: "Live state principle screen",
   },
   {
     name: "Visible system status",
     body: "Every action reports back, so an export or a deletion always shows what the system is doing.",
+    src: "",
+    alt: "System status principle screen",
   },
   {
     name: "Progressive disclosure",
     body: "Surface the controls people reach for first and tuck power features one layer down.",
+    src: "",
+    alt: "Progressive disclosure principle screen",
   },
   {
     name: "Consistency across flows",
     body: "The timeline behaves the same way in live viewing, event history, and clip making.",
+    src: "",
+    alt: "Consistency principle screen",
   },
   {
     name: "Minimal cognitive load",
     body: "Fewer choices per screen, clearer labels, and a navigation depth that stays shallow.",
+    src: "",
+    alt: "Minimal cognitive load principle screen",
   },
 ];
 
@@ -348,6 +358,156 @@ function ImageSlot({
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+function PrinciplesCarousel() {
+  const [active, setActive] = useState(0);
+  const direction = useRef(0);
+
+  const go = useCallback(
+    (next: number) => {
+      direction.current = next > active ? 1 : -1;
+      setActive(next);
+    },
+    [active]
+  );
+
+  const prev = useCallback(
+    () => go((active - 1 + principles.length) % principles.length),
+    [active, go]
+  );
+  const next = useCallback(
+    () => go((active + 1) % principles.length),
+    [active, go]
+  );
+
+  const p = principles[active];
+
+  return (
+    <div className="flex flex-col gap-6">
+      {/* Mobile: no container */}
+      <div className="flex flex-col items-center gap-6 lg:hidden">
+        <div className="shrink-0" style={{ height: "min(40vh, 380px)", aspectRatio: "9/19.5" }}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, x: direction.current * 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction.current * -40 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex min-h-[160px] flex-1 flex-col justify-center text-center">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
+                Principle {active + 1} of {principles.length}
+              </span>
+              <h3 className="font-display text-secondary mb-3 text-xl font-bold">
+                {p.name}
+              </h3>
+              <p className="font-body text-secondary/70 max-w-lg text-base leading-relaxed">
+                {p.body}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Desktop: split panel */}
+      <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
+        <div className="bg-primary/60 border-accent-blue/10 flex items-center justify-center border-r px-8 py-8">
+          <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, x: direction.current * 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: direction.current * -40 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
+          <div className="flex min-h-[160px] flex-col justify-center">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
+                  Principle {active + 1} of {principles.length}
+                </span>
+                <h3 className="font-display text-secondary mb-3 text-2xl font-bold">
+                  {p.name}
+                </h3>
+                <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">
+                  {p.body}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous principle"
+          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div className="flex gap-2">
+          {principles.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={`Go to principle ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                i === active
+                  ? "bg-accent-lime w-6"
+                  : "bg-accent-blue/30 hover:bg-accent-blue/50 w-2"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next principle"
+          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
@@ -688,15 +848,20 @@ export default function ChimeraProject() {
                   </div>
 
                   <Reveal delay={0.1}>
-                    <div className="border-accent-lime bg-primary/40 rounded-r-2xl border-l-4 p-8 lg:p-10">
-                      <span className="text-accent-lime font-body text-sm tracking-widest uppercase">
-                        How might we
-                      </span>
-                      <p className="font-display text-secondary mt-3 text-2xl leading-snug font-bold lg:text-3xl">
-                        …rebuild Jay&apos;s camera app around the way he actually uses it,
-                        so live viewing, event retrieval, and exporting take fewer steps
-                        and less guesswork?
-                      </p>
+                    <div className="grid grid-cols-[auto_1fr] items-start gap-x-5">
+                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-accent-lime" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5.5 5.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.5V10" /><circle cx="8" cy="12.5" r="0.75" fill="currentColor" stroke="none" /></svg>
+                      </div>
+                      <div>
+                        <span className="text-accent-lime font-body text-base tracking-widest uppercase">
+                          How might we
+                        </span>
+                        <p className="font-display text-secondary mt-2 text-2xl leading-snug font-bold lg:text-3xl">
+                          <span className="text-accent-lime">…</span>rebuild Jay&apos;s camera app around the way he actually uses it,
+                          so live viewing, event retrieval, and exporting take fewer steps
+                          and less guesswork?
+                        </p>
+                      </div>
                     </div>
                   </Reveal>
                 </div>
@@ -969,37 +1134,6 @@ export default function ChimeraProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Design Principles</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Five principles guided every screen
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Each principle traces back to a friction we found, so the redesign
-                        stays accountable to the research at every step.
-                      </p>
-                    </Reveal>
-
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {principles.map((p, i) => (
-                        <Tile
-                          key={p.name}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
-                            {p.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {p.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
-                  <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Solution</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         A dashboard that puts the timeline first
@@ -1016,7 +1150,7 @@ export default function ChimeraProject() {
                         <Tile
                           key={feature.name}
                           delay={(i % 2) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
+                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
                         >
                           <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
                             {feature.name}
@@ -1027,6 +1161,22 @@ export default function ChimeraProject() {
                         </Tile>
                       ))}
                     </div>
+                  </div>
+                </section>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>Design Principles</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Five principles guided every screen
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        Each principle traces back to a friction we found, so the redesign
+                        stays accountable to the research at every step.
+                      </p>
+                    </Reveal>
+
+                    <PrinciplesCarousel />
                   </div>
                 </section>
               </>

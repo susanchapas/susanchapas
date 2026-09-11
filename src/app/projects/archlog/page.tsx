@@ -362,14 +362,19 @@ export default function ArchLogProject() {
                   </div>
 
                   <Reveal delay={0.1}>
-                    <div className="border-accent-lime bg-primary/40 rounded-r-2xl border-l-4 p-8 lg:p-10">
-                      <span className="text-accent-lime font-body text-sm tracking-widest uppercase">
-                        How might we
-                      </span>
-                      <p className="font-display text-secondary mt-3 text-2xl leading-snug font-bold lg:text-3xl">
-                        …create a low-friction tool that helps architecture students
-                        develop concepts with greater clarity inside the studio?
-                      </p>
+                    <div className="grid grid-cols-[auto_1fr] items-start gap-x-5">
+                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-accent-lime" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5.5 5.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.5V10" /><circle cx="8" cy="12.5" r="0.75" fill="currentColor" stroke="none" /></svg>
+                      </div>
+                      <div>
+                        <span className="text-accent-lime font-body text-base tracking-widest uppercase">
+                          How might we
+                        </span>
+                        <p className="font-display text-secondary mt-2 text-2xl leading-snug font-bold lg:text-3xl">
+                          <span className="text-accent-lime">…</span>create a low-friction tool that helps architecture students
+                          develop concepts with greater clarity inside the studio?
+                        </p>
+                      </div>
                     </div>
                   </Reveal>
                 </div>
