@@ -154,6 +154,19 @@ export const artworks: readonly Artwork[] = [
     type: "image",
   },
   {
+    id: 21,
+    title: "Shape Collage",
+    category: "Traditional Art",
+    year: "2026",
+    width: 2680,
+    height: 3588,
+    description:
+      "A balanced, asymmetrical, two-dimensional collage using only two different shapes of cut paper. By combining identical isosceles triangles with a single organic shape, I created an unmistakable identity with movement for the subject of my composition.",
+    medium: '9" x 12" — Magazines & Bristol paper',
+    src: "/gallery/Chapas Shape Collage 2.webp",
+    type: "image",
+  },
+  {
     id: 15,
     title: "Posing at Gallery",
     category: "Photography",
