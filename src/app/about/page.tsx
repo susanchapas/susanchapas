@@ -6,14 +6,11 @@ import Link from "next/link";
 import { useRef } from "react";
 import {
   ArrowRight,
-  Brush,
   Code2,
   Coffee,
   Compass,
   Gamepad2,
   GraduationCap,
-  HeartHandshake,
-  Languages,
   MapPin,
   PenTool,
   Utensils,
@@ -81,27 +78,6 @@ const personal: {
   href?: string;
   linkLabel?: string;
 }[] = [
-  {
-    Icon: Languages,
-    title: "Hablo español",
-    body: "Fully fluent in English and Spanish. I work with audiences, teams, and communities in both languages.",
-    accent: "text-accent-blue/60",
-    span: "md:col-span-2",
-  },
-  {
-    Icon: Brush,
-    title: "Mindless Mirth",
-    body: "Off the clock, I paint. My piece “Mindless Mirth” won recognition for exploring human emotion through abstraction.",
-    accent: "text-accent-clay/60",
-    href: "/gallery",
-    linkLabel: "See the gallery",
-  },
-  {
-    Icon: HeartHandshake,
-    title: "Community-connected",
-    body: "From bank outreach to event planning, I gravitate toward work that’s connected to its neighborhood.",
-    accent: "text-accent-blue/60",
-  },
   {
     Icon: MapPin,
     title: "Jersey City & NYC",

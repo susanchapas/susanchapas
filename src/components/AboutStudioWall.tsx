@@ -316,12 +316,19 @@ function PhysicsBoard({
 
       Composite.add(engine.world, [...tiles, mouseConstraint]);
 
+      const wakeTiles = () => {
+        tiles.forEach((b) => Matter.Sleeping.set(b, false));
+        startLoop();
+      };
+      board.addEventListener("mousedown", wakeTiles);
+
       const releaseMouse = () => {
         mouse.button = -1;
       };
       window.addEventListener("blur", releaseMouse);
       window.addEventListener("pointerup", releaseMouse);
       cleanups.push(() => {
+        board.removeEventListener("mousedown", wakeTiles);
         window.removeEventListener("mousemove", mouse.mousemove);
         window.removeEventListener("mouseup", mouse.mouseup);
         window.removeEventListener("blur", releaseMouse);

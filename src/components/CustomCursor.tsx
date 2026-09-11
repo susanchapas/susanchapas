@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function CustomCursor() {
@@ -9,10 +9,12 @@ export default function CustomCursor() {
   const [isClicking, setIsClicking] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
+  const isVisibleRef = useRef(false);
+  const isHoveringRef = useRef(false);
+
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  // Stiffer spring for snappier feel
   const springConfig = { damping: 35, stiffness: 600 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
@@ -21,45 +23,45 @@ export default function CustomCursor() {
     (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      // Only set visible if it wasn't before to avoid re-renders
-      if (!isVisible) setIsVisible(true);
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        setIsVisible(true);
+      }
     },
-    [cursorX, cursorY, isVisible]
+    [cursorX, cursorY]
   );
 
   const handleMouseDown = useCallback(() => setIsClicking(true), []);
   const handleMouseUp = useCallback(() => setIsClicking(false), []);
-  const handleMouseLeave = useCallback(() => setIsVisible(false), []);
-  const handleMouseEnter = useCallback(() => setIsVisible(true), []);
+  const handleMouseLeave = useCallback(() => {
+    isVisibleRef.current = false;
+    setIsVisible(false);
+  }, []);
+  const handleMouseEnter = useCallback(() => {
+    isVisibleRef.current = true;
+    setIsVisible(true);
+  }, []);
 
-  // Event delegation for hover detection
   const handleMouseOver = useCallback((e: MouseEvent) => {
     const target = e.target as HTMLElement;
-    const isInteractive = target.closest(
+    const hovering = !!target.closest(
       'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])'
     );
-    setIsHovering(!!isInteractive);
+    if (hovering !== isHoveringRef.current) {
+      isHoveringRef.current = hovering;
+      setIsHovering(hovering);
+    }
   }, []);
 
   useEffect(() => {
-    // Check if touch device
-    const checkTouchDevice = () => {
-      setIsTouchDevice(
-        "ontouchstart" in window ||
-          navigator.maxTouchPoints > 0 ||
-          window.matchMedia("(pointer: coarse)").matches
-      );
-    };
+    const touch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
+    setIsTouchDevice(touch);
+    if (touch) return;
 
-    checkTouchDevice();
-
-    if (isTouchDevice) return;
-
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mousedown", handleMouseDown);
@@ -77,7 +79,6 @@ export default function CustomCursor() {
       document.body.removeEventListener("mouseenter", handleMouseEnter);
     };
   }, [
-    isTouchDevice,
     handleMouseMove,
     handleMouseDown,
     handleMouseUp,
