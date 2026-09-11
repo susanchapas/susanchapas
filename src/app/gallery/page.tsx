@@ -21,7 +21,7 @@ export default function GalleryPage() {
 
   return (
     <div className="">
-      <section className="bg-primary border-accent-blue/10 sticky top-0 z-30 border-b py-6">
+      <section className="bg-primary border-accent-blue/10 sticky top-16 z-30 border-b py-6 lg:top-0">
         <div className="container mx-auto px-6 lg:px-12">
           <div
             className="flex flex-wrap gap-3"

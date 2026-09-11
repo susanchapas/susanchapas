@@ -512,6 +512,130 @@ function PrinciplesCarousel() {
   );
 }
 
+function ProductTourCarousel() {
+  const [active, setActive] = useState(0);
+  const direction = useRef(0);
+
+  const go = useCallback(
+    (next: number) => {
+      direction.current = next > active ? 1 : -1;
+      setActive(next);
+    },
+    [active]
+  );
+
+  const prev = useCallback(
+    () => go((active - 1 + productScreens.length) % productScreens.length),
+    [active, go]
+  );
+  const next = useCallback(
+    () => go((active + 1) % productScreens.length),
+    [active, go]
+  );
+
+  const screen = productScreens[active];
+
+  return (
+    <div className="flex flex-col gap-6">
+      {/* Mobile: single-item carousel */}
+      <div className="flex flex-col items-center gap-6 lg:hidden">
+        <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, x: direction.current * 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction.current * -40 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <PhoneSlot
+                src={screen.src}
+                alt={screen.alt}
+                label={screen.caption.split(":")[0]}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex min-h-[60px] flex-col justify-center text-center">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="font-body text-secondary/60 max-w-sm text-sm">
+                {screen.caption}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Desktop: original grid */}
+      <div className="hidden gap-6 sm:grid-cols-2 lg:grid lg:grid-cols-4">
+        {productScreens.map((s, i) => (
+          <Tile key={i} delay={(i % 4) * 0.08} className="group h-full">
+            <figure className="h-full">
+              <PhoneSlot
+                src={s.src}
+                alt={s.alt}
+                label={s.caption.split(":")[0]}
+              />
+              <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
+                {s.caption}
+              </figcaption>
+            </figure>
+          </Tile>
+        ))}
+      </div>
+
+      {/* Carousel controls — mobile only */}
+      <div className="flex items-center justify-center gap-4 lg:hidden">
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous screen"
+          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div className="flex gap-2">
+          {productScreens.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={`Go to screen ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                i === active
+                  ? "bg-accent-lime w-6"
+                  : "bg-accent-blue/30 hover:bg-accent-blue/50 w-2"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next screen"
+          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function ChallengeGrid({
   images,
   onOpen,
@@ -1082,22 +1206,7 @@ export default function ChimeraProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                      {productScreens.map((screen, i) => (
-                        <Tile key={i} delay={(i % 4) * 0.08} className="group h-full">
-                          <figure className="h-full">
-                            <PhoneSlot
-                              src={screen.src}
-                              alt={screen.alt}
-                              label={screen.caption.split(":")[0]}
-                            />
-                            <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
-                              {screen.caption}
-                            </figcaption>
-                          </figure>
-                        </Tile>
-                      ))}
-                    </div>
+                    <ProductTourCarousel />
 
                     <Reveal
                       delay={0.1}
