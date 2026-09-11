@@ -228,7 +228,7 @@ export default function AboutPage() {
                 >
                   <div className="relative aspect-[3/2] overflow-hidden rounded-2xl">
                     <Image
-                      src="/assets/misc/lake-erie.jpg"
+                      src="/assets/misc/lake-erie.webp"
                       alt="Susan Chapas"
                       fill
                       sizes="(max-width: 640px) 100vw, 400px"
@@ -252,7 +252,7 @@ export default function AboutPage() {
         </section>
 
         <section
-          className="relative py-20"
+          className="content-visibility-auto relative py-20"
           aria-labelledby="what-heading"
         >
           <div className="container mx-auto max-w-6xl px-6">
@@ -305,7 +305,7 @@ export default function AboutPage() {
         </section>
 
         <section
-          className="bg-accent-blue/5 relative py-20"
+          className="content-visibility-auto bg-accent-blue/5 relative py-20"
           aria-labelledby="edu-heading"
         >
           <div className="container mx-auto max-w-6xl px-6">
@@ -348,7 +348,7 @@ export default function AboutPage() {
         </section>
 
         <section
-          className="relative py-20"
+          className="content-visibility-auto relative py-20"
           aria-labelledby="personal-heading"
         >
           <div className="container mx-auto max-w-6xl px-6">

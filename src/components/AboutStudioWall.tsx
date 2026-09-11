@@ -21,10 +21,8 @@ import {
   Compass,
   Gamepad2,
   GraduationCap,
-  HeartHandshake,
   HelpCircle,
   Languages,
-  Layers,
   MapPin,
   MousePointer2,
   Palette,
@@ -154,29 +152,6 @@ const FACETS: Facet[] = [
     pos: { x: 0.3, y: 0.4 },
   },
   {
-    id: "range",
-    kicker: "Five hats, one head",
-    title: "I don't pick a lane",
-    detail:
-      "Marketing, UX, front-end code, fine art, and two languages. I'm wired to connect all of them.",
-    Icon: Layers,
-    pin: "clay",
-    rot: -6,
-    pos: { x: 0.53, y: 0.84 },
-  },
-  {
-    id: "community",
-    kicker: "Plugged into my city",
-    title: "Community-rooted",
-    detail:
-      "From bank outreach to event planning, I gravitate to work that touches its neighborhood.",
-    Icon: HeartHandshake,
-    pin: "blue",
-    tags: ["Community Outreach", "Event Planning"],
-    rot: 8,
-    pos: { x: 0.74, y: 0.86 },
-  },
-  {
     id: "location",
     kicker: "Jersey City & NYC",
     title: "A metro-area local",
@@ -304,7 +279,7 @@ function PhysicsBoard({
 
       let W = board.clientWidth;
       let H = board.clientHeight;
-      const engine = Engine.create();
+      const engine = Engine.create({ enableSleeping: true });
       engine.gravity.y = 0;
       engine.gravity.x = 0;
       engine.positionIterations = 12;
@@ -358,6 +333,8 @@ function PhysicsBoard({
       Events.on(mouseConstraint, "startdrag", () => {
         stretchX = 0;
         stretchY = 0;
+        tiles.forEach((b) => Matter.Sleeping.set(b, false));
+        startLoop();
         onActivate();
       });
       Events.on(mouseConstraint, "enddrag", (event) => {
@@ -376,12 +353,16 @@ function PhysicsBoard({
           Body.setAngle(b, (FACETS[i].rot * Math.PI) / 180);
           Body.setVelocity(b, { x: 0, y: 0 });
           Body.setAngularVelocity(b, 0);
+          Matter.Sleeping.set(b, false);
         });
+        startLoop();
       };
 
       const MAX_SPEED = 45;
       const BORDER_PULL = 0.012;
       let last = performance.now();
+      let loopRunning = false;
+
       const update = (now: number) => {
         const dt = Math.min(now - last, 1000 / 30);
         last = now;
@@ -402,6 +383,7 @@ function PhysicsBoard({
           mouse.position.y = Math.max(0, Math.min(H, mouse.position.y));
         }
         Engine.update(engine, dt);
+        let allSleeping = true;
         tiles.forEach((b, i) => {
           const speed = Math.hypot(b.velocity.x, b.velocity.y);
           if (speed > MAX_SPEED) {
@@ -438,14 +420,27 @@ function PhysicsBoard({
             else if (max.y < 0) ty = H + bh;
             if (tx || ty) Body.translate(b, { x: tx, y: ty });
           }
+          if (!b.isSleeping) allSleeping = false;
           const node = nodeRefs.current[i];
           if (!node) return;
           node.style.transform = `translate(${b.position.x - sizes[i].hw}px, ${b.position.y - sizes[i].hh}px) rotate(${b.angle}rad)`;
           node.style.setProperty("--tile-angle", `${b.angle}rad`);
         });
+        if (allSleeping && !mouseConstraint.body) {
+          loopRunning = false;
+          return;
+        }
         raf = requestAnimationFrame(update);
       };
-      raf = requestAnimationFrame(update);
+
+      const startLoop = () => {
+        if (loopRunning) return;
+        loopRunning = true;
+        last = performance.now();
+        raf = requestAnimationFrame(update);
+      };
+
+      startLoop();
       setReady(true);
 
       const onResize = () => {

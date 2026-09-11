@@ -39,7 +39,6 @@ export default function ProjectCard({
               src={encodedImage}
               alt={`${title} project preview`}
               fill
-              unoptimized
               priority={priority}
               loading={priority ? "eager" : "lazy"}
               className="object-cover"

@@ -61,31 +61,31 @@ const personas = [
     name: "Maya Torres",
     archetype: "The Organizer",
     description: "22, student club president. Designs flyers and t-shirts for events. Wants to follow brand rules but finds the process inaccessible and unresponsive.",
-    image: "/assets/projects/brandcomms/BrandComms%20personas/maya%20torres.png",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/maya%20torres.webp",
   },
   {
     name: "Sophia Sharp",
     archetype: "The Digital Voice",
     description: "21, social media chair. Needs fast turnarounds for posts and campaigns. Delayed approvals mean missed opportunities.",
-    image: "/assets/projects/brandcomms/BrandComms%20personas/sofia%20sharp.png",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/sofia%20sharp.webp",
   },
   {
     name: "Karina Mitev",
     archetype: "The Storykeeper",
     description: "42, assistant director of strategic communications. Oversees brand consistency across all student and external projects.",
-    image: "/assets/projects/brandcomms/BrandComms%20personas/karina%20mitev.png",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/karina%20mitev.webp",
   },
   {
     name: "Anthony Vega",
     archetype: "The Gatekeeper",
     description: "42, compliance officer. Enforces design standards and ensures submissions meet visual and legal criteria. Workload is high and largely manual.",
-    image: "/assets/projects/brandcomms/BrandComms%20personas/anthony%20vega.png",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/anthony%20vega.webp",
   },
   {
     name: "Dr. Evelyn Cho",
     archetype: "The Mentor",
     description: "46, assistant professor. Supervises student projects that use university branding. Constantly mediates between students and the marketing department.",
-    image: "/assets/projects/brandcomms/BrandComms%20personas/evelyn%20cho.png",
+    image: "/assets/projects/brandcomms/BrandComms%20personas/evelyn%20cho.webp",
   },
 ];
 
@@ -630,7 +630,7 @@ export default function BrandCommsProject() {
                     <Reveal delay={0.1} className="lg:col-span-2">
                       <div className="bg-primary/40 border-accent-blue/10 overflow-hidden rounded-2xl border">
                         <Image
-                          src="/assets/projects/brandcomms/Brand-Request-Current.png"
+                          src="/assets/projects/brandcomms/Brand-Request-Current.webp"
                           alt="Current brand request workflow showing a confusing, multi-step approval process"
                           width={800}
                           height={600}

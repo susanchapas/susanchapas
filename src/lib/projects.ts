@@ -47,7 +47,7 @@ export const projects: Project[] = [
     description:
       "A product concept for an AI-powered brand management platform that simplifies design approval for students, universities, and partners through automated compliance feedback and built-in brand education.",
     href: "/projects/brandcomms",
-    image: "/assets/projects/brandcomms/brandcomms-cover-photov3.png",
+    image: "/assets/projects/brandcomms/brandcomms-cover.webp",
     tags: ["UX Research", "Product Design", "AI/ML Concept"],
   },
   {
