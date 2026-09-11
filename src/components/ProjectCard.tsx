@@ -32,7 +32,7 @@ export default function ProjectCard({
   const content = (
     <>
       <div className="relative aspect-[16/10] overflow-hidden">
-        <div className="from-primary via-primary/50 absolute inset-0 z-10 bg-gradient-to-t to-transparent" />
+        <div className="from-primary/80 via-primary/30 absolute inset-0 z-10 bg-gradient-to-t to-transparent" />
         {encodedImage ? (
           <div className={`relative h-full w-full transition-transform duration-500 ${!inactive ? "group-hover:scale-105" : ""}`}>
             <Image
