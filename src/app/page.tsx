@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import AccessibleButton from "@/components/AccessibleButton";
 import SelectedWork from "@/components/SelectedWork";
-import ScrollHint from "@/components/ScrollHint";
 
 const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
   ssr: false,
@@ -105,8 +104,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <ScrollHint />
         </section>
 
         <SelectedWork />
