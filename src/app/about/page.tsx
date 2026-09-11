@@ -70,7 +70,7 @@ const schools = [
 ];
 
 const personal: {
-  Icon: typeof Brush;
+  Icon: typeof MapPin;
   title: string;
   body: string;
   accent: string;
