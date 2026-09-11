@@ -11,12 +11,12 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Chimera 2.0",
+    title: "ArchLog",
     description:
-      "A mobile-first redesign of a self-built home security camera app, grounded in a deep heuristic analysis that rebuilds every core flow around the timeline.",
-    href: "/projects/chimera",
-    image: "/assets/projects/chimera/chimera security camera app.webp",
-    tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
+      "A research-driven product concept that helps architecture students capture design decisions as they make them — turning a fragmented process into a critique-ready narrative.",
+    href: "/projects/archlog",
+    image: "/gallery/ArchLog Overview page.webp",
+    tags: ["UX Research", "Product Design", "Prototyping"],
   },
   {
     title: "Sous Sense",
@@ -27,12 +27,12 @@ export const projects: Project[] = [
     tags: ["Brand Identity", "Package Design", "Business Strategy"],
   },
   {
-    title: "ArchLog",
+    title: "Chimera 2.0",
     description:
-      "A research-driven product concept that helps architecture students capture design decisions as they make them — turning a fragmented process into a critique-ready narrative.",
-    href: "/projects/archlog",
-    image: "/gallery/ArchLog Overview page.webp",
-    tags: ["UX Research", "Product Design", "Prototyping"],
+      "A mobile-first redesign of a self-built home security camera app, grounded in a deep heuristic analysis that rebuilds every core flow around the timeline.",
+    href: "/projects/chimera",
+    image: "/assets/projects/chimera/chimera security camera app.webp",
+    tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   },
   {
     title: "File Finder",
