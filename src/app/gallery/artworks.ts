@@ -75,7 +75,21 @@ export const artworks: readonly Artwork[] = [
       "Brand identity for Sous Sense, a modular IoT food intelligence product concept developed for an entrepreneurship course at NJIT. The wordmark uses a serif typeface with a chef's hat woven into the letterform. The project includes package design, advertising posters, and a full business plan with five-year financial projections.",
     medium: "Brand identity, Adobe Illustrator and Procreate",
     links: [{ label: "View case study", href: "/projects/sous-sense" }],
-    src: "/gallery/sous sense cover photo.svg",
+    src: "/assets/projects/sous-sense/sous-sense-cover.webp",
+    type: "image",
+  },
+  {
+    id: 22,
+    title: "BrandComms",
+    category: "UX/UI",
+    year: "2026",
+    width: 1280,
+    height: 720,
+    description:
+      "A product concept for an AI-powered brand management platform that simplifies design approval for students, universities, and partners through automated compliance feedback and built-in brand education.",
+    medium: "Product UI, designed in Figma",
+    links: [{ label: "View case study", href: "/projects/brandcomms" }],
+    src: "/assets/projects/brandcomms/brandcomms-cover-photov4.webp",
     type: "image",
   },
   {

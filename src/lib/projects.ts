@@ -23,7 +23,7 @@ export const projects: Project[] = [
     description:
       "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
     href: "/projects/sous-sense",
-    image: "/gallery/sous sense cover photo.svg",
+    image: "/assets/projects/sous-sense/sous-sense-cover.webp",
     tags: ["Brand Identity", "Package Design", "Business Strategy"],
   },
   {
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     description:
       "A product concept for an AI-powered brand management platform that simplifies design approval for students, universities, and partners through automated compliance feedback and built-in brand education.",
     href: "/projects/brandcomms",
-    image: "/assets/projects/brandcomms/brandcomms-cover.webp",
+    image: "/assets/projects/brandcomms/brandcomms-cover-photov4.webp",
     tags: ["UX Research", "Product Design", "AI/ML Concept"],
   },
   {
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     description:
       "A research publication exploring how blind and low-vision people use Meta Glasses as an AI-powered, hands-free accessibility tool — examining benefits, challenges, workarounds, and verification strategies.",
     href: "#",
-    image: "",
+    image: "/assets/projects/BLV/meta-coming-soon.webp",
     tags: ["Accessibility", "UX Research", "Publication"],
     badge: "In Progress",
     inactive: true,
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     description:
       "A personal tool that aggregates internship listings across hiring platforms into one place, cutting through fragmented alerts and tracking applications and progress per role.",
     href: "#",
-    image: "",
+    image: "/assets/projects/internship-scraper/intern-coming-soon.webp",
     tags: ["Python", "Web Scraping", "Productivity Tool"],
     badge: "In Progress",
     inactive: true,
