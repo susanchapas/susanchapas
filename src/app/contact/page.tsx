@@ -142,18 +142,6 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-accent-lime font-body mb-2 text-sm tracking-wider uppercase">
-                    Email
-                  </h3>
-                  <a
-                    href="mailto:susanchapas39@gmail.com"
-                    className="font-body text-secondary hover:text-accent-lime text-xl transition-colors"
-                  >
-                    susanchapas39@gmail.com
-                  </a>
-                </div>
-
-                <div>
-                  <h3 className="text-accent-lime font-body mb-2 text-sm tracking-wider uppercase">
                     Location
                   </h3>
                   <p className="font-body text-secondary text-xl">
@@ -163,9 +151,18 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="text-accent-lime font-body mb-4 text-sm tracking-wider uppercase">
-                    Social Links
+                    Connect
                   </h3>
                   <div className="flex gap-4">
+                    <a
+                      href="mailto:susanchapas39@gmail.com"
+                      className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-all"
+                      aria-label="Send email"
+                    >
+                      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </a>
                     <a
                       href="https://linkedin.com/in/susan-chapas"
                       target="_blank"
