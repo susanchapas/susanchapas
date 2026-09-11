@@ -113,17 +113,6 @@ export default function SousSenseProject() {
         >
           <BackToProjects />
 
-          <div className="mb-4 flex flex-wrap gap-2">
-            {projectData.tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-accent-blue/20 text-accent-blue rounded-full px-3 py-1 text-xs font-medium"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
           <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
             {projectData.title}
           </h1>
@@ -144,6 +133,17 @@ export default function SousSenseProject() {
               <span className="text-secondary/50 mb-1 block">Type</span>
               <span className="text-secondary font-medium">{projectData.type}</span>
             </div>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {projectData.tags.map((tag) => (
+              <span
+                key={tag}
+                className="bg-accent-blue/20 text-accent-blue rounded-full px-3 py-1 text-xs font-medium"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </motion.div>
       </ProjectHero>

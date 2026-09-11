@@ -247,7 +247,7 @@ export default function Navigation() {
                                     className={`object-contain ${active ? "" : "opacity-50"}`}
                                   />
                                 </div>
-                                <span className="font-body text-[13px]">
+                                <span className="font-body text-[15px]">
                                   /projects
                                 </span>
                               </Link>
@@ -288,7 +288,7 @@ export default function Navigation() {
                                       <li key={child.path}>
                                         <Link
                                           href={child.path}
-                                          className={`flex items-center rounded-r border-l-[3px] py-1.5 pl-12 pr-3 font-body text-[13px] transition-colors ${
+                                          className={`flex items-center rounded-r border-l-[3px] py-1.5 pl-12 pr-3 font-body text-[15px] transition-colors ${
                                             childActive
                                               ? "border-accent-lime bg-accent-lime/10 text-accent-lime"
                                               : "border-transparent text-secondary/50 hover:bg-accent-blue/10 hover:text-secondary/70"
@@ -328,7 +328,7 @@ export default function Navigation() {
                                 className={`object-contain ${active ? "" : "opacity-50"}`}
                               />
                             </div>
-                            <span className="font-body text-[13px]">
+                            <span className="font-body text-[15px]">
                               {item.href === "/" ? "/" : item.href}
                             </span>
                           </Link>
