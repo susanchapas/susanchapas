@@ -736,16 +736,24 @@ export default function ArchLogProject() {
 
                     <Tile
                       delay={0.1}
-                      className="bg-accent-blue/5 border-accent-lime rounded-r-2xl border-l-4 p-8 lg:p-10"
+                      className="grid grid-cols-[auto_1fr] items-start gap-x-5 p-8 lg:p-10"
                     >
-                      <h3 className="font-display text-accent-lime mb-2 text-xl font-bold">
-                        Value the process as much as the result.
-                      </h3>
-                      <p className="font-body text-secondary/80 leading-relaxed">
-                        Process visibility, iteration, and design rationale deserve the
-                        same weight as the final artifact, both in studio culture and in
-                        the tools students reach for.
-                      </p>
+                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-accent-lime" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg>
+                      </div>
+                      <div>
+                        <span className="text-accent-lime font-body text-xs tracking-widest uppercase">
+                          The takeaway
+                        </span>
+                        <h3 className="font-display text-secondary mt-2 text-xl leading-snug font-bold lg:text-2xl">
+                          Value the process as much as the result.
+                        </h3>
+                        <p className="font-body text-secondary/80 mt-3 leading-relaxed">
+                          Process visibility, iteration, and design rationale deserve the
+                          same weight as the final artifact, both in studio culture and in
+                          the tools students reach for.
+                        </p>
+                      </div>
                     </Tile>
                   </div>
                 </section>
