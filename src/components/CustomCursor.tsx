@@ -1,158 +1,121 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 export default function CustomCursor() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  const isVisibleRef = useRef(false);
-  const isHoveringRef = useRef(false);
-
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  const springConfig = { damping: 35, stiffness: 600 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-      if (!isVisibleRef.current) {
-        isVisibleRef.current = true;
-        setIsVisible(true);
-      }
-    },
-    [cursorX, cursorY]
-  );
-
-  const handleMouseDown = useCallback(() => setIsClicking(true), []);
-  const handleMouseUp = useCallback(() => setIsClicking(false), []);
-  const handleMouseLeave = useCallback(() => {
-    isVisibleRef.current = false;
-    setIsVisible(false);
-  }, []);
-  const handleMouseEnter = useCallback(() => {
-    isVisibleRef.current = true;
-    setIsVisible(true);
-  }, []);
-
-  const handleMouseOver = useCallback((e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    const hovering = !!target.closest(
-      'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])'
-    );
-    if (hovering !== isHoveringRef.current) {
-      isHoveringRef.current = hovering;
-      setIsHovering(hovering);
-    }
-  }, []);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const touch =
+    const el = ref.current;
+    if (!el) return;
+
+    if (
       "ontouchstart" in window ||
       navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches;
-    setIsTouchDevice(touch);
-    if (touch) return;
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+    el.hidden = false;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const onMove = (e: MouseEvent) => {
+      el.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+      if (!el.classList.contains("visible")) el.classList.add("visible");
+    };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("mouseover", handleMouseOver);
-    document.body.addEventListener("mouseleave", handleMouseLeave);
-    document.body.addEventListener("mouseenter", handleMouseEnter);
+    let hovering = false;
+    const onOver = (e: MouseEvent) => {
+      const hit = !!(e.target as HTMLElement).closest(
+        'a,button,[role="button"],input,textarea,select,[tabindex]:not([tabindex="-1"])'
+      );
+      if (hit !== hovering) {
+        hovering = hit;
+        el.classList.toggle("hovering", hit);
+      }
+    };
+
+    const onDown = () => el.classList.add("clicking");
+    const onUp = () => el.classList.remove("clicking");
+    const onLeave = () => el.classList.remove("visible");
+    const onEnter = () => el.classList.add("visible");
+
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseover", onOver);
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("mouseup", onUp);
+    document.body.addEventListener("mouseleave", onLeave);
+    document.body.addEventListener("mouseenter", onEnter);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("mouseover", handleMouseOver);
-      document.body.removeEventListener("mouseleave", handleMouseLeave);
-      document.body.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", onOver);
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("mouseup", onUp);
+      document.body.removeEventListener("mouseleave", onLeave);
+      document.body.removeEventListener("mouseenter", onEnter);
     };
-  }, [
-    handleMouseMove,
-    handleMouseDown,
-    handleMouseUp,
-    handleMouseOver,
-    handleMouseLeave,
-    handleMouseEnter,
-  ]);
-
-  if (isTouchDevice) return null;
+  }, []);
 
   return (
-    <div aria-hidden="true">
-      {/* Main cursor dot */}
-      <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[99999] mix-blend-difference"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-          z: 0,
-          willChange: "transform",
-          backfaceVisibility: "hidden",
-        }}
-      >
-        <motion.div
-          className="bg-accent-lime relative -translate-x-1/2 -translate-y-1/2 rounded-full"
-          animate={{
-            width: isClicking ? 8 : isHovering ? 48 : 12,
-            height: isClicking ? 8 : isHovering ? 48 : 12,
-            opacity: isVisible ? 1 : 0,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 500,
-            damping: 28,
-          }}
-        />
-      </motion.div>
-
-      {/* Outer ring */}
-      <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[99998]"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-          z: 0,
-          willChange: "transform",
-          backfaceVisibility: "hidden",
-        }}
-      >
-        <motion.div
-          className="border-accent-lime/50 relative -translate-x-1/2 -translate-y-1/2 rounded-full border-2"
-          animate={{
-            width: isClicking ? 24 : isHovering ? 64 : 40,
-            height: isClicking ? 24 : isHovering ? 64 : 40,
-            opacity: isVisible ? 0.6 : 0,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
-          }}
-        />
-      </motion.div>
-
-      {/* Hide default cursor */}
+    <>
+      <div ref={ref} className="cursor-dot" hidden aria-hidden="true" />
       <style jsx global>{`
         @media (pointer: fine) {
-          html,
-          body,
-          * {
-            cursor: none !important;
-          }
+          * { cursor: none !important; }
+        }
+
+        .cursor-dot {
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 99999;
+          pointer-events: none;
+          mix-blend-mode: difference;
+          width: 12px;
+          height: 12px;
+          margin: -6px 0 0 -6px;
+          background: var(--accent-lime);
+          border-radius: 50%;
+          opacity: 0;
+          will-change: transform;
+          transition: width .2s, height .2s, margin .2s, opacity .15s;
+        }
+
+        .cursor-dot::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 40px;
+          height: 40px;
+          border: 2px solid rgb(111 205 157 / .5);
+          border-radius: 50%;
+          transition: width .2s, height .2s;
+        }
+
+        .cursor-dot.visible { opacity: 1; }
+
+        .cursor-dot.hovering {
+          width: 48px;
+          height: 48px;
+          margin: -24px 0 0 -24px;
+        }
+        .cursor-dot.hovering::after {
+          width: 64px;
+          height: 64px;
+        }
+
+        .cursor-dot.clicking {
+          width: 8px;
+          height: 8px;
+          margin: -4px 0 0 -4px;
+        }
+        .cursor-dot.clicking::after {
+          width: 24px;
+          height: 24px;
         }
       `}</style>
-    </div>
+    </>
   );
 }

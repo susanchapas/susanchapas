@@ -7,6 +7,7 @@ import { ReactNode } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
+import NeuralMap from "@/components/NeuralMap";
 
 const projectData = {
   title: "ArchLog",
@@ -200,6 +201,7 @@ function ImageSlot({
   ratio = "aspect-[16/9]",
   className = "",
   sizes = "100vw",
+  pinboard = false,
 }: {
   src?: string;
   alt?: string;
@@ -208,10 +210,15 @@ function ImageSlot({
   ratio?: string;
   className?: string;
   sizes?: string;
+  pinboard?: boolean;
 }) {
   return (
     <div
-      className={`group border-accent-blue/20 bg-accent-blue/5 relative w-full overflow-hidden rounded-2xl border ${ratio} ${className}`}
+      className={`group relative w-full overflow-hidden rounded-2xl border ${pinboard ? "" : "border-accent-blue/20 bg-accent-blue/5"} ${ratio} ${className}`}
+      style={pinboard ? {
+        backgroundImage: "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
+        backgroundSize: "22px 22px",
+      } : undefined}
     >
       {src ? (
         <Image
@@ -350,14 +357,8 @@ export default function ArchLogProject() {
                       </p>
                     </Reveal>
 
-                    {/* Swap in a photo or collage of the current, scattered process */}
                     <Reveal delay={0.1}>
-                      <ImageSlot
-                        ratio="aspect-[4/3]"
-                        label="The fragmented process today"
-                        hint="Photo or collage: scattered sketches, Miro boards, sticky notes, notebooks"
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                      />
+                      <NeuralMap />
                     </Reveal>
                   </div>
 
