@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import TransitionLink from "./TransitionLink";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { projects } from "@/lib/projects";
@@ -161,7 +161,7 @@ export default function Navigation() {
             expanded ? "justify-between px-5" : "flex-col gap-3"
           }`}
         >
-          <Link
+          <TransitionLink
             href="/"
             className="shrink-0 transition-transform hover:scale-110"
             aria-label="Susan Chapas - Home"
@@ -171,9 +171,8 @@ export default function Navigation() {
               alt="Susan Chapas logo"
               width={40}
               height={40}
-              quality={90}
             />
-          </Link>
+          </TransitionLink>
           <button
             onClick={() => setExpanded(!expanded)}
             className="group relative text-secondary/50 hover:text-accent-lime transition-colors"
@@ -226,7 +225,7 @@ export default function Navigation() {
                                   : "border-transparent hover:bg-accent-blue/10"
                               }`}
                             >
-                              <Link
+                              <TransitionLink
                                 href="/projects"
                                 className={`flex flex-1 items-center gap-3 py-2 pl-3 transition-colors ${
                                   active
@@ -250,7 +249,7 @@ export default function Navigation() {
                                 <span className="font-body text-[15px]">
                                   /projects
                                 </span>
-                              </Link>
+                              </TransitionLink>
                               <button
                                 onClick={() =>
                                   setProjectsOpen(!projectsOpen)
@@ -286,7 +285,7 @@ export default function Navigation() {
                                       pathname === child.path;
                                     return (
                                       <li key={child.path}>
-                                        <Link
+                                        <TransitionLink
                                           href={child.path}
                                           className={`flex items-center rounded-r border-l-[3px] py-1.5 pl-12 pr-3 font-body text-[15px] transition-colors ${
                                             childActive
@@ -300,7 +299,7 @@ export default function Navigation() {
                                           }
                                         >
                                           {child.name}
-                                        </Link>
+                                        </TransitionLink>
                                       </li>
                                     );
                                   })}
@@ -309,7 +308,7 @@ export default function Navigation() {
                             </AnimatePresence>
                           </>
                         ) : (
-                          <Link
+                          <TransitionLink
                             href={item.href}
                             className={`flex items-center gap-3 rounded-r border-l-[3px] py-2 pl-3 pr-3 transition-colors ${
                               active
@@ -331,7 +330,7 @@ export default function Navigation() {
                             <span className="font-body text-[15px]">
                               {item.href === "/" ? "/" : item.href}
                             </span>
-                          </Link>
+                          </TransitionLink>
                         )}
                       </li>
                     );
@@ -350,7 +349,7 @@ export default function Navigation() {
                 <ul className="flex flex-col gap-3 lg:gap-6">
                   {navIcons.map((item) => (
                     <li key={item.name}>
-                      <Link
+                      <TransitionLink
                         href={item.href}
                         className={`group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
                           isIconActive(item.href)
@@ -372,7 +371,7 @@ export default function Navigation() {
                         <span className="bg-primary text-secondary pointer-events-none absolute left-14 rounded px-3 py-1 text-sm font-medium whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
                           {item.name}
                         </span>
-                      </Link>
+                      </TransitionLink>
                     </li>
                   ))}
                 </ul>
@@ -398,15 +397,14 @@ export default function Navigation() {
           scrolled ? "glass" : "border-b border-transparent bg-transparent"
         }`}
       >
-        <Link href="/" aria-label="Susan Chapas - Home">
+        <TransitionLink href="/" aria-label="Susan Chapas - Home">
           <Image
             src="/assets/misc/navbar-favicon.png"
             alt="Susan Chapas logo"
             width={32}
             height={32}
-            quality={90}
           />
-        </Link>
+        </TransitionLink>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -476,7 +474,7 @@ export default function Navigation() {
                       {"isFolder" in item ? (
                         <>
                           <div className="flex items-center gap-2">
-                            <Link
+                            <TransitionLink
                               href="/projects"
                               className={`font-body text-2xl font-bold transition-colors ${
                                 pathname.startsWith("/projects")
@@ -487,7 +485,7 @@ export default function Navigation() {
                               aria-current={pathname === "/projects" ? "page" : undefined}
                             >
                               /projects
-                            </Link>
+                            </TransitionLink>
                             <button
                               onClick={() => setProjectsOpen(!projectsOpen)}
                               className="text-secondary/40 hover:text-secondary transition-colors"
@@ -510,7 +508,7 @@ export default function Navigation() {
                               >
                                 {projectChildren.map((child) => (
                                   <li key={child.path}>
-                                    <Link
+                                    <TransitionLink
                                       href={child.path}
                                       className={`font-body text-lg transition-colors ${
                                         pathname === child.path
@@ -523,7 +521,7 @@ export default function Navigation() {
                                       }
                                     >
                                       {child.name}
-                                    </Link>
+                                    </TransitionLink>
                                   </li>
                                 ))}
                               </motion.ul>
@@ -531,7 +529,7 @@ export default function Navigation() {
                           </AnimatePresence>
                         </>
                       ) : (
-                        <Link
+                        <TransitionLink
                           href={item.path}
                           className={`font-body text-2xl font-bold transition-colors ${
                             pathname === item.path
@@ -542,7 +540,7 @@ export default function Navigation() {
                           aria-current={pathname === item.path ? "page" : undefined}
                         >
                           {item.name}
-                        </Link>
+                        </TransitionLink>
                       )}
                     </motion.li>
                   ))}

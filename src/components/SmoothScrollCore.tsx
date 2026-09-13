@@ -1,11 +1,21 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { setLenis } from "@/lib/lenis";
 
 export default function SmoothScrollCore() {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     // Check if touch device - skip Lenis on touch devices
@@ -23,33 +33,21 @@ export default function SmoothScrollCore() {
 
     if (prefersReducedMotion) return;
 
-    // Delay initialization to avoid blocking main thread
-    const timeoutId = setTimeout(() => {
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        touchMultiplier: 2,
-      });
+    const lenis = new Lenis({
+      autoRaf: true,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
 
-      lenisRef.current = lenis;
-      setLenis(lenis);
-
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-    }, 100);
+    lenisRef.current = lenis;
+    setLenis(lenis);
 
     return () => {
-      clearTimeout(timeoutId);
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
-      }
+      lenis.destroy();
       setLenis(null);
     };
   }, []);

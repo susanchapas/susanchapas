@@ -1,12 +1,22 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
-import { ReactNode } from "react";
+import { useCallback, useRef, useState } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
+import Reveal from "@/components/Reveal";
+import Tile from "@/components/Tile";
+import Eyebrow from "@/components/Eyebrow";
+import ImageSlot from "@/components/ImageSlot";
+import ProjectNavFooter from "@/components/ProjectNavFooter";
+import HowMightWe from "@/components/HowMightWe";
+import ResearchStats from "@/components/ResearchStats";
+import InsightGrid from "@/components/InsightGrid";
+import FeatureGrid from "@/components/FeatureGrid";
+import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@/components/Icons";
 
 const projectData = {
   title: "File Finder",
@@ -144,6 +154,10 @@ const recommendations = [
     title: "Design around existing mental models",
     body: "Prof. S already thinks in spatial, board-like terms. The system should match how he organizes information in his head, not force him into a different structure.",
   },
+  {
+    title: "Retrieval should be as easy as storage",
+    body: "When the time cost of finding a resource is lower than the time cost of recreating it, the system works. File Finder moves the organizational effort to the moment of upload, so retrieval can be fast, flexible, and forgiving.",
+  },
 ];
 
 const productScreens = [
@@ -164,115 +178,148 @@ const productScreens = [
   },
 ];
 
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ type: "spring", stiffness: 140, damping: 18, mass: 0.6, delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+function StrengthsCarousel() {
+  const [active, setActive] = useState(0);
+  const direction = useRef(0);
 
-function Tile({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 280, damping: 22, mass: 0.7, delay }}
-      whileHover={{
-        y: -8,
-        scale: 1.03,
-        transition: { type: "spring", stiffness: 400, damping: 24 },
-      }}
-      className={`will-change-transform ${className}`}
-    >
-      {children}
-    </motion.div>
+  const go = useCallback(
+    (next: number) => {
+      direction.current = next > active ? 1 : -1;
+      setActive(next);
+    },
+    [active]
   );
-}
 
-function Eyebrow({ children }: { children: ReactNode }) {
-  return (
-    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-      {children}
-    </span>
+  const prev = useCallback(
+    () => go((active - 1 + strengths.length) % strengths.length),
+    [active, go]
   );
-}
+  const next = useCallback(
+    () => go((active + 1) % strengths.length),
+    [active, go]
+  );
 
-function ImageSlot({
-  src,
-  alt = "",
-  label,
-  hint,
-  ratio = "aspect-[16/9]",
-  className = "",
-  sizes = "100vw",
-}: {
-  src?: string;
-  alt?: string;
-  label: string;
-  hint?: string;
-  ratio?: string;
-  className?: string;
-  sizes?: string;
-}) {
+  const s = strengths[active];
+
   return (
-    <div
-      className={`group border-accent-blue/20 bg-accent-blue/5 relative w-full overflow-hidden rounded-2xl border ${ratio} ${className}`}
-    >
-      {src ? (
-        <Image
-          src={encodeURI(src)}
-          alt={alt}
-          fill
-          sizes={sizes}
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        />
-      ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <span className="border-accent-blue/30 mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-dashed">
-            <svg
-              className="text-accent-blue/60 h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+    <div className="flex flex-col gap-6">
+      {/* Mobile: stacked */}
+      <div className="flex flex-col items-center gap-6 lg:hidden">
+        <div className="flex min-h-[200px] w-full flex-col justify-center text-center">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, x: direction.current * 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction.current * -40 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-          </span>
-          <p className="font-display text-secondary/80 text-sm font-semibold">{label}</p>
-          {hint && (
-            <p className="font-body text-secondary/40 mt-1 max-w-xs text-xs">{hint}</p>
-          )}
+              <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
+                {active + 1} of {strengths.length}
+              </span>
+              <h3 className="font-display text-secondary mb-4 text-xl font-bold">
+                {s.category}
+              </h3>
+              <ul className="mx-auto max-w-sm space-y-2 text-left">
+                {s.items.map((item) => (
+                  <li
+                    key={item}
+                    className="font-body text-secondary/70 flex items-start text-sm leading-relaxed"
+                  >
+                    <span className="bg-accent-lime/20 mt-1.5 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      )}
+      </div>
+
+      {/* Desktop: split panel */}
+      <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
+        <div className="bg-primary/60 border-accent-blue/10 flex w-2/5 items-center justify-center border-r px-8 py-8">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center"
+            >
+              <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
+                {active + 1} of {strengths.length}
+              </span>
+              <h3 className="font-display text-secondary text-2xl font-bold">
+                {s.category}
+              </h3>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
+          <div className="flex min-h-[160px] flex-col justify-center">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <ul className="space-y-3">
+                  {s.items.map((item) => (
+                    <li
+                      key={item}
+                      className="font-body text-secondary/70 flex items-start text-base leading-relaxed"
+                    >
+                      <span className="bg-accent-lime/20 mt-2 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous strength"
+          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
+        >
+          <ChevronLeftIcon className="h-4 w-4" />
+        </button>
+
+        <div className="flex gap-2">
+          {strengths.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={`Go to strength ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                i === active
+                  ? "bg-accent-lime w-6"
+                  : "bg-accent-blue/30 hover:bg-accent-blue/50 w-2"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next strength"
+          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
+        >
+          <ChevronRightIcon className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -388,21 +435,7 @@ export default function FileFinderProject() {
                     </Reveal>
                   </div>
 
-                  <Reveal delay={0.1}>
-                    <div className="grid grid-cols-[auto_1fr] items-start gap-x-5">
-                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-accent-lime" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5.5 5.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.5V10" /><circle cx="8" cy="12.5" r="0.75" fill="currentColor" stroke="none" /></svg>
-                      </div>
-                      <div>
-                        <span className="text-accent-lime font-body text-base tracking-widest uppercase">
-                          How might we
-                        </span>
-                        <p className="font-display text-secondary mt-2 text-2xl leading-snug font-bold lg:text-3xl">
-                          <span className="text-accent-lime">…</span>let the system absorb ambiguity so Prof. S doesn&apos;t have to?
-                        </p>
-                      </div>
-                    </div>
-                  </Reveal>
+                  <HowMightWe>let the system absorb ambiguity so Prof. S doesn&apos;t have to?</HowMightWe>
                 </div>
               </section>
             ),
@@ -429,33 +462,7 @@ export default function FileFinderProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 sm:grid-cols-3">
-                      {researchStats.map((stat, i) => (
-                        <Tile
-                          key={stat.label}
-                          delay={i * 0.08}
-                          className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-8 text-center transition-colors"
-                        >
-                          <motion.div
-                            initial={{ scale: 0.5, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 320,
-                              damping: 16,
-                              delay: i * 0.08 + 0.12,
-                            }}
-                            className="font-display text-accent-lime mb-3 text-4xl font-bold lg:text-5xl"
-                          >
-                            {stat.value}
-                          </motion.div>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {stat.label}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
+                    <ResearchStats stats={researchStats} />
 
                     <Reveal delay={0.1} className="mt-8">
                       <ImageSlot
@@ -476,40 +483,10 @@ export default function FileFinderProject() {
                       </h2>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {themes.map((theme, i) => (
-                        <Tile
-                          key={theme.title}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <div className="bg-accent-lime/10 text-accent-lime font-display group-hover:bg-accent-lime group-hover:text-primary mb-5 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-all group-hover:scale-110">
-                            {String(i + 1).padStart(2, "0")}
-                          </div>
-                          <h3 className="font-display text-secondary mb-3 text-lg font-bold">
-                            {theme.title}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {theme.body}
-                          </p>
-                        </Tile>
-                      ))}
-
-                      <Tile
-                        delay={0.16}
-                        className="bg-primary border-accent-lime/50 flex h-full flex-col justify-center rounded-2xl border-2 p-7"
-                      >
-                        <span className="text-accent-lime font-body text-xs tracking-widest uppercase">
-                          The thesis
-                        </span>
-                        <p className="font-display text-secondary mt-3 text-xl leading-snug font-bold">
-                          The problem is{" "}
-                          <span className="text-accent-lime">retrieval</span>, not
-                          storage. His tools are built around where files come from,
-                          not how they need to be found.
-                        </p>
-                      </Tile>
-                    </div>
+                    <InsightGrid
+                      items={themes}
+                      thesis={<>The problem is <span className="text-accent-lime">retrieval</span>, not storage. His tools are built around where files come from, not how they need to be found.</>}
+                    />
                   </div>
                 </section>
                 <section className="bg-primary py-16 lg:py-24">
@@ -526,22 +503,7 @@ export default function FileFinderProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {designOpportunities.map((opp, i) => (
-                        <Tile
-                          key={opp.name}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
-                            {opp.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {opp.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
+                    <FeatureGrid features={designOpportunities} />
                   </div>
                 </section>
               </>
@@ -611,19 +573,7 @@ export default function FileFinderProject() {
                         variant="primary"
                       >
                         View Figma Prototype
-                        <svg
-                          className="h-4 w-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
+                        <ArrowRightIcon className="h-4 w-4" />
                       </AccessibleButton>
                     </Reveal>
                   </div>
@@ -676,30 +626,7 @@ export default function FileFinderProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {strengths.map((s, i) => (
-                        <Tile
-                          key={s.category}
-                          delay={(i % 2) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-4 text-lg font-bold transition-colors">
-                            {s.category}
-                          </h3>
-                          <ul className="space-y-2">
-                            {s.items.map((item) => (
-                              <li
-                                key={item}
-                                className="font-body text-secondary/70 flex items-start text-sm leading-relaxed"
-                              >
-                                <span className="bg-accent-lime/20 mt-1.5 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
-                                {item}
-                              </li>
-                            ))}
-                          </ul>
-                        </Tile>
-                      ))}
-                    </div>
+                    <StrengthsCarousel />
                   </div>
                 </section>
                 <section className="bg-primary py-16 lg:py-24">
@@ -711,11 +638,11 @@ export default function FileFinderProject() {
                       </h2>
                     </Reveal>
 
-                    <div className="mb-8 grid gap-6 md:grid-cols-3">
+                    <div className="grid gap-6 md:grid-cols-2">
                       {recommendations.map((rec, i) => (
                         <Tile
                           key={rec.title}
-                          delay={i * 0.08}
+                          delay={(i % 2) * 0.08}
                           className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
                         >
                           <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 font-bold transition-colors">
@@ -727,21 +654,6 @@ export default function FileFinderProject() {
                         </Tile>
                       ))}
                     </div>
-
-                    <Tile
-                      delay={0.1}
-                      className="bg-accent-blue/5 border-accent-lime rounded-r-2xl border-l-4 p-8 lg:p-10"
-                    >
-                      <h3 className="font-display text-accent-lime mb-2 text-xl font-bold">
-                        Retrieval should be as easy as storage.
-                      </h3>
-                      <p className="font-body text-secondary/80 leading-relaxed">
-                        When the time cost of finding a resource is lower than the time
-                        cost of recreating it, the system works. File Finder moves the
-                        organizational effort to the moment of upload, so retrieval can
-                        be fast, flexible, and forgiving.
-                      </p>
-                    </Tile>
                   </div>
                 </section>
               </>
@@ -750,44 +662,7 @@ export default function FileFinderProject() {
         ]}
       />
 
-      <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <AccessibleButton href="/projects" variant="outline">
-              <svg
-                className="h-4 w-4 rotate-180"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-              All Projects
-            </AccessibleButton>
-            <AccessibleButton href="/projects/sous-sense">
-              Next Project
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </AccessibleButton>
-          </div>
-        </div>
-      </section>
+      <ProjectNavFooter nextHref="/projects/sous-sense" />
     </div>
   );
 }

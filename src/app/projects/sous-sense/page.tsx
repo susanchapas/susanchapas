@@ -2,11 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ReactNode } from "react";
 import BackToProjects from "@/components/BackToProjects";
-import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
+import Tile from "@/components/Tile";
+import ProjectNavFooter from "@/components/ProjectNavFooter";
 
 const projectData = {
   title: "Sous Sense",
@@ -74,33 +74,6 @@ const atAGlance = [
 ];
 
 const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma"];
-
-function Tile({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 280, damping: 22, mass: 0.7, delay }}
-      whileHover={{
-        y: -8,
-        scale: 1.03,
-        transition: { type: "spring", stiffness: 400, damping: 24 },
-      }}
-      className={`will-change-transform ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export default function SousSenseProject() {
   return (
@@ -453,44 +426,7 @@ export default function SousSenseProject() {
         ]}
       />
 
-      <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <AccessibleButton href="/projects" variant="outline">
-              <svg
-                className="h-4 w-4 rotate-180"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-              All Projects
-            </AccessibleButton>
-            <AccessibleButton href="/projects/archlog">
-              Next Project
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </AccessibleButton>
-          </div>
-        </div>
-      </section>
+      <ProjectNavFooter nextHref="/projects/archlog" />
     </div>
   );
 }

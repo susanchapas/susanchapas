@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, HTMLMotionProps } from "framer-motion";
-import Link from "next/link";
-const MotionLink = motion(Link);
+import TransitionLink from "./TransitionLink";
+const MotionTransitionLink = motion(TransitionLink);
 import { forwardRef, ReactNode } from "react";
 
 interface BaseProps {
@@ -76,7 +76,7 @@ const AccessibleButton = forwardRef<
     }
 
     return (
-      <MotionLink
+      <MotionTransitionLink
         href={href}
         ref={ref as React.Ref<HTMLAnchorElement>}
         className={combinedClassName}
@@ -85,7 +85,7 @@ const AccessibleButton = forwardRef<
         {...(linkRest as HTMLMotionProps<"a">)}
       >
         {children}
-      </MotionLink>
+      </MotionTransitionLink>
     );
   }
 
@@ -132,8 +132,8 @@ export function AccessibleLink({
   }
 
   return (
-    <Link href={href} className={linkClass}>
+    <TransitionLink href={href} className={linkClass}>
       {children}
-    </Link>
+    </TransitionLink>
   );
 }

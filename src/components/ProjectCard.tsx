@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import TransitionLink from "./TransitionLink";
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/Icons";
 
 interface ProjectCardProps {
   title: string;
@@ -52,20 +53,7 @@ export default function ProjectCard({
         {!inactive && (
           <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <div className="bg-accent-lime flex h-20 w-20 scale-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-100">
-              <svg
-                className="text-primary h-8 w-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
+              <ArrowRightIcon className="text-primary h-8 w-8" />
             </div>
           </div>
         )}
@@ -97,20 +85,7 @@ export default function ProjectCard({
         {!inactive ? (
           <div className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium transition-transform duration-300 group-hover:translate-x-2">
             View Case Study
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
+            <ArrowRightIcon className="h-4 w-4" />
           </div>
         ) : (
           <div className="text-secondary/40 mt-auto pt-6 font-medium">
@@ -141,13 +116,13 @@ export default function ProjectCard({
           {content}
         </div>
       ) : (
-        <Link
+        <TransitionLink
           href={href}
           className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300"
           aria-label={`View ${title} case study`}
         >
           {content}
-        </Link>
+        </TransitionLink>
       )}
     </motion.article>
   );

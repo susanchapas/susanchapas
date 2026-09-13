@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import TransitionLink from "./TransitionLink";
 import ProjectCard from "./ProjectCard";
 import { featuredProjects } from "@/lib/projects";
+import { ArrowRightIcon } from "@/components/Icons";
 
 export default function SelectedWork() {
   return (
@@ -55,26 +57,13 @@ export default function SelectedWork() {
           transition={{ delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <a
+          <TransitionLink
             href="/projects"
             className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all duration-300 hover:gap-5"
           >
             View All Projects
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-          </a>
+            <ArrowRightIcon className="h-5 w-5" />
+          </TransitionLink>
         </motion.div>
       </div>
     </section>

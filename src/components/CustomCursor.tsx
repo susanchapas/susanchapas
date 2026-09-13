@@ -18,9 +18,13 @@ export default function CustomCursor() {
       return;
     el.hidden = false;
 
+    let frame = 0;
     const onMove = (e: MouseEvent) => {
-      el.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
-      if (!el.classList.contains("visible")) el.classList.add("visible");
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        el.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+        if (!el.classList.contains("visible")) el.classList.add("visible");
+      });
     };
 
     let hovering = false;
@@ -47,6 +51,7 @@ export default function CustomCursor() {
     document.body.addEventListener("mouseenter", onEnter);
 
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
       window.removeEventListener("mousedown", onDown);

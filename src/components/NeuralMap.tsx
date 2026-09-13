@@ -1,6 +1,7 @@
 "use client";
+"use no memo";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect } from "react";
 
 const B = "/assets/projects/archlog/ArchLog%20challenge%20pinboard";
 
@@ -46,9 +47,31 @@ const EDGES: [number, number][] = [
   [14, 0],
 ];
 
+function mulberry32(seed: number) {
+  return () => {
+    seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 const VW = 1000;
 const VH = 750;
 const PAD = 55;
+
+const INIT_POS: { x: number; y: number }[] = (() => {
+  const rand = mulberry32(7);
+  const cols = 4;
+  const rows = Math.ceil(NODES.length / cols);
+  const colW = (VW - 2 * PAD) / cols;
+  const rowH = (VH - 2 * PAD) / rows;
+  return NODES.map((_, i) => ({
+    x: PAD + (i % cols) * colW + rand() * colW,
+    y: PAD + Math.floor(i / cols) * rowH + rand() * rowH,
+  }));
+})();
+
 const REPEL = 40000;
 const ATTRACT = 0.015;
 const CTR = 0.004;
@@ -65,21 +88,17 @@ interface Pt {
 export default function NeuralMap() {
   const svgRef = useRef<SVGSVGElement>(null);
   const pos = useRef<Pt[]>(
-    NODES.map(() => ({
-      x: PAD + Math.random() * (VW - 2 * PAD),
-      y: PAD + Math.random() * (VH - 2 * PAD),
-      vx: 0,
-      vy: 0,
-    }))
+    INIT_POS.map((p) => ({ ...p, vx: 0, vy: 0 }))
   );
   const dragging = useRef<number | null>(null);
   const anchors = useRef<(null | { x: number; y: number })[]>(NODES.map(() => null));
   const raf = useRef(0);
   const alive = useRef(false);
-  const [hovered, setHovered] = useState<number | null>(null);
+  const hovered = useRef<number | null>(null);
 
   const edgeEls = useRef<(SVGLineElement | null)[]>([]);
   const nodeEls = useRef<(SVGGElement | null)[]>([]);
+  const borderEls = useRef<(SVGRectElement | null)[]>([]);
 
   const adj = useRef(
     NODES.map((_, i) => {
@@ -107,6 +126,27 @@ export default function NeuralMap() {
       if (el) el.setAttribute("transform", `translate(${n[i].x},${n[i].y})`);
     }
   }, []);
+
+  const syncHover = useCallback(() => {
+    const h = hovered.current;
+    EDGES.forEach(([a, b], idx) => {
+      const el = edgeEls.current[idx];
+      if (!el) return;
+      const lit = h !== null && (h === a || h === b);
+      el.setAttribute("stroke", lit ? "#6fcd9d" : "#e09f7d");
+      el.setAttribute("stroke-width", lit ? "1.5" : "0.8");
+      el.setAttribute("opacity", lit ? "0.75" : "0.3");
+    });
+    NODES.forEach((def, i) => {
+      if (def.bare) return;
+      const el = borderEls.current[i];
+      if (!el) return;
+      const on = h === i;
+      const near = h !== null && adj[h]?.has(i);
+      el.setAttribute("stroke", on ? "#6fcd9d" : near ? "rgba(111,205,157,0.5)" : "rgba(224,159,125,0.3)");
+      el.setAttribute("stroke-width", on ? "2.5" : near ? "2" : "1");
+    });
+  }, [adj]);
 
   const step = useCallback(() => {
     const n = pos.current;
@@ -179,54 +219,104 @@ export default function NeuralMap() {
 
   useEffect(() => {
     wake();
-    return () => cancelAnimationFrame(raf.current);
+    return () => {
+      cancelAnimationFrame(raf.current);
+      alive.current = false;
+    };
   }, [wake]);
 
-  const toSVG = useCallback((e: React.PointerEvent) => {
+  useEffect(() => {
     const svg = svgRef.current;
-    if (!svg) return { x: 0, y: 0 };
-    const ctm = svg.getScreenCTM();
-    if (!ctm) return { x: 0, y: 0 };
-    return new DOMPoint(e.clientX, e.clientY).matrixTransform(ctm.inverse());
-  }, []);
+    if (!svg) return;
 
-  const onDown = useCallback(
-    (i: number, e: React.PointerEvent) => {
+    const getNodeIdx = (target: EventTarget | null): number => {
+      const el = (target as Element)?.closest?.("g[data-idx]");
+      if (!el) return -1;
+      return parseInt(el.getAttribute("data-idx")!, 10);
+    };
+
+    const toSVG = (e: PointerEvent) => {
+      const r = svg.getBoundingClientRect();
+      if (!r.width || !r.height) return { x: 0, y: 0 };
+      return {
+        x: ((e.clientX - r.left) / r.width) * VW,
+        y: ((e.clientY - r.top) / r.height) * VH,
+      };
+    };
+
+    const onDown = (e: PointerEvent) => {
+      const i = getNodeIdx(e.target);
+      if (i === -1) return;
       e.preventDefault();
+      svg.setPointerCapture(e.pointerId);
       dragging.current = i;
       anchors.current[i] = null;
       const el = nodeEls.current[i];
       if (el) el.style.cursor = "grabbing";
-      setHovered(i);
+      hovered.current = i;
+      syncHover();
       pos.current[i].vx = 0;
       pos.current[i].vy = 0;
       wake();
-    },
-    [wake]
-  );
+    };
 
-  const onMove = useCallback(
-    (e: React.PointerEvent) => {
+    const onMove = (e: PointerEvent) => {
       if (dragging.current === null) return;
       const p = toSVG(e);
       const n = pos.current[dragging.current];
       n.x = p.x;
       n.y = p.y;
-    },
-    [toSVG]
-  );
+    };
 
-  const onUp = useCallback(() => {
-    if (dragging.current !== null) {
-      const i = dragging.current;
-      anchors.current[i] = { x: pos.current[i].x, y: pos.current[i].y };
-      pos.current[i].vx = 0;
-      pos.current[i].vy = 0;
-      const el = nodeEls.current[i];
-      if (el) el.style.cursor = "grab";
-      dragging.current = null;
-    }
-  }, []);
+    const onUp = (e: PointerEvent) => {
+      if (dragging.current !== null) {
+        const i = dragging.current;
+        svg.releasePointerCapture(e.pointerId);
+        anchors.current[i] = { x: pos.current[i].x, y: pos.current[i].y };
+        pos.current[i].vx = 0;
+        pos.current[i].vy = 0;
+        const el = nodeEls.current[i];
+        if (el) el.style.cursor = "grab";
+        dragging.current = null;
+      }
+    };
+
+    const onOver = (e: MouseEvent) => {
+      const i = getNodeIdx(e.target);
+      if (i !== -1) {
+        hovered.current = i;
+        syncHover();
+      }
+    };
+
+    const onOut = (e: MouseEvent) => {
+      if (dragging.current !== null) return;
+      const i = getNodeIdx(e.target);
+      if (i !== -1) {
+        const related = getNodeIdx(e.relatedTarget);
+        if (related !== i) {
+          hovered.current = null;
+          syncHover();
+        }
+      }
+    };
+
+    svg.addEventListener("pointerdown", onDown);
+    svg.addEventListener("pointermove", onMove);
+    svg.addEventListener("pointerup", onUp);
+    svg.addEventListener("pointerleave", onUp);
+    svg.addEventListener("mouseover", onOver);
+    svg.addEventListener("mouseout", onOut);
+
+    return () => {
+      svg.removeEventListener("pointerdown", onDown);
+      svg.removeEventListener("pointermove", onMove);
+      svg.removeEventListener("pointerup", onUp);
+      svg.removeEventListener("pointerleave", onUp);
+      svg.removeEventListener("mouseover", onOver);
+      svg.removeEventListener("mouseout", onOut);
+    };
+  }, [wake, syncHover]);
 
   const n = pos.current;
 
@@ -245,18 +335,8 @@ export default function NeuralMap() {
         viewBox={`0 0 ${VW} ${VH}`}
         className="aspect-[4/3] w-full block select-none"
         style={{ touchAction: "none" }}
-        onPointerMove={onMove}
-        onPointerUp={onUp}
-        onPointerLeave={onUp}
       >
         <defs>
-          <filter id="nm-glow">
-            <feGaussianBlur stdDeviation="4" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
           {Array.from(
             new Map(NODES.map((n) => [`${n.s}-${n.rx}`, n])).values()
           ).map((n) => (
@@ -272,46 +352,32 @@ export default function NeuralMap() {
           ))}
         </defs>
 
-        {EDGES.map(([a, b], idx) => {
-          const lit =
-            hovered !== null && (hovered === a || hovered === b);
-          const dim = hovered !== null && !lit;
-          return (
-            <line
-              key={`${a}-${b}`}
-              ref={(el) => { edgeEls.current[idx] = el; }}
-              x1={n[a].x}
-              y1={n[a].y}
-              x2={n[b].x}
-              y2={n[b].y}
-              stroke={lit ? "#6fcd9d" : "#e09f7d"}
-              strokeWidth={lit ? 1.5 : 0.8}
-              opacity={lit ? 0.75 : dim ? 0.15 : 0.3}
-              filter={lit ? "url(#nm-glow)" : undefined}
-              style={{ transition: "stroke 0.2s, opacity 0.2s" }}
-            />
-          );
-        })}
+        {EDGES.map(([a, b], idx) => (
+          <line
+            key={`${a}-${b}`}
+            ref={(el) => { edgeEls.current[idx] = el; }}
+            x1={n[a].x}
+            y1={n[a].y}
+            x2={n[b].x}
+            y2={n[b].y}
+            stroke="#e09f7d"
+            strokeWidth={0.8}
+            opacity={0.3}
+            style={{ transition: "stroke 0.2s, opacity 0.2s" }}
+          />
+        ))}
 
         {RENDER_ORDER.map((i) => {
           const def = NODES[i];
           const s = def.s;
           const hs = s / 2;
-          const on = hovered === i;
-          const near = hovered !== null && adj[hovered]?.has(i);
-          const dim = hovered !== null && !on && !near;
-
           return (
             <g
               key={i}
               ref={(el) => { nodeEls.current[i] = el; }}
+              data-idx={i}
               transform={`translate(${n[i].x},${n[i].y})`}
               style={{ cursor: "grab" }}
-              onPointerDown={(e) => onDown(i, e)}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => {
-                if (dragging.current === null) setHovered(null);
-              }}
             >
               <circle
                 cx={0}
@@ -320,10 +386,7 @@ export default function NeuralMap() {
                 fill="transparent"
               />
 
-              <g
-                opacity={dim ? 0.7 : 1}
-                style={{ transition: "opacity 0.2s" }}
-              >
+              <g>
                 {!def.bare && (
                   <rect
                     x={-hs + 3}
@@ -356,20 +419,15 @@ export default function NeuralMap() {
                       />
                     </g>
                     <rect
+                      ref={(el) => { borderEls.current[i] = el; }}
                       x={-hs}
                       y={-hs}
                       width={s}
                       height={s}
                       rx={def.rx}
                       fill="none"
-                      stroke={
-                        on
-                          ? "#6fcd9d"
-                          : near
-                            ? "rgba(111,205,157,0.5)"
-                            : "rgba(224,159,125,0.3)"
-                      }
-                      strokeWidth={on ? 2.5 : near ? 2 : 1}
+                      stroke="rgba(224,159,125,0.3)"
+                      strokeWidth={1}
                       style={{
                         transition: "stroke 0.2s, stroke-width 0.2s",
                       }}

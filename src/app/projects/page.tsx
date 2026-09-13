@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import TransitionLink from "@/components/TransitionLink";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
+import { ArrowRightIcon } from "@/components/Icons";
 
 export default function ProjectsPage() {
   return (
@@ -33,27 +35,13 @@ export default function ProjectsPage() {
               I&apos;m always open to discussing new opportunities and creative
               challenges. Let&apos;s create something meaningful together.
             </p>
-            <motion.a
+            <TransitionLink
               href="/contact"
               className="bg-accent-lime text-primary font-display hover:bg-accent-lime/90 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold transition-colors"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
             >
               Start a Conversation
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </motion.a>
+              <ArrowRightIcon className="h-5 w-5" />
+            </TransitionLink>
           </motion.div>
         </div>
       </section>

@@ -3,10 +3,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
-import { ReactNode, useState, useCallback, useRef } from "react";
-import AccessibleButton from "@/components/AccessibleButton";
+import { useState, useCallback, useRef } from "react";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
+import Reveal from "@/components/Reveal";
+import Tile from "@/components/Tile";
+import Eyebrow from "@/components/Eyebrow";
+import ProjectNavFooter from "@/components/ProjectNavFooter";
+import HowMightWe from "@/components/HowMightWe";
+import ResearchStats from "@/components/ResearchStats";
+import InsightGrid from "@/components/InsightGrid";
+import FeatureGrid from "@/components/FeatureGrid";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/components/Icons";
 
 const projectData = {
   title: "BrandComms",
@@ -126,63 +134,6 @@ const resolvedProblems = [
 
 const tools = ["Lovable", "Miro", "Google Workspace", "Canva"];
 
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ type: "spring", stiffness: 140, damping: 18, mass: 0.6, delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Tile({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 280, damping: 22, mass: 0.7, delay }}
-      whileHover={{
-        y: -8,
-        scale: 1.03,
-        transition: { type: "spring", stiffness: 400, damping: 24 },
-      }}
-      className={`will-change-transform ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Eyebrow({ children }: { children: ReactNode }) {
-  return (
-    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-      {children}
-    </span>
-  );
-}
-
 const screenshots = [
   {
     src: "/assets/projects/brandcomms/Dashboard.webp",
@@ -252,9 +203,7 @@ function ScreenshotCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
           aria-label="Previous screenshot"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronLeftIcon className="h-5 w-5" />
         </button>
 
         <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
@@ -301,9 +250,7 @@ function ScreenshotCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
           aria-label="Next screenshot"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRightIcon className="h-5 w-5" />
         </button>
       </div>
 
@@ -314,9 +261,7 @@ function ScreenshotCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
           aria-label="Previous screenshot"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronLeftIcon className="h-4 w-4" />
         </button>
         <div className="flex gap-2">
           {screenshots.map((s, i) => (
@@ -339,9 +284,7 @@ function ScreenshotCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
           aria-label="Next screenshot"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRightIcon className="h-4 w-4" />
         </button>
       </div>
 
@@ -402,9 +345,7 @@ function PersonaCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
           aria-label="Previous persona"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronLeftIcon className="h-5 w-5" />
         </button>
 
         <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
@@ -451,9 +392,7 @@ function PersonaCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
           aria-label="Next persona"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRightIcon className="h-5 w-5" />
         </button>
       </div>
 
@@ -464,9 +403,7 @@ function PersonaCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
           aria-label="Previous persona"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronLeftIcon className="h-4 w-4" />
         </button>
         <div className="flex gap-2">
           {personas.map((p, i) => (
@@ -489,9 +426,7 @@ function PersonaCarousel() {
           className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
           aria-label="Next persona"
         >
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <ChevronRightIcon className="h-4 w-4" />
         </button>
       </div>
 
@@ -640,23 +575,7 @@ export default function BrandCommsProject() {
                     </Reveal>
                   </div>
 
-                  <Reveal delay={0.1}>
-                    <div className="grid grid-cols-[auto_1fr] items-start gap-x-5">
-                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-accent-lime" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5.5 5.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.5V10" /><circle cx="8" cy="12.5" r="0.75" fill="currentColor" stroke="none" /></svg>
-                      </div>
-                      <div>
-                        <span className="text-accent-lime font-body text-base tracking-widest uppercase">
-                          How might we
-                        </span>
-                        <p className="font-display text-secondary mt-2 text-2xl leading-snug font-bold lg:text-3xl">
-                          <span className="text-accent-lime">&hellip;</span>make brand compliance understandable, feedback immediate,
-                          and the approval process transparent for everyone who touches
-                          university branding?
-                        </p>
-                      </div>
-                    </div>
-                  </Reveal>
+                  <HowMightWe>make brand compliance understandable, feedback immediate, and the approval process transparent for everyone who touches university branding?</HowMightWe>
                 </div>
               </section>
             ),
@@ -684,33 +603,7 @@ export default function BrandCommsProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 sm:grid-cols-3">
-                      {researchStats.map((stat, i) => (
-                        <Tile
-                          key={stat.label}
-                          delay={i * 0.08}
-                          className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-8 text-center transition-colors"
-                        >
-                          <motion.div
-                            initial={{ scale: 0.5, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 320,
-                              damping: 16,
-                              delay: i * 0.08 + 0.12,
-                            }}
-                            className="font-display text-accent-lime mb-3 text-4xl font-bold lg:text-5xl"
-                          >
-                            {stat.value}
-                          </motion.div>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {stat.label}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
+                    <ResearchStats stats={researchStats} />
                   </div>
                 </section>
 
@@ -745,42 +638,10 @@ export default function BrandCommsProject() {
                       </h2>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {insights.map((insight, i) => (
-                        <Tile
-                          key={insight.title}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <div className="bg-accent-lime/10 text-accent-lime font-display group-hover:bg-accent-lime group-hover:text-primary mb-5 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-all group-hover:scale-110">
-                            {String(i + 1).padStart(2, "0")}
-                          </div>
-                          <h3 className="font-display text-secondary mb-3 text-lg font-bold">
-                            {insight.title}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {insight.body}
-                          </p>
-                        </Tile>
-                      ))}
-
-                      <Tile
-                        delay={0.16}
-                        className="bg-primary border-accent-lime/50 flex h-full flex-col justify-center rounded-2xl border-2 p-7"
-                      >
-                        <span className="text-accent-lime font-body text-xs tracking-widest uppercase">
-                          The thesis
-                        </span>
-                        <p className="font-display text-secondary mt-3 text-xl leading-snug font-bold">
-                          Three things compound the problem: the rules are{" "}
-                          <span className="text-accent-lime">inaccessible</span>, the
-                          process is{" "}
-                          <span className="text-accent-lime">invisible</span>, and the
-                          feedback is too{" "}
-                          <span className="text-accent-lime">vague</span> to act on.
-                        </p>
-                      </Tile>
-                    </div>
+                    <InsightGrid
+                      items={insights}
+                      thesis={<>Three things compound the problem: the rules are <span className="text-accent-lime">inaccessible</span>, the process is <span className="text-accent-lime">invisible</span>, and the feedback is too <span className="text-accent-lime">vague</span> to act on.</>}
+                    />
                   </div>
                 </section>
               </>
@@ -791,7 +652,7 @@ export default function BrandCommsProject() {
             label: "Product",
             content: (
               <>
-                <section className="bg-primary py-16 lg:py-24">
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto grid items-start gap-12 px-6 lg:grid-cols-3 lg:px-12">
                     <Reveal>
                       <Eyebrow>The Product</Eyebrow>
@@ -812,7 +673,7 @@ export default function BrandCommsProject() {
                   </div>
                 </section>
 
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Solution</Eyebrow>
@@ -830,26 +691,11 @@ export default function BrandCommsProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {features.map((feature, i) => (
-                        <Tile
-                          key={feature.name}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
-                            {feature.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {feature.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
+                    <FeatureGrid features={features} />
                   </div>
                 </section>
 
-                <section className="bg-primary py-16 lg:py-24">
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal>
                       <Eyebrow>Problems Addressed</Eyebrow>
@@ -877,7 +723,7 @@ export default function BrandCommsProject() {
                   </div>
                 </section>
 
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal>
                       <Eyebrow>Tools Used</Eyebrow>
@@ -893,7 +739,7 @@ export default function BrandCommsProject() {
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: index * 0.05 }}
-                          className="bg-primary border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
+                          className="bg-accent-blue/5 border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
                         >
                           {tool}
                         </motion.span>
@@ -907,44 +753,7 @@ export default function BrandCommsProject() {
         ]}
       />
 
-      <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <AccessibleButton href="/projects" variant="outline">
-              <svg
-                className="h-4 w-4 rotate-180"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-              All Projects
-            </AccessibleButton>
-            <AccessibleButton href="/projects/sous-sense">
-              Next Project
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </AccessibleButton>
-          </div>
-        </div>
-      </section>
+      <ProjectNavFooter nextHref="/projects/sous-sense" />
     </div>
   );
 }

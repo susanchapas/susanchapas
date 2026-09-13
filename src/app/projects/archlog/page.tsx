@@ -3,11 +3,20 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
-import { ReactNode } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import NeuralMap from "@/components/NeuralMap";
+import Reveal from "@/components/Reveal";
+import Tile from "@/components/Tile";
+import Eyebrow from "@/components/Eyebrow";
+import ImageSlot from "@/components/ImageSlot";
+import ProjectNavFooter from "@/components/ProjectNavFooter";
+import HowMightWe from "@/components/HowMightWe";
+import ResearchStats from "@/components/ResearchStats";
+import InsightGrid from "@/components/InsightGrid";
+import FeatureGrid from "@/components/FeatureGrid";
+import { ArrowRightIcon } from "@/components/Icons";
 
 const projectData = {
   title: "ArchLog",
@@ -131,130 +140,6 @@ const recommendations = [
   },
 ];
 
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ type: "spring", stiffness: 140, damping: 18, mass: 0.6, delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Tile({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 280, damping: 22, mass: 0.7, delay }}
-      whileHover={{
-        y: -8,
-        scale: 1.03,
-        transition: { type: "spring", stiffness: 400, damping: 24 },
-      }}
-      className={`will-change-transform ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Eyebrow({ children }: { children: ReactNode }) {
-  return (
-    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-      {children}
-    </span>
-  );
-}
-
-/**
- * Image slot. Leave `src` empty to show a labeled placeholder; add a `src`
- * (drop the file in /public/gallery/ or /public/assets/projects/archlog/) and
- * it renders the real image with the same framing.
- */
-function ImageSlot({
-  src,
-  alt = "",
-  label,
-  hint,
-  ratio = "aspect-[16/9]",
-  className = "",
-  sizes = "100vw",
-  pinboard = false,
-}: {
-  src?: string;
-  alt?: string;
-  label: string;
-  hint?: string;
-  ratio?: string;
-  className?: string;
-  sizes?: string;
-  pinboard?: boolean;
-}) {
-  return (
-    <div
-      className={`group relative w-full overflow-hidden rounded-2xl border ${pinboard ? "" : "border-accent-blue/20 bg-accent-blue/5"} ${ratio} ${className}`}
-      style={pinboard ? {
-        backgroundImage: "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
-        backgroundSize: "22px 22px",
-      } : undefined}
-    >
-      {src ? (
-        <Image
-          src={encodeURI(src)}
-          alt={alt}
-          fill
-          sizes={sizes}
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        />
-      ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <span className="border-accent-blue/30 mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-dashed">
-            <svg
-              className="text-accent-blue/60 h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-          </span>
-          <p className="font-display text-secondary/80 text-sm font-semibold">{label}</p>
-          {hint && (
-            <p className="font-body text-secondary/40 mt-1 max-w-xs text-xs">{hint}</p>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function ArchLogProject() {
   const maxScore = 7;
 
@@ -357,27 +242,10 @@ export default function ArchLogProject() {
                       </p>
                     </Reveal>
 
-                    <Reveal delay={0.1}>
-                      <NeuralMap />
-                    </Reveal>
+                    <NeuralMap />
                   </div>
 
-                  <Reveal delay={0.1}>
-                    <div className="grid grid-cols-[auto_1fr] items-start gap-x-5">
-                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-accent-lime" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5.5 5.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.5V10" /><circle cx="8" cy="12.5" r="0.75" fill="currentColor" stroke="none" /></svg>
-                      </div>
-                      <div>
-                        <span className="text-accent-lime font-body text-base tracking-widest uppercase">
-                          How might we
-                        </span>
-                        <p className="font-display text-secondary mt-2 text-2xl leading-snug font-bold lg:text-3xl">
-                          <span className="text-accent-lime">…</span>create a low-friction tool that helps architecture students
-                          develop concepts with greater clarity inside the studio?
-                        </p>
-                      </div>
-                    </div>
-                  </Reveal>
+                  <HowMightWe>create a low-friction tool that helps architecture students develop concepts with greater clarity inside the studio?</HowMightWe>
                 </div>
               </section>
             ),
@@ -402,33 +270,7 @@ export default function ArchLogProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 sm:grid-cols-3">
-                      {researchStats.map((stat, i) => (
-                        <Tile
-                          key={stat.label}
-                          delay={i * 0.08}
-                          className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-8 text-center transition-colors"
-                        >
-                          <motion.div
-                            initial={{ scale: 0.5, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 320,
-                              damping: 16,
-                              delay: i * 0.08 + 0.12,
-                            }}
-                            className="font-display text-accent-lime mb-3 text-4xl font-bold lg:text-5xl"
-                          >
-                            {stat.value}
-                          </motion.div>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {stat.label}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
+                    <ResearchStats stats={researchStats} />
 
                     {/* Swap in research artifacts: affinity map, survey charts, focus-group photos */}
                     <Reveal delay={0.1} className="mt-8">
@@ -450,39 +292,16 @@ export default function ArchLogProject() {
                       </h2>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {insights.map((insight, i) => (
-                        <Tile
-                          key={insight.title}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <div className="bg-accent-lime/10 text-accent-lime font-display group-hover:bg-accent-lime group-hover:text-primary mb-5 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-all group-hover:scale-110">
-                            {String(i + 1).padStart(2, "0")}
-                          </div>
-                          <h3 className="font-display text-secondary mb-3 text-lg font-bold">
-                            {insight.title}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {insight.body}
-                          </p>
-                        </Tile>
-                      ))}
-
-                      <Tile
-                        delay={0.16}
-                        className="bg-primary border-accent-lime/50 flex h-full flex-col justify-center rounded-2xl border-2 p-7"
-                      >
-                        <span className="text-accent-lime font-body text-xs tracking-widest uppercase">
-                          The thesis
-                        </span>
-                        <p className="font-display text-secondary mt-3 text-xl leading-snug font-bold">
+                    <InsightGrid
+                      items={insights}
+                      thesis={
+                        <>
                           The hard part is{" "}
-                          <span className="text-accent-lime">traceability</span>:
-                          capturing the reasoning behind every design move.
-                        </p>
-                      </Tile>
-                    </div>
+                          <span className="text-accent-lime">traceability</span>: capturing
+                          the reasoning behind every design move.
+                        </>
+                      }
+                    />
                   </div>
                 </section>
                 <section className="bg-primary py-16 lg:py-24">
@@ -606,7 +425,7 @@ export default function ArchLogProject() {
             label: "Product",
             content: (
               <>
-                <section className="bg-primary py-16 lg:py-24">
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Product Tour</Eyebrow>
@@ -657,19 +476,7 @@ export default function ArchLogProject() {
                         variant="primary"
                       >
                         View Figma Prototype
-                        <svg
-                          className="h-4 w-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
+                        <ArrowRightIcon className="h-4 w-4" />
                       </AccessibleButton>
                       <AccessibleButton href="#" variant="outline">
                         Watch Video Walkthrough
@@ -677,7 +484,7 @@ export default function ArchLogProject() {
                     </Reveal>
                   </div>
                 </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Solution</Eyebrow>
@@ -691,25 +498,10 @@ export default function ArchLogProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {features.map((feature, i) => (
-                        <Tile
-                          key={feature.name}
-                          delay={(i % 3) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 text-lg font-bold transition-colors">
-                            {feature.name}
-                          </h3>
-                          <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                            {feature.body}
-                          </p>
-                        </Tile>
-                      ))}
-                    </div>
+                    <FeatureGrid features={features} />
                   </div>
                 </section>
-                <section className="bg-primary py-16 lg:py-24">
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>What We Recommend</Eyebrow>
@@ -723,7 +515,7 @@ export default function ArchLogProject() {
                         <Tile
                           key={rec.title}
                           delay={i * 0.08}
-                          className="group bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
+                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
                         >
                           <h3 className="font-display text-accent-blue group-hover:text-accent-lime mb-3 font-bold transition-colors">
                             {rec.title}
@@ -764,45 +556,7 @@ export default function ArchLogProject() {
         ]}
       />
 
-      {/* Navigation */}
-      <section className="bg-primary border-accent-blue/10 border-t py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <AccessibleButton href="/projects" variant="outline">
-              <svg
-                className="h-4 w-4 rotate-180"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-              All Projects
-            </AccessibleButton>
-            <AccessibleButton href="/projects/file-finder">
-              Next Project
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </AccessibleButton>
-          </div>
-        </div>
-      </section>
+      <ProjectNavFooter nextHref="/projects/file-finder" />
     </div>
   );
 }

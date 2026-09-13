@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import AccessibleButton from "@/components/AccessibleButton";
 import SelectedWork from "@/components/SelectedWork";
+import { ArrowRightIcon } from "@/components/Icons";
 
 const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
   ssr: false,
@@ -66,23 +67,18 @@ export default function Home() {
                   <span className="text-gradient whitespace-nowrap">mockup.</span>
                 </h1>
 
+                <div className="font-body mb-8 flex flex-wrap items-center gap-2 text-sm lg:text-base">
+                  <span className="text-secondary/60">Previous experience:</span>
+                  <span className="text-secondary/80 rounded-full bg-accent-blue/10 px-3 py-1">Financial Services</span>
+                  <span className="text-secondary/80 rounded-full bg-accent-blue/10 px-3 py-1">Nonprofit</span>
+                  <span className="text-secondary/80 rounded-full bg-accent-blue/10 px-3 py-1">Healthcare</span>
+
+                </div>
+
                 <div className="flex flex-wrap gap-4">
                   <AccessibleButton href="/projects" size="lg">
                     View My Work
-                    <svg
-                      className="h-5 w-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
+                    <ArrowRightIcon className="h-5 w-5" />
                   </AccessibleButton>
                   <AccessibleButton href="/contact" variant="outline" size="lg">
                     Get in Touch

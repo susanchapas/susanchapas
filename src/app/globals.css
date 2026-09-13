@@ -44,7 +44,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -267,6 +267,33 @@ body {
   .animate-bounce-slow {
     animation: none;
   }
+}
+
+/* Page transition overlay — sits below nav (z-50) */
+.pixel-morph-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.pixel-morph-tile {
+  background-color: var(--primary);
+  transform: scale(0);
+  will-change: transform;
+}
+
+[data-morph="enter"] .pixel-morph-tile {
+  transform: scale(1.07);
+  transition: transform 0.35s var(--ease-bounce) var(--d-in);
+}
+
+[data-morph="exit"] .pixel-morph-tile {
+  transform: scale(0);
+  transition: transform 0.28s var(--ease-smooth) var(--d-out);
 }
 
 /* Nav-aware content offset */
