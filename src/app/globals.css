@@ -288,12 +288,12 @@ body {
 
 [data-morph="enter"] .pixel-morph-tile {
   transform: scale(1.07);
-  transition: transform 0.35s var(--ease-bounce) var(--d-in);
+  transition: transform 0.38s var(--ease-bounce) var(--d-in);
 }
 
 [data-morph="exit"] .pixel-morph-tile {
   transform: scale(0);
-  transition: transform 0.28s var(--ease-smooth) var(--d-out);
+  transition: transform 0.32s var(--ease-smooth) var(--d-out);
 }
 
 /* Nav-aware content offset */

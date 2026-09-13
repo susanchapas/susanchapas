@@ -13,11 +13,11 @@ import { useRouter, usePathname } from "next/navigation";
 
 const COLS = 6;
 const ROWS = 4;
-const STAGGER = 32;
+const STAGGER = 18;
 const MAX_DELAY = (COLS - 1 + ROWS - 1) * STAGGER;
-const SAFETY_TIMEOUT = 1200;
+const SAFETY_TIMEOUT = 800;
 
-type Phase = "idle" | "covering" | "navigating" | "revealing";
+type Phase = "idle" | "covering" | "holding" | "revealing";
 
 interface TransitionContextType {
   phase: Phase;
@@ -115,21 +115,7 @@ export default function PageTransitionProvider({ children }: { children: ReactNo
   const [phase, setPhase] = useState<Phase>("idle");
   const router = useRouter();
   const pathname = usePathname();
-  const prevPathname = useRef(pathname);
   const pendingHref = useRef<string | null>(null);
-
-  useEffect(() => {
-    if (pathname !== prevPathname.current) {
-      prevPathname.current = pathname;
-      if (phase === "navigating") setPhase("revealing");
-    }
-  }, [pathname, phase]);
-
-  useEffect(() => {
-    if (phase !== "navigating") return;
-    const fallback = setTimeout(() => setPhase("revealing"), 800);
-    return () => clearTimeout(fallback);
-  }, [phase]);
 
   const triggerTransition = useCallback(
     (href: string) => {
@@ -140,12 +126,25 @@ export default function PageTransitionProvider({ children }: { children: ReactNo
     [pathname, phase],
   );
 
+  const coveredPathRef = useRef(pathname);
+
   const onCoverDone = useCallback(() => {
+    coveredPathRef.current = pathname;
     const href = pendingHref.current;
     pendingHref.current = null;
     if (href) router.push(href);
-    setPhase("navigating");
-  }, [router]);
+    setPhase("holding");
+  }, [router, pathname]);
+
+  useEffect(() => {
+    if (phase !== "holding") return;
+    if (pathname !== coveredPathRef.current) {
+      setPhase("revealing");
+      return;
+    }
+    const fallback = setTimeout(() => setPhase("revealing"), 600);
+    return () => clearTimeout(fallback);
+  }, [phase, pathname]);
 
   const onRevealDone = useCallback(() => {
     setPhase("idle");
