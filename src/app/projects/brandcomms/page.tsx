@@ -1,9 +1,6 @@
-"use client";
-
 import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
-import { Carousel, CarouselSlide } from "@/components/Carousel";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
@@ -14,6 +11,7 @@ import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
+import { ScreenshotCarousel, PersonaCarousel } from "./carousels";
 
 const projectData = {
   title: "BrandComms",
@@ -164,86 +162,6 @@ const screenshots = [
   },
 ];
 
-function ScreenshotCarousel() {
-  return (
-    <Carousel
-      items={screenshots}
-      ariaLabel="screenshot"
-      swipeable
-      controlsLayout="flanking"
-      dotVariant="secondary"
-      renderSlide={(slide, { index, count, direction }) => (
-        <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
-          <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <CarouselSlide slideKey={slide.src} direction={direction} offset={60} className="absolute inset-0">
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                fill
-                sizes="(min-width: 1024px) 60vw, 100vw"
-                className="object-cover object-top"
-              />
-            </CarouselSlide>
-          </div>
-          <div className="flex items-start justify-between gap-4 p-5">
-            <div className="min-w-0">
-              <h3 className="font-display text-secondary mb-1 text-lg font-bold">
-                {slide.title}
-              </h3>
-              <p className="font-body text-secondary/70 text-sm leading-relaxed">
-                {slide.description}
-              </p>
-            </div>
-            <span className="text-secondary/40 font-body shrink-0 text-sm">
-              {index + 1}/{count}
-            </span>
-          </div>
-        </div>
-      )}
-    />
-  );
-}
-
-function PersonaCarousel() {
-  return (
-    <Carousel
-      items={personas}
-      ariaLabel="persona"
-      swipeable
-      controlsLayout="flanking"
-      dotVariant="secondary"
-      renderSlide={(persona, { index, count, direction }) => (
-        <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
-          <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <CarouselSlide slideKey={persona.image} direction={direction} offset={60} className="absolute inset-0">
-              <Image
-                src={persona.image}
-                alt={`Persona sheet for ${persona.name}, ${persona.archetype}`}
-                fill
-                sizes="(min-width: 1024px) 60vw, 100vw"
-                className="object-cover object-top"
-              />
-            </CarouselSlide>
-          </div>
-          <div className="flex items-start justify-between gap-4 p-5">
-            <div className="min-w-0">
-              <span className="text-accent-blue font-body mb-1 block text-xs font-semibold tracking-widest uppercase">
-                {persona.archetype}
-              </span>
-              <h3 className="font-display text-secondary text-lg font-bold">
-                {persona.name}
-              </h3>
-            </div>
-            <span className="text-secondary/40 font-body shrink-0 text-sm">
-              {index + 1}/{count}
-            </span>
-          </div>
-        </div>
-      )}
-    />
-  );
-}
-
 export default function BrandCommsProject() {
   return (
     <div className="">
@@ -360,6 +278,7 @@ export default function BrandCommsProject() {
                           alt="Current brand request workflow showing a confusing, multi-step approval process"
                           width={800}
                           height={600}
+                          loading="lazy"
                           className="h-auto w-full"
                           sizes="(min-width: 1024px) 60vw, 100vw"
                         />
@@ -416,7 +335,7 @@ export default function BrandCommsProject() {
                     </Reveal>
 
                     <div className="lg:col-span-2">
-                      <PersonaCarousel />
+                      <PersonaCarousel items={personas} />
                     </div>
                   </div>
                 </section>
@@ -460,7 +379,7 @@ export default function BrandCommsProject() {
                     </Reveal>
 
                     <div className="lg:col-span-2">
-                      <ScreenshotCarousel />
+                      <ScreenshotCarousel items={screenshots} />
                     </div>
                   </div>
                 </section>

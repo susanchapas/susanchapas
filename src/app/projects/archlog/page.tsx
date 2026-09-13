@@ -1,5 +1,3 @@
-"use client";
-
 import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
@@ -447,6 +445,7 @@ export default function ArchLogProject() {
                                 alt={screen.alt}
                                 width={2560}
                                 height={1600}
+                                loading="lazy"
                                 className="h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.05]"
                                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                               />

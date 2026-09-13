@@ -1,11 +1,6 @@
-"use client";
-
-import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
-import { Carousel, CarouselSlide, CarouselFade } from "@/components/Carousel";
-import { createPortal } from "react-dom";
-import { useEffect, useState } from "react";
+import FadeIn from "@/components/FadeIn";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
@@ -19,6 +14,8 @@ import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
 import { ArrowRightIcon } from "@/components/Icons";
+import ChimeraLightbox from "./ChimeraLightbox";
+import { PrinciplesCarousel, ProductTourCarousel } from "./carousels";
 
 const projectData = {
   title: "Chimera 2.0",
@@ -183,209 +180,11 @@ const productScreens = [
 ];
 
 
-/**
- * Tall device-shaped slot for a single mobile screen. Leave `src` empty for the
- * placeholder; add a `src` to render the exported screen with the same framing.
- */
-function PhoneSlot({
-  src,
-  alt = "",
-  label = "Mobile screen",
-}: {
-  src?: string;
-  alt?: string;
-  label?: string;
-}) {
-  return (
-    <div className="group border-accent-blue/20 bg-accent-blue/5 relative aspect-[9/19.5] w-full overflow-hidden rounded-[2rem] border">
-      {src ? (
-        <Image
-          src={encodeURI(src)}
-          alt={alt}
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        />
-      ) : (
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-          <span className="border-accent-blue/30 mb-3 flex h-10 w-10 items-center justify-center rounded-full border border-dashed">
-            <svg
-              className="text-accent-blue/60 h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z"
-              />
-            </svg>
-          </span>
-          <p className="font-display text-secondary/80 text-xs font-semibold">{label}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function PrinciplesCarousel() {
-  return (
-    <Carousel
-      items={principles}
-      ariaLabel="principle"
-      renderSlide={(p, { index, count, direction }) => (
-        <>
-          <div className="flex flex-col items-center gap-6 lg:hidden">
-            <div className="shrink-0" style={{ height: "min(40vh, 380px)", aspectRatio: "9/19.5" }}>
-              <CarouselSlide slideKey={index} direction={direction}>
-                <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
-              </CarouselSlide>
-            </div>
-            <div className="flex min-h-[160px] flex-1 flex-col justify-center text-center">
-              <CarouselFade slideKey={index}>
-                <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
-                  Principle {index + 1} of {count}
-                </span>
-                <h3 className="font-display text-secondary mb-3 text-xl font-bold">{p.name}</h3>
-                <p className="font-body text-secondary/70 max-w-lg text-base leading-relaxed">{p.body}</p>
-              </CarouselFade>
-            </div>
-          </div>
-
-          <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
-            <div className="bg-primary/60 border-accent-blue/10 flex items-center justify-center border-r px-8 py-8">
-              <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
-                <CarouselSlide slideKey={index} direction={direction}>
-                  <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
-                </CarouselSlide>
-              </div>
-            </div>
-            <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
-              <div className="flex min-h-[160px] flex-col justify-center">
-                <CarouselFade slideKey={index}>
-                  <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
-                    Principle {index + 1} of {count}
-                  </span>
-                  <h3 className="font-display text-secondary mb-3 text-2xl font-bold">{p.name}</h3>
-                  <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">{p.body}</p>
-                </CarouselFade>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-    />
-  );
-}
-
-function ProductTourCarousel() {
-  return (
-    <Carousel
-      items={productScreens}
-      ariaLabel="screen"
-      controlsClassName="lg:hidden"
-      renderSlide={(screen, { index, direction }) => (
-        <>
-          <div className="flex flex-col items-center gap-6 lg:hidden">
-            <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
-              <CarouselSlide slideKey={index} direction={direction}>
-                <PhoneSlot src={screen.src} alt={screen.alt} label={screen.caption.split(":")[0]} />
-              </CarouselSlide>
-            </div>
-            <div className="flex min-h-[60px] flex-col justify-center text-center">
-              <CarouselFade slideKey={index}>
-                <p className="font-body text-secondary/60 max-w-sm text-sm">{screen.caption}</p>
-              </CarouselFade>
-            </div>
-          </div>
-
-          <div className="hidden gap-6 sm:grid-cols-2 lg:grid lg:grid-cols-4">
-            {productScreens.map((s, i) => (
-              <Tile key={i} delay={(i % 4) * 0.08} className="group h-full">
-                <figure className="h-full">
-                  <PhoneSlot src={s.src} alt={s.alt} label={s.caption.split(":")[0]} />
-                  <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
-                    {s.caption}
-                  </figcaption>
-                </figure>
-              </Tile>
-            ))}
-          </div>
-        </>
-      )}
-    />
-  );
-}
-
-function ChallengeLightbox({ open, onClose }: { open: boolean; onClose: () => void }) {
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prev;
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [open, onClose]);
-
-  if (!open) return null;
-
-  return createPortal(
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-10 lg:p-16"
-      >
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.97 }}
-          transition={{ type: "spring", stiffness: 200, damping: 24 }}
-          className="relative max-h-full max-w-6xl overflow-hidden rounded-2xl border border-accent-blue/30 bg-accent-blue/15 p-3 shadow-2xl"
-        >
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent-blue/30 text-white backdrop-blur transition-colors hover:bg-accent-blue/50"
-          >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 6l12 12M6 18L18 6" />
-            </svg>
-          </button>
-          <Image
-            src="/assets/projects/chimera/chimera%20og%20dashboard%20blurred.webp"
-            alt="Chimera dashboard overview"
-            width={1920}
-            height={1080}
-            className="rounded-xl"
-            sizes="100vw"
-          />
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>,
-    document.body
-  );
-}
-
 export default function ChimeraProject() {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-
   return (
     <div className="">
       <ProjectHero src={projectData.heroImage} alt={projectData.title}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <FadeIn trigger="mount">
           <BackToProjects />
 
           <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
@@ -420,7 +219,7 @@ export default function ChimeraProject() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </FadeIn>
       </ProjectHero>
 
       {/* Overview + At a glance */}
@@ -484,24 +283,12 @@ export default function ChimeraProject() {
                           src="/assets/projects/chimera/chimera%20og%20dashboard%20blurred.webp"
                           alt="Chimera dashboard overview"
                           fill
+                          loading="lazy"
                           sizes="100vw"
                           className="object-cover"
                         />
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => setLightboxOpen(true)}
-                        className="border-accent-blue/15 bg-primary/40 relative hidden aspect-video w-full overflow-hidden rounded-2xl border cursor-pointer lg:block"
-                        aria-label="View full dashboard image"
-                      >
-                        <Image
-                          src="/assets/projects/chimera/chimera%20og%20dashboard%20blurred.webp"
-                          alt="Chimera dashboard overview"
-                          fill
-                          sizes="50vw"
-                          className="object-cover"
-                        />
-                      </button>
+                      <ChimeraLightbox />
                     </Reveal>
                   </div>
 
@@ -670,7 +457,7 @@ export default function ChimeraProject() {
                       </p>
                     </Reveal>
 
-                    <ProductTourCarousel />
+                    <ProductTourCarousel items={productScreens} />
 
                     <Reveal
                       delay={0.1}
@@ -722,7 +509,7 @@ export default function ChimeraProject() {
                       </p>
                     </Reveal>
 
-                    <PrinciplesCarousel />
+                    <PrinciplesCarousel items={principles} />
                   </div>
                 </section>
               </>
@@ -730,8 +517,6 @@ export default function ChimeraProject() {
           },
         ]}
       />
-
-      <ChallengeLightbox open={lightboxOpen} onClose={() => setLightboxOpen(false)} />
 
       <ProjectNavFooter nextHref="/projects/file-finder" />
     </div>

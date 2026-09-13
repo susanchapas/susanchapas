@@ -39,6 +39,7 @@ export default function ImageSlot({
           src={encodeURI(src)}
           alt={alt}
           fill
+          loading="lazy"
           sizes={sizes}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
         />

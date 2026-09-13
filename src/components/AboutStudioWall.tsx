@@ -229,6 +229,7 @@ function TileFace({ facet }: { facet: Facet }) {
             src={encodeURI(facet.image)}
             alt={facet.id === "intro" ? "Susan Chapas" : facet.title}
             fill
+            loading="lazy"
             sizes="180px"
             className="object-cover"
             draggable={false}

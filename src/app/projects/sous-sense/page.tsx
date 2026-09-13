@@ -1,5 +1,3 @@
-"use client";
-
 import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
@@ -322,6 +320,7 @@ export default function SousSenseProject() {
                               alt={poster.alt}
                               width={2550}
                               height={3300}
+                              loading="lazy"
                               className="w-full transition-transform duration-500 group-hover:scale-[1.02]"
                               sizes="(min-width: 768px) 50vw, 100vw"
                             />
