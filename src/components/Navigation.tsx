@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import TransitionLink from "./TransitionLink";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { projects } from "@/lib/projects";
@@ -46,6 +46,33 @@ function SocialLinks({ vertical = false, size = "sm" }: { vertical?: boolean; si
         </svg>
       </a>
     </div>
+  );
+}
+
+function CopyIcon({ pathname }: { pathname: string }) {
+  const [copied, setCopied] = useState(false);
+  const url = "www.susanchapas.com" + pathname;
+  return (
+    <button
+      onClick={() => {
+        navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500);
+      }}
+      className="text-accent-lime/40 hover:text-accent-lime ml-2.5 shrink-0 transition-colors"
+      aria-label="Copy URL"
+    >
+      {copied ? (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      ) : (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+        </svg>
+      )}
+    </button>
   );
 }
 
@@ -161,7 +188,7 @@ export default function Navigation() {
             expanded ? "justify-between px-5" : "flex-col gap-3"
           }`}
         >
-          <TransitionLink
+          <Link
             href="/"
             className="shrink-0 transition-transform hover:scale-110"
             aria-label="Susan Chapas - Home"
@@ -172,7 +199,7 @@ export default function Navigation() {
               width={40}
               height={40}
             />
-          </TransitionLink>
+          </Link>
           <button
             onClick={() => setExpanded(!expanded)}
             className="group relative text-secondary/50 hover:text-accent-lime transition-colors"
@@ -202,8 +229,9 @@ export default function Navigation() {
                 transition={{ duration: 0.15 }}
                 className="flex min-h-0 flex-1 flex-col px-3"
               >
-                <div className="font-body text-accent-lime/60 mb-3 truncate px-1 text-xs">
-                  {displayPath}
+                <div className="font-body text-accent-lime/60 mb-3 flex items-center px-1 text-xs">
+                  <span className="truncate">{displayPath}</span>
+                  <CopyIcon pathname={pathname} />
                 </div>
                 <div className="bg-accent-blue/10 mb-3 h-px" />
                 <ul className="flex-1 space-y-1 overflow-y-auto">
@@ -225,7 +253,7 @@ export default function Navigation() {
                                   : "border-transparent hover:bg-accent-blue/10"
                               }`}
                             >
-                              <TransitionLink
+                              <Link
                                 href="/projects"
                                 className={`flex flex-1 items-center gap-3 py-2 pl-3 transition-colors ${
                                   active
@@ -249,7 +277,7 @@ export default function Navigation() {
                                 <span className="font-body text-[15px]">
                                   /projects
                                 </span>
-                              </TransitionLink>
+                              </Link>
                               <button
                                 onClick={() =>
                                   setProjectsOpen(!projectsOpen)
@@ -285,7 +313,7 @@ export default function Navigation() {
                                       pathname === child.path;
                                     return (
                                       <li key={child.path}>
-                                        <TransitionLink
+                                        <Link
                                           href={child.path}
                                           className={`flex items-center rounded-r border-l-[3px] py-1.5 pl-12 pr-3 font-body text-[15px] transition-colors ${
                                             childActive
@@ -299,7 +327,7 @@ export default function Navigation() {
                                           }
                                         >
                                           {child.name}
-                                        </TransitionLink>
+                                        </Link>
                                       </li>
                                     );
                                   })}
@@ -308,7 +336,7 @@ export default function Navigation() {
                             </AnimatePresence>
                           </>
                         ) : (
-                          <TransitionLink
+                          <Link
                             href={item.href}
                             className={`flex items-center gap-3 rounded-r border-l-[3px] py-2 pl-3 pr-3 transition-colors ${
                               active
@@ -330,7 +358,7 @@ export default function Navigation() {
                             <span className="font-body text-[15px]">
                               {item.href === "/" ? "/" : item.href}
                             </span>
-                          </TransitionLink>
+                          </Link>
                         )}
                       </li>
                     );
@@ -349,7 +377,7 @@ export default function Navigation() {
                 <ul className="flex flex-col gap-3 lg:gap-6">
                   {navIcons.map((item) => (
                     <li key={item.name}>
-                      <TransitionLink
+                      <Link
                         href={item.href}
                         className={`group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
                           isIconActive(item.href)
@@ -371,7 +399,7 @@ export default function Navigation() {
                         <span className="bg-primary text-secondary pointer-events-none absolute left-14 rounded px-3 py-1 text-sm font-medium whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
                           {item.name}
                         </span>
-                      </TransitionLink>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -397,14 +425,14 @@ export default function Navigation() {
           scrolled ? "glass" : "border-b border-transparent bg-transparent"
         }`}
       >
-        <TransitionLink href="/" aria-label="Susan Chapas - Home">
+        <Link href="/" aria-label="Susan Chapas - Home">
           <Image
             src="/assets/misc/navbar-favicon.png"
             alt="Susan Chapas logo"
             width={32}
             height={32}
           />
-        </TransitionLink>
+        </Link>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -456,94 +484,112 @@ export default function Navigation() {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                className="font-body text-accent-lime/60 mb-6 text-sm"
+                className="font-body text-accent-lime/60 mb-6 flex items-center text-sm"
               >
                 {displayPath}
+                <CopyIcon pathname={pathname} />
               </motion.div>
 
               <nav>
                 <ul className="space-y-2">
-                  {[
-                    { name: "/", path: "/" },
-                    { name: "/about", path: "/about" },
-                    { name: "/projects", path: "/projects", isFolder: true },
-                    { name: "/gallery", path: "/gallery" },
-                    { name: "/contact", path: "/contact" },
-                  ].map((item, i) => (
-                    <motion.li key={item.path} custom={i} variants={linkVariants}>
-                      {"isFolder" in item ? (
-                        <>
-                          <div className="flex items-center gap-2">
-                            <TransitionLink
-                              href="/projects"
-                              className={`font-body text-2xl font-bold transition-colors ${
-                                pathname.startsWith("/projects")
-                                  ? "text-accent-lime"
-                                  : "text-secondary hover:text-accent-lime"
-                              }`}
-                              onClick={() => setMobileOpen(false)}
-                              aria-current={pathname === "/projects" ? "page" : undefined}
-                            >
-                              /projects
-                            </TransitionLink>
-                            <button
-                              onClick={() => setProjectsOpen(!projectsOpen)}
-                              className="text-secondary/40 hover:text-secondary transition-colors"
-                              aria-expanded={projectsOpen}
-                              aria-label={
-                                projectsOpen ? "Collapse projects" : "Expand projects"
-                              }
-                            >
-                              <FolderChevron open={projectsOpen} size={14} />
-                            </button>
-                          </div>
-                          <AnimatePresence>
-                            {projectsOpen && (
-                              <motion.ul
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="ml-8 mt-1 space-y-1 overflow-hidden"
+                  {navIcons.map((item, i) => {
+                    const isProjects = item.href === "/projects";
+                    const active = isProjects
+                      ? pathname.startsWith("/projects")
+                      : pathname === item.href;
+
+                    return (
+                      <motion.li key={item.href} custom={i} variants={linkVariants}>
+                        {isProjects ? (
+                          <>
+                            <div className="flex items-center gap-2">
+                              <Link
+                                href="/projects"
+                                className={`flex items-center gap-3 font-body text-2xl font-bold transition-colors ${
+                                  active
+                                    ? "text-accent-lime"
+                                    : "text-secondary hover:text-accent-lime"
+                                }`}
+                                onClick={() => setMobileOpen(false)}
+                                aria-current={pathname === "/projects" ? "page" : undefined}
                               >
-                                {projectChildren.map((child) => (
-                                  <li key={child.path}>
-                                    <TransitionLink
-                                      href={child.path}
-                                      className={`font-body text-lg transition-colors ${
-                                        pathname === child.path
-                                          ? "text-accent-lime"
-                                          : "text-secondary/60 hover:text-secondary"
-                                      }`}
-                                      onClick={() => setMobileOpen(false)}
-                                      aria-current={
-                                        pathname === child.path ? "page" : undefined
-                                      }
-                                    >
-                                      {child.name}
-                                    </TransitionLink>
-                                  </li>
-                                ))}
-                              </motion.ul>
-                            )}
-                          </AnimatePresence>
-                        </>
-                      ) : (
-                        <TransitionLink
-                          href={item.path}
-                          className={`font-body text-2xl font-bold transition-colors ${
-                            pathname === item.path
-                              ? "text-accent-lime"
-                              : "text-secondary hover:text-accent-lime"
-                          }`}
-                          onClick={() => setMobileOpen(false)}
-                          aria-current={pathname === item.path ? "page" : undefined}
-                        >
-                          {item.name}
-                        </TransitionLink>
-                      )}
-                    </motion.li>
-                  ))}
+                                <div className="relative h-6 w-6 shrink-0">
+                                  <Image
+                                    src={item.icon}
+                                    alt=""
+                                    fill
+                                    className={`object-contain ${active ? "" : "opacity-50"}`}
+                                  />
+                                </div>
+                                /projects
+                              </Link>
+                              <button
+                                onClick={() => setProjectsOpen(!projectsOpen)}
+                                className="text-secondary/40 hover:text-secondary ml-auto transition-colors"
+                                aria-expanded={projectsOpen}
+                                aria-label={
+                                  projectsOpen ? "Collapse projects" : "Expand projects"
+                                }
+                              >
+                                <FolderChevron open={projectsOpen} size={14} />
+                              </button>
+                            </div>
+                            <AnimatePresence>
+                              {projectsOpen && (
+                                <motion.ul
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="ml-8 mt-1 space-y-1 overflow-hidden"
+                                >
+                                  {projectChildren.map((child) => (
+                                    <li key={child.path}>
+                                      <Link
+                                        href={child.path}
+                                        className={`font-body text-lg transition-colors ${
+                                          pathname === child.path
+                                            ? "text-accent-lime"
+                                            : "text-secondary/60 hover:text-secondary"
+                                        }`}
+                                        onClick={() => setMobileOpen(false)}
+                                        aria-current={
+                                          pathname === child.path ? "page" : undefined
+                                        }
+                                      >
+                                        {child.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </motion.ul>
+                              )}
+                            </AnimatePresence>
+                          </>
+                        ) : (
+                          <Link
+                            href={item.href}
+                            className={`flex items-center gap-3 font-body text-2xl font-bold transition-colors ${
+                              active
+                                ? "text-accent-lime"
+                                : "text-secondary hover:text-accent-lime"
+                            }`}
+                            onClick={() => setMobileOpen(false)}
+                            aria-current={pathname === item.href ? "page" : undefined}
+                          >
+                            <div className="relative h-6 w-6 shrink-0">
+                              <Image
+                                src={item.icon}
+                                alt=""
+                                fill
+                                className={`object-contain ${active ? "" : "opacity-50"}`}
+                              />
+                            </div>
+                            {item.href === "/" ? "/" : item.href}
+                          </Link>
+                        )}
+                      </motion.li>
+                    );
+                  })}
                 </ul>
               </nav>
             </div>

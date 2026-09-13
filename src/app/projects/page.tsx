@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import TransitionLink from "@/components/TransitionLink";
+import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
 import { ArrowRightIcon } from "@/components/Icons";
@@ -35,13 +35,13 @@ export default function ProjectsPage() {
               I&apos;m always open to discussing new opportunities and creative
               challenges. Let&apos;s create something meaningful together.
             </p>
-            <TransitionLink
+            <Link
               href="/contact"
               className="bg-accent-lime text-primary font-display hover:bg-accent-lime/90 inline-flex items-center gap-3 rounded-full px-8 py-4 font-semibold transition-colors"
             >
               Start a Conversation
               <ArrowRightIcon className="h-5 w-5" />
-            </TransitionLink>
+            </Link>
           </motion.div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import TransitionLink from "./TransitionLink";
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon } from "@/components/Icons";
 
@@ -116,13 +116,13 @@ export default function ProjectCard({
           {content}
         </div>
       ) : (
-        <TransitionLink
+        <Link
           href={href}
           className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300"
           aria-label={`View ${title} case study`}
         >
           {content}
-        </TransitionLink>
+        </Link>
       )}
     </motion.article>
   );

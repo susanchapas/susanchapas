@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import Image from "next/image";
-import TransitionLink from "./TransitionLink";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import type { Body, Mouse as MatterMouse } from "matter-js";
@@ -655,13 +655,13 @@ function DrawerContent({
             </ul>
           )}
           {node.href && (
-            <TransitionLink
+            <Link
               href={node.href}
               className="text-accent-lime font-display mt-5 inline-flex items-center gap-2 font-semibold transition-all hover:gap-3"
             >
               {node.linkLabel}
               <ArrowRight className="h-4 w-4" />
-            </TransitionLink>
+            </Link>
           )}
         </div>
       </motion.div>

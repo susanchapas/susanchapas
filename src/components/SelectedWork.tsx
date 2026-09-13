@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import TransitionLink from "./TransitionLink";
+import Link from "next/link";
 import ProjectCard from "./ProjectCard";
 import { featuredProjects } from "@/lib/projects";
 import { ArrowRightIcon } from "@/components/Icons";
@@ -57,13 +57,13 @@ export default function SelectedWork() {
           transition={{ delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <TransitionLink
+          <Link
             href="/projects"
             className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all duration-300 hover:gap-5"
           >
             View All Projects
             <ArrowRightIcon className="h-5 w-5" />
-          </TransitionLink>
+          </Link>
         </motion.div>
       </div>
     </section>

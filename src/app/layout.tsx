@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import LazyCustomCursor from "@/components/LazyCustomCursor";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import SiteChrome from "@/components/SiteChrome";
-import PageTransitionProvider from "@/components/PageTransition";
+
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -140,18 +140,16 @@ export default function RootLayout({
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>
-        <PageTransitionProvider>
-          <LazyCustomCursor />
-          <Navigation />
-          <SmoothScrollProvider>
-            <div className="nav-content">
-              <main id="main-content" tabIndex={-1}>
-                {children}
-              </main>
-              <SiteChrome />
-            </div>
-          </SmoothScrollProvider>
-        </PageTransitionProvider>
+        <LazyCustomCursor />
+        <Navigation />
+        <SmoothScrollProvider>
+          <div className="nav-content">
+            <main id="main-content" tabIndex={-1}>
+              {children}
+            </main>
+            <SiteChrome />
+          </div>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

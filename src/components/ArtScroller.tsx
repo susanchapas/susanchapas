@@ -1,6 +1,6 @@
 "use client";
 
-import TransitionLink from "./TransitionLink";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import ArtImage from "./ArtImage";
 
@@ -27,7 +27,7 @@ export default function ArtScroller() {
         </p>
       </div>
 
-      <TransitionLink href="/gallery" className="group relative block">
+      <Link href="/gallery" className="group relative block">
         <div className="flex overflow-hidden">
           {/* CSS-based infinite scroll - much more performant than JS animation */}
           <div
@@ -64,7 +64,7 @@ export default function ArtScroller() {
             View Gallery
           </span>
         </div>
-      </TransitionLink>
+      </Link>
     </section>
   );
 }

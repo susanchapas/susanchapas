@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import TransitionLink from "@/components/TransitionLink";
+import Link from "next/link";
 import { useRef } from "react";
 import {
   ArrowRight,
@@ -357,13 +357,13 @@ export default function AboutPage() {
                     {p.body}
                   </p>
                   {p.href && (
-                    <TransitionLink
+                    <Link
                       href={p.href}
                       className="text-accent-lime font-display mt-3 inline-flex items-center gap-2 text-sm font-semibold transition-all hover:gap-3"
                     >
                       {p.linkLabel}
                       <ArrowRight className="h-3.5 w-3.5" />
-                    </TransitionLink>
+                    </Link>
                   )}
                 </motion.article>
               ))}
