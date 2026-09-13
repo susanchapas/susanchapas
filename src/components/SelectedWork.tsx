@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 import Link from "next/link";
 import ProjectCard from "./ProjectCard";
 import { featuredProjects } from "@/lib/projects";
@@ -9,18 +9,11 @@ import { ArrowRightIcon } from "@/components/Icons";
 export default function SelectedWork() {
   return (
     <section
-      className="bg-primary content-visibility-auto py-24 lg:py-32"
+      className="bg-primary content-visibility-auto py-[5rem] lg:py-32"
       aria-labelledby="selected-work-heading"
     >
       <div className="container mx-auto px-6 lg:px-12">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 lg:mb-24"
-        >
+        <FadeIn className="mb-16 lg:mb-24">
           <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
             Portfolio
           </span>
@@ -35,7 +28,7 @@ export default function SelectedWork() {
             demonstrates the intersection of design thinking, marketing expertise, and
             technical implementation.
           </p>
-        </motion.div>
+        </FadeIn>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
@@ -49,14 +42,7 @@ export default function SelectedWork() {
           ))}
         </div>
 
-        {/* View All Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-16 text-center"
-        >
+        <FadeIn direction="none" delay={0.3} className="mt-16 text-center">
           <Link
             href="/projects"
             className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all duration-300 hover:gap-5"
@@ -64,7 +50,7 @@ export default function SelectedWork() {
             View All Projects
             <ArrowRightIcon className="h-5 w-5" />
           </Link>
-        </motion.div>
+        </FadeIn>
       </div>
     </section>
   );

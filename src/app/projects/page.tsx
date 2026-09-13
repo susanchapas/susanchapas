@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/lib/projects";
@@ -22,12 +22,7 @@ export default function ProjectsPage() {
       {/* CTA Section */}
       <section className="bg-accent-blue/5 py-24 lg:py-32">
         <div className="container mx-auto px-6 text-center lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <FadeIn>
             <h2 className="font-display text-secondary mb-6 text-3xl font-bold lg:text-4xl">
               Have a project in mind?
             </h2>
@@ -42,7 +37,7 @@ export default function ProjectsPage() {
               Start a Conversation
               <ArrowRightIcon className="h-5 w-5" />
             </Link>
-          </motion.div>
+          </FadeIn>
         </div>
       </section>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 import { useState } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 
@@ -129,12 +129,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
             {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <FadeIn direction="left">
               <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
                 Contact Information
               </h2>
@@ -190,12 +185,10 @@ export default function ContactPage() {
               </div>
 
               {/* Availability */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+              <FadeIn
+                delay={0.3}
                 className="bg-accent-lime/10 border-accent-lime/20 mt-12 rounded-xl border p-6"
+                style={{ "--ty": "20px" } as React.CSSProperties}
               >
                 <div className="mb-3 flex items-center gap-3">
                   <div className="bg-accent-lime h-3 w-3 animate-pulse rounded-full" />
@@ -207,20 +200,15 @@ export default function ContactPage() {
                   Currently open to full-time roles, freelance projects, and creative
                   collaborations.
                 </p>
-              </motion.div>
-            </motion.div>
+              </FadeIn>
+            </FadeIn>
 
             {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <FadeIn direction="right">
               {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                <FadeIn
+                  trigger="mount"
+                  direction="scale"
                   className="bg-accent-blue/5 border-accent-blue/10 flex h-full flex-col items-center justify-center rounded-2xl border p-8 text-center"
                 >
                   <div className="bg-accent-lime mb-6 flex h-16 w-16 items-center justify-center rounded-full">
@@ -251,7 +239,7 @@ export default function ContactPage() {
                   >
                     Send Another Message
                   </AccessibleButton>
-                </motion.div>
+                </FadeIn>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="space-y-6">
                   <div>
@@ -438,18 +426,18 @@ export default function ContactPage() {
                   </AccessibleButton>
 
                   {submitError && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
+                    <FadeIn
+                      as="p"
+                      trigger="mount"
                       className="font-body text-danger mt-4 text-center text-sm"
-                      role="alert"
+                      style={{ "--ty": "-10px" } as React.CSSProperties}
                     >
-                      {submitError}
-                    </motion.p>
+                      <span role="alert">{submitError}</span>
+                    </FadeIn>
                   )}
                 </form>
               )}
-            </motion.div>
+            </FadeIn>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
 import { Carousel, CarouselSlide, CarouselFade } from "@/components/Carousel";
@@ -238,11 +238,7 @@ export default function FileFinderProject() {
   return (
     <div className="">
       <ProjectHero src={projectData.heroImage} alt={projectData.title}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <FadeIn trigger="mount">
           <BackToProjects />
 
           <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
@@ -277,7 +273,7 @@ export default function FileFinderProject() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </FadeIn>
       </ProjectHero>
 
       <section className="bg-primary py-16 lg:py-24">

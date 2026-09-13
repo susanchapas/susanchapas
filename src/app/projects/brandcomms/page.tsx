@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
 import { Carousel, CarouselSlide } from "@/components/Carousel";
@@ -248,11 +248,7 @@ export default function BrandCommsProject() {
   return (
     <div className="">
       <ProjectHero src="/assets/projects/brandcomms/BrandComms-Hero.webp" alt={projectData.title}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <FadeIn trigger="mount">
           <BackToProjects />
 
           <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
@@ -287,7 +283,7 @@ export default function BrandCommsProject() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </FadeIn>
       </ProjectHero>
 
       <section className="bg-primary py-16 lg:py-24">
@@ -501,19 +497,18 @@ export default function BrandCommsProject() {
                     </Reveal>
                     <ul className="max-w-3xl space-y-4">
                       {resolvedProblems.map((problem, index) => (
-                        <motion.li
+                        <FadeIn
                           key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1 }}
+                          as="li"
+                          direction="left"
+                          delay={index * 0.1}
                           className="flex items-start gap-4"
                         >
                           <span className="bg-accent-lime mt-2 h-2 w-2 flex-shrink-0 rounded-full" />
                           <span className="font-body text-secondary/80 text-lg">
                             {problem}
                           </span>
-                        </motion.li>
+                        </FadeIn>
                       ))}
                     </ul>
                   </div>
@@ -529,16 +524,15 @@ export default function BrandCommsProject() {
                     </Reveal>
                     <div className="flex flex-wrap gap-3">
                       {tools.map((tool, index) => (
-                        <motion.span
+                        <FadeIn
                           key={tool}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.05 }}
+                          as="span"
+                          direction="scale"
+                          delay={index * 0.05}
                           className="bg-accent-blue/5 border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
                         >
                           {tool}
-                        </motion.span>
+                        </FadeIn>
                       ))}
                     </div>
                   </div>

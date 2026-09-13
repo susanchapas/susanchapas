@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
 import AccessibleButton from "@/components/AccessibleButton";
@@ -146,11 +146,7 @@ export default function ArchLogProject() {
   return (
     <div className="">
       <ProjectHero src={projectData.heroImage} alt={projectData.title}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <FadeIn trigger="mount">
           <BackToProjects />
 
           <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
@@ -185,7 +181,7 @@ export default function ArchLogProject() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </FadeIn>
       </ProjectHero>
 
       {/* Overview + At a glance */}
@@ -341,30 +337,21 @@ export default function ArchLogProject() {
                             lower score = ranked higher
                           </span>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-5 sm:space-y-4">
                           {concepts.map((concept, i) => (
-                            <motion.div
+                            <FadeIn
                               key={concept.name}
-                              initial={{ opacity: 0, x: -16 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true, margin: "-40px" }}
-                              transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 24,
-                                delay: i * 0.06,
-                              }}
-                              whileHover={{
-                                x: 4,
-                                transition: {
-                                  type: "spring",
-                                  stiffness: 500,
-                                  damping: 28,
-                                },
-                              }}
-                              className="hover:bg-accent-blue/5 flex items-center gap-4 rounded-lg px-1 transition-colors"
+                              direction="left"
+                              delay={i * 0.06}
+                              margin="-40px"
+                              style={{
+                                "--tx": "-16px",
+                                "--bar-w": `${(concept.score / maxScore) * 100}%`,
+                                "--bar-delay": `${0.3 + i * 0.08}s`,
+                              } as React.CSSProperties}
+                              className="hover:bg-accent-blue/5 hover:translate-x-1 flex flex-wrap items-center gap-x-4 gap-y-1 rounded-lg px-1 transition-[colors,transform] sm:flex-nowrap"
                             >
-                              <div className="w-40 shrink-0 sm:w-52">
+                              <div className="flex w-full items-center justify-between sm:w-52 sm:shrink-0 sm:justify-start">
                                 <span
                                   className={`font-body text-sm ${
                                     concept.winner
@@ -374,27 +361,33 @@ export default function ArchLogProject() {
                                 >
                                   {concept.name}
                                 </span>
+                                <div className="flex items-center gap-2 sm:hidden">
+                                  <span
+                                    className={`font-display text-sm ${
+                                      concept.winner
+                                        ? "text-accent-lime font-bold"
+                                        : "text-secondary/50"
+                                    }`}
+                                  >
+                                    {concept.score.toFixed(2)}
+                                  </span>
+                                  {concept.winner && (
+                                    <span className="bg-accent-lime text-primary rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase">
+                                      Winner
+                                    </span>
+                                  )}
+                                </div>
                               </div>
-                              <div className="bg-primary/60 relative h-3 flex-1 overflow-hidden rounded-full">
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  whileInView={{
-                                    width: `${(concept.score / maxScore) * 100}%`,
-                                  }}
-                                  viewport={{ once: true }}
-                                  transition={{
-                                    duration: 0.7,
-                                    delay: 0.15 + i * 0.06,
-                                    ease: [0.22, 1, 0.36, 1],
-                                  }}
-                                  className={`h-full rounded-full ${
+                              <div className="bg-primary/60 relative h-3 w-full overflow-hidden rounded-full sm:flex-1 sm:w-auto">
+                                <div
+                                  className={`bar-fill h-full rounded-full ${
                                     concept.winner
                                       ? "bg-accent-lime"
                                       : "bg-accent-blue/40"
                                   }`}
                                 />
                               </div>
-                              <div className="flex w-20 shrink-0 items-center justify-end gap-2">
+                              <div className="hidden w-20 shrink-0 items-center justify-end gap-2 sm:flex">
                                 <span
                                   className={`font-display text-sm ${
                                     concept.winner
@@ -410,7 +403,7 @@ export default function ArchLogProject() {
                                   Winner
                                 </span>
                               )}
-                            </motion.div>
+                            </FadeIn>
                           ))}
                         </div>
                       </div>

@@ -1,9 +1,7 @@
 "use client";
 
-import { motion, HTMLMotionProps } from "framer-motion";
 import Link from "next/link";
-const MotionLink = motion(Link);
-import { AnchorHTMLAttributes, forwardRef, ReactNode } from "react";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
 
 interface BaseProps {
   children: ReactNode;
@@ -13,7 +11,7 @@ interface BaseProps {
 }
 
 interface ButtonProps
-  extends BaseProps, Omit<HTMLMotionProps<"button">, keyof BaseProps> {
+  extends BaseProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseProps> {
   href?: never;
 }
 
@@ -25,7 +23,7 @@ interface LinkProps extends BaseProps, Omit<AnchorHTMLAttributes<HTMLAnchorEleme
 type AccessibleButtonProps = ButtonProps | LinkProps;
 
 const baseStyles =
-  "inline-flex items-center justify-center font-display font-semibold rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-lime focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center font-display font-semibold rounded-full transition-all hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-lime focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:opacity-50 disabled:pointer-events-none";
 
 const variantStyles = {
   primary: "bg-accent-lime text-primary hover:bg-accent-lime/90 active:scale-[0.98]",
@@ -60,45 +58,39 @@ const AccessibleButton = forwardRef<
 
     if (external) {
       return (
-        <motion.a
+        <a
           ref={ref as React.Ref<HTMLAnchorElement>}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           className={combinedClassName}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          {...(linkRest as HTMLMotionProps<"a">)}
+          {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {children}
-        </motion.a>
+        </a>
       );
     }
 
     return (
-      <MotionLink
+      <Link
         href={href}
         ref={ref as React.Ref<HTMLAnchorElement>}
         className={combinedClassName}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        {...(linkRest as HTMLMotionProps<"a">)}
+        {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {children}
-      </MotionLink>
+      </Link>
     );
   }
 
   return (
-    <motion.button
+    <button
       ref={ref as React.Ref<HTMLButtonElement>}
       className={combinedClassName}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      {...(rest as HTMLMotionProps<"button">)}
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}
-    </motion.button>
+    </button>
   );
 });
 
@@ -106,7 +98,6 @@ AccessibleButton.displayName = "AccessibleButton";
 
 export default AccessibleButton;
 
-// Accessible Link Component
 interface AccessibleLinkProps {
   href: string;
   children: ReactNode;

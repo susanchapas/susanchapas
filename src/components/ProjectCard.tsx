@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon } from "@/components/Icons";
@@ -97,17 +97,7 @@ export default function ProjectCard({
   );
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={inactive ? "opacity-60" : "group"}
-    >
+    <FadeIn as="article" delay={index * 0.1} className={inactive ? "opacity-60" : "group"}>
       {inactive ? (
         <div
           className="bg-accent-blue/5 border-accent-blue/10 relative flex h-full flex-col overflow-hidden rounded-2xl border"
@@ -124,6 +114,6 @@ export default function ProjectCard({
           {content}
         </Link>
       )}
-    </motion.article>
+    </FadeIn>
   );
 }

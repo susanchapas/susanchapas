@@ -1,12 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
+import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
+import Eyebrow from "@/components/Eyebrow";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
+import HowMightWe from "@/components/HowMightWe";
+import ResearchStats from "@/components/ResearchStats";
+import InsightGrid from "@/components/InsightGrid";
 
 const projectData = {
   title: "Sous Sense",
@@ -19,41 +24,41 @@ const projectData = {
   type: "Academic Project",
 };
 
-const caseStudy = {
-  situation: {
-    title: "Situation",
-    content:
-      "American households throw away about $1,500 worth of food every year. Small restaurants lose even more, sometimes over $100,000 annually from spoiled inventory. Smart refrigerators have the right technology for this problem. The issue is price: they start at $2,500, and you need to replace your whole appliance to get one.",
+const researchStats = [
+  { value: "$161B", label: "Annual U.S. food waste losses" },
+  { value: "$338B", label: "Projected smart home market by 2030" },
+  { value: "3", label: "Competitor categories analyzed" },
+];
+
+const insights = [
+  {
+    title: "Food waste is massive, but solutions target awareness, not prevention.",
+    body: "The U.S. loses $161 billion in food waste annually. Most interventions focus on consumer education or composting. Very few products intervene at the point of spoilage, where the loss actually happens.",
   },
-  task: {
-    title: "Task",
-    content:
-      "Design the full product from concept to investor presentation. That meant building a brand, designing packaging for both consumer and commercial kits, creating advertising posters, writing a 24-page business plan with five-year projections, and assembling a 16-slide investor pitch deck.",
+  {
+    title: "Smart fridges solve the right problem at the wrong price.",
+    body: "Built-in sensors can track freshness and inventory, but smart refrigerators start at $2,500 and require replacing a working appliance. The technology is sound; the delivery model is not.",
   },
-  action: {
-    title: "Action",
-    points: [
-      "Researched the U.S. food waste landscape ($161 billion in annual losses) and the smart home market ($338 billion projected by 2030)",
-      "Analyzed three competitor categories: smart refrigerator manufacturers, manual pantry tracking apps, and general-purpose IoT platforms",
-      "Developed the Sous Sense brand identity, including a serif wordmark with an integrated chef's hat motif",
-      "Designed consumer sensor kit packaging at $149 and commercial system packaging at $499",
-      "Created two advertising poster designs for the product launch",
-      "Built five-year financial projections using the SCORE model, with all balance sheets verified",
-      "Designed a 16-slide investor pitch deck covering revenue architecture, cost structure, and risk mitigation",
-    ],
+  {
+    title: "Manual tracking apps fail because they depend on user discipline.",
+    body: "Pantry tracking apps require users to log every item by hand. Compliance drops within weeks. Any solution that relies on manual entry is fighting human behavior.",
   },
-  result: {
-    title: "Result",
-    metrics: [
-      { value: "$4.4M", label: "Projected Year 5 revenue" },
-      { value: "72.3%", label: "Gross margin by Year 5" },
-      { value: "88.5%", label: "Software subscription margin" },
-      { value: "Year 2", label: "Projected profitability" },
-    ],
-    content:
-      "The financial model projects $200K in first-year revenue growing to $4.4M by Year 5, with profitability beginning in Year 2. Revenue comes from two sources: one-time hardware sales that build the installed base, and recurring SaaS subscriptions that grow with it. The subscription side carries gross margins above 85%, creating stable, predictable cash flow as the customer base expands.",
+  {
+    title: "No existing product bridges IoT sensing with kitchen-specific intelligence.",
+    body: "General-purpose IoT platforms offer connectivity but no domain knowledge. They can tell you a sensor fired, but not that your produce drawer is two days from spoilage.",
   },
-};
+  {
+    title: "Recurring revenue matters as much as the hardware.",
+    body: "Hardware margins are healthy but capped. The subscription layer, where software interprets sensor data into actionable alerts, carries 85%+ margins and grows with the installed base.",
+  },
+];
+
+const resultMetrics = [
+  { value: "$4.4M", label: "Projected Year 5 revenue" },
+  { value: "72.3%", label: "Gross margin by Year 5" },
+  { value: "88.5%", label: "Software subscription margin" },
+  { value: "Year 2", label: "Projected profitability" },
+];
 
 const posters = [
   {
@@ -79,11 +84,7 @@ export default function SousSenseProject() {
   return (
     <div className="">
       <ProjectHero src="/assets/projects/sous-sense/Sous-Sense-Hero.webp" alt="Sous Sense brand cover">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <FadeIn trigger="mount">
           <BackToProjects />
 
           <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl xl:text-6xl">
@@ -118,25 +119,19 @@ export default function SousSenseProject() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </FadeIn>
       </ProjectHero>
 
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-2"
-          >
+          <FadeIn className="lg:col-span-2">
             <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
               Overview
             </h2>
             <p className="font-body text-secondary/80 text-lg leading-relaxed">
               {projectData.description}
             </p>
-          </motion.div>
+          </FadeIn>
 
           <Tile
             delay={0.1}
@@ -162,86 +157,100 @@ export default function SousSenseProject() {
       <SectionTabs
         tabs={[
           {
-            id: "case-study",
-            label: "Case Study",
+            id: "challenge",
+            label: "Challenge",
             content: (
               <section className="bg-accent-blue/5 py-16 lg:py-24">
                 <div className="container mx-auto px-6 lg:px-12">
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16"
-                  >
-                    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-                      {caseStudy.situation.title}
-                    </span>
-                    <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
-                      {caseStudy.situation.content}
+                  <Reveal className="mb-12 max-w-3xl">
+                    <Eyebrow>The Challenge</Eyebrow>
+                    <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                      American households throw away about $1,500 worth of food
+                      every year. Small restaurants lose even more, sometimes over
+                      $100,000 annually from spoiled inventory. Smart refrigerators
+                      have the right technology for this problem. The issue is
+                      price: they start at $2,500, and you need to replace your
+                      whole appliance to get one.
                     </p>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16"
-                  >
-                    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-                      {caseStudy.task.title}
-                    </span>
-                    <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
-                      {caseStudy.task.content}
+                    <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
+                      The project scope covered the full product from concept to
+                      investor presentation: brand identity, packaging for both
+                      consumer and commercial kits, advertising posters, a 24-page
+                      business plan with five-year projections, and a 16-slide
+                      investor pitch deck.
                     </p>
-                  </motion.div>
+                  </Reveal>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16"
-                  >
-                    <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-                      {caseStudy.action.title}
-                    </span>
-                    <ul className="max-w-3xl space-y-4">
-                      {caseStudy.action.points.map((point, index) => (
-                        <motion.li
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-start gap-4"
-                        >
-                          <span className="bg-accent-lime mt-2 h-2 w-2 flex-shrink-0 rounded-full" />
-                          <span className="font-body text-secondary/80">{point}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                  <HowMightWe>bring smart-fridge sensing technology to any kitchen without requiring a full appliance replacement?</HowMightWe>
+                </div>
+              </section>
+            ),
+          },
+          {
+            id: "research",
+            label: "Research",
+            content: (
+              <>
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>The Research</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Mapping the market landscape
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        Research started with the U.S. food waste landscape and
+                        the smart home market. Three competitor categories were
+                        analyzed: smart refrigerator manufacturers, manual pantry
+                        tracking apps, and general-purpose IoT platforms. The goal
+                        was to find where the gap sat between the technology that
+                        exists and the price point that makes it accessible.
+                      </p>
+                    </Reveal>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    <span className="text-accent-lime font-body mb-8 block text-sm tracking-widest uppercase">
-                      {caseStudy.result.title}
-                    </span>
+                    <ResearchStats stats={researchStats} />
+                  </div>
+                </section>
+
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <Eyebrow>Key Insights</Eyebrow>
+                      <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
+                        Five findings shaped the product strategy
+                      </h2>
+                    </Reveal>
+
+                    <InsightGrid
+                      items={insights}
+                      thesis={
+                        <>
+                          The opportunity is a{" "}
+                          <span className="text-accent-lime">retrofit sensor kit</span>{" "}
+                          paired with{" "}
+                          <span className="text-accent-lime">subscription software</span>{" "}
+                          that turns any fridge into a smart one.
+                        </>
+                      }
+                    />
+                  </div>
+                </section>
+
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-8 max-w-3xl">
+                      <Eyebrow>Projected Outcome</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Financial model validation
+                      </h2>
+                    </Reveal>
                     <div className="mb-8 grid grid-cols-2 gap-6 lg:grid-cols-4">
-                      {caseStudy.result.metrics.map((metric, index) => (
-                        <motion.div
+                      {resultMetrics.map((metric, index) => (
+                        <FadeIn
                           key={metric.label}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1 }}
-                          className="bg-primary border-accent-blue/10 rounded-xl border p-6 text-center"
+                          direction="scale"
+                          delay={index * 0.1}
+                          className="bg-accent-blue/5 border-accent-blue/10 rounded-xl border p-6 text-center"
                         >
                           <div className="font-display text-accent-lime mb-2 text-3xl font-bold lg:text-4xl">
                             {metric.value}
@@ -249,179 +258,172 @@ export default function SousSenseProject() {
                           <div className="font-body text-secondary/70 text-sm">
                             {metric.label}
                           </div>
-                        </motion.div>
+                        </FadeIn>
                       ))}
                     </div>
-                    <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
-                      {caseStudy.result.content}
-                    </p>
-                  </motion.div>
-                </div>
-              </section>
+                    <Reveal>
+                      <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
+                        The financial model projects $200K in first-year revenue
+                        growing to $4.4M by Year 5, with profitability beginning
+                        in Year 2. Revenue comes from two sources: one-time
+                        hardware sales that build the installed base, and recurring
+                        SaaS subscriptions that grow with it. The subscription side
+                        carries gross margins above 85%, creating stable,
+                        predictable cash flow as the customer base expands.
+                      </p>
+                    </Reveal>
+                  </div>
+                </section>
+              </>
             ),
           },
           {
             id: "design",
             label: "Design",
             content: (
-              <section className="bg-primary py-16 lg:py-24">
-                <div className="container mx-auto px-6 lg:px-12">
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16 max-w-3xl"
-                  >
-                    <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                      Brand Identity
-                    </h2>
-                    <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                      The name comes from &ldquo;sous chef,&rdquo; the second-in-command
-                      in a professional kitchen. The product works in the background,
-                      keeping track of inventory and freshness so you can focus on
-                      cooking. The wordmark uses a serif typeface with a chef&rsquo;s hat
-                      woven into the letterform, and the visual identity uses warm tones
-                      that suit a kitchen environment.
-                    </p>
-                  </motion.div>
+              <>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <FadeIn className="max-w-3xl">
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Brand Identity
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        The name comes from &ldquo;sous chef,&rdquo; the second-in-command
+                        in a professional kitchen. The product works in the background,
+                        keeping track of inventory and freshness so you can focus on
+                        cooking. The wordmark uses a serif typeface with a chef&rsquo;s hat
+                        woven into the letterform, and the visual identity uses warm tones
+                        that suit a kitchen environment.
+                      </p>
+                    </FadeIn>
+                  </div>
+                </section>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-16"
-                  >
-                    <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                      Advertising
-                    </h2>
-                    <p className="font-body text-secondary/80 mb-10 max-w-3xl text-lg leading-relaxed">
-                      These posters were designed for the consumer product launch. They
-                      explain what the product does and why it&rsquo;s worth buying.
-                    </p>
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                      {posters.map((poster, index) => (
-                        <motion.div
-                          key={poster.src}
-                          initial={{ opacity: 0, y: 30 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.15 }}
-                          className="group relative overflow-hidden rounded-xl"
-                        >
-                          <Image
-                            src={poster.src}
-                            alt={poster.alt}
-                            width={2550}
-                            height={3300}
-                            className="w-full transition-transform duration-500 group-hover:scale-[1.02]"
-                            sizes="(min-width: 768px) 50vw, 100vw"
-                          />
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <FadeIn>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Advertising
+                      </h2>
+                      <p className="font-body text-secondary/80 mb-10 max-w-3xl text-lg leading-relaxed">
+                        These posters were designed for the consumer product launch. They
+                        explain what the product does and why it&rsquo;s worth buying.
+                      </p>
+                      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        {posters.map((poster, index) => (
+                          <FadeIn
+                            key={poster.src}
+                            delay={index * 0.15}
+                            className="group relative overflow-hidden rounded-xl"
+                          >
+                            <Image
+                              src={poster.src}
+                              alt={poster.alt}
+                              width={2550}
+                              height={3300}
+                              className="w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                              sizes="(min-width: 768px) 50vw, 100vw"
+                            />
+                          </FadeIn>
+                        ))}
+                      </div>
+                    </FadeIn>
+                  </div>
+                </section>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                  >
-                    <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                      Revenue Model
-                    </h2>
-                    <p className="font-body text-secondary/80 mb-8 max-w-3xl text-lg leading-relaxed">
-                      The business model pairs one-time hardware sales with recurring
-                      software subscriptions. The hardware is intentionally limited
-                      without the app, so every kit sold becomes a subscriber.
-                    </p>
-                    <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-                      {[
-                        {
-                          label: "Consumer Kit",
-                          price: "$149",
-                          margin: "65.1% GM",
-                          recurring: false,
-                        },
-                        {
-                          label: "Consumer App",
-                          price: "$12.99/mo",
-                          margin: "88.5% GM",
-                          recurring: true,
-                        },
-                        {
-                          label: "Commercial Kit",
-                          price: "$499",
-                          margin: "66.9% GM",
-                          recurring: false,
-                        },
-                        {
-                          label: "Commercial App",
-                          price: "$69.99/mo",
-                          margin: "85.7% GM",
-                          recurring: true,
-                        },
-                      ].map((product, index) => (
-                        <motion.div
-                          key={product.label}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1 }}
-                          className={`rounded-xl border p-6 ${
-                            product.recurring
-                              ? "border-accent-lime/20 bg-accent-lime/5"
-                              : "border-accent-blue/10 bg-accent-blue/5"
-                          }`}
-                        >
-                          {product.recurring && (
-                            <span className="text-accent-lime mb-2 block text-xs font-semibold tracking-widest uppercase">
-                              Recurring
-                            </span>
-                          )}
-                          <div className="font-display text-secondary mb-1 text-2xl font-bold">
-                            {product.price}
-                          </div>
-                          <div className="font-body text-secondary/70 text-sm">
-                            {product.label}
-                          </div>
-                          <div className="font-body text-secondary/50 mt-2 text-xs">
-                            {product.margin}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <FadeIn>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Revenue Model
+                      </h2>
+                      <p className="font-body text-secondary/80 mb-8 max-w-3xl text-lg leading-relaxed">
+                        The business model pairs one-time hardware sales with recurring
+                        software subscriptions. The hardware is intentionally limited
+                        without the app, so every kit sold becomes a subscriber.
+                      </p>
+                      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                        {[
+                          {
+                            label: "Consumer Kit",
+                            price: "$149",
+                            margin: "65.1% GM",
+                            recurring: false,
+                          },
+                          {
+                            label: "Consumer App",
+                            price: "$12.99/mo",
+                            margin: "88.5% GM",
+                            recurring: true,
+                          },
+                          {
+                            label: "Commercial Kit",
+                            price: "$499",
+                            margin: "66.9% GM",
+                            recurring: false,
+                          },
+                          {
+                            label: "Commercial App",
+                            price: "$69.99/mo",
+                            margin: "85.7% GM",
+                            recurring: true,
+                          },
+                        ].map((product, index) => (
+                          <FadeIn
+                            key={product.label}
+                            delay={index * 0.1}
+                            className={`rounded-xl border p-6 ${
+                              product.recurring
+                                ? "border-accent-lime/20 bg-accent-lime/5"
+                                : "border-accent-blue/10 bg-accent-blue/5"
+                            }`}
+                            style={{ "--ty": "20px" } as React.CSSProperties}
+                          >
+                            {product.recurring && (
+                              <span className="text-accent-lime mb-2 block text-xs font-semibold tracking-widest uppercase">
+                                Recurring
+                              </span>
+                            )}
+                            <div className="font-display text-secondary mb-1 text-2xl font-bold">
+                              {product.price}
+                            </div>
+                            <div className="font-body text-secondary/70 text-sm">
+                              {product.label}
+                            </div>
+                            <div className="font-body text-secondary/50 mt-2 text-xs">
+                              {product.margin}
+                            </div>
+                          </FadeIn>
+                        ))}
+                      </div>
+                    </FadeIn>
+                  </div>
+                </section>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mt-16"
-                  >
-                    <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
-                      Tools & Technologies
-                    </h2>
-                    <div className="flex flex-wrap gap-3">
-                      {tools.map((tool, index) => (
-                        <motion.span
-                          key={tool}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.05 }}
-                          className="bg-accent-blue/5 border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
-                        >
-                          {tool}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              </section>
+                <section className="bg-primary py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <FadeIn>
+                      <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
+                        Tools & Technologies
+                      </h2>
+                      <div className="flex flex-wrap gap-3">
+                        {tools.map((tool, index) => (
+                          <FadeIn
+                            as="span"
+                            key={tool}
+                            direction="scale"
+                            delay={index * 0.05}
+                            className="bg-accent-blue/5 border-accent-blue/20 text-secondary font-body rounded-full border px-4 py-2 text-sm"
+                          >
+                            {tool}
+                          </FadeIn>
+                        ))}
+                      </div>
+                    </FadeIn>
+                  </div>
+                </section>
+              </>
             ),
           },
         ]}

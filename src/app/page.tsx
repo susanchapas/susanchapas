@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className="bg-primary relative overflow-hidden">
       <div className="relative z-10">
-        <section className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-24 pb-12 lg:pt-40 lg:pb-28">
+        <section className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-[5rem] pb-[2.5rem] lg:pt-40 lg:pb-28">
           <div className="gradient-mesh absolute inset-0">
             <div
               className="bg-accent-lime/5 animate-float-slow absolute top-1/4 left-1/4 h-96 w-96 rounded-full blur-3xl"
