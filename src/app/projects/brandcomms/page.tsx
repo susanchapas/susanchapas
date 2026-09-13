@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
-import { useState, useCallback, useRef } from "react";
+import { Carousel, CarouselSlide } from "@/components/Carousel";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
@@ -14,7 +14,6 @@ import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
-import { ChevronLeftIcon, ChevronRightIcon } from "@/components/Icons";
 
 const projectData = {
   title: "BrandComms",
@@ -166,69 +165,26 @@ const screenshots = [
 ];
 
 function ScreenshotCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const touchStart = useRef<number | null>(null);
-
-  const go = useCallback(
-    (dir: 1 | -1) => {
-      setDirection(dir);
-      setCurrent((prev) => (prev + dir + screenshots.length) % screenshots.length);
-    },
-    [],
-  );
-
-  const onTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStart.current = e.touches[0].clientX;
-  }, []);
-
-  const onTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
-      if (touchStart.current === null) return;
-      const delta = e.changedTouches[0].clientX - touchStart.current;
-      if (Math.abs(delta) > 50) go(delta < 0 ? 1 : -1);
-      touchStart.current = null;
-    },
-    [go],
-  );
-
-  const slide = screenshots[current];
-
   return (
-    <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
-          aria-label="Previous screenshot"
-        >
-          <ChevronLeftIcon className="h-5 w-5" />
-        </button>
-
+    <Carousel
+      items={screenshots}
+      ariaLabel="screenshot"
+      swipeable
+      controlsLayout="flanking"
+      dotVariant="secondary"
+      renderSlide={(slide, { index, count, direction }) => (
         <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
           <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.div
-                key={slide.src}
-                custom={direction}
-                initial={{ opacity: 0, x: direction * 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction * -60 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={slide.src}
-                  alt={slide.alt}
-                  fill
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  className="object-cover object-top"
-                />
-              </motion.div>
-            </AnimatePresence>
+            <CarouselSlide slideKey={slide.src} direction={direction} offset={60} className="absolute inset-0">
+              <Image
+                src={slide.src}
+                alt={slide.alt}
+                fill
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                className="object-cover object-top"
+              />
+            </CarouselSlide>
           </div>
-
           <div className="flex items-start justify-between gap-4 p-5">
             <div className="min-w-0">
               <h3 className="font-display text-secondary mb-1 text-lg font-bold">
@@ -239,138 +195,36 @@ function ScreenshotCarousel() {
               </p>
             </div>
             <span className="text-secondary/40 font-body shrink-0 text-sm">
-              {current + 1}/{screenshots.length}
+              {index + 1}/{count}
             </span>
           </div>
         </div>
-
-        <button
-          type="button"
-          onClick={() => go(1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
-          aria-label="Next screenshot"
-        >
-          <ChevronRightIcon className="h-5 w-5" />
-        </button>
-      </div>
-
-      <div className="mt-4 flex items-center justify-center gap-4 lg:hidden">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
-          aria-label="Previous screenshot"
-        >
-          <ChevronLeftIcon className="h-4 w-4" />
-        </button>
-        <div className="flex gap-2">
-          {screenshots.map((s, i) => (
-            <button
-              key={s.title}
-              type="button"
-              onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-              className={`h-2 rounded-full transition-all ${
-                i === current
-                  ? "bg-accent-lime w-6"
-                  : "bg-secondary/20 hover:bg-secondary/40 w-2"
-              }`}
-              aria-label={`Go to ${s.title}`}
-            />
-          ))}
-        </div>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
-          aria-label="Next screenshot"
-        >
-          <ChevronRightIcon className="h-4 w-4" />
-        </button>
-      </div>
-
-      <div className="mt-4 hidden justify-center gap-2 lg:flex">
-        {screenshots.map((s, i) => (
-          <button
-            key={s.title}
-            type="button"
-            onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-            className={`h-2 rounded-full transition-all ${
-              i === current
-                ? "bg-accent-lime w-6"
-                : "bg-secondary/20 hover:bg-secondary/40 w-2"
-            }`}
-            aria-label={`Go to ${s.title}`}
-          />
-        ))}
-      </div>
-    </div>
+      )}
+    />
   );
 }
 
 function PersonaCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const touchStart = useRef<number | null>(null);
-
-  const go = useCallback(
-    (dir: 1 | -1) => {
-      setDirection(dir);
-      setCurrent((prev) => (prev + dir + personas.length) % personas.length);
-    },
-    [],
-  );
-
-  const onTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStart.current = e.touches[0].clientX;
-  }, []);
-
-  const onTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
-      if (touchStart.current === null) return;
-      const delta = e.changedTouches[0].clientX - touchStart.current;
-      if (Math.abs(delta) > 50) go(delta < 0 ? 1 : -1);
-      touchStart.current = null;
-    },
-    [go],
-  );
-
-  const persona = personas[current];
-
   return (
-    <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
-          aria-label="Previous persona"
-        >
-          <ChevronLeftIcon className="h-5 w-5" />
-        </button>
-
+    <Carousel
+      items={personas}
+      ariaLabel="persona"
+      swipeable
+      controlsLayout="flanking"
+      dotVariant="secondary"
+      renderSlide={(persona, { index, count, direction }) => (
         <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
           <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <AnimatePresence mode="wait" initial={false} custom={direction}>
-              <motion.div
-                key={persona.image}
-                custom={direction}
-                initial={{ opacity: 0, x: direction * 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction * -60 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={persona.image}
-                  alt={`Persona sheet for ${persona.name}, ${persona.archetype}`}
-                  fill
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  className="object-cover object-top"
-                />
-              </motion.div>
-            </AnimatePresence>
+            <CarouselSlide slideKey={persona.image} direction={direction} offset={60} className="absolute inset-0">
+              <Image
+                src={persona.image}
+                alt={`Persona sheet for ${persona.name}, ${persona.archetype}`}
+                fill
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                className="object-cover object-top"
+              />
+            </CarouselSlide>
           </div>
-
           <div className="flex items-start justify-between gap-4 p-5">
             <div className="min-w-0">
               <span className="text-accent-blue font-body mb-1 block text-xs font-semibold tracking-widest uppercase">
@@ -381,71 +235,12 @@ function PersonaCarousel() {
               </h3>
             </div>
             <span className="text-secondary/40 font-body shrink-0 text-sm">
-              {current + 1}/{personas.length}
+              {index + 1}/{count}
             </span>
           </div>
         </div>
-
-        <button
-          type="button"
-          onClick={() => go(1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime hidden shrink-0 rounded-full border p-2 transition-colors lg:block"
-          aria-label="Next persona"
-        >
-          <ChevronRightIcon className="h-5 w-5" />
-        </button>
-      </div>
-
-      <div className="mt-4 flex items-center justify-center gap-4 lg:hidden">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
-          aria-label="Previous persona"
-        >
-          <ChevronLeftIcon className="h-4 w-4" />
-        </button>
-        <div className="flex gap-2">
-          {personas.map((p, i) => (
-            <button
-              key={p.name}
-              type="button"
-              onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-              className={`h-2 rounded-full transition-all ${
-                i === current
-                  ? "bg-accent-lime w-6"
-                  : "bg-secondary/20 hover:bg-secondary/40 w-2"
-              }`}
-              aria-label={`Go to ${p.name}`}
-            />
-          ))}
-        </div>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          className="border-accent-blue/20 text-secondary hover:border-accent-lime hover:text-accent-lime rounded-full border p-2 transition-colors"
-          aria-label="Next persona"
-        >
-          <ChevronRightIcon className="h-4 w-4" />
-        </button>
-      </div>
-
-      <div className="mt-4 hidden justify-center gap-2 lg:flex">
-        {personas.map((p, i) => (
-          <button
-            key={p.name}
-            type="button"
-            onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-            className={`h-2 rounded-full transition-all ${
-              i === current
-                ? "bg-accent-lime w-6"
-                : "bg-secondary/20 hover:bg-secondary/40 w-2"
-            }`}
-            aria-label={`Go to ${p.name}`}
-          />
-        ))}
-      </div>
-    </div>
+      )}
+    />
   );
 }
 
@@ -570,6 +365,7 @@ export default function BrandCommsProject() {
                           width={800}
                           height={600}
                           className="h-auto w-full"
+                          sizes="(min-width: 1024px) 60vw, 100vw"
                         />
                       </div>
                     </Reveal>
@@ -753,7 +549,7 @@ export default function BrandCommsProject() {
         ]}
       />
 
-      <ProjectNavFooter nextHref="/projects/sous-sense" />
+      <ProjectNavFooter nextHref="/projects/archlog" />
     </div>
   );
 }

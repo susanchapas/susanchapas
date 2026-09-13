@@ -57,7 +57,7 @@ export default function Home() {
                   SUSAN CHAPAS
                 </span>
                 <h1 className="font-display text-secondary mb-10 text-4xl leading-[1.1] font-bold sm:text-5xl md:text-6xl lg:text-7xl">
-                  <span className="whitespace-nowrap">I&apos;m a designer</span>
+                  <span className="whitespace-nowrap">AI-native designer</span>
                   <br />
                   <span className="whitespace-nowrap">who enjoys going</span>
                   <br />

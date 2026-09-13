@@ -57,7 +57,7 @@ describe("Home Page", () => {
   it("renders the hero section", () => {
     render(<Home />);
 
-    expect(screen.getByText(/I'm a designer/i)).toBeInTheDocument();
+    expect(screen.getByText(/AI-native designer/i)).toBeInTheDocument();
     expect(screen.getByText(/beyond the/i)).toBeInTheDocument();
   });
 

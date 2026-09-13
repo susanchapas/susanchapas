@@ -1,9 +1,9 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
-import { useCallback, useRef, useState } from "react";
+import { Carousel, CarouselSlide, CarouselFade } from "@/components/Carousel";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
@@ -16,7 +16,7 @@ import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
-import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@/components/Icons";
+import { ArrowRightIcon } from "@/components/Icons";
 
 const projectData = {
   title: "File Finder",
@@ -179,148 +179,58 @@ const productScreens = [
 ];
 
 function StrengthsCarousel() {
-  const [active, setActive] = useState(0);
-  const direction = useRef(0);
-
-  const go = useCallback(
-    (next: number) => {
-      direction.current = next > active ? 1 : -1;
-      setActive(next);
-    },
-    [active]
-  );
-
-  const prev = useCallback(
-    () => go((active - 1 + strengths.length) % strengths.length),
-    [active, go]
-  );
-  const next = useCallback(
-    () => go((active + 1) % strengths.length),
-    [active, go]
-  );
-
-  const s = strengths[active];
-
   return (
-    <div className="flex flex-col gap-6">
-      {/* Mobile: stacked */}
-      <div className="flex flex-col items-center gap-6 lg:hidden">
-        <div className="flex min-h-[200px] w-full flex-col justify-center text-center">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, x: direction.current * 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction.current * -40 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
-                {active + 1} of {strengths.length}
-              </span>
-              <h3 className="font-display text-secondary mb-4 text-xl font-bold">
-                {s.category}
-              </h3>
-              <ul className="mx-auto max-w-sm space-y-2 text-left">
-                {s.items.map((item) => (
-                  <li
-                    key={item}
-                    className="font-body text-secondary/70 flex items-start text-sm leading-relaxed"
-                  >
-                    <span className="bg-accent-lime/20 mt-1.5 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Desktop: split panel */}
-      <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
-        <div className="bg-primary/60 border-accent-blue/10 flex w-2/5 items-center justify-center border-r px-8 py-8">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center"
-            >
-              <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
-                {active + 1} of {strengths.length}
-              </span>
-              <h3 className="font-display text-secondary text-2xl font-bold">
-                {s.category}
-              </h3>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
-          <div className="flex min-h-[160px] flex-col justify-center">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <ul className="space-y-3">
+    <Carousel
+      items={strengths}
+      ariaLabel="strength"
+      renderSlide={(s, { index, count, direction }) => (
+        <>
+          <div className="flex flex-col items-center gap-6 lg:hidden">
+            <div className="flex min-h-[200px] w-full flex-col justify-center text-center">
+              <CarouselSlide slideKey={index} direction={direction}>
+                <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
+                  {index + 1} of {count}
+                </span>
+                <h3 className="font-display text-secondary mb-4 text-xl font-bold">{s.category}</h3>
+                <ul className="mx-auto max-w-sm space-y-2 text-left">
                   {s.items.map((item) => (
-                    <li
-                      key={item}
-                      className="font-body text-secondary/70 flex items-start text-base leading-relaxed"
-                    >
-                      <span className="bg-accent-lime/20 mt-2 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
+                    <li key={item} className="font-body text-secondary/70 flex items-start text-sm leading-relaxed">
+                      <span className="bg-accent-lime/20 mt-1.5 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
                       {item}
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-            </AnimatePresence>
+              </CarouselSlide>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className="flex items-center justify-center gap-4">
-        <button
-          type="button"
-          onClick={prev}
-          aria-label="Previous strength"
-          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-        >
-          <ChevronLeftIcon className="h-4 w-4" />
-        </button>
-
-        <div className="flex gap-2">
-          {strengths.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => go(i)}
-              aria-label={`Go to strength ${i + 1}`}
-              className={`h-2 rounded-full transition-all ${
-                i === active
-                  ? "bg-accent-lime w-6"
-                  : "bg-accent-blue/30 hover:bg-accent-blue/50 w-2"
-              }`}
-            />
-          ))}
-        </div>
-
-        <button
-          type="button"
-          onClick={next}
-          aria-label="Next strength"
-          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-        >
-          <ChevronRightIcon className="h-4 w-4" />
-        </button>
-      </div>
-    </div>
+          <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
+            <div className="bg-primary/60 border-accent-blue/10 flex w-2/5 items-center justify-center border-r px-8 py-8">
+              <CarouselFade slideKey={index} className="text-center">
+                <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
+                  {index + 1} of {count}
+                </span>
+                <h3 className="font-display text-secondary text-2xl font-bold">{s.category}</h3>
+              </CarouselFade>
+            </div>
+            <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
+              <div className="flex min-h-[160px] flex-col justify-center">
+                <CarouselFade slideKey={index}>
+                  <ul className="space-y-3">
+                    {s.items.map((item) => (
+                      <li key={item} className="font-body text-secondary/70 flex items-start text-base leading-relaxed">
+                        <span className="bg-accent-lime/20 mt-2 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CarouselFade>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    />
   );
 }
 
@@ -662,7 +572,7 @@ export default function FileFinderProject() {
         ]}
       />
 
-      <ProjectNavFooter nextHref="/projects/sous-sense" />
+      <ProjectNavFooter nextHref="/projects/brandcomms" />
     </div>
   );
 }

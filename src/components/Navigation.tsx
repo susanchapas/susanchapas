@@ -198,6 +198,7 @@ export default function Navigation() {
               alt="Susan Chapas logo"
               width={40}
               height={40}
+              sizes="40px"
             />
           </Link>
           <button
@@ -271,6 +272,7 @@ export default function Navigation() {
                                     src={item.icon}
                                     alt=""
                                     fill
+                                    sizes="18px"
                                     className={`object-contain ${active ? "" : "opacity-50"}`}
                                   />
                                 </div>
@@ -352,6 +354,7 @@ export default function Navigation() {
                                 src={item.icon}
                                 alt=""
                                 fill
+                                sizes="18px"
                                 className={`object-contain ${active ? "" : "opacity-50"}`}
                               />
                             </div>
@@ -391,6 +394,7 @@ export default function Navigation() {
                             src={item.icon}
                             alt={item.name}
                             fill
+                            sizes="20px"
                             className={`object-contain transition-colors ${
                               isIconActive(item.href) ? "brightness-0" : ""
                             }`}
@@ -431,6 +435,7 @@ export default function Navigation() {
             alt="Susan Chapas logo"
             width={32}
             height={32}
+            sizes="32px"
           />
         </Link>
 
@@ -518,6 +523,7 @@ export default function Navigation() {
                                     src={item.icon}
                                     alt=""
                                     fill
+                                    sizes="24px"
                                     className={`object-contain ${active ? "" : "opacity-50"}`}
                                   />
                                 </div>
@@ -581,6 +587,7 @@ export default function Navigation() {
                                 src={item.icon}
                                 alt=""
                                 fill
+                                sizes="24px"
                                 className={`object-contain ${active ? "" : "opacity-50"}`}
                               />
                             </div>

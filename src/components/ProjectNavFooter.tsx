@@ -19,13 +19,17 @@ export default function ProjectNavFooter({
             <ArrowRightIcon className="h-4 w-4 rotate-180" />
             All Projects
           </AccessibleButton>
-          <AccessibleButton
-            href={nextHref}
-            title={nextProject?.title}
-          >
-            {nextLabel}
-            <ArrowRightIcon className="h-4 w-4" />
-          </AccessibleButton>
+          <div className="group relative">
+            <AccessibleButton href={nextHref}>
+              {nextLabel}
+              <ArrowRightIcon className="h-4 w-4" />
+            </AccessibleButton>
+            {nextProject?.title && (
+              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-secondary/90 px-3 py-1.5 text-sm text-primary opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                {nextProject.title}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </section>

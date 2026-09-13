@@ -316,6 +316,7 @@ export default function SousSenseProject() {
                             width={2550}
                             height={3300}
                             className="w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                            sizes="(min-width: 768px) 50vw, 100vw"
                           />
                         </motion.div>
                       ))}
@@ -426,7 +427,7 @@ export default function SousSenseProject() {
         ]}
       />
 
-      <ProjectNavFooter nextHref="/projects/archlog" />
+      <ProjectNavFooter nextHref="/projects/chimera" />
     </div>
   );
 }

@@ -3,8 +3,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
+import { Carousel, CarouselSlide, CarouselFade } from "@/components/Carousel";
 import { createPortal } from "react-dom";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
@@ -17,7 +18,7 @@ import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
-import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@/components/Icons";
+import { ArrowRightIcon } from "@/components/Icons";
 
 const projectData = {
   title: "Chimera 2.0",
@@ -230,268 +231,91 @@ function PhoneSlot({
 }
 
 function PrinciplesCarousel() {
-  const [active, setActive] = useState(0);
-  const direction = useRef(0);
-
-  const go = useCallback(
-    (next: number) => {
-      direction.current = next > active ? 1 : -1;
-      setActive(next);
-    },
-    [active]
-  );
-
-  const prev = useCallback(
-    () => go((active - 1 + principles.length) % principles.length),
-    [active, go]
-  );
-  const next = useCallback(
-    () => go((active + 1) % principles.length),
-    [active, go]
-  );
-
-  const p = principles[active];
-
   return (
-    <div className="flex flex-col gap-6">
-      {/* Mobile: no container */}
-      <div className="flex flex-col items-center gap-6 lg:hidden">
-        <div className="shrink-0" style={{ height: "min(40vh, 380px)", aspectRatio: "9/19.5" }}>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, x: direction.current * 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction.current * -40 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="flex min-h-[160px] flex-1 flex-col justify-center text-center">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
-                Principle {active + 1} of {principles.length}
-              </span>
-              <h3 className="font-display text-secondary mb-3 text-xl font-bold">
-                {p.name}
-              </h3>
-              <p className="font-body text-secondary/70 max-w-lg text-base leading-relaxed">
-                {p.body}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Desktop: split panel */}
-      <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
-        <div className="bg-primary/60 border-accent-blue/10 flex items-center justify-center border-r px-8 py-8">
-          <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, x: direction.current * 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction.current * -40 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              >
+    <Carousel
+      items={principles}
+      ariaLabel="principle"
+      renderSlide={(p, { index, count, direction }) => (
+        <>
+          <div className="flex flex-col items-center gap-6 lg:hidden">
+            <div className="shrink-0" style={{ height: "min(40vh, 380px)", aspectRatio: "9/19.5" }}>
+              <CarouselSlide slideKey={index} direction={direction}>
                 <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
-          <div className="flex min-h-[160px] flex-col justify-center">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              >
+              </CarouselSlide>
+            </div>
+            <div className="flex min-h-[160px] flex-1 flex-col justify-center text-center">
+              <CarouselFade slideKey={index}>
                 <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
-                  Principle {active + 1} of {principles.length}
+                  Principle {index + 1} of {count}
                 </span>
-                <h3 className="font-display text-secondary mb-3 text-2xl font-bold">
-                  {p.name}
-                </h3>
-                <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">
-                  {p.body}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+                <h3 className="font-display text-secondary mb-3 text-xl font-bold">{p.name}</h3>
+                <p className="font-body text-secondary/70 max-w-lg text-base leading-relaxed">{p.body}</p>
+              </CarouselFade>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className="flex items-center justify-center gap-4">
-        <button
-          type="button"
-          onClick={prev}
-          aria-label="Previous principle"
-          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-        >
-          <ChevronLeftIcon className="h-4 w-4" />
-        </button>
-
-        <div className="flex gap-2">
-          {principles.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => go(i)}
-              aria-label={`Go to principle ${i + 1}`}
-              className={`h-2 rounded-full transition-all ${
-                i === active
-                  ? "bg-accent-lime w-6"
-                  : "bg-accent-blue/30 hover:bg-accent-blue/50 w-2"
-              }`}
-            />
-          ))}
-        </div>
-
-        <button
-          type="button"
-          onClick={next}
-          aria-label="Next principle"
-          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-        >
-          <ChevronRightIcon className="h-4 w-4" />
-        </button>
-      </div>
-    </div>
+          <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
+            <div className="bg-primary/60 border-accent-blue/10 flex items-center justify-center border-r px-8 py-8">
+              <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
+                <CarouselSlide slideKey={index} direction={direction}>
+                  <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
+                </CarouselSlide>
+              </div>
+            </div>
+            <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
+              <div className="flex min-h-[160px] flex-col justify-center">
+                <CarouselFade slideKey={index}>
+                  <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
+                    Principle {index + 1} of {count}
+                  </span>
+                  <h3 className="font-display text-secondary mb-3 text-2xl font-bold">{p.name}</h3>
+                  <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">{p.body}</p>
+                </CarouselFade>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    />
   );
 }
 
 function ProductTourCarousel() {
-  const [active, setActive] = useState(0);
-  const direction = useRef(0);
-
-  const go = useCallback(
-    (next: number) => {
-      direction.current = next > active ? 1 : -1;
-      setActive(next);
-    },
-    [active]
-  );
-
-  const prev = useCallback(
-    () => go((active - 1 + productScreens.length) % productScreens.length),
-    [active, go]
-  );
-  const next = useCallback(
-    () => go((active + 1) % productScreens.length),
-    [active, go]
-  );
-
-  const screen = productScreens[active];
-
   return (
-    <div className="flex flex-col gap-6">
-      {/* Mobile: single-item carousel */}
-      <div className="flex flex-col items-center gap-6 lg:hidden">
-        <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, x: direction.current * 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction.current * -40 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <PhoneSlot
-                src={screen.src}
-                alt={screen.alt}
-                label={screen.caption.split(":")[0]}
-              />
-            </motion.div>
-          </AnimatePresence>
-        </div>
+    <Carousel
+      items={productScreens}
+      ariaLabel="screen"
+      controlsClassName="lg:hidden"
+      renderSlide={(screen, { index, direction }) => (
+        <>
+          <div className="flex flex-col items-center gap-6 lg:hidden">
+            <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
+              <CarouselSlide slideKey={index} direction={direction}>
+                <PhoneSlot src={screen.src} alt={screen.alt} label={screen.caption.split(":")[0]} />
+              </CarouselSlide>
+            </div>
+            <div className="flex min-h-[60px] flex-col justify-center text-center">
+              <CarouselFade slideKey={index}>
+                <p className="font-body text-secondary/60 max-w-sm text-sm">{screen.caption}</p>
+              </CarouselFade>
+            </div>
+          </div>
 
-        <div className="flex min-h-[60px] flex-col justify-center text-center">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <p className="font-body text-secondary/60 max-w-sm text-sm">
-                {screen.caption}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Desktop: original grid */}
-      <div className="hidden gap-6 sm:grid-cols-2 lg:grid lg:grid-cols-4">
-        {productScreens.map((s, i) => (
-          <Tile key={i} delay={(i % 4) * 0.08} className="group h-full">
-            <figure className="h-full">
-              <PhoneSlot
-                src={s.src}
-                alt={s.alt}
-                label={s.caption.split(":")[0]}
-              />
-              <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
-                {s.caption}
-              </figcaption>
-            </figure>
-          </Tile>
-        ))}
-      </div>
-
-      {/* Carousel controls — mobile only */}
-      <div className="flex items-center justify-center gap-4 lg:hidden">
-        <button
-          type="button"
-          onClick={prev}
-          aria-label="Previous screen"
-          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-        >
-          <ChevronLeftIcon className="h-4 w-4" />
-        </button>
-
-        <div className="flex gap-2">
-          {productScreens.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => go(i)}
-              aria-label={`Go to screen ${i + 1}`}
-              className={`h-2 rounded-full transition-all ${
-                i === active
-                  ? "bg-accent-lime w-6"
-                  : "bg-accent-blue/30 hover:bg-accent-blue/50 w-2"
-              }`}
-            />
-          ))}
-        </div>
-
-        <button
-          type="button"
-          onClick={next}
-          aria-label="Next screen"
-          className="border-accent-blue/20 bg-accent-blue/5 text-secondary hover:border-accent-lime hover:text-accent-lime flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-        >
-          <ChevronRightIcon className="h-4 w-4" />
-        </button>
-      </div>
-    </div>
+          <div className="hidden gap-6 sm:grid-cols-2 lg:grid lg:grid-cols-4">
+            {productScreens.map((s, i) => (
+              <Tile key={i} delay={(i % 4) * 0.08} className="group h-full">
+                <figure className="h-full">
+                  <PhoneSlot src={s.src} alt={s.alt} label={s.caption.split(":")[0]} />
+                  <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
+                    {s.caption}
+                  </figcaption>
+                </figure>
+              </Tile>
+            ))}
+          </div>
+        </>
+      )}
+    />
   );
 }
 
@@ -542,6 +366,7 @@ function ChallengeLightbox({ open, onClose }: { open: boolean; onClose: () => vo
             width={1920}
             height={1080}
             className="rounded-xl"
+            sizes="100vw"
           />
         </motion.div>
       </motion.div>
@@ -908,7 +733,7 @@ export default function ChimeraProject() {
 
       <ChallengeLightbox open={lightboxOpen} onClose={() => setLightboxOpen(false)} />
 
-      <ProjectNavFooter nextHref="/projects/archlog" />
+      <ProjectNavFooter nextHref="/projects/file-finder" />
     </div>
   );
 }

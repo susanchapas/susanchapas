@@ -556,7 +556,7 @@ export default function ArchLogProject() {
         ]}
       />
 
-      <ProjectNavFooter nextHref="/projects/file-finder" />
+      <ProjectNavFooter nextHref="/projects/sous-sense" />
     </div>
   );
 }

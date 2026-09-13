@@ -2,6 +2,29 @@
 
 import { motion } from "framer-motion";
 import { ReactNode, useCallback, useEffect, useId, useRef, useState } from "react";
+
+function LazySection({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={ref}>{visible ? children : null}</div>;
+}
 import { getLenis } from "@/lib/lenis";
 
 export type SectionTab = {
@@ -104,12 +127,12 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
         </div>
       </div>
 
-      {tabs.map((tab) => (
+      {tabs.map((tab, i) => (
         <div
           key={tab.id}
           ref={(el) => { if (el) sectionRefs.current.set(tab.id, el); }}
         >
-          {tab.content}
+          {i === 0 ? tab.content : <LazySection>{tab.content}</LazySection>}
         </div>
       ))}
     </>
