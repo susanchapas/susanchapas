@@ -157,24 +157,28 @@ const features = [
  */
 const productScreens = [
   {
-    src: "",
+    src: "/assets/projects/chimera/chimera screens/chimera-dashboard.webp",
     alt: "Chimera dashboard screen",
-    caption: "Dashboard: the timeline-first hub with all core actions one tap away.",
+    title: "Dashboard",
+    description: "The timeline-first hub with all core actions one tap away.",
   },
   {
-    src: "",
+    src: "/assets/projects/chimera/chimera screens/chimera-live-feed.webp",
     alt: "Chimera live feeds screen",
-    caption: "Live Feed: full-screen viewing with swipe between cameras.",
+    title: "Live Feed",
+    description: "Full-screen viewing with swipe between cameras.",
   },
   {
-    src: "",
+    src: "/assets/projects/chimera/chimera screens/chimera-event-history.webp",
     alt: "Chimera event history scrubber screen",
-    caption: "Event History: scrub the timeline and jump straight to export.",
+    title: "Event History",
+    description: "Scrub the timeline and jump straight to export.",
   },
   {
-    src: "",
+    src: "/assets/projects/chimera/chimera screens/chimera-clip-maker.webp",
     alt: "Chimera clip maker screen",
-    caption: "Clip Maker: mark frames, pick an output, and follow the status.",
+    title: "Clip Maker",
+    description: "Mark frames, pick an output, and follow the status.",
   },
 ];
 

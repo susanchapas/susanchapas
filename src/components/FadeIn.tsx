@@ -39,27 +39,77 @@ export default function FadeIn({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    let animationFrame: number | undefined;
+    let releaseTimeout: number | undefined;
 
-    if (
-      trigger === "mount" ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      el.classList.add("in-view");
-      return;
+    const releaseWillChange = () => {
+      if (releaseTimeout !== undefined) {
+        clearTimeout(releaseTimeout);
+        releaseTimeout = undefined;
+      }
+      el.classList.remove("fade-in-revealing");
+      el.removeEventListener("transitionend", handleTransitionEnd);
+      el.removeEventListener("transitioncancel", handleTransitionEnd);
+    };
+
+    const handleTransitionEnd = (event: TransitionEvent) => {
+      // Ignore transitions from descendants and wait for the reveal's opacity
+      // transition, which is present for every FadeIn direction.
+      if (event.target === el && event.propertyName === "opacity") {
+        releaseWillChange();
+      }
+    };
+
+    const reveal = () => {
+      el.addEventListener("transitionend", handleTransitionEnd);
+      el.addEventListener("transitioncancel", handleTransitionEnd);
+      el.classList.add("fade-in-revealing");
+      // Give the browser one frame to honor will-change before the transition.
+      animationFrame = requestAnimationFrame(() => {
+        el.classList.add("in-view");
+        // Covers interrupted or disabled transitions, which do not emit
+        // transitionend.
+        releaseTimeout = window.setTimeout(
+          releaseWillChange,
+          Math.max(0, delay) * 1000 + 800,
+        );
+      });
+    };
+
+    if (trigger === "mount" || reducedMotion) {
+      if (reducedMotion) {
+        el.classList.add("in-view");
+      } else {
+        reveal();
+      }
+    } else {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            reveal();
+            observer.unobserve(el);
+          }
+        },
+        { rootMargin: `${margin} 0px` },
+      );
+      observer.observe(el);
+      return () => {
+        observer.disconnect();
+        if (animationFrame !== undefined) cancelAnimationFrame(animationFrame);
+        if (releaseTimeout !== undefined) clearTimeout(releaseTimeout);
+        releaseWillChange();
+      };
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("in-view");
-          observer.unobserve(el);
-        }
-      },
-      { rootMargin: `${margin} 0px` },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [margin, trigger]);
+    return () => {
+      if (animationFrame !== undefined) cancelAnimationFrame(animationFrame);
+      if (releaseTimeout !== undefined) clearTimeout(releaseTimeout);
+      releaseWillChange();
+    };
+  }, [delay, margin, trigger]);
 
   const mergedStyle: CSSProperties = {
     ...TRANSFORMS[direction],

@@ -40,22 +40,33 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
   const navRef = useRef<HTMLDivElement | null>(null);
   const isScrollingRef = useRef(false);
+  const tabsRef = useRef(tabs);
+  tabsRef.current = tabs;
+  const rafRef = useRef(0);
 
   const updateActive = useCallback(() => {
     if (isScrollingRef.current) return;
     const navHeight = navRef.current?.offsetHeight ?? 64;
-    let current = tabs[0]?.id;
-    for (const tab of tabs) {
+    const t = tabsRef.current;
+    let current = t[0]?.id;
+    for (const tab of t) {
       const el = sectionRefs.current.get(tab.id);
       if (!el) continue;
       if (el.getBoundingClientRect().top - navHeight <= 1) current = tab.id;
     }
     setActiveId(current);
-  }, [tabs]);
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", updateActive, { passive: true });
-    return () => window.removeEventListener("scroll", updateActive);
+    const onScroll = () => {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(updateActive);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafRef.current);
+    };
   }, [updateActive]);
 
   function scrollToSection(id: string) {

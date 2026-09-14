@@ -182,10 +182,13 @@ body {
 .fade-in {
   opacity: 0;
   transform: translate(var(--tx, 0), var(--ty, 0)) scale(var(--ts, 1));
-  will-change: opacity, transform;
   transition:
     opacity 0.7s var(--ease-smooth),
     transform 0.7s var(--ease-smooth);
+}
+
+.fade-in.fade-in-revealing {
+  will-change: opacity, transform;
 }
 
 .fade-in.in-view {

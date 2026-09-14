@@ -1,5 +1,4 @@
 import FadeIn from "@/components/FadeIn";
-import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
@@ -15,6 +14,7 @@ import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
 import { ArrowRightIcon } from "@/components/Icons";
+import { ProductTourCarousel } from "./carousels";
 
 const projectData = {
   title: "ArchLog",
@@ -99,27 +99,30 @@ const features = [
   },
 ];
 
-/**
- * Swap each `src` with your exported MacBook Air screens.
- * Recommended export: render the UI on a 2560×1600 (16:10) canvas and bake a
- * #EAEFF9 background behind the laptop so it sits flush against the panel below
- * (the panel uses the same hex). Drop files in /public/assets/projects/archlog/.
- */
 const productScreens = [
   {
-    src: "/gallery/ArchLog Overview page.webp",
-    alt: "ArchLog project overview screen showing the decision log",
-    caption: "Project Overview: every decision and its visuals in one place.",
+    src: "/assets/projects/archlog/archlog-proj-overview.webp",
+    alt: "ArchLog project overview showing brief, constraints, and milestones",
+    caption:
+      "Project Overview: input your brief, constraints, and milestones to ground every decision that follows.",
   },
   {
-    src: "/gallery/ArchLog Overview page.webp",
-    alt: "Placeholder, replace with the Decision Logging screen",
-    caption: "Decision Logging: capture the move and the reasoning together.",
+    src: "/assets/projects/archlog/archlog-log-decision.webp",
+    alt: "ArchLog decision logging form and decision history timeline",
+    caption:
+      "Decision Logging: capture each design move with its rationale, tags, and references as it happens.",
   },
   {
-    src: "/gallery/ArchLog Overview page.webp",
-    alt: "Placeholder, replace with the Design Narrative screen",
-    caption: "Design Narrative: a critique-ready story generated from your log.",
+    src: "/assets/projects/archlog/archlog-narrative-builder.webp",
+    alt: "ArchLog narrative builder with audience, tone, and framing controls",
+    caption:
+      "Narrative Builder: shape a critique-ready story from your logged decisions with audience and tone controls.",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-profile-sharing.webp",
+    alt: "ArchLog designer profile alongside a generated design narrative",
+    caption:
+      "Profile & Export: build your designer profile and export narratives for critiques, pin-ups, or reviews.",
   },
 ];
 
@@ -416,30 +419,8 @@ export default function ArchLogProject() {
                       </p>
                     </Reveal>
 
-                    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                      {productScreens.map((screen, i) => (
-                        <Tile key={i} delay={(i % 3) * 0.08} className="group h-full">
-                          <figure className="h-full">
-                            <div
-                              className="ring-accent-blue/0 group-hover:ring-accent-lime/40 overflow-hidden rounded-2xl ring-2 transition-[ring-color] duration-700 ease-[var(--ease-liquid)]"
-                              style={{ backgroundColor: "#EAEFF9" }}
-                            >
-                              <Image
-                                src={encodeURI(screen.src)}
-                                alt={screen.alt}
-                                width={2560}
-                                height={1600}
-                                loading="lazy"
-                                className="h-auto w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.05]"
-                                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                              />
-                            </div>
-                            <figcaption className="font-body text-secondary/60 mt-4 text-center text-sm">
-                              {screen.caption}
-                            </figcaption>
-                          </figure>
-                        </Tile>
-                      ))}
+                    <div className="mx-auto max-w-4xl">
+                      <ProductTourCarousel items={productScreens} />
                     </div>
 
                     <Reveal

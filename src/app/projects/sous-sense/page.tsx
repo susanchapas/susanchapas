@@ -308,10 +308,15 @@ export default function SousSenseProject() {
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         The name comes from &ldquo;sous chef,&rdquo; the second-in-command
                         in a professional kitchen. The product works in the background,
-                        keeping track of inventory and freshness so you can focus on
-                        cooking. The wordmark uses a serif typeface with a chef&rsquo;s hat
-                        built into the letterform, and the visual identity uses warm tones
-                        that suit a kitchen environment.
+                        tracking inventory and freshness so the cook can focus on cooking.
+                        The wordmark is set in Rubik, a geometric sans-serif, with three
+                        sensor lines extending from the final &ldquo;e&rdquo; to represent
+                        the product&rsquo;s detection capability. The visual identity is
+                        built around three principles:
+                        future-forward confidence, trustworthiness, and quality. In practice,
+                        that means minimal layouts and specific performance statistics in
+                        every product claim, because restaurant managers make purchasing
+                        decisions based on numbers.
                       </p>
                     </FadeIn>
                   </div>
