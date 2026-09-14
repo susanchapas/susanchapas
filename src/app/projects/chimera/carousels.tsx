@@ -37,7 +37,6 @@ function PhoneSlot({
             <svg
               className="text-accent-blue/60 h-5 w-5"
               fill="none"
-              loading="lazy"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
