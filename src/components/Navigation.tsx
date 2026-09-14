@@ -190,7 +190,7 @@ export default function Navigation() {
         >
           <Link
             href="/"
-            className="shrink-0 transition-transform hover:scale-110"
+            className="shrink-0 transition-transform duration-400 ease-[var(--ease-liquid)] hover:scale-105"
             aria-label="Susan Chapas - Home"
           >
             <Image

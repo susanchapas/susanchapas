@@ -18,7 +18,7 @@ export default function InsightGrid({
           delay={(i % 3) * 0.08}
           className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
         >
-          <div className="bg-accent-lime/10 text-accent-lime font-display group-hover:bg-accent-lime group-hover:text-primary mb-5 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-all group-hover:scale-110">
+          <div className="bg-accent-lime/10 text-accent-lime font-display group-hover:bg-accent-lime group-hover:text-primary mb-5 flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-all duration-500 ease-[var(--ease-liquid)] group-hover:scale-105">
             {String(i + 1).padStart(2, "0")}
           </div>
           <h3 className="font-display text-secondary mb-3 text-lg font-bold">

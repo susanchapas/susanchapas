@@ -58,7 +58,7 @@ const FACETS: Facet[] = [
     kicker: "Based in Jersey City",
     title: "Hi, I'm Susan Chapas",
     detail:
-      "I'm a UX strategist, front-end developer, and artist. I love the whole arc: learning what people need, designing it to work for everyone, then building it.",
+      "I'm a UX strategist, front-end developer, and artist. I love the whole process: learning what people need, designing it to work for everyone, then building it.",
     Icon: MousePointer2,
     pin: "lime",
     image: "/assets/misc/susan-umbrella.webp",
@@ -70,7 +70,7 @@ const FACETS: Facet[] = [
     kicker: "Award-winning art",
     title: "Mindless Mirth",
     detail:
-      "Off the clock, I paint. My piece “Mindless Mirth” won recognition for exploring human emotion through abstraction. Art keeps me tuned to how work feels.",
+      "Off the clock, I paint. My piece “Mindless Mirth” won recognition for exploring human emotion through abstraction. Art informs how I approach visual work.",
     Icon: Brush,
     pin: "clay",
     image: "/gallery/Mindless-Mirth-final.webp",
@@ -96,7 +96,7 @@ const FACETS: Facet[] = [
     kicker: "Did the scary thing",
     title: "I built an agency",
     detail:
-      "At Schematic Marketing I ran everything: pitching, branding, building, invoicing. Founding a company from scratch teaches you fast what matters.",
+      "At Schematic Marketing I ran everything: pitching, branding, building, invoicing. Founding a company teaches you fast what matters.",
     Icon: Rocket,
     pin: "lime",
     tags: ["Schematic Marketing", "Branding", "Web"],
@@ -120,7 +120,7 @@ const FACETS: Facet[] = [
     kicker: "Banks to nonprofits",
     title: "Sector-fluent",
     detail:
-      "I've run marketing across banking, real estate, healthcare, and nonprofits. I learn the room first, then make work that fits it.",
+      "I've run marketing across banking, real estate, healthcare, and nonprofits. I study the audience first, then make work that fits.",
     Icon: Compass,
     pin: "clay",
     tags: ["Banking", "Real Estate", "Healthcare", "Nonprofits"],
@@ -132,7 +132,7 @@ const FACETS: Facet[] = [
     kicker: "Bilingual",
     title: "Hablo español",
     detail:
-      "Fully fluent in English and Spanish. I move between audiences, teams, and communities while keeping the meaning intact.",
+      "Fully fluent in English and Spanish. I work with audiences, teams, and communities in both languages while keeping the meaning intact.",
     Icon: Languages,
     pin: "blue",
     tags: ["English / Español", "Community Outreach"],
@@ -156,7 +156,7 @@ const FACETS: Facet[] = [
     kicker: "Jersey City & NYC",
     title: "A metro-area local",
     detail:
-      "Based in Jersey City, with most of my days spent across the river in NYC. The whole metro is home turf.",
+      "Based in Jersey City, with most of my days spent across the river in NYC. The whole metro area is home.",
     Icon: MapPin,
     pin: "blue",
     rot: 6,
@@ -177,7 +177,7 @@ const FACETS: Facet[] = [
   {
     id: "nintendo",
     kicker: "Off-hours obsession",
-    title: "Chasing Korok seeds",
+    title: "Hunting Korok seeds",
     detail:
       "Big Nintendo fan, especially The Legend of Zelda. When I'm not designing, you'll find me hunting down Korok seeds.",
     Icon: Gamepad2,
@@ -199,7 +199,7 @@ const FACETS: Facet[] = [
   },
   {
     id: "coffee",
-    kicker: "Fueled by caffeine",
+    kicker: "Runs on coffee",
     title: "Certified coffee addict",
     detail:
       "My family grows coffee in Honduras, and it's pretty much all I drink. It counts as water, right?",
@@ -489,8 +489,8 @@ function PhysicsBoard({
           About Me
         </h1>
         <p className="font-body text-secondary/70 mt-6 max-w-xl text-lg lg:text-xl">
-          Everything that shapes how I work, laid out on the board below. Grab a tile,
-          toss it around, and check out whatever catches your eye.
+          Everything that informs how I work, laid out on the board below. Grab a tile,
+          toss it around, and check out whatever interests you.
         </p>
       </div>
       {FACETS.map((f, i) => (

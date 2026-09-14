@@ -29,7 +29,7 @@ function PhoneSlot({
           fill
           loading="lazy"
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
         />
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">

@@ -40,7 +40,7 @@ export default function ChimeraLightbox() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="group border-accent-blue/15 bg-primary/40 hover:border-accent-lime/40 relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl border text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-lime focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+        className="group border-accent-blue/15 bg-primary/40 hover:border-accent-lime/40 relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl border text-left transition-colors duration-500 ease-[var(--ease-liquid)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-lime focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
         aria-label="View Chimera's Original Dashboard"
       >
         <Image
@@ -49,11 +49,11 @@ export default function ChimeraLightbox() {
           fill
           loading="lazy"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
         />
 
         {/* Dark blue hover filter with centered subtle text */}
-        <div className="bg-primary/75 absolute inset-0 flex items-center justify-center p-6 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+        <div className="bg-primary/75 absolute inset-0 flex items-center justify-center p-6 opacity-0 backdrop-blur-[2px] transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100 group-focus-visible:opacity-100">
           <span className="font-dm text-secondary/85 text-center text-sm font-normal tracking-wide sm:text-base">
             Chimera&apos;s Original Dashboard
           </span>

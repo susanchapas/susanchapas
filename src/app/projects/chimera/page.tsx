@@ -19,9 +19,9 @@ import { PrinciplesCarousel, ProductTourCarousel } from "./carousels";
 const projectData = {
   title: "Chimera 2.0",
   subtitle:
-    "Redesigning a self-built home security system into a camera app people can actually navigate",
+    "Redesigning a self-built home security system into a camera app people can navigate",
   description:
-    "Jay built his own home security camera system from the ground up. The infrastructure is solid, yet the app he wrapped around it grew feature by feature until everyday tasks like finding an event or exporting a clip felt like work. Chimera 2.0 is a mobile-first redesign grounded in a deep heuristic analysis, rebuilding the app around the timeline so the core actions take fewer taps and less guesswork.",
+    "Jay designed and built his own home security camera system. The infrastructure is solid, yet the app he built for it grew feature by feature until everyday tasks like finding an event or exporting a clip felt like work. Chimera 2.0 is a mobile-first redesign grounded in a thorough heuristic analysis, rebuilding the app around the timeline so the core actions take fewer taps and less guesswork.",
   heroImage: "/assets/projects/chimera/Chimera-Hero.webp",
   tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   year: "2026",
@@ -56,7 +56,7 @@ const competitors = [
     style: "Minimal, AI-organized",
     strengths:
       "Clean UI, strong categorization, smooth timeline scrubbing, deep Google integration",
-    weaknesses: "Slower access, hidden controls, a real learning curve",
+    weaknesses: "Slower access, hidden controls, difficult to learn",
     bestFor: "Browsing and clarity",
   },
   {
@@ -70,14 +70,14 @@ const competitors = [
     name: "Eufy",
     style: "Simple, local-first",
     strengths: "Straightforward layout, fast and lightweight",
-    weaknesses: "Less polished, buried settings, weak organization",
+    weaknesses: "Less polished, hidden settings, weak organization",
     bestFor: "Cost-conscious users",
   },
 ];
 
 const frictions = [
   {
-    title: "Export was stranded.",
+    title: "Export was disconnected.",
     body: "Making a clip meant leaving the scrubber, re-entering timestamps, and starting over. The scrubber and the export flow belonged on one screen.",
   },
   {
@@ -90,18 +90,18 @@ const frictions = [
   },
   {
     title: "Nothing confirmed it was working.",
-    body: "After kicking off an export, the app gave no status, leaving users to wait and wonder whether anything was happening.",
+    body: "After starting an export, the app gave no status, leaving users to wait and wonder whether anything was happening.",
   },
   {
-    title: "The path ran deep.",
-    body: "Reaching a core action took several screens from the dashboard, and viewing and processing were tangled together.",
+    title: "Too many screens to reach a core action.",
+    body: "Reaching a core action took several screens from the dashboard, and viewing and processing were combined on the same screens.",
   },
 ];
 
 const principles = [
   {
     name: "Immediate access to live state",
-    body: "Open the app and the cameras are right there, no hunting for the feed that matters most.",
+    body: "Open the app and the cameras are right there, no searching for the feed that matters most.",
     src: "",
     alt: "Live state principle screen",
   },
@@ -113,7 +113,7 @@ const principles = [
   },
   {
     name: "Progressive disclosure",
-    body: "Surface the controls people reach for first and tuck power features one layer down.",
+    body: "Show the most-used controls first and place power features one layer down.",
     src: "",
     alt: "Progressive disclosure principle screen",
   },
@@ -267,12 +267,12 @@ export default function ChimeraProject() {
                       <Eyebrow>The Challenge</Eyebrow>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Jay is a software engineer, and his camera system reflects that.
-                        The backend is reliable and capable. The mobile app he wrapped
-                        around it grew feature by feature, so navigation and control
-                        became a maze. Finding an event, scrubbing a timeline, exporting a
-                        clip, and managing storage each lived in their own corner, and the
-                        interface kept swinging between overloaded screens and functions
-                        buried two or three taps deep.
+                        The backend is reliable and capable. The mobile app he built
+                        for it grew feature by feature, so navigation and control
+                        became difficult to follow. Finding an event, scrubbing a timeline,
+                        exporting a clip, and managing storage each sat in a separate part
+                        of the app, and the interface alternated between overloaded screens
+                        and functions placed two or three taps deep.
                       </p>
                     </Reveal>
 
@@ -281,7 +281,7 @@ export default function ChimeraProject() {
                     </Reveal>
                   </div>
 
-                  <HowMightWe>rebuild Jay&apos;s camera app around the way he actually uses it, so live viewing, event retrieval, and exporting take fewer steps and less guesswork?</HowMightWe>
+                  <HowMightWe>rebuild Jay&apos;s camera app around the way he uses it, so live viewing, event retrieval, and exporting take fewer steps and less guesswork?</HowMightWe>
                 </div>
               </section>
             ),
@@ -303,7 +303,7 @@ export default function ChimeraProject() {
                         heuristic evaluation of Jay&apos;s app against established
                         usability principles. We mapped every core flow, live viewing,
                         event retrieval, clip creation, and data management, to pin down
-                        where the friction hid.
+                        where the friction was.
                       </p>
                     </Reveal>
 
@@ -396,9 +396,9 @@ export default function ChimeraProject() {
                           The pattern
                         </span>
                         <p className="font-display text-secondary mt-3 text-xl leading-snug font-bold">
-                          Speed and clarity kept trading off against each other, and the{" "}
-                          <span className="text-accent-lime">timeline</span> kept showing
-                          up as the interaction everyone leaned on.
+                          No app handled both speed and clarity well, and the{" "}
+                          <span className="text-accent-lime">timeline</span> was consistently
+                          the interaction everyone relied on.
                         </p>
                       </div>
                     </Reveal>
@@ -409,18 +409,18 @@ export default function ChimeraProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>What We Found</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Where the app fought back
+                        Where the app broke down
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Walking the existing flows turned a vague sense of clutter into a
-                        specific list of breakdowns. Five frictions came up again and
-                        again, and each one pointed straight at a fix.
+                        Walking the existing flows identified five specific breakdowns
+                        behind the clutter. Five frictions came up repeatedly,
+                        and each one indicated a clear fix.
                       </p>
                     </Reveal>
 
                     <InsightGrid
                       items={frictions}
-                      thesis={<>The timeline was the answer. Anchor it across every flow and the friction falls away.</>}
+                      thesis={<>The timeline was the answer. Anchor it across every flow and the friction disappears.</>}
                     />
                   </div>
                 </section>
@@ -437,7 +437,7 @@ export default function ChimeraProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Product Tour</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Built for the phone in your pocket
+                        A mobile-first redesign
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Chimera is mobile-first. Jay checks his cameras from his phone, so

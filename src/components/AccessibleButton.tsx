@@ -23,7 +23,7 @@ interface LinkProps extends BaseProps, Omit<AnchorHTMLAttributes<HTMLAnchorEleme
 type AccessibleButtonProps = ButtonProps | LinkProps;
 
 const baseStyles =
-  "inline-flex items-center justify-center font-display font-semibold rounded-full transition-all hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-lime focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center font-display font-semibold rounded-full transition-all duration-500 ease-[var(--ease-liquid)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-lime focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:opacity-50 disabled:pointer-events-none";
 
 const variantStyles = {
   primary: "bg-accent-lime text-primary hover:bg-accent-lime/90 active:scale-[0.98]",

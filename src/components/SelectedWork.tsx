@@ -24,9 +24,8 @@ export default function SelectedWork() {
             Selected Work
           </h2>
           <p className="font-body text-secondary/70 max-w-2xl text-lg">
-            A collection of projects where strategy meets execution. Each case study
-            demonstrates the intersection of design thinking, marketing expertise, and
-            technical implementation.
+            Recent projects spanning research, product design, and front-end development.
+            Each case study walks through the problem, the process, and the outcome.
           </p>
         </FadeIn>
 
@@ -45,7 +44,7 @@ export default function SelectedWork() {
         <FadeIn direction="none" delay={0.3} className="mt-16 text-center">
           <Link
             href="/projects"
-            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all duration-300 hover:gap-5"
+            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all duration-500 ease-[var(--ease-liquid)] hover:gap-5"
           >
             View All Projects
             <ArrowRightIcon className="h-5 w-5" />

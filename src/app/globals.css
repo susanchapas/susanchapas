@@ -18,6 +18,7 @@
   /* Animation timing */
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-liquid: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {

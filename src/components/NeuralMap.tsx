@@ -1,7 +1,7 @@
 "use client";
 "use no memo";
 
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 
 const B = "/assets/projects/archlog/ArchLog%20challenge%20pinboard";
 
@@ -96,6 +96,7 @@ export default function NeuralMap() {
   const alive = useRef(false);
   const hovered = useRef<number | null>(null);
 
+  const [resetKey, setResetKey] = useState(0);
   const edgeEls = useRef<(SVGLineElement | null)[]>([]);
   const nodeEls = useRef<(SVGGElement | null)[]>([]);
   const borderEls = useRef<(SVGRectElement | null)[]>([]);
@@ -318,6 +319,21 @@ export default function NeuralMap() {
     };
   }, [wake, syncHover]);
 
+  const reset = useCallback(() => {
+    cancelAnimationFrame(raf.current);
+    alive.current = false;
+    pos.current = INIT_POS.map((p) => ({ ...p, vx: 0, vy: 0 }));
+    anchors.current = NODES.map(() => null);
+    dragging.current = null;
+    hovered.current = null;
+    setResetKey((k) => k + 1);
+  }, []);
+
+  useEffect(() => {
+    sync();
+    wake();
+  }, [resetKey, sync, wake]);
+
   const n = pos.current;
 
   return (
@@ -330,6 +346,16 @@ export default function NeuralMap() {
         backgroundColor: "rgba(224,159,125,0.04)",
       }}
     >
+      <button
+        onClick={reset}
+        aria-label="Reset neural map"
+        className="absolute top-2 right-2 z-10 flex h-7 w-7 items-center justify-center rounded-md bg-primary/60 backdrop-blur-sm text-secondary/50 hover:text-secondary hover:bg-primary/80 transition-colors"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M1 4v6h6" />
+          <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+        </svg>
+      </button>
       <svg
         ref={svgRef}
         viewBox={`0 0 ${VW} ${VH}`}

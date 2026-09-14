@@ -16,7 +16,7 @@ export default function Tile({
     <FadeIn
       delay={delay}
       direction="up"
-      className={`transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-2 hover:scale-[1.03] ${className}`}
+      className={`transition-transform duration-500 ease-[var(--ease-liquid)] hover:-translate-y-1 hover:scale-[1.015] ${className}`}
       style={{ "--ty": "32px", "--ts": "0.94" } as React.CSSProperties}
     >
       {children}

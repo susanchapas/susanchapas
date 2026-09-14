@@ -18,7 +18,7 @@ const projectData = {
   subtitle:
     "AI-assisted brand compliance for university communities",
   description:
-    "BrandComms is a product concept for an AI-powered brand management platform designed for universities. It was developed as a semester-long academic project at NJIT by a team of four designers. The core problem: university brand guidelines are dense, the approval process for using them is slow and opaque, and the people who need the most help get the least guidance. BrandComms uses AI agents to translate brand standards into clear, specific feedback and automate compliance checks before human review.",
+    "BrandComms is a product concept for an AI-powered brand management platform designed for universities. It was developed as a semester-long academic project at NJIT by a team of four designers. The core problem: university brand guidelines are dense, the approval process for using them is slow and unclear, and the people who need the most help get the least guidance. BrandComms uses AI agents to translate brand standards into clear, specific feedback and automate compliance checks before human review.",
   tags: ["UX Research", "Product Design", "AI/ML Concept"],
   year: "2025",
   role: "UX Researcher & Product Designer",
@@ -45,7 +45,7 @@ const insights = [
   },
   {
     title: "Approval is invisible.",
-    body: "Students submit work and receive no confirmation, no timeline, and no progress indicator. The first communication is often a rejection. Compliance officers set the standards and approve the materials, but their process has no outward-facing structure.",
+    body: "Students submit work and receive no confirmation, no timeline, and no progress indicator. The first communication is often a rejection. Compliance officers set the standards and approve the materials, but their process has no visible structure.",
   },
   {
     title: "Feedback without direction creates rework cycles.",
@@ -97,7 +97,7 @@ const personas = [
 const features = [
   {
     name: "Real-Time Compliance Feedback",
-    body: "AI agents scan uploaded designs against the university's brand standards and flag issues with specific, actionable suggestions. Auto-fix options handle common violations like incorrect logo placement or wrong color values.",
+    body: "AI agents scan uploaded designs against the university's brand standards and flag issues with specific suggestions. Auto-fix options handle common violations like incorrect logo placement or wrong color values.",
   },
   {
     name: "Visual Learning Tools",
@@ -109,7 +109,7 @@ const features = [
   },
   {
     name: "Centralized Dashboard",
-    body: "A single view where students, reviewers, and partners see every submission, its status, and its feedback history. No more emailing into silence.",
+    body: "A single view where students, reviewers, and partners see every submission, its status, and its feedback history. No more unanswered emails.",
   },
   {
     name: "AI Policy Guard",
@@ -301,7 +301,7 @@ export default function BrandCommsProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Research</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Mapping the ecosystem
+                        Mapping the stakeholders
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         We started by identifying everyone who interacts with university
@@ -323,7 +323,7 @@ export default function BrandCommsProject() {
                     <Reveal>
                       <Eyebrow>Personas</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Ten personas across the compliance ecosystem
+                        Ten personas across the compliance process
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         We developed ten personas spanning five stakeholder tiers: students
@@ -345,7 +345,7 @@ export default function BrandCommsProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Key Insights</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        Five findings that framed the solution
+                        Five findings that defined the solution
                       </h2>
                     </Reveal>
 
@@ -389,8 +389,8 @@ export default function BrandCommsProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Solution</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        BrandComms puts compliance in the hands of the
-                        people doing the work
+                        BrandComms gives compliance tools to the people
+                        doing the work
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         The platform concept is built around AI agents that understand

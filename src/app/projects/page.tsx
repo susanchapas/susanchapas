@@ -25,8 +25,8 @@ export default function ProjectsPage() {
               Have a project in mind?
             </h2>
             <p className="font-body text-secondary/70 mx-auto mb-8 max-w-xl text-lg">
-              I&apos;m always open to discussing new opportunities and creative
-              challenges. Let&apos;s create something meaningful together.
+              I like working on new problems. If you have a project,
+              I&apos;d like to hear about it.
             </p>
             <Link
               href="/contact"

@@ -56,7 +56,7 @@ export const artworks: readonly Artwork[] = [
     width: 703,
     height: 1008,
     description:
-      "A memory of my younger sister and my godson, caught mid-laugh on the E train in 2018. Loud, silly, and entirely themselves, with no one watching and no reason to care.\n\nIn the years since, puberty, social pressure, and a pandemic have changed them in ways I couldn't have predicted. Their laughter is quieter now; they second-guess things they once did without a thought.\n\nSo this piece is less a record than a wish: to see them smile that carelessly again. Joy like that doesn't vanish. It waits for permission to return.\n\nThe original was selected for the HCCC Foundation's permanent installation.",
+      "A memory of my younger sister and my godson, caught mid-laugh on the E train in 2018. Loud, silly, and entirely themselves, with no one watching and no reason to care.\n\nIn the years since, puberty, social pressure, and a pandemic have changed them in ways I couldn't have predicted. Their laughter is quieter now; they second-guess things they once did without a thought.\n\nSo this piece is a wish: to see them smile that carelessly again. That kind of joy doesn't disappear. It's still in them.\n\nThe original was selected for the HCCC Foundation's permanent installation.",
     medium: "iPad Procreate",
     award: "HCCC Foundation Art Award, 2025",
     src: "/gallery/Mindless-Mirth-final.webp",
@@ -72,7 +72,7 @@ export const artworks: readonly Artwork[] = [
     width: 960,
     height: 540,
     description:
-      "Brand identity for Sous Sense, a modular IoT food intelligence product concept developed for an entrepreneurship course at NJIT. The wordmark uses a serif typeface with a chef's hat woven into the letterform. The project includes package design, advertising posters, and a full business plan with five-year financial projections.",
+      "Brand identity for Sous Sense, a modular IoT food intelligence product concept developed for an entrepreneurship course at NJIT. The wordmark uses a serif typeface with a chef's hat built into the letterform. The project includes package design, advertising posters, and a full business plan with five-year financial projections.",
     medium: "Brand identity, Adobe Illustrator and Procreate",
     links: [{ label: "View case study", href: "/projects/sous-sense" }],
     src: "/assets/projects/sous-sense/sous-sense-cover.webp",
@@ -100,7 +100,7 @@ export const artworks: readonly Artwork[] = [
     width: 3840,
     height: 2160,
     description:
-      "An animated explainer for Spring Bank's Employee Opportunity Program, a B2B benefit that gives employees affordable small-dollar loans and free financial counseling at no cost to their employers.\n\nThe program is genuinely useful but unfamiliar and a little complex, and flyers weren't landing. Too much to read, too easy to skip. So we tried motion instead, breaking the offer into a few digestible beats people could actually follow and act on.",
+      "An animated explainer for Spring Bank's Employee Opportunity Program, a B2B benefit that gives employees affordable small-dollar loans and free financial counseling at no cost to their employers.\n\nThe program is useful but unfamiliar and a little complex, and flyers weren't working. Too much to read, too easy to skip. So we tried motion instead, breaking the offer into a few short steps people could follow and act on.",
     medium: "Motion graphics, Canva",
     links: [
       {
@@ -120,7 +120,7 @@ export const artworks: readonly Artwork[] = [
     width: 2926,
     height: 1748,
     description:
-      "ArchLog is an interactive, low-friction tool that helps architecture students develop concepts with more clarity inside the studio. Research surfaced a recurring problem: students had no shared design process and no consistent way to capture why they made the moves they made, so their design narrative got reconstructed from memory hours before a critique.\n\nBuilt as a team effort, ArchLog lets students log each design move with its intent, what changed, why, and what it trades off, then generates a critique-ready story from that log so they walk into reviews prepared rather than panicked.",
+      "ArchLog is an interactive, low-friction tool that helps architecture students develop concepts with more clarity inside the studio. Research revealed a recurring problem: students had no shared design process and no consistent way to capture why they made the moves they made, so students reconstructed their design narrative from memory hours before a critique.\n\nBuilt as a team effort, ArchLog lets students log each design move with its intent, what changed, why, and what it trades off, then generates a critique-ready story from that log so they walk into reviews prepared.",
     medium: "Product UI, designed in Figma",
     links: [{ label: "View case study", href: "/projects/archlog" }],
     src: "/gallery/ArchLog Overview page.webp",
@@ -148,7 +148,7 @@ export const artworks: readonly Artwork[] = [
     width: 1280,
     height: 720,
     description:
-      "Chimera 2.0 is a mobile-first redesign of a self-built home security camera app. The original infrastructure was solid, but the app had grown feature by feature until everyday tasks like finding an event or exporting a clip felt like work.\n\nGrounded in a deep heuristic analysis, the redesign rebuilds the app around a central timeline so the core actions take fewer taps and less guesswork.",
+      "Chimera 2.0 is a mobile-first redesign of a self-built home security camera app. The original infrastructure was solid, but the app had grown feature by feature until everyday tasks like finding an event or exporting a clip felt like work.\n\nGrounded in a thorough heuristic analysis, the redesign rebuilds the app around a central timeline so the core actions take fewer taps and less guesswork.",
     medium: "Product UI, designed in Figma",
     links: [{ label: "View case study", href: "/projects/chimera" }],
     src: "/assets/projects/chimera/chimera security camera app.webp",
@@ -176,7 +176,7 @@ export const artworks: readonly Artwork[] = [
     height: 3588,
     description:
       "A balanced, asymmetrical, two-dimensional collage using only two different shapes of cut paper. By combining identical isosceles triangles with a single organic shape, I created an unmistakable identity with movement for the subject of my composition.",
-    medium: '9" x 12" — Magazines & Bristol paper',
+    medium: '9" x 12", magazines and Bristol paper',
     src: "/gallery/Chapas Shape Collage 2.webp",
     type: "image",
   },
@@ -188,7 +188,7 @@ export const artworks: readonly Artwork[] = [
     width: 2237,
     height: 2531,
     description:
-      "Shot in a Soho gallery, where my friend looked impossibly cool against an indie artist's stained glass. I leaned into the contrast of light and dark already in the scene.\n\nIn Adobe Lightroom I pushed the colors and sharpened his outline against the glass, letting the silhouette and the stained glass play off each other.",
+      "Shot in a Soho gallery, where my friend looked impossibly cool against an indie artist's stained glass. I emphasized the contrast of light and dark already in the scene.\n\nIn Adobe Lightroom I pushed the colors and sharpened his outline against the glass, so the silhouette stands sharply against the stained glass.",
     medium: "Digital photography, edited in Adobe Lightroom",
     src: "/gallery/Posing at a Gallery Photo.webp",
     type: "image",
@@ -201,7 +201,7 @@ export const artworks: readonly Artwork[] = [
     width: 2016,
     height: 792,
     description:
-      "A banner for the bike shops Spring Bank partners with on its GoGreen cycle loan, designed to pull more attention than a stack of flyers on the checkout counter.\n\nThe loan makes higher-priced bikes accessible, so in NYC it nudges riders toward fire-safe e-bikes, which cost more but are far safer.",
+      "A banner for the bike shops Spring Bank partners with on its GoGreen cycle loan, designed to attract more attention than a stack of flyers on the checkout counter.\n\nThe loan makes higher-priced bikes accessible, so in NYC it nudges riders toward fire-safe e-bikes, which cost more but are far safer.",
     medium: "Adobe Illustrator and iPad Procreate",
     src: "/gallery/A bike for every rider.webp",
     type: "image",
@@ -227,7 +227,7 @@ export const artworks: readonly Artwork[] = [
     width: 3324,
     height: 2494,
     description:
-      "Made for a new ATM at Spring Bank's new Red Hook branch. The upgrade to a newer model meant the machine could finally play video, so Spring Bank capitalized on the opportunity to introduce itself to the community through this street-facing screen.\n\nThe video was shot by Spring Bank's videography partner and edited by me in Adobe After Effects.",
+      "Made for a new ATM at Spring Bank's new Red Hook branch. The upgrade to a newer model meant the machine could finally play video, so Spring Bank used the opportunity to introduce itself to the community through this street-facing screen.\n\nThe video was shot by Spring Bank's videography partner and edited by me in Adobe After Effects.",
     medium: "UI motion, edited in Adobe After Effects",
     src: "/gallery/ATM home screen video.mp4",
     type: "video",
@@ -240,7 +240,7 @@ export const artworks: readonly Artwork[] = [
     width: 5712,
     height: 4284,
     description:
-      "Shot in 2024 as Spring Bank prepared for the grand opening of its Red Hook branch. I took the branch manager team out for a stroll through the neighborhood and captured a series of warm summer frames, building a visual case for how invested Spring Bank is in the community it serves.",
+      "Shot in 2024 as Spring Bank prepared for the grand opening of its Red Hook branch. I took the branch manager team out for a stroll through the neighborhood and captured a series of warm summer frames, showing how invested Spring Bank is in the community it serves.",
     medium: "Event photography, edited in Adobe Lightroom",
     src: "/gallery/Red Hook Launch Photo.webp",
     type: "image",

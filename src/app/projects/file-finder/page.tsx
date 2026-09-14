@@ -19,9 +19,9 @@ import { StrengthsCarousel } from "./carousels";
 const projectData = {
   title: "File Finder",
   subtitle:
-    "A teaching resource tool that organizes files by intent, not by folder",
+    "A teaching resource tool that organizes files by intent and teaching context",
   description:
-    "Prof. S teaches across multiple courses and semesters. His files live in Google Drive, organized by class and color-coded, but none of that helps when a student asks a question mid-lecture and he needs to find the right resource in seconds. File Finder is a research-led product concept that lets him tag, search, and surface materials by topic and teaching context instead of by where they were originally saved.",
+    "Prof. S teaches across multiple courses and semesters. His files live in Google Drive, organized by class and color-coded, but none of that helps when a student asks a question mid-lecture and he needs to find the right resource in seconds. File Finder is a research-led product concept that lets him tag, search, and find materials by topic and teaching context.",
   heroImage: "/assets/projects/file-finder/File-Finder-Hero.webp",
   tags: ["UX Research", "Product Design", "Prototyping"],
   year: "2026",
@@ -45,16 +45,16 @@ const researchStats = [
 
 const themes = [
   {
-    title: "Built for storage, not retrieval.",
+    title: "Built for storage only.",
     body: "Files are organized by course and semester. Cross-topic reuse depends on memory, and the context of why something matters is lost over time.",
   },
   {
-    title: "Cognitive load falls on the professor.",
+    title: "The professor handles all the cognitive load.",
     body: "Students rely on Prof. S to locate and interpret resources. Repeated, similar requests replace self-service. Email and messaging add to the workload without resolving anything.",
   },
   {
     title: "The system fails under live teaching conditions.",
-    body: "File search breaks down in class. Teaching momentum is disrupted, and public failure creates frustration and embarrassment.",
+    body: "File search breaks down in class. Teaching is interrupted, and public failure creates frustration and embarrassment.",
   },
   {
     title: "More structure increases time wasted.",
@@ -77,7 +77,7 @@ const designOpportunities = [
   },
   {
     name: "Google Calendar integration",
-    body: "Relevant files suggested based on daily meetings and classes, so materials surface when they are most likely needed.",
+    body: "Relevant files suggested based on daily meetings and classes, so materials appear when they are most likely needed.",
   },
   {
     name: "Fuzzy search",
@@ -85,7 +85,7 @@ const designOpportunities = [
   },
   {
     name: "Content scanning",
-    body: "For when he knows what he is looking for but not what it is called. Search inside file contents, not just file names.",
+    body: "For when he remembers the content but forgot the file name. Search inside file contents to match by what the document says.",
   },
 ];
 
@@ -141,16 +141,16 @@ const strengths = [
 
 const recommendations = [
   {
-    title: "Organize by use, not by origin",
-    body: "Let files live in multiple places through tags and contextual grouping. A single \"correct\" location for a multipurpose document creates more problems than it solves.",
+    title: "Organize by use",
+    body: "Let files exist in multiple places through tags and contextual grouping. A single \"correct\" location for a multipurpose document creates more problems than it solves.",
   },
   {
     title: "Reduce reliance on the instructor as intermediary",
-    body: "Enable student self-service access to curated resources. When students can find answers themselves, it frees up the professor's time for higher-priority support.",
+    body: "Enable student self-service access to course resources. When students can find answers themselves, it frees up the professor's time for higher-priority support.",
   },
   {
     title: "Design around existing mental models",
-    body: "Prof. S already thinks in spatial, board-like terms. The system should match how he organizes information in his head, not force him into a different structure.",
+    body: "Prof. S already thinks in spatial, board-like terms. The system should match how he organizes information in his head.",
   },
   {
     title: "Retrieval should be as easy as storage",
@@ -283,7 +283,7 @@ export default function FileFinderProject() {
                     </Reveal>
                   </div>
 
-                  <HowMightWe>let the system absorb ambiguity so Prof. S doesn&apos;t have to?</HowMightWe>
+                  <HowMightWe>let the system handle ambiguity so Prof. S doesn&apos;t have to?</HowMightWe>
                 </div>
               </section>
             ),
@@ -303,9 +303,9 @@ export default function FileFinderProject() {
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         We ran a semi-structured interview with Prof. S to follow his
                         workflow and observe behaviors, emotional responses, and
-                        workarounds that would not surface in a structured format. We
+                        workarounds that would not appear in a structured format. We
                         then surveyed current and former students via Google Forms to
-                        validate whether his pain points were isolated or experienced
+                        validate whether his problems were isolated or experienced
                         across the board.
                       </p>
                     </Reveal>
@@ -333,7 +333,7 @@ export default function FileFinderProject() {
 
                     <InsightGrid
                       items={themes}
-                      thesis={<>The problem is <span className="text-accent-lime">retrieval</span>, not storage. His tools are built around where files come from, not how they need to be found.</>}
+                      thesis={<>The core problem is <span className="text-accent-lime">retrieval</span>. His tools organize files by where they came from, which makes finding them later difficult.</>}
                     />
                   </div>
                 </section>
@@ -373,8 +373,7 @@ export default function FileFinderProject() {
                         File Finder is desktop-first. Prof. S works from a laptop during
                         lectures and office hours, so we built the Figma prototype for
                         the screen he already uses. The layout stays calm and
-                        functional so finding a file feels as quick as pulling it from a
-                        drawer.
+                        functional so finding a file takes seconds.
                       </p>
                     </Reveal>
 
@@ -393,7 +392,7 @@ export default function FileFinderProject() {
                                   width={2560}
                                   height={1600}
                                   loading="lazy"
-                                  className="h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                                  className="h-auto w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
                                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                 />
                               ) : (
@@ -437,8 +436,7 @@ export default function FileFinderProject() {
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         File Finder organizes resources visually, by intent, topic,
                         and reusability. It lets Prof. S find files dynamically and
-                        contextually instead of forcing materials into rigid,
-                        origin-based folders. Students can also collaborate and find
+                        contextually. Students can also collaborate and find
                         specific examples by searching for topics and keywords.
                       </p>
                     </Reveal>
@@ -469,9 +467,9 @@ export default function FileFinderProject() {
                         What the system does well
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        The system preserves teaching momentum, restoring time and
-                        attention to learning instead of searching. It lets Prof. S
-                        spend more time on higher-priority tasks.
+                        The system keeps class moving, freeing time and attention
+                        for learning. It lets Prof. S spend more time on
+                        higher-priority tasks.
                       </p>
                     </Reveal>
 

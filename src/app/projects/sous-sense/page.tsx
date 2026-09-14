@@ -13,7 +13,7 @@ import InsightGrid from "@/components/InsightGrid";
 
 const projectData = {
   title: "Sous Sense",
-  subtitle: "Modular IoT Food Intelligence for the Modern Kitchen",
+  subtitle: "Modular IoT food sensing for the kitchen",
   description:
     "Sous Sense started as an entrepreneurship project at NJIT and became a fully developed product concept. The sensor kit retrofits into any fridge, freezer, or pantry and tells you what food you have, how fresh it is, and what to buy next. The project includes brand identity, package design, advertising, and a business plan with five-year financial projections.",
   tags: ["Brand Identity", "Package Design", "Business Strategy", "Advertising"],
@@ -30,24 +30,24 @@ const researchStats = [
 
 const insights = [
   {
-    title: "Food waste is massive, but solutions target awareness, not prevention.",
-    body: "The U.S. loses $161 billion in food waste annually. Most interventions focus on consumer education or composting. Very few products intervene at the point of spoilage, where the loss actually happens.",
+    title: "Most food waste solutions focus on awareness after the fact.",
+    body: "The U.S. loses $161 billion in food waste annually. Most interventions focus on consumer education or composting. Few products intervene at the point of spoilage, where the loss occurs.",
   },
   {
     title: "Smart fridges solve the right problem at the wrong price.",
-    body: "Built-in sensors can track freshness and inventory, but smart refrigerators start at $2,500 and require replacing a working appliance. The technology is sound; the delivery model is not.",
+    body: "Built-in sensors can track freshness and inventory, but smart refrigerators start at $2,500 and require replacing a working appliance. The sensing technology works. The problem is the delivery model.",
   },
   {
     title: "Manual tracking apps fail because they depend on user discipline.",
-    body: "Pantry tracking apps require users to log every item by hand. Compliance drops within weeks. Any solution that relies on manual entry is fighting human behavior.",
+    body: "Pantry tracking apps require users to log every item by hand. Compliance drops within weeks. Any solution that relies on manual entry is working against human behavior.",
   },
   {
-    title: "No existing product bridges IoT sensing with kitchen-specific intelligence.",
-    body: "General-purpose IoT platforms offer connectivity but no domain knowledge. They can tell you a sensor fired, but not that your produce drawer is two days from spoilage.",
+    title: "No existing product connects IoT sensing with kitchen-specific intelligence.",
+    body: "General-purpose IoT platforms offer connectivity without domain knowledge. They report that a sensor fired. They cannot tell you that your produce drawer is two days from spoilage.",
   },
   {
     title: "Recurring revenue matters as much as the hardware.",
-    body: "Hardware margins are healthy but capped. The subscription layer, where software interprets sensor data into actionable alerts, carries 85%+ margins and grows with the installed base.",
+    body: "Hardware margins are healthy but capped. The subscription layer, where software interprets sensor data into specific alerts, carries 85%+ margins and grows with the installed base.",
   },
 ];
 
@@ -160,24 +160,42 @@ export default function SousSenseProject() {
             content: (
               <section className="bg-accent-blue/5 py-16 lg:py-24">
                 <div className="container mx-auto px-6 lg:px-12">
-                  <Reveal className="mb-12 max-w-3xl">
-                    <Eyebrow>The Challenge</Eyebrow>
-                    <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                      American households throw away about $1,500 worth of food
-                      every year. Small restaurants lose even more, sometimes over
-                      $100,000 annually from spoiled inventory. Smart refrigerators
-                      have the right technology for this problem. The issue is
-                      price: they start at $2,500, and you need to replace your
-                      whole appliance to get one.
-                    </p>
-                    <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
-                      The project scope covered the full product from concept to
-                      investor presentation: brand identity, packaging for both
-                      consumer and commercial kits, advertising posters, a 24-page
-                      business plan with five-year projections, and a 16-slide
-                      investor pitch deck.
-                    </p>
-                  </Reveal>
+                  <div className="mb-12 grid items-center gap-10 lg:grid-cols-2">
+                    <Reveal>
+                      <Eyebrow>The Challenge</Eyebrow>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        American households throw away about $1,500 worth of food
+                        every year. Small restaurants lose even more, sometimes over
+                        $100,000 annually from spoiled inventory. Smart refrigerators
+                        have the right technology for this problem. The issue is
+                        price: they start at $2,500, and you need to replace your
+                        whole appliance to get one.
+                      </p>
+                      <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
+                        The project scope covered the full product from concept to
+                        investor presentation: brand identity, packaging for both
+                        consumer and commercial kits, advertising posters, a 24-page
+                        business plan with five-year projections, and a 16-slide
+                        investor pitch deck.
+                      </p>
+                    </Reveal>
+
+                    <Reveal delay={0.1}>
+                      <div className="group relative">
+                        <Image
+                          src="/assets/projects/sous-sense/sous-sensor.webp"
+                          alt="Sous Sense sensor module"
+                          width={1536}
+                          height={1400}
+                          className="w-full rounded-xl"
+                          sizes="(min-width: 1024px) 50vw, 100vw"
+                        />
+                        <span className="bg-primary/90 text-secondary pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100">
+                          iPad Procreate, 2026
+                        </span>
+                      </div>
+                    </Reveal>
+                  </div>
 
                   <HowMightWe>bring smart-fridge sensing technology to any kitchen without requiring a full appliance replacement?</HowMightWe>
                 </div>
@@ -194,15 +212,15 @@ export default function SousSenseProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Research</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Mapping the market landscape
+                        Mapping the market
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Research started with the U.S. food waste landscape and
-                        the smart home market. Three competitor categories were
-                        analyzed: smart refrigerator manufacturers, manual pantry
-                        tracking apps, and general-purpose IoT platforms. The goal
-                        was to find where the gap sat between the technology that
-                        exists and the price point that makes it accessible.
+                        Research started with U.S. food waste data and the smart
+                        home market. Three competitor categories were analyzed:
+                        smart refrigerator manufacturers, manual pantry tracking
+                        apps, and general-purpose IoT platforms. The goal was to
+                        identify the disconnect between available technology and
+                        the price point that makes it accessible.
                       </p>
                     </Reveal>
 
@@ -215,7 +233,7 @@ export default function SousSenseProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Key Insights</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        Five findings shaped the product strategy
+                        Five findings informed the product strategy
                       </h2>
                     </Reveal>
 
@@ -227,7 +245,7 @@ export default function SousSenseProject() {
                           <span className="text-accent-lime">retrofit sensor kit</span>{" "}
                           paired with{" "}
                           <span className="text-accent-lime">subscription software</span>{" "}
-                          that turns any fridge into a smart one.
+                          that adds smart-fridge capability to any fridge.
                         </>
                       }
                     />
@@ -292,7 +310,7 @@ export default function SousSenseProject() {
                         in a professional kitchen. The product works in the background,
                         keeping track of inventory and freshness so you can focus on
                         cooking. The wordmark uses a serif typeface with a chef&rsquo;s hat
-                        woven into the letterform, and the visual identity uses warm tones
+                        built into the letterform, and the visual identity uses warm tones
                         that suit a kitchen environment.
                       </p>
                     </FadeIn>
@@ -323,7 +341,7 @@ export default function SousSenseProject() {
                               width={2550}
                               height={3300}
                               loading="lazy"
-                              className="w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                              className="w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.02]"
                               sizes="(min-width: 768px) 50vw, 100vw"
                             />
                           </FadeIn>

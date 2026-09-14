@@ -41,25 +41,25 @@ export default function ArtScroller() {
             {[...artPieces, ...artPieces].map((art, index) => (
               <div
                 key={`${art.alt}-${index}`}
-                className="group-hover:border-accent-lime/50 relative h-64 w-96 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-[1.02]"
+                className="group-hover:border-accent-lime/50 relative h-64 w-96 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-[border-color] duration-500 ease-[var(--ease-liquid)]"
               >
                 <ArtImage
                   src={art.src}
                   alt={art.alt}
                   loading="lazy"
                   className={cn(
-                    "transition-transform duration-500 group-hover:scale-110",
-                    art.alt === "Mindless Mirth" && "scale-125 group-hover:scale-[1.35]"
+                    "transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]",
+                    art.alt === "Mindless Mirth" && "scale-125 group-hover:scale-[1.28]"
                   )}
                   containerClassName="h-full w-full"
                 />
-                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-500 ease-[var(--ease-liquid)] group-hover:bg-black/20" />
               </div>
             ))}
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100">
           <span className="font-display rounded-full border border-white/20 bg-black/50 px-6 py-3 font-bold text-white backdrop-blur-md">
             View Gallery
           </span>

@@ -21,7 +21,7 @@ const projectData = {
   subtitle:
     "Documenting design thinking: a decision-tracking tool for architecture studios",
   description:
-    "Architecture students are graded on the strength of their process, yet that process lives in notebooks, Miro boards, and “shower thoughts.” ArchLog is a research-led product concept that captures each design move at the moment it happens, so the reasoning survives all the way to critique.",
+    "Architecture students are graded on the strength of their process, yet that process lives in notebooks, Miro boards, and “shower thoughts.” ArchLog is a research-led product concept that captures each design move at the moment it happens, so the reasoning is available at critique.",
   heroImage: "/assets/projects/archlog/ArchLog-Hero.webp",
   tags: ["UX Research", "Product Design", "Prototyping"],
   year: "2026",
@@ -46,22 +46,22 @@ const researchStats = [
 const insights = [
   {
     title: "Starting is the hardest part.",
-    body: "2 in 3 students said their approach “depends on the project.” Studio culture rewards adaptability while leaving students without a methodology to lean on.",
+    body: "2 in 3 students said their approach “depends on the project.” Studio culture rewards adaptability while leaving students without a methodology to rely on.",
   },
   {
     title: "There's no shared design process.",
-    body: "7 of 17 students named concept development the most difficult phase, and nearly half named iteration. Momentum stalls right when a project begins.",
+    body: "7 of 17 students named concept development the most difficult phase, and nearly half named iteration. Progress stalls right when a project begins.",
   },
   {
-    title: "Constraints are creative fuel.",
+    title: "Constraints generate ideas.",
     body: "Across interviews, structure kept coming up as a source of ideas. “One of the biggest things we're taught is to use constraints as an opportunity.”",
   },
   {
-    title: "Decision-making lives in students' heads.",
-    body: "Ideas surface in fragments like sketches, conversations, and “shower thoughts,” and rarely get captured in a way that survives to critique.",
+    title: "Decision-making stays in students' heads.",
+    body: "Ideas appear in fragments like sketches, conversations, and “shower thoughts,” and rarely get captured in a way that lasts through critique.",
   },
   {
-    title: "Critique is where the gap shows up.",
+    title: "Critique exposes the missing rationale.",
     body: "Without a record of why a decision was made, students reconstruct their narrative from memory, hours before the review.",
   },
 ];
@@ -95,7 +95,7 @@ const features = [
   },
   {
     name: "Designer Profiles",
-    body: "Export projects with ease so your crits can follow your thinking, wherever the work travels.",
+    body: "Export projects with ease so your crits can follow your thinking, wherever you present it.",
   },
 ];
 
@@ -228,11 +228,11 @@ export default function ArchLogProject() {
                       <Eyebrow>The Challenge</Eyebrow>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Across studio environments, students struggle to initiate and
-                        structure their process. Once they&apos;re in motion, there&apos;s
+                        structure their process. Once they&apos;ve started, there&apos;s
                         no consistent way to capture <em>why</em> they made the moves they
-                        made. Critiques rely on memory while decisions live in scattered
-                        places. The result is a fragmented, hard-to-defend process that
-                        varies wildly from project to project and critic to critic.
+                        made. Critiques rely on memory while decisions end up scattered
+                        across tools and notebooks. The result is a fragmented, hard-to-defend
+                        process that varies from project to project and critic to critic.
                       </p>
                     </Reveal>
 
@@ -257,9 +257,9 @@ export default function ArchLogProject() {
                         A mixed-method approach
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        A five-section survey mapped habits, blockers, and tooling gaps. A
-                        focus group surfaced <em>why</em> the data looked the way it did.
-                        A/B usability studies then pressure-tested two design directions
+                        A five-section survey mapped habits, blockers, and tooling shortfalls. A
+                        focus group revealed <em>why</em> the data looked the way it did.
+                        A/B usability studies then tested two design directions
                         before we committed to a single path.
                       </p>
                     </Reveal>
@@ -276,7 +276,7 @@ export default function ArchLogProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Key Insights</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        Five findings reframed the problem
+                        Five findings clarified the problem
                       </h2>
                     </Reveal>
 
@@ -297,11 +297,11 @@ export default function ArchLogProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>Scope Refinement</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Seven concepts. One winner.
+                        Narrowing seven concepts to one
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         We put seven feature concepts in front of participants and asked
-                        them to rank what they&apos;d <em>actually</em> use. The Design
+                        them to rank what they&apos;d use in practice. The Design
                         Decision Tracker won by a wide margin, with three of four naming
                         it their top choice. That result confirmed our research thesis:
                         the hard part is traceability, capturing the reasoning behind each
@@ -430,7 +430,7 @@ export default function ArchLogProject() {
                                 width={2560}
                                 height={1600}
                                 loading="lazy"
-                                className="h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                                className="h-auto w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
                                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                               />
                             </div>

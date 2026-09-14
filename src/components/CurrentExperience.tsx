@@ -15,15 +15,15 @@ type Role = {
 const currentRoles: Role[] = [
   {
     id: "njit",
-    year: "2026 — Present",
-    role: "Research Assistant — UX in Accessibility",
+    year: "2026–Present",
+    role: "Research Assistant, UX in Accessibility",
     company: "New Jersey Institute of Technology",
     description:
-      "Researching AI-assisted accessibility — efficacy of Meta Glasses for visually impaired users, and caption improvements for content creators with NSI.",
+      "Researching AI-assisted accessibility: efficacy of Meta Glasses for visually impaired users, and caption improvements for content creators with NSI.",
   },
   {
     id: "spring-bank",
-    year: "2025 — Present",
+    year: "2025–Present",
     role: "Marketing & UX Strategist",
     company: "Spring Bank",
     description:
@@ -31,29 +31,29 @@ const currentRoles: Role[] = [
   },
   {
     id: "aec",
-    year: "2025 — Present",
+    year: "2025–Present",
     role: "Marketing & Business Development Manager",
     company: "All Executive Clean",
     description:
-      "Rebuilt the brand identity and the marketing it ran on — website audit, capability statements, business cards, and portfolio materials.",
+      "Rebuilt the brand identity and the marketing it ran on: website audit, capability statements, business cards, and portfolio materials.",
   },
   {
     id: "schematic",
-    year: "2024 — Present",
+    year: "2024–Present",
     role: "Founder & Director",
     company: "Schematic Marketing",
     description:
-      "Founded an à la carte marketing agency serving small businesses and nonprofits across the tri-state area. Consulting on brand positioning, go-to-market planning, and growth — tailored to each client's needs and budget.",
+      "Founded an à la carte marketing agency serving small businesses and nonprofits across the tri-state area. Consulting on brand positioning, go-to-market planning, and growth, tailored to each client's needs and budget.",
   },
 ];
 
 const previousSpringRole: Role = {
   id: "spring-bank-coordinator",
-  year: "2022 — 2024",
+  year: "2022–2024",
   role: "Marketing Coordinator",
   company: "Spring Bank",
   description:
-    "Organized activation events, workshops, and trade shows — with a focus on financial wellness for youth through the bank's nonprofit partners. Produced accessible content for social, blog, and email, and designed sales decks, regulator presentations, flyers, and in-branch materials.",
+    "Organized activation events, workshops, and trade shows with a focus on financial wellness for youth through the bank's nonprofit partners. Produced accessible content for social, blog, and email, and designed sales decks, regulator presentations, flyers, and in-branch materials.",
 };
 
 function RoleCard({

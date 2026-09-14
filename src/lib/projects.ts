@@ -13,7 +13,7 @@ export const projects: Project[] = [
   {
     title: "ArchLog",
     description:
-      "A research-driven product concept that helps architecture students capture design decisions as they make them — turning a fragmented process into a critique-ready narrative.",
+      "A research-led product concept that helps architecture students capture design decisions as they happen so the reasoning is available at critique.",
     href: "/projects/archlog",
     image: "/gallery/ArchLog Overview page.webp",
     tags: ["UX Research", "Product Design", "Prototyping"],
@@ -21,7 +21,7 @@ export const projects: Project[] = [
   {
     title: "Sous Sense",
     description:
-      "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Built from the ground up with brand identity, package design, advertising, and a complete business plan.",
+      "A full product concept and brand for a modular IoT sensor kit that helps households and restaurants reduce food waste. Includes brand identity, package design, advertising, and a complete business plan.",
     href: "/projects/sous-sense",
     image: "/assets/projects/sous-sense/sous-sense-cover.webp",
     tags: ["Brand Identity", "Package Design", "Business Strategy"],
@@ -29,7 +29,7 @@ export const projects: Project[] = [
   {
     title: "Chimera 2.0",
     description:
-      "A mobile-first redesign of a self-built home security camera app, grounded in a deep heuristic analysis that rebuilds every core flow around the timeline.",
+      "A mobile-first redesign of a self-built home security camera app, grounded in a thorough heuristic analysis that rebuilds every core flow around the timeline.",
     href: "/projects/chimera",
     image: "/assets/projects/chimera/chimera security camera app.webp",
     tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
@@ -37,7 +37,7 @@ export const projects: Project[] = [
   {
     title: "File Finder",
     description:
-      "A research-led product concept that helps a professor find teaching materials by topic and context instead of by folder, preserving momentum during live lectures.",
+      "A research-led product concept that helps a professor find teaching materials by topic and context without interrupting live lectures.",
     href: "/projects/file-finder",
     image: "/assets/projects/file-finder/file finder cover photo.webp",
     tags: ["UX Research", "Product Design", "Prototyping"],
@@ -53,7 +53,7 @@ export const projects: Project[] = [
   {
     title: "BLV Accessibility Research",
     description:
-      "A research publication exploring how blind and low-vision people use Meta Glasses as an AI-powered, hands-free accessibility tool — examining benefits, challenges, workarounds, and verification strategies.",
+      "A research publication exploring how blind and low-vision people use Meta Glasses as an AI-powered, hands-free accessibility tool, examining benefits, challenges, workarounds, and verification strategies.",
     href: "#",
     image: "/assets/projects/BLV/meta-coming-soon.webp",
     tags: ["Accessibility", "UX Research", "Publication"],

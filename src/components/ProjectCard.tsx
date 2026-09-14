@@ -35,7 +35,7 @@ export default function ProjectCard({
       <div className="relative aspect-[16/10] overflow-hidden">
         <div className="from-primary/80 via-primary/30 absolute inset-0 z-10 bg-gradient-to-t to-transparent" />
         {encodedImage ? (
-          <div className={`relative h-full w-full transition-transform duration-500 ${!inactive ? "group-hover:scale-105" : ""}`}>
+          <div className={`relative h-full w-full transition-transform duration-700 ease-[var(--ease-liquid)] ${!inactive ? "group-hover:scale-[1.03]" : ""}`}>
             <Image
               src={encodedImage}
               alt={`${title} project preview`}
@@ -51,8 +51,8 @@ export default function ProjectCard({
         )}
 
         {!inactive && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <div className="bg-accent-lime flex h-20 w-20 scale-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-100">
+          <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100">
+            <div className="bg-accent-lime flex h-16 w-16 scale-0 items-center justify-center rounded-full transition-transform duration-500 ease-[var(--ease-liquid)] group-hover:scale-100">
               <ArrowRightIcon className="text-primary h-8 w-8" />
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function ProjectCard({
         <p className="text-secondary/70 font-body line-clamp-2">{description}</p>
 
         {!inactive ? (
-          <div className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium transition-transform duration-300 group-hover:translate-x-2">
+          <div className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium transition-transform duration-500 ease-[var(--ease-liquid)] group-hover:translate-x-2">
             View Case Study
             <ArrowRightIcon className="h-4 w-4" />
           </div>
@@ -108,7 +108,7 @@ export default function ProjectCard({
       ) : (
         <Link
           href={href}
-          className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300"
+          className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color] duration-500 ease-[var(--ease-liquid)]"
           aria-label={`View ${title} case study`}
         >
           {content}

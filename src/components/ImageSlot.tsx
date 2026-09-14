@@ -41,7 +41,7 @@ export default function ImageSlot({
           fill
           loading="lazy"
           sizes={sizes}
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
         />
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
