@@ -428,14 +428,18 @@ export default function ArchLogProject() {
                       className="mt-12 flex flex-wrap justify-center gap-4"
                     >
                       <AccessibleButton
-                        href="https://www.figma.com/"
+                        href="https://www.figma.com/proto/meQB0AK1p3EVTFgzb1v58l/ArchLog?page-id=1814%3A1217&node-id=2041-1390&p=f&viewport=554%2C390%2C0.03&t=odeoxJPUEzyCWcMH-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2041%3A1390"
                         external
                         variant="primary"
                       >
                         View Figma Prototype
                         <ArrowRightIcon className="h-4 w-4" />
                       </AccessibleButton>
-                      <AccessibleButton href="#" variant="outline">
+                      <AccessibleButton
+                        href="https://drive.google.com/file/d/1JnuSE68Q9JIEm_7NiYN1DavbWX4eXilW/view?usp=sharing"
+                        external
+                        variant="outline"
+                      >
                         Watch Video Walkthrough
                       </AccessibleButton>
                     </Reveal>
