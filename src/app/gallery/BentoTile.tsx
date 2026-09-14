@@ -65,7 +65,7 @@ export default function BentoTile({
               src={artwork.src}
               alt={artwork.title}
               type={artwork.type}
-              className="transition-transform duration-700 ease-[var(--ease-liquid)] group-hover/tile:scale-[1.03]"
+              className="transition-transform duration-700 ease-[var(--ease-liquid)] group-hover/tile:scale-[1.05]"
               containerClassName="absolute inset-0 h-full w-full"
               objectFit="cover"
             />
@@ -86,7 +86,7 @@ export default function BentoTile({
 
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 z-10 opacity-0 mix-blend-screen transition-opacity duration-200 group-hover/tile:opacity-100"
+            className="pointer-events-none absolute inset-0 z-10 opacity-0 mix-blend-screen transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover/tile:opacity-100"
             style={{
               background:
                 "radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.34), transparent 42%)",

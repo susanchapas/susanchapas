@@ -382,7 +382,7 @@ export default function FileFinderProject() {
                         <Tile key={i} delay={(i % 3) * 0.08} className="group h-full">
                           <figure className="h-full">
                             <div
-                              className="ring-accent-blue/0 group-hover:ring-accent-lime/40 overflow-hidden rounded-2xl ring-2 transition-all"
+                              className="ring-accent-blue/0 group-hover:ring-accent-lime/40 overflow-hidden rounded-2xl ring-2 transition-[ring-color] duration-700 ease-[var(--ease-liquid)]"
                               style={{ backgroundColor: "#EAEFF9" }}
                             >
                               {screen.src ? (
@@ -392,7 +392,7 @@ export default function FileFinderProject() {
                                   width={2560}
                                   height={1600}
                                   loading="lazy"
-                                  className="h-auto w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
+                                  className="h-auto w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.05]"
                                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                                 />
                               ) : (

@@ -1,7 +1,9 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import FadeIn from "./FadeIn";
 import { ReactNode } from "react";
+import { SPRING_HOVER } from "@/lib/motion";
 
 export default function Tile({
   children,
@@ -12,14 +14,21 @@ export default function Tile({
   className?: string;
   delay?: number;
 }) {
+  const reduce = useReducedMotion();
+
   return (
     <FadeIn
       delay={delay}
       direction="up"
-      className={`transition-transform duration-500 ease-[var(--ease-liquid)] hover:-translate-y-1 hover:scale-[1.015] ${className}`}
       style={{ "--ty": "32px", "--ts": "0.94" } as React.CSSProperties}
     >
-      {children}
+      <motion.div
+        className={className}
+        whileHover={reduce ? undefined : { scale: 1.03, y: -6 }}
+        transition={SPRING_HOVER}
+      >
+        {children}
+      </motion.div>
     </FadeIn>
   );
 }

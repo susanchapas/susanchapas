@@ -47,7 +47,7 @@ export default function ResearchPinboard() {
               onClick={() => {
                 if (window.innerWidth >= 1024) setSelected(i % items.length);
               }}
-              className="relative h-52 w-80 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-transform duration-500 ease-[var(--ease-liquid)] hover:scale-[1.015] lg:cursor-pointer"
+              className="relative h-52 w-80 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-transform duration-500 ease-[var(--ease-liquid)] hover:scale-[1.03] lg:cursor-pointer"
               aria-label={`View: ${item.alt}`}
             >
               <Image

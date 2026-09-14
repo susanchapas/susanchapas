@@ -49,7 +49,7 @@ function SocialLinks({ vertical = false, size = "sm" }: { vertical?: boolean; si
   );
 }
 
-function CopyIcon({ pathname }: { pathname: string }) {
+function CopyButton({ pathname }: { pathname: string }) {
   const [copied, setCopied] = useState(false);
   const url = "www.susanchapas.com" + pathname;
   return (
@@ -59,18 +59,21 @@ function CopyIcon({ pathname }: { pathname: string }) {
         setCopied(true);
         setTimeout(() => setCopied(false), 1500);
       }}
-      className="text-accent-lime/40 hover:text-accent-lime ml-2.5 shrink-0 transition-colors"
+      className="ml-2.5 shrink-0 inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[inherit] leading-tight backdrop-blur-sm bg-white/[0.06] border border-white/[0.08] text-accent-lime/50 hover:text-accent-lime hover:bg-white/[0.1] transition-all"
       aria-label="Copy URL"
     >
       {copied ? (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
+        <>
+          <span>Copied!</span>
+        </>
       ) : (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-        </svg>
+        <>
+          <span>Copy</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+          </svg>
+        </>
       )}
     </button>
   );
@@ -124,11 +127,11 @@ export default function Navigation() {
   const menuVariants = {
     closed: {
       x: "100%",
-      transition: { type: "spring" as const, stiffness: 400, damping: 40 },
+      transition: { type: "spring" as const, stiffness: 200, damping: 28, mass: 0.8 },
     },
     open: {
       x: 0,
-      transition: { type: "spring" as const, stiffness: 400, damping: 40 },
+      transition: { type: "spring" as const, stiffness: 200, damping: 28, mass: 0.8 },
     },
   };
 
@@ -138,10 +141,11 @@ export default function Navigation() {
       x: 0,
       opacity: 1,
       transition: {
-        delay: i * 0.08,
+        delay: i * 0.06,
         type: "spring" as const,
-        stiffness: 300,
-        damping: 30,
+        stiffness: 180,
+        damping: 22,
+        mass: 0.8,
       },
     }),
   };
@@ -153,7 +157,7 @@ export default function Navigation() {
       viewBox="0 0 10 10"
       fill="none"
       animate={{ rotate: open ? 90 : 0 }}
-      transition={{ duration: 0.15 }}
+      transition={{ type: "spring", stiffness: 200, damping: 20 }}
     >
       <path
         d="M3 1L7 5L3 9"
@@ -190,7 +194,7 @@ export default function Navigation() {
         >
           <Link
             href="/"
-            className="shrink-0 transition-transform duration-400 ease-[var(--ease-liquid)] hover:scale-105"
+            className="shrink-0 transition-transform duration-500 ease-[var(--ease-liquid)] hover:scale-110"
             aria-label="Susan Chapas - Home"
           >
             <Image
@@ -230,9 +234,9 @@ export default function Navigation() {
                 transition={{ duration: 0.15 }}
                 className="flex min-h-0 flex-1 flex-col px-3"
               >
-                <div className="font-body text-accent-lime/60 mb-3 flex items-center px-1 text-xs">
+                <div className="font-body text-accent-lime/60 mb-3 flex items-center justify-between px-1 text-xs">
                   <span className="truncate">{displayPath}</span>
-                  <CopyIcon pathname={pathname} />
+                  <CopyButton pathname={pathname} />
                 </div>
                 <div className="bg-accent-blue/10 mb-3 h-px" />
                 <ul className="flex-1 space-y-1 overflow-y-auto">
@@ -382,7 +386,7 @@ export default function Navigation() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className={`group relative flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ${
+                        className={`group relative flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-500 ease-[var(--ease-liquid)] ${
                           isIconActive(item.href)
                             ? "bg-accent-lime text-primary"
                             : "text-secondary hover:bg-accent-blue/20"
@@ -492,7 +496,7 @@ export default function Navigation() {
                 className="font-body text-accent-lime/60 mb-6 flex items-center text-sm"
               >
                 {displayPath}
-                <CopyIcon pathname={pathname} />
+                <CopyButton pathname={pathname} />
               </motion.div>
 
               <nav>

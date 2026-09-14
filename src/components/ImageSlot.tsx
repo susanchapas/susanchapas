@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { SPRING_GENTLE } from "@/lib/motion";
 
 interface ImageSlotProps {
   src?: string;
@@ -22,7 +26,10 @@ export default function ImageSlot({
   pinboard = false,
 }: ImageSlotProps) {
   return (
-    <div
+    <motion.div
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
       className={`group relative w-full overflow-hidden rounded-2xl border ${pinboard ? "" : "border-accent-blue/20 bg-accent-blue/5"} ${ratio} ${className}`}
       style={
         pinboard
@@ -35,14 +42,20 @@ export default function ImageSlot({
       }
     >
       {src ? (
-        <Image
-          src={encodeURI(src)}
-          alt={alt}
-          fill
-          loading="lazy"
-          sizes={sizes}
-          className="object-cover transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
-        />
+        <motion.div
+          className="absolute inset-0"
+          variants={{ rest: { scale: 1 }, hover: { scale: 1.05 } }}
+          transition={SPRING_GENTLE}
+        >
+          <Image
+            src={encodeURI(src)}
+            alt={alt}
+            fill
+            loading="lazy"
+            sizes={sizes}
+            className="object-cover"
+          />
+        </motion.div>
       ) : (
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <span className="border-accent-blue/30 mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-dashed">
@@ -66,6 +79,6 @@ export default function ImageSlot({
           )}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

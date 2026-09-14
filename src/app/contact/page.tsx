@@ -151,7 +151,7 @@ export default function ContactPage() {
                   <div className="flex gap-4">
                     <a
                       href="mailto:susanchapas39@gmail.com"
-                      className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-all"
+                      className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-colors duration-500 ease-[var(--ease-liquid)]"
                       aria-label="Send email"
                     >
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -162,7 +162,7 @@ export default function ContactPage() {
                       href="https://linkedin.com/in/susan-chapas"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-all"
+                      className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-colors duration-500 ease-[var(--ease-liquid)]"
                       aria-label="LinkedIn profile"
                     >
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -173,7 +173,7 @@ export default function ContactPage() {
                       href="https://github.com/susanchapas"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-all"
+                      className="bg-accent-blue/10 text-secondary hover:bg-accent-lime hover:text-primary flex h-12 w-12 items-center justify-center rounded-full transition-colors duration-500 ease-[var(--ease-liquid)]"
                       aria-label="GitHub profile"
                     >
                       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

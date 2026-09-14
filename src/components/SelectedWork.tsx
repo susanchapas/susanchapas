@@ -44,7 +44,7 @@ export default function SelectedWork() {
         <FadeIn direction="none" delay={0.3} className="mt-16 text-center">
           <Link
             href="/projects"
-            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-all duration-500 ease-[var(--ease-liquid)] hover:gap-5"
+            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-[gap] duration-700 ease-[var(--ease-liquid)] hover:gap-4"
           >
             View All Projects
             <ArrowRightIcon className="h-5 w-5" />

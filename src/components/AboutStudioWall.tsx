@@ -518,7 +518,7 @@ function PhysicsBoard({
                 f.pos.y > 0.6 ? "calc(-100% - 0.6rem)" : "0.6rem"
               })`,
             }}
-            className="ring-accent-lime/20 bg-panel pointer-events-none absolute top-1/2 left-1/2 z-10 w-64 origin-top-left rounded-xl p-4 text-left opacity-0 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.75)] ring-1 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+            className="ring-accent-lime/20 bg-panel pointer-events-none absolute top-1/2 left-1/2 z-10 w-64 origin-top-left rounded-xl p-4 text-left opacity-0 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.75)] ring-1 transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100 group-focus-visible:opacity-100"
           >
             <span
               aria-hidden="true"
@@ -658,7 +658,7 @@ function DrawerContent({
           {node.href && (
             <Link
               href={node.href}
-              className="text-accent-lime font-display mt-5 inline-flex items-center gap-2 font-semibold transition-all hover:gap-3"
+              className="text-accent-lime font-display mt-5 inline-flex items-center gap-2 font-semibold transition-[gap] duration-700 ease-[var(--ease-liquid)] hover:gap-3"
             >
               {node.linkLabel}
               <ArrowRight className="h-4 w-4" />
@@ -768,7 +768,7 @@ export default function AboutStudioWall() {
               aria-hidden={!activated}
               tabIndex={activated ? 0 : -1}
               style={{ pointerEvents: activated ? "auto" : "none" }}
-              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none inline-flex"
+              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-[background-color,box-shadow] duration-500 ease-[var(--ease-liquid)] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none inline-flex"
             >
               <RotateCcw className="h-4 w-4" aria-hidden="true" />
               Reset board
@@ -796,7 +796,7 @@ export default function AboutStudioWall() {
                 type="button"
                 onClick={() => { setHelpDismissed(true); setDemoOpen(true); }}
                 aria-label="How to use the board"
-                className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary relative flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary relative flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-[background-color,box-shadow] duration-500 ease-[var(--ease-liquid)] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 <HelpCircle className="h-4 w-4" />
               </button>

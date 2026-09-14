@@ -49,7 +49,7 @@ export default function ChimeraLightbox() {
           fill
           loading="lazy"
           sizes="(min-width: 1024px) 50vw, 100vw"
-          className="object-cover transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.05]"
         />
 
         {/* Dark blue hover filter with centered subtle text */}

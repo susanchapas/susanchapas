@@ -3,7 +3,9 @@
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRightIcon } from "@/components/Icons";
+import { SPRING_HOVER, SPRING_GENTLE } from "@/lib/motion";
 
 interface ProjectCardProps {
   title: string;
@@ -28,6 +30,7 @@ export default function ProjectCard({
   priority = false,
   inactive = false,
 }: ProjectCardProps) {
+  const reduce = useReducedMotion();
   const encodedImage = image ? encodeURI(image) : "";
 
   const content = (
@@ -35,7 +38,11 @@ export default function ProjectCard({
       <div className="relative aspect-[16/10] overflow-hidden">
         <div className="from-primary/80 via-primary/30 absolute inset-0 z-10 bg-gradient-to-t to-transparent" />
         {encodedImage ? (
-          <div className={`relative h-full w-full transition-transform duration-700 ease-[var(--ease-liquid)] ${!inactive ? "group-hover:scale-[1.03]" : ""}`}>
+          <motion.div
+            className="relative h-full w-full"
+            variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+            transition={SPRING_GENTLE}
+          >
             <Image
               src={encodedImage}
               alt={`${title} project preview`}
@@ -45,17 +52,25 @@ export default function ProjectCard({
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-          </div>
+          </motion.div>
         ) : (
           <div className="bg-accent-blue/10 h-full w-full" />
         )}
 
         {!inactive && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100">
-            <div className="bg-accent-lime flex h-16 w-16 scale-0 items-center justify-center rounded-full transition-transform duration-500 ease-[var(--ease-liquid)] group-hover:scale-100">
-              <ArrowRightIcon className="text-primary h-8 w-8" />
-            </div>
-          </div>
+          <motion.div
+            className="absolute inset-0 z-20 flex items-center justify-center"
+            variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+            transition={SPRING_GENTLE}
+          >
+            <motion.div
+              className="bg-accent-lime flex h-14 w-14 items-center justify-center rounded-full"
+              variants={{ rest: { scale: 0.6, opacity: 0 }, hover: { scale: 1, opacity: 1 } }}
+              transition={SPRING_HOVER}
+            >
+              <ArrowRightIcon className="text-primary h-7 w-7" />
+            </motion.div>
+          </motion.div>
         )}
       </div>
 
@@ -76,17 +91,21 @@ export default function ProjectCard({
           ))}
         </div>
 
-        <h3 className={`font-display text-secondary mb-3 text-2xl font-bold transition-colors lg:text-3xl ${!inactive ? "group-hover:text-accent-lime" : ""}`}>
+        <h3 className={`font-display text-secondary mb-3 text-2xl font-bold transition-colors duration-700 ease-[var(--ease-liquid)] lg:text-3xl ${!inactive ? "group-hover:text-accent-lime" : ""}`}>
           {title}
         </h3>
 
         <p className="text-secondary/70 font-body line-clamp-2">{description}</p>
 
         {!inactive ? (
-          <div className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium transition-transform duration-500 ease-[var(--ease-liquid)] group-hover:translate-x-2">
+          <motion.div
+            className="text-accent-lime mt-auto flex items-center gap-2 pt-6 font-medium"
+            variants={{ rest: { x: 0 }, hover: { x: 8 } }}
+            transition={SPRING_HOVER}
+          >
             View Case Study
             <ArrowRightIcon className="h-4 w-4" />
-          </div>
+          </motion.div>
         ) : (
           <div className="text-secondary/40 mt-auto pt-6 font-medium">
             Coming Soon
@@ -106,13 +125,15 @@ export default function ProjectCard({
           {content}
         </div>
       ) : (
-        <Link
-          href={href}
-          className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color] duration-500 ease-[var(--ease-liquid)]"
-          aria-label={`View ${title} case study`}
-        >
-          {content}
-        </Link>
+        <motion.div initial="rest" whileHover={reduce ? undefined : "hover"} animate="rest">
+          <Link
+            href={href}
+            className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color] duration-500 ease-[var(--ease-liquid)]"
+            aria-label={`View ${title} case study`}
+          >
+            {content}
+          </Link>
+        </motion.div>
       )}
     </FadeIn>
   );

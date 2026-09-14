@@ -351,7 +351,7 @@ export default function AboutMobile() {
                 {p.href && (
                   <Link
                     href={p.href}
-                    className="text-accent-lime font-display mt-3 inline-flex items-center gap-2 text-sm font-semibold transition-all hover:gap-3"
+                    className="text-accent-lime font-display mt-3 inline-flex items-center gap-2 text-sm font-semibold transition-[gap] duration-700 ease-[var(--ease-liquid)] hover:gap-3"
                   >
                     {p.linkLabel}
                     <ArrowRight className="h-3.5 w-3.5" />

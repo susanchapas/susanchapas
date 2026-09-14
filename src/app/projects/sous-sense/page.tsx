@@ -190,7 +190,7 @@ export default function SousSenseProject() {
                           className="w-full rounded-xl"
                           sizes="(min-width: 1024px) 50vw, 100vw"
                         />
-                        <span className="bg-primary/90 text-secondary pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100">
+                        <span className="bg-primary/90 text-secondary pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full px-4 py-1.5 text-xs font-medium tracking-wide opacity-0 backdrop-blur-sm transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100">
                           iPad Procreate, 2026
                         </span>
                       </div>
@@ -341,7 +341,7 @@ export default function SousSenseProject() {
                               width={2550}
                               height={3300}
                               loading="lazy"
-                              className="w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.02]"
+                              className="w-full transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.05]"
                               sizes="(min-width: 768px) 50vw, 100vw"
                             />
                           </FadeIn>

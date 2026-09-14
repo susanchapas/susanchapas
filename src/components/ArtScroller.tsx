@@ -48,8 +48,8 @@ export default function ArtScroller() {
                   alt={art.alt}
                   loading="lazy"
                   className={cn(
-                    "transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.03]",
-                    art.alt === "Mindless Mirth" && "scale-125 group-hover:scale-[1.28]"
+                    "transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.05]",
+                    art.alt === "Mindless Mirth" && "scale-125 group-hover:scale-[1.33]"
                   )}
                   containerClassName="h-full w-full"
                 />

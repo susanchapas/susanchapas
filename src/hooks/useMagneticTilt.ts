@@ -10,8 +10,8 @@ import {
   type MotionStyle,
 } from "framer-motion";
 
-const TILT_SPRING = { stiffness: 150, damping: 20, mass: 0.6 };
-const LIFT_SPRING = { stiffness: 120, damping: 18, mass: 0.7 };
+const TILT_SPRING = { stiffness: 180, damping: 22, mass: 0.5 };
+const LIFT_SPRING = { stiffness: 150, damping: 20, mass: 0.6 };
 
 function useFinePointer() {
   const [fine, setFine] = useState(false);
