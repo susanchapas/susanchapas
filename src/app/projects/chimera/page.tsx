@@ -1,4 +1,3 @@
-import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
 import FadeIn from "@/components/FadeIn";
 import AccessibleButton from "@/components/AccessibleButton";
@@ -278,16 +277,6 @@ export default function ChimeraProject() {
                     </Reveal>
 
                     <Reveal delay={0.1}>
-                      <div className="border-accent-blue/15 bg-primary/40 relative aspect-video overflow-hidden rounded-2xl border lg:hidden">
-                        <Image
-                          src="/assets/projects/chimera/chimera%20og%20dashboard%20blurred.webp"
-                          alt="Chimera dashboard overview"
-                          fill
-                          loading="lazy"
-                          sizes="100vw"
-                          className="object-cover"
-                        />
-                      </div>
                       <ChimeraLightbox />
                     </Reveal>
                   </div>
@@ -320,12 +309,12 @@ export default function ChimeraProject() {
 
                     <ResearchStats stats={researchStats} />
 
-                    {/* Swap in your heuristic artifacts: flow map, annotated screens, matrix */}
                     <Reveal delay={0.1} className="mt-8">
                       <ImageSlot
-                        ratio="aspect-[21/9]"
+                        src="/assets/projects/chimera/chimera-heuristic-eval.png"
+                        alt="Heuristic evaluation flow map of Jay's camera app showing authentication, live feeds, scrubber, and data analysis"
+                        ratio="aspect-[16/9]"
                         label="Heuristic evaluation in action"
-                        hint="Flow map, annotated screens, or the evaluation matrix"
                         sizes="(min-width: 1024px) 75vw, 100vw"
                       />
                     </Reveal>
@@ -346,12 +335,12 @@ export default function ChimeraProject() {
                       </p>
                     </Reveal>
 
-                    {/* Swap in your competitive-analysis screenshots or audit board */}
                     <Reveal delay={0.05} className="mb-8">
                       <ImageSlot
-                        ratio="aspect-[21/9]"
+                        src="/assets/projects/chimera/chimera-comp-analysis.png"
+                        alt="Competitive analysis audit board comparing interface flows across Ring, Arlo, and Eufy"
+                        ratio="aspect-[16/9]"
                         label="Competitor apps studied"
-                        hint="Annotated screenshots of Ring, Nest, Arlo, and Eufy"
                         sizes="(min-width: 1024px) 75vw, 100vw"
                       />
                     </Reveal>

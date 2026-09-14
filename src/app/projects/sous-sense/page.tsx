@@ -81,7 +81,7 @@ const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma
 export default function SousSenseProject() {
   return (
     <div className="">
-      <ProjectHero src="/assets/projects/sous-sense/Sous-Sense-Hero.webp" alt="Sous Sense brand cover">
+      <ProjectHero src="/assets/projects/sous-sense/peppers.jpg" alt="Sous Sense brand cover">
         <FadeIn trigger="mount">
           <BackToProjects />
 
@@ -283,8 +283,9 @@ export default function SousSenseProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn className="max-w-3xl">
+                      <Eyebrow>Branding</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Brand Identity
+                        Building the kitchen assistant brand
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         The name comes from &ldquo;sous chef,&rdquo; the second-in-command
@@ -301,8 +302,9 @@ export default function SousSenseProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn>
+                      <Eyebrow>Advertising</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Advertising
+                        Consumer launch posters
                       </h2>
                       <p className="font-body text-secondary/80 mb-10 max-w-3xl text-lg leading-relaxed">
                         These posters were designed for the consumer product launch. They
@@ -334,8 +336,9 @@ export default function SousSenseProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn>
+                      <Eyebrow>Revenue</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Revenue Model
+                        Hardware plus subscription pricing
                       </h2>
                       <p className="font-body text-secondary/80 mb-8 max-w-3xl text-lg leading-relaxed">
                         The business model pairs one-time hardware sales with recurring
@@ -403,8 +406,9 @@ export default function SousSenseProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn>
+                      <Eyebrow>Tools & Technologies</Eyebrow>
                       <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
-                        Tools & Technologies
+                        What I used
                       </h2>
                       <div className="flex flex-wrap gap-3">
                         {tools.map((tool, index) => (

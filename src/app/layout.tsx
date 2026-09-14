@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Hanken_Grotesk, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, Hanken_Grotesk, Geist_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import LazyCustomCursor from "@/components/LazyCustomCursor";
@@ -23,6 +23,14 @@ const hankenGrotesk = Hanken_Grotesk({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500"],
+  preload: false,
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"],
@@ -126,7 +134,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${hankenGrotesk.variable} ${geistMono.variable}`}
+      className={`${instrumentSans.variable} ${hankenGrotesk.variable} ${geistMono.variable} ${dmSans.variable}`}
     >
       <head>
         <link rel="dns-prefetch" href="https://linkedin.com" />

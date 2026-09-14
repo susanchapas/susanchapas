@@ -8,7 +8,7 @@ import NeuralMap from "@/components/NeuralMap";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
-import ImageSlot from "@/components/ImageSlot";
+import ResearchPinboard from "@/components/ResearchPinboard";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
@@ -266,14 +266,8 @@ export default function ArchLogProject() {
 
                     <ResearchStats stats={researchStats} />
 
-                    {/* Swap in research artifacts: affinity map, survey charts, focus-group photos */}
                     <Reveal delay={0.1} className="mt-8">
-                      <ImageSlot
-                        ratio="aspect-[21/9]"
-                        label="Research in action"
-                        hint="Affinity map, survey charts, or focus-group session photos"
-                        sizes="(min-width: 1024px) 75vw, 100vw"
-                      />
+                      <ResearchPinboard />
                     </Reveal>
                   </div>
                 </section>
@@ -315,17 +309,7 @@ export default function ArchLogProject() {
                       </p>
                     </Reveal>
 
-                    {/* Swap in sketches or screenshots of the seven concepts you tested */}
-                    <Reveal delay={0.05} className="mb-8">
-                      <ImageSlot
-                        ratio="aspect-[21/9]"
-                        label="Seven concepts explored"
-                        hint="Sketches, wireframes, or screenshots of the concepts that went to ranking"
-                        sizes="(min-width: 1024px) 75vw, 100vw"
-                      />
-                    </Reveal>
-
-                    <Reveal delay={0.1}>
+                    <Reveal delay={0.05}>
                       <div className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6 lg:p-8">
                         <div className="mb-6 flex items-center justify-between">
                           <span className="font-body text-secondary/50 text-xs tracking-widest uppercase">

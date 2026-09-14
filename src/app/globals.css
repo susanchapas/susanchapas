@@ -36,6 +36,7 @@
   --font-display: var(--font-instrument-sans);
   --font-body: var(--font-hanken-grotesk);
   --font-mono: var(--font-geist-mono);
+  --font-dm: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
 }
 
 /* Global Styles */
