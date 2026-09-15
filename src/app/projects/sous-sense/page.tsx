@@ -300,24 +300,37 @@ export default function SousSenseProject() {
               <>
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
-                    <FadeIn className="max-w-3xl">
+                    <FadeIn>
                       <Eyebrow>Branding</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Building the kitchen assistant brand
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        The name comes from &ldquo;sous chef,&rdquo; the second-in-command
-                        in a professional kitchen. The product works in the background,
-                        tracking inventory and freshness so the cook can focus on cooking.
-                        The wordmark is set in Rubik, a geometric sans-serif, with three
-                        sensor lines extending from the final &ldquo;e&rdquo; to represent
-                        the product&rsquo;s detection capability. The visual identity is
-                        built around three principles:
-                        future-forward confidence, trustworthiness, and quality. In practice,
-                        that means minimal layouts and specific performance statistics in
-                        every product claim, because restaurant managers make purchasing
-                        decisions based on numbers.
-                      </p>
+                      <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-stretch lg:gap-12 xl:gap-16">
+                        <div className="max-w-xl xl:max-w-2xl">
+                          <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                            Building the kitchen assistant brand
+                          </h2>
+                          <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                            The name comes from &ldquo;sous chef,&rdquo; the second-in-command
+                            in a professional kitchen. The product works in the background,
+                            tracking inventory and freshness so the cook can focus on cooking.
+                            The wordmark is set in Rubik, a geometric sans-serif, with three
+                            sensor lines extending from the final &ldquo;e&rdquo; to represent
+                            the product&rsquo;s detection capability. The visual identity is
+                            built around three principles:
+                            future-forward confidence, trustworthiness, and quality. In practice,
+                            that means minimal layouts and specific performance statistics in
+                            every product claim, because restaurant managers make purchasing
+                            decisions based on numbers.
+                          </p>
+                        </div>
+                        <div className="group relative aspect-[4/5] w-full max-w-sm shrink-0 overflow-hidden rounded-xl mx-auto lg:mx-0 lg:h-full lg:w-auto lg:max-w-none">
+                          <Image
+                            src="/assets/projects/sous-sense/sous-sense-branding.png"
+                            alt="Sous Sense visual identity showing the Rubik wordmark, sensor hardware, and color palette"
+                            fill
+                            sizes="(min-width: 1024px) 400px, 100vw"
+                            className="object-cover rounded-xl transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.02]"
+                          />
+                        </div>
+                      </div>
                     </FadeIn>
                   </div>
                 </section>

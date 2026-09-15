@@ -456,18 +456,13 @@ export default function ChimeraProject() {
                       delay={0.1}
                       className="mt-12 flex flex-wrap justify-center gap-4"
                     >
-                      {/* Replace href with your published Figma prototype URL */}
                       <AccessibleButton
-                        href="https://www.figma.com/"
+                        href="https://www.figma.com/proto/KsnMHMy2uUtQr5TCrGbd7M/chimera2?page-id=0%3A1&node-id=18-6566&p=f&viewport=82%2C206%2C0.4&t=J44BLoKUK87wUEBr-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=18%3A6566"
                         external
                         variant="primary"
                       >
                         View Figma Prototype
                         <ArrowRightIcon className="h-4 w-4" />
-                      </AccessibleButton>
-                      {/* Replace href with your hosted walkthrough video */}
-                      <AccessibleButton href="#" variant="outline">
-                        Watch Video Walkthrough
                       </AccessibleButton>
                     </Reveal>
                   </div>

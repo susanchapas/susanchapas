@@ -4,6 +4,8 @@ import BackToProjects from "@/components/BackToProjects";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
+import NeuralMap from "@/components/NeuralMap";
+import type { NeuralMapNode } from "@/components/NeuralMap";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
@@ -15,6 +17,40 @@ import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
 import { ArrowRightIcon } from "@/components/Icons";
 import { StrengthsCarousel } from "./carousels";
+
+const FB = "/assets/projects/file-finder/file-finder-challenge";
+
+const ffNodes: NeuralMapNode[] = [
+  { label: "To-Do", src: `${FB}/stickynote1.webp`, s: 195, rx: 8, bare: true, z: 2 },
+  { label: "Bookshelf", src: `${FB}/photo2.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Reminder", src: `${FB}/sticky2.webp`, s: 195, rx: 8, bare: true, z: 2 },
+  { label: "Paper Stack", src: `${FB}/photo1.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Documents", src: `${FB}/photo3.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Design Book", src: `${FB}/photobook.webp`, s: 245, rx: 8, bare: false, z: 0 },
+  { label: "Figma", src: `${FB}/logo-figma.webp`, s: 165, rx: 48, bare: false, z: 3 },
+  { label: "Miro", src: `${FB}/logo-miro.webp`, s: 165, rx: 48, bare: false, z: 3 },
+  { label: "Drive", src: `${FB}/logo1.webp`, s: 165, rx: 48, bare: false, z: 3 },
+  { label: "Gmail", src: `${FB}/logo2.webp`, s: 150, rx: 48, bare: false, z: 3 },
+  { label: "Canvas", src: `${FB}/logo3.webp`, s: 150, rx: 8, bare: false, z: 3 },
+  { label: "Discord", src: `${FB}/logo4.webp`, s: 150, rx: 8, bare: false, z: 3 },
+  { label: "Docs", src: `${FB}/logo5.webp`, s: 150, rx: 48, bare: false, z: 3 },
+  { label: "YouTube", src: `${FB}/logo6.webp`, s: 150, rx: 8, bare: false, z: 3 },
+  { label: "NJIT", src: `${FB}/logo7.webp`, s: 165, rx: 8, bare: false, z: 3 },
+];
+
+const ffEdges: [number, number][] = [
+  [0, 3], [0, 10], [1, 5], [1, 14], [2, 4], [2, 7], [3, 8], [3, 12],
+  [4, 9], [5, 6], [6, 7], [8, 9], [8, 12], [10, 14], [10, 13], [11, 1],
+  [11, 13], [12, 0],
+];
+
+const ffTheme = {
+  edge: "#bbcdf3",
+  highlight: "#6fcd9d",
+  dot: "rgba(187,205,243,0.18)",
+  bg: "rgba(187,205,243,0.04)",
+  border: "rgba(187,205,243,0.2)",
+};
 
 const projectData = {
   title: "File Finder",
@@ -274,12 +310,7 @@ export default function FileFinderProject() {
                     </Reveal>
 
                     <Reveal delay={0.1}>
-                      <ImageSlot
-                        ratio="aspect-[4/3]"
-                        label="Prof. S's current workflow"
-                        hint="Ethnographic observation, Google Drive structure, or interview photo"
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                      />
+                      <NeuralMap nodes={ffNodes} edges={ffEdges} theme={ffTheme} />
                     </Reveal>
                   </div>
 

@@ -4,6 +4,7 @@ import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import NeuralMap from "@/components/NeuralMap";
+import type { NeuralMapNode } from "@/components/NeuralMap";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
@@ -15,6 +16,33 @@ import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
 import { ArrowRightIcon } from "@/components/Icons";
 import { ProductTourCarousel } from "./carousels";
+
+const AB = "/assets/projects/archlog/ArchLog%20challenge%20pinboard";
+
+const archlogNodes: NeuralMapNode[] = [
+  { label: "To-Do", src: `${AB}/To-Do-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
+  { label: "Render", src: `${AB}/building-render.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Sketch Paper", src: `${AB}/building-sketch-paper.webp`, s: 195, rx: 8, bare: true, z: 0 },
+  { label: "Building Sketch", src: `${AB}/building-sketch.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Site Photo", src: `${AB}/building-with-graffiti.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Cheesecloth", src: `${AB}/cheesecloth-texture.webp`, s: 165, rx: 8, bare: true, z: 1 },
+  { label: "Concrete", src: `${AB}/concrete-texture.webp`, s: 165, rx: 8, bare: true, z: 1 },
+  { label: "Crit Notes", src: `${AB}/crit-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
+  { label: "Flood Zone", src: `${AB}/flood-zone-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
+  { label: "Journal", src: `${AB}/house-sketch-in-journal.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Instagram", src: `${AB}/instagram-icon.webp`, s: 180, rx: 48, bare: false, z: 3 },
+  { label: "Moss", src: `${AB}/moss-texture.webp`, s: 165, rx: 8, bare: true, z: 1 },
+  { label: "Circulation", src: `${AB}/new-circulation-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
+  { label: "Pinterest", src: `${AB}/pinterest-logo.webp`, s: 180, rx: 90, bare: false, z: 3 },
+  { label: "Sketchbook", src: `${AB}/sketchbook-with-triangle.webp`, s: 265, rx: 8, bare: false, z: 0 },
+  { label: "Window Detail", src: `${AB}/window-sketch-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
+];
+
+const archlogEdges: [number, number][] = [
+  [0, 3], [0, 9], [1, 5], [1, 13], [2, 8], [2, 11], [3, 7], [4, 12],
+  [4, 6], [5, 14], [6, 15], [7, 10], [8, 1], [9, 12], [10, 14], [11, 3],
+  [13, 15], [14, 0],
+];
 
 const projectData = {
   title: "ArchLog",
@@ -239,7 +267,7 @@ export default function ArchLogProject() {
                       </p>
                     </Reveal>
 
-                    <NeuralMap />
+                    <NeuralMap nodes={archlogNodes} edges={archlogEdges} />
                   </div>
 
                   <HowMightWe>create a low-friction tool that helps architecture students develop concepts with greater clarity inside the studio?</HowMightWe>

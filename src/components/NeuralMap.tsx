@@ -3,49 +3,36 @@
 
 import { useRef, useCallback, useEffect, useState } from "react";
 
-const B = "/assets/projects/archlog/ArchLog%20challenge%20pinboard";
+export interface NeuralMapNode {
+  label: string;
+  src: string;
+  s: number;
+  rx: number;
+  bare: boolean;
+  z: number;
+}
 
-const NODES = [
-  { label: "To-Do", src: `${B}/To-Do-sticky-note.webp`, ix: 680, iy: 130, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Render", src: `${B}/building-render.webp`, ix: 150, iy: 420, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Sketch Paper", src: `${B}/building-sketch-paper.webp`, ix: 820, iy: 530, s: 195, rx: 8, bare: true, z: 0 },
-  { label: "Building Sketch", src: `${B}/building-sketch.webp`, ix: 350, iy: 160, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Site Photo", src: `${B}/building-with-graffiti.webp`, ix: 550, iy: 560, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Cheesecloth", src: `${B}/cheesecloth-texture.webp`, ix: 870, iy: 190, s: 165, rx: 8, bare: true, z: 1 },
-  { label: "Concrete", src: `${B}/concrete-texture.webp`, ix: 220, iy: 620, s: 165, rx: 8, bare: true, z: 1 },
-  { label: "Crit Notes", src: `${B}/crit-sticky-note.webp`, ix: 490, iy: 310, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Flood Zone", src: `${B}/flood-zone-sticky-note.webp`, ix: 130, iy: 170, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Journal", src: `${B}/house-sketch-in-journal.webp`, ix: 770, iy: 350, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Instagram", src: `${B}/instagram-icon.webp`, ix: 410, iy: 520, s: 180, rx: 48, bare: false, z: 3 },
-  { label: "Moss", src: `${B}/moss-texture.webp`, ix: 680, iy: 440, s: 165, rx: 8, bare: true, z: 1 },
-  { label: "Circulation", src: `${B}/new-circulation-sticky-note.webp`, ix: 900, iy: 620, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Pinterest", src: `${B}/pinterest-logo.webp`, ix: 160, iy: 280, s: 180, rx: 90, bare: false, z: 3 },
-  { label: "Sketchbook", src: `${B}/sketchbook-with-triangle.webp`, ix: 560, iy: 140, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Window Detail", src: `${B}/window-sketch-sticky-note.webp`, ix: 340, iy: 440, s: 195, rx: 8, bare: true, z: 2 },
-];
+export interface NeuralMapTheme {
+  edge: string;
+  highlight: string;
+  dot: string;
+  bg: string;
+  border: string;
+}
 
-const RENDER_ORDER = NODES.map((_, i) => i).sort((a, b) => NODES[a].z - NODES[b].z);
+const DEFAULT_THEME: NeuralMapTheme = {
+  edge: "#e09f7d",
+  highlight: "#6fcd9d",
+  dot: "rgba(224,159,125,0.18)",
+  bg: "rgba(224,159,125,0.04)",
+  border: "rgba(224,159,125,0.2)",
+};
 
-const EDGES: [number, number][] = [
-  [0, 3],
-  [0, 9],
-  [1, 5],
-  [1, 13],
-  [2, 8],
-  [2, 11],
-  [3, 7],
-  [4, 12],
-  [4, 6],
-  [5, 14],
-  [6, 15],
-  [7, 10],
-  [8, 1],
-  [9, 12],
-  [10, 14],
-  [11, 3],
-  [13, 15],
-  [14, 0],
-];
+interface Props {
+  nodes: NeuralMapNode[];
+  edges: [number, number][];
+  theme?: Partial<NeuralMapTheme>;
+}
 
 function mulberry32(seed: number) {
   return () => {
@@ -59,19 +46,6 @@ function mulberry32(seed: number) {
 const VW = 1000;
 const VH = 750;
 const PAD = 55;
-
-const INIT_POS: { x: number; y: number }[] = (() => {
-  const rand = mulberry32(7);
-  const cols = 4;
-  const rows = Math.ceil(NODES.length / cols);
-  const colW = (VW - 2 * PAD) / cols;
-  const rowH = (VH - 2 * PAD) / rows;
-  return NODES.map((_, i) => ({
-    x: PAD + (i % cols) * colW + rand() * colW,
-    y: PAD + Math.floor(i / cols) * rowH + rand() * rowH,
-  }));
-})();
-
 const REPEL = 40000;
 const ATTRACT = 0.015;
 const CTR = 0.004;
@@ -85,13 +59,29 @@ interface Pt {
   vy: number;
 }
 
-export default function NeuralMap() {
+function computeInitPos(count: number) {
+  const rand = mulberry32(7);
+  const cols = 4;
+  const rows = Math.ceil(count / cols);
+  const colW = (VW - 2 * PAD) / cols;
+  const rowH = (VH - 2 * PAD) / rows;
+  return Array.from({ length: count }, (_, i) => ({
+    x: PAD + (i % cols) * colW + rand() * colW,
+    y: PAD + Math.floor(i / cols) * rowH + rand() * rowH,
+  }));
+}
+
+export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
+  const t = { ...DEFAULT_THEME, ...themeProp };
+  const RENDER_ORDER = nodes.map((_, i) => i).sort((a, b) => nodes[a].z - nodes[b].z);
+  const initPos = computeInitPos(nodes.length);
+
   const svgRef = useRef<SVGSVGElement>(null);
   const pos = useRef<Pt[]>(
-    INIT_POS.map((p) => ({ ...p, vx: 0, vy: 0 }))
+    initPos.map((p) => ({ ...p, vx: 0, vy: 0 }))
   );
   const dragging = useRef<number | null>(null);
-  const anchors = useRef<(null | { x: number; y: number })[]>(NODES.map(() => null));
+  const anchors = useRef<(null | { x: number; y: number })[]>(nodes.map(() => null));
   const raf = useRef(0);
   const alive = useRef(false);
   const hovered = useRef<number | null>(null);
@@ -102,9 +92,9 @@ export default function NeuralMap() {
   const borderEls = useRef<(SVGRectElement | null)[]>([]);
 
   const adj = useRef(
-    NODES.map((_, i) => {
+    nodes.map((_, i) => {
       const s = new Set<number>();
-      for (const [a, b] of EDGES) {
+      for (const [a, b] of edges) {
         if (a === i) s.add(b);
         if (b === i) s.add(a);
       }
@@ -114,7 +104,7 @@ export default function NeuralMap() {
 
   const sync = useCallback(() => {
     const n = pos.current;
-    EDGES.forEach(([a, b], idx) => {
+    edges.forEach(([a, b], idx) => {
       const el = edgeEls.current[idx];
       if (!el) return;
       el.setAttribute("x1", String(n[a].x));
@@ -126,28 +116,28 @@ export default function NeuralMap() {
       const el = nodeEls.current[i];
       if (el) el.setAttribute("transform", `translate(${n[i].x},${n[i].y})`);
     }
-  }, []);
+  }, [edges]);
 
   const syncHover = useCallback(() => {
     const h = hovered.current;
-    EDGES.forEach(([a, b], idx) => {
+    edges.forEach(([a, b], idx) => {
       const el = edgeEls.current[idx];
       if (!el) return;
       const lit = h !== null && (h === a || h === b);
-      el.setAttribute("stroke", lit ? "#6fcd9d" : "#e09f7d");
+      el.setAttribute("stroke", lit ? t.highlight : t.edge);
       el.setAttribute("stroke-width", lit ? "1.5" : "0.8");
       el.setAttribute("opacity", lit ? "0.75" : "0.3");
     });
-    NODES.forEach((def, i) => {
+    nodes.forEach((def, i) => {
       if (def.bare) return;
       const el = borderEls.current[i];
       if (!el) return;
       const on = h === i;
       const near = h !== null && adj[h]?.has(i);
-      el.setAttribute("stroke", on ? "#6fcd9d" : near ? "rgba(111,205,157,0.5)" : "rgba(224,159,125,0.3)");
+      el.setAttribute("stroke", on ? t.highlight : near ? `${t.highlight}80` : `${t.edge}4D`);
       el.setAttribute("stroke-width", on ? "2.5" : near ? "2" : "1");
     });
-  }, [adj]);
+  }, [adj, edges, nodes, t.edge, t.highlight]);
 
   const step = useCallback(() => {
     const n = pos.current;
@@ -168,7 +158,7 @@ export default function NeuralMap() {
       }
     }
 
-    for (const [a, b] of EDGES) {
+    for (const [a, b] of edges) {
       const dx = n[b].x - n[a].x;
       const dy = n[b].y - n[a].y;
       const d = Math.sqrt(dx * dx + dy * dy) || 1;
@@ -209,7 +199,7 @@ export default function NeuralMap() {
     } else {
       alive.current = false;
     }
-  }, [sync]);
+  }, [edges, sync]);
 
   const wake = useCallback(() => {
     if (!alive.current) {
@@ -322,12 +312,13 @@ export default function NeuralMap() {
   const reset = useCallback(() => {
     cancelAnimationFrame(raf.current);
     alive.current = false;
-    pos.current = INIT_POS.map((p) => ({ ...p, vx: 0, vy: 0 }));
-    anchors.current = NODES.map(() => null);
+    const ip = computeInitPos(nodes.length);
+    pos.current = ip.map((p) => ({ ...p, vx: 0, vy: 0 }));
+    anchors.current = nodes.map(() => null);
     dragging.current = null;
     hovered.current = null;
     setResetKey((k) => k + 1);
-  }, []);
+  }, [nodes]);
 
   useEffect(() => {
     sync();
@@ -338,12 +329,12 @@ export default function NeuralMap() {
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-2xl border border-accent-clay/20"
+      className="relative w-full overflow-hidden rounded-2xl"
       style={{
-        backgroundImage:
-          "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
+        backgroundImage: `radial-gradient(${t.dot} 1.5px, transparent 1.5px)`,
         backgroundSize: "22px 22px",
-        backgroundColor: "rgba(224,159,125,0.04)",
+        backgroundColor: t.bg,
+        border: `1px solid ${t.border}`,
       }}
     >
       <button
@@ -364,7 +355,7 @@ export default function NeuralMap() {
       >
         <defs>
           {Array.from(
-            new Map(NODES.map((n) => [`${n.s}-${n.rx}`, n])).values()
+            new Map(nodes.map((n) => [`${n.s}-${n.rx}`, n])).values()
           ).map((n) => (
             <clipPath key={`${n.s}-${n.rx}`} id={`nm-c${n.s}-${n.rx}`}>
               <rect
@@ -378,7 +369,7 @@ export default function NeuralMap() {
           ))}
         </defs>
 
-        {EDGES.map(([a, b], idx) => (
+        {edges.map(([a, b], idx) => (
           <line
             key={`${a}-${b}`}
             ref={(el) => { edgeEls.current[idx] = el; }}
@@ -386,7 +377,7 @@ export default function NeuralMap() {
             y1={n[a].y}
             x2={n[b].x}
             y2={n[b].y}
-            stroke="#e09f7d"
+            stroke={t.edge}
             strokeWidth={0.8}
             opacity={0.3}
             style={{ transition: "stroke 0.2s, opacity 0.2s" }}
@@ -394,7 +385,7 @@ export default function NeuralMap() {
         ))}
 
         {RENDER_ORDER.map((i) => {
-          const def = NODES[i];
+          const def = nodes[i];
           const s = def.s;
           const hs = s / 2;
           return (
@@ -452,7 +443,7 @@ export default function NeuralMap() {
                       height={s}
                       rx={def.rx}
                       fill="none"
-                      stroke="rgba(224,159,125,0.3)"
+                      stroke={`${t.edge}4D`}
                       strokeWidth={1}
                       style={{
                         transition: "stroke 0.2s, stroke-width 0.2s",

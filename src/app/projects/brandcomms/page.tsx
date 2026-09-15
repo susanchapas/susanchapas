@@ -244,7 +244,7 @@ export default function BrandCommsProject() {
             content: (
               <section className="bg-accent-blue/5 py-16 lg:py-24">
                 <div className="container mx-auto px-6 lg:px-12">
-                  <div className="mb-12 grid items-start gap-10 lg:grid-cols-5">
+                  <div className="mb-12 grid items-stretch gap-10 lg:grid-cols-5">
                     <Reveal className="lg:col-span-3">
                       <Eyebrow>The Challenge</Eyebrow>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
@@ -272,14 +272,13 @@ export default function BrandCommsProject() {
                     </Reveal>
 
                     <Reveal delay={0.1} className="lg:col-span-2">
-                      <div className="bg-primary/40 border-accent-blue/10 overflow-hidden rounded-2xl border">
+                      <div className="bg-primary/40 border-accent-blue/10 relative aspect-[4/3] overflow-hidden rounded-2xl border lg:aspect-auto lg:h-full">
                         <Image
                           src="/assets/projects/brandcomms/Brand-Request-Current.webp"
                           alt="Current brand request workflow showing a confusing, multi-step approval process"
-                          width={800}
-                          height={600}
+                          fill
                           loading="lazy"
-                          className="h-auto w-full"
+                          className="object-contain"
                           sizes="(min-width: 1024px) 60vw, 100vw"
                         />
                       </div>
