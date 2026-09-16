@@ -41,7 +41,7 @@ export function ProductTourCarousel({ items }: { items: ProductScreen[] }) {
                 <h3 className="font-display text-secondary mb-1 text-lg font-bold">
                   {title}
                 </h3>
-                <p className="font-body text-secondary/60 max-w-lg text-sm">
+                <p className="font-body text-secondary/60 max-w-lg whitespace-pre-line text-sm">
                   {description}
                 </p>
               </CarouselFade>

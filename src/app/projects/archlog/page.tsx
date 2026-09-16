@@ -132,25 +132,25 @@ const productScreens = [
     src: "/assets/projects/archlog/archlog-proj-overview.webp",
     alt: "ArchLog project overview showing brief, constraints, and milestones",
     caption:
-      "Project Overview: input your brief, constraints, and milestones to ground every decision that follows.",
+      "Project Overview: input your brief, constraints, and milestones\nto ground every decision that follows.",
   },
   {
     src: "/assets/projects/archlog/archlog-log-decision.webp",
     alt: "ArchLog decision logging form and decision history timeline",
     caption:
-      "Decision Logging: capture each design move with its rationale, tags, and references as it happens.",
+      "Decision Logging: capture each design move with its rationale,\ntags, and references as it happens.",
   },
   {
     src: "/assets/projects/archlog/archlog-narrative-builder.webp",
     alt: "ArchLog narrative builder with audience, tone, and framing controls",
     caption:
-      "Narrative Builder: shape a critique-ready story from your logged decisions with audience and tone controls.",
+      "Narrative Builder: shape a critique-ready story from your logged decisions\nwith audience and tone controls.",
   },
   {
     src: "/assets/projects/archlog/archlog-profile-sharing.webp",
     alt: "ArchLog designer profile alongside a generated design narrative",
     caption:
-      "Profile & Export: build your designer profile and export narratives for critiques, pin-ups, or reviews.",
+      "Profile & Export: build your designer profile and export narratives\nfor critiques, pin-ups, or reviews.",
   },
 ];
 

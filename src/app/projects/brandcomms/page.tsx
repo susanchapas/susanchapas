@@ -15,8 +15,7 @@ import { ScreenshotCarousel, PersonaCarousel } from "./carousels";
 
 const projectData = {
   title: "BrandComms",
-  subtitle:
-    "AI-assisted brand compliance for university communities",
+  subtitle: "AI-assisted brand compliance for university communities",
   description:
     "BrandComms is a product concept for an AI-powered brand management platform designed for universities. It was developed as a semester-long academic project at NJIT by a team of four designers. The core problem: university brand guidelines are dense, the approval process for using them is slow and unclear, and the people who need the most help get the least guidance. BrandComms uses AI agents to translate brand standards into clear, specific feedback and automate compliance checks before human review.",
   tags: ["UX Research", "Product Design", "AI/ML Concept"],
@@ -29,7 +28,10 @@ const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
   { label: "Team", value: "4 designers" },
   { label: "Platform", value: "Web (desktop-first)" },
-  { label: "Methods", value: "Stakeholder analysis, persona development, scenario modeling" },
+  {
+    label: "Methods",
+    value: "Stakeholder analysis, persona development, scenario modeling",
+  },
 ];
 
 const researchStats = [
@@ -65,31 +67,36 @@ const personas = [
   {
     name: "Maya Torres",
     archetype: "The Organizer",
-    description: "22, student club president. Designs flyers and t-shirts for events. Wants to follow brand rules but finds the process inaccessible and unresponsive.",
+    description:
+      "22, student club president. Designs flyers and t-shirts for events. Wants to follow brand rules but finds the process inaccessible and unresponsive.",
     image: "/assets/projects/brandcomms/BrandComms%20personas/maya%20torres.webp",
   },
   {
     name: "Sophia Sharp",
     archetype: "The Digital Voice",
-    description: "21, social media chair. Needs fast turnarounds for posts and campaigns. Delayed approvals mean missed opportunities.",
+    description:
+      "21, social media chair. Needs fast turnarounds for posts and campaigns. Delayed approvals mean missed opportunities.",
     image: "/assets/projects/brandcomms/BrandComms%20personas/sofia%20sharp.webp",
   },
   {
     name: "Karina Mitev",
     archetype: "The Storykeeper",
-    description: "42, assistant director of strategic communications. Oversees brand consistency across all student and external projects.",
+    description:
+      "42, assistant director of strategic communications. Oversees brand consistency across all student and external projects.",
     image: "/assets/projects/brandcomms/BrandComms%20personas/karina%20mitev.webp",
   },
   {
     name: "Anthony Vega",
     archetype: "The Gatekeeper",
-    description: "42, compliance officer. Enforces design standards and ensures submissions meet visual and legal criteria. Workload is high and largely manual.",
+    description:
+      "42, compliance officer. Enforces design standards and ensures submissions meet visual and legal criteria. Workload is high and largely manual.",
     image: "/assets/projects/brandcomms/BrandComms%20personas/anthony%20vega.webp",
   },
   {
     name: "Dr. Evelyn Cho",
     archetype: "The Mentor",
-    description: "46, assistant professor. Supervises student projects that use university branding. Constantly mediates between students and the marketing department.",
+    description:
+      "46, assistant professor. Supervises student projects that use university branding. Constantly mediates between students and the marketing department.",
     image: "/assets/projects/brandcomms/BrandComms%20personas/evelyn%20cho.webp",
   },
 ];
@@ -165,7 +172,10 @@ const screenshots = [
 export default function BrandCommsProject() {
   return (
     <div className="">
-      <ProjectHero src="/assets/projects/brandcomms/BrandComms-Hero.webp" alt={projectData.title}>
+      <ProjectHero
+        src="/assets/projects/brandcomms/BrandComms-Hero.webp"
+        alt={projectData.title}
+      >
         <FadeIn trigger="mount">
           <BackToProjects />
 
@@ -244,23 +254,23 @@ export default function BrandCommsProject() {
             content: (
               <section className="bg-accent-blue/5 py-16 lg:py-24">
                 <div className="container mx-auto px-6 lg:px-12">
-                  <div className="mb-12 grid items-stretch gap-10 lg:grid-cols-5">
+                  <div className="mb-12 grid items-center gap-10 lg:grid-cols-5">
                     <Reveal className="lg:col-span-3">
                       <Eyebrow>The Challenge</Eyebrow>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         University brand guidelines are typically written as 50-to-60-page
                         documents for trained designers. Most students are not trained
-                        designers. When a club president needs to print flyers for an event,
-                        or a student org wants to post on social media, they have to navigate
-                        rules they were never taught to read.
+                        designers. When a club president needs to print flyers for an
+                        event, or a student org wants to post on social media, they have
+                        to navigate rules they were never taught to read.
                       </p>
                       <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
                         The submission process compounds the confusion: materials go into
                         a compliance portal, and days or weeks pass with no status update.
                         Rejections arrive as one-line emails with no explanation of what
                         to fix. This leaves students guessing, revising blindly, and
-                        sometimes printing unapproved work because the deadline
-                        won&apos;t wait.
+                        sometimes printing unapproved work because the deadline won&apos;t
+                        wait.
                       </p>
                       <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
                         On the staff side, compliance officers and marketing teams review
@@ -271,21 +281,29 @@ export default function BrandCommsProject() {
                       </p>
                     </Reveal>
 
-                    <Reveal delay={0.1} className="lg:col-span-2">
-                      <div className="bg-primary/40 border-accent-blue/10 relative aspect-[4/3] overflow-hidden rounded-2xl border lg:aspect-auto lg:h-full">
+                    <Reveal
+                      delay={0.1}
+                      className="flex items-center justify-center lg:col-span-2"
+                    >
+                      <div className="bg-primary/40 border-accent-blue/10 relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border shadow-xl">
                         <Image
-                          src="/assets/projects/brandcomms/Brand-Request-Current.webp"
-                          alt="Current brand request workflow showing a confusing, multi-step approval process"
-                          fill
+                          src="/assets/projects/brandcomms/njit-brand-guide.webp"
+                          alt="NJIT Editorial Style Guide cover page"
+                          width={1084}
+                          height={1408}
                           loading="lazy"
-                          className="object-contain"
-                          sizes="(min-width: 1024px) 60vw, 100vw"
+                          className="h-auto w-full object-contain"
+                          sizes="(min-width: 1024px) 40vw, 100vw"
                         />
                       </div>
                     </Reveal>
                   </div>
 
-                  <HowMightWe>make brand compliance understandable, feedback immediate, and the approval process transparent for everyone who touches university branding?</HowMightWe>
+                  <HowMightWe>
+                    make brand compliance understandable, feedback immediate, and the
+                    approval process transparent for everyone who touches university
+                    branding?
+                  </HowMightWe>
                 </div>
               </section>
             ),
@@ -325,11 +343,11 @@ export default function BrandCommsProject() {
                         Ten personas across the compliance process
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        We developed ten personas spanning five stakeholder tiers: students
-                        who produce materials, staff who review them, compliance officers
-                        who enforce the standards, faculty who supervise student work,
-                        and external partners who collaborate on co-branded projects.
-                        Here are five of them.
+                        We developed ten personas spanning five stakeholder tiers:
+                        students who produce materials, staff who review them, compliance
+                        officers who enforce the standards, faculty who supervise student
+                        work, and external partners who collaborate on co-branded
+                        projects. Here are five of them.
                       </p>
                     </Reveal>
 
@@ -350,7 +368,15 @@ export default function BrandCommsProject() {
 
                     <InsightGrid
                       items={insights}
-                      thesis={<>Three things compound the problem: the rules are <span className="text-accent-lime">inaccessible</span>, the process is <span className="text-accent-lime">invisible</span>, and the feedback is too <span className="text-accent-lime">vague</span> to act on.</>}
+                      thesis={
+                        <>
+                          Three things compound the problem: the rules are{" "}
+                          <span className="text-accent-lime">inaccessible</span>, the
+                          process is <span className="text-accent-lime">invisible</span>,
+                          and the feedback is too{" "}
+                          <span className="text-accent-lime">vague</span> to act on.
+                        </>
+                      }
                     />
                   </div>
                 </section>
@@ -388,13 +414,12 @@ export default function BrandCommsProject() {
                     <Reveal className="mb-12 max-w-3xl">
                       <Eyebrow>The Solution</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        BrandComms gives compliance tools to the people
-                        doing the work
+                        BrandComms gives compliance tools to the people doing the work
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        The platform concept is built around AI agents that understand
-                        the university&apos;s brand guidelines and can explain them in
-                        plain language. Students get immediate, specific feedback on their
+                        The platform concept is built around AI agents that understand the
+                        university&apos;s brand guidelines and can explain them in plain
+                        language. Students get immediate, specific feedback on their
                         designs before they ever reach a human reviewer. Staff spend less
                         time on routine checks and more time on decisions that require
                         judgment.
