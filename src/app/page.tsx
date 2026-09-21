@@ -1,15 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import AccessibleButton from "@/components/AccessibleButton";
 import SelectedWork from "@/components/SelectedWork";
 import { ArrowRightIcon } from "@/components/Icons";
-
-const ArtScroller = dynamic(() => import("@/components/ArtScroller"), {
-  ssr: false,
-  loading: () => <div className="h-[40rem]" aria-hidden="true" />,
-});
+import HeroPortrait from "@/components/HeroPortrait";
+import DeferredArtScroller from "@/components/DeferredArtScroller";
 
 export default function Home() {
   return (
@@ -39,17 +34,7 @@ export default function Home() {
               className="pointer-events-none absolute inset-0 flex items-center justify-center xl:hidden"
               aria-hidden="true"
             >
-              <Image
-                src="/assets/misc/hero-portrait.webp"
-                alt=""
-                width={1633}
-                height={2134}
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 640px) 90vw, 32rem"
-                className="h-auto w-[min(95vw,32rem)] opacity-[0.12] select-none"
-                draggable={false}
-              />
+              <HeroPortrait className="h-auto w-[min(95vw,32rem)] opacity-[0.12] select-none" />
             </div>
             <div className="relative grid items-center gap-10 xl:grid-cols-[auto_minmax(0,1fr)] xl:gap-16">
               <div>
@@ -86,17 +71,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="hidden self-end justify-self-end xl:block">
-                <Image
-                  src="/assets/misc/hero-portrait.webp"
-                  alt=""
-                  width={1633}
-                  height={2134}
-                  priority
-                  fetchPriority="high"
-                  sizes="22rem"
-                  className="h-auto w-full max-w-[22rem] select-none"
-                  draggable={false}
-                />
+                <HeroPortrait className="h-auto w-full max-w-[22rem] select-none" />
               </div>
             </div>
           </div>
@@ -104,7 +79,7 @@ export default function Home() {
 
         <SelectedWork />
 
-        <ArtScroller />
+        <DeferredArtScroller />
       </div>
     </div>
   );

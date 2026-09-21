@@ -34,6 +34,7 @@ export const projects: Project[] = [
     image: "/assets/projects/chimera/chimera security camera app.webp",
     tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   },
+  /*
   {
     title: "File Finder",
     description:
@@ -50,6 +51,7 @@ export const projects: Project[] = [
     image: "/assets/projects/brandcomms/brandcomms-cover-photov4.webp",
     tags: ["UX Research", "Product Design", "AI/ML Concept"],
   },
+  */
   {
     title: "BLV Accessibility Research",
     description:

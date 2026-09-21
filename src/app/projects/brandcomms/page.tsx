@@ -229,7 +229,7 @@ export default function BrandCommsProject() {
             delay={0.1}
             className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
           >
-            <h3 className="font-display text-secondary mb-5 text-sm tracking-widest uppercase">
+            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
               At a glance
             </h3>
             <dl className="space-y-4">

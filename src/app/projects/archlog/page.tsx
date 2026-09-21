@@ -14,6 +14,7 @@ import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
+import ArchLogPrototype from "@/components/ArchLogPrototype";
 import { ArrowRightIcon } from "@/components/Icons";
 import { ProductTourCarousel } from "./carousels";
 
@@ -213,6 +214,12 @@ export default function ArchLogProject() {
         </FadeIn>
       </ProjectHero>
 
+      <div className="bg-primary">
+        <div className="container mx-auto px-6 lg:px-12">
+          <ArchLogPrototype />
+        </div>
+      </div>
+
       {/* Overview + At a glance */}
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
@@ -229,7 +236,7 @@ export default function ArchLogProject() {
             delay={0.1}
             className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
           >
-            <h3 className="font-display text-secondary mb-5 text-sm tracking-widest uppercase">
+            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
               At a glance
             </h3>
             <dl className="space-y-4">

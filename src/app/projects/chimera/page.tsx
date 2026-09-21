@@ -12,6 +12,7 @@ import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
+import ChimeraPrototype from "@/components/ChimeraPrototype";
 import { ArrowRightIcon } from "@/components/Icons";
 import ChimeraLightbox from "./ChimeraLightbox";
 import { PrinciplesCarousel, ProductTourCarousel } from "./carousels";
@@ -22,7 +23,7 @@ const projectData = {
     "Redesigning a self-built home security system into a camera app people can navigate",
   description:
     "Jay designed and built his own home security camera system. The infrastructure is solid, yet the app he built for it grew feature by feature until everyday tasks like finding an event or exporting a clip felt like work. Chimera 2.0 is a mobile-first redesign grounded in a thorough heuristic analysis, rebuilding the app around the timeline so the core actions take fewer taps and less guesswork.",
-  heroImage: "/assets/projects/chimera/Chimera-Hero.webp",
+  heroImage: "/assets/projects/chimera/Chimera-Hero-1600.webp",
   tags: ["UX Research", "Heuristic Evaluation", "Mobile Design"],
   year: "2026",
   role: "UX Researcher & Product Designer",
@@ -225,6 +226,12 @@ export default function ChimeraProject() {
         </FadeIn>
       </ProjectHero>
 
+      <div className="bg-primary">
+        <div className="container mx-auto px-6 lg:px-12">
+          <ChimeraPrototype />
+        </div>
+      </div>
+
       {/* Overview + At a glance */}
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
@@ -241,7 +248,7 @@ export default function ChimeraProject() {
             delay={0.1}
             className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
           >
-            <h3 className="font-display text-secondary mb-5 text-sm tracking-widest uppercase">
+            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
               At a glance
             </h3>
             <dl className="space-y-4">
@@ -315,7 +322,7 @@ export default function ChimeraProject() {
 
                     <Reveal delay={0.1} className="mt-8">
                       <ImageSlot
-                        src="/assets/projects/chimera/chimera-heuristic-eval.png"
+                        src="/assets/projects/chimera/chimera-heuristic-eval.webp"
                         alt="Heuristic evaluation flow map of Jay's camera app showing authentication, live feeds, scrubber, and data analysis"
                         ratio="aspect-[16/9]"
                         label="Heuristic evaluation in action"
@@ -341,7 +348,7 @@ export default function ChimeraProject() {
 
                     <Reveal delay={0.05} className="mb-8">
                       <ImageSlot
-                        src="/assets/projects/chimera/chimera-comp-analysis.png"
+                        src="/assets/projects/chimera/chimera-comp-analysis.webp"
                         alt="Competitive analysis audit board comparing interface flows across Ring, Arlo, and Eufy"
                         ratio="aspect-[16/9]"
                         label="Competitor apps studied"
@@ -506,7 +513,7 @@ export default function ChimeraProject() {
         ]}
       />
 
-      <ProjectNavFooter nextHref="/projects/file-finder" />
+      <ProjectNavFooter nextHref="/projects/archlog" />
     </div>
   );
 }

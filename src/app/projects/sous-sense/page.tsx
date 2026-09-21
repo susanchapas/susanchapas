@@ -60,11 +60,11 @@ const resultMetrics = [
 
 const posters = [
   {
-    src: "/gallery/sous-sense-posters-01.png",
+    src: "/gallery/sous-sense-posters-01.webp",
     alt: "Sous Sense advertising poster, design 1",
   },
   {
-    src: "/gallery/sous-sense-posters-02.png",
+    src: "/gallery/sous-sense-posters-02.webp",
     alt: "Sous Sense advertising poster, design 2",
   },
 ];
@@ -81,7 +81,7 @@ const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma
 export default function SousSenseProject() {
   return (
     <div className="">
-      <ProjectHero src="/assets/projects/sous-sense/peppers.jpg" alt="Sous Sense brand cover">
+      <ProjectHero src="/assets/projects/sous-sense/peppers.webp" alt="Sous Sense brand cover">
         <FadeIn trigger="mount">
           <BackToProjects />
 
@@ -135,7 +135,7 @@ export default function SousSenseProject() {
             delay={0.1}
             className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
           >
-            <h3 className="font-display text-secondary mb-5 text-sm tracking-widest uppercase">
+            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
               At a glance
             </h3>
             <dl className="space-y-4">

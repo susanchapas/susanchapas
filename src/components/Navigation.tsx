@@ -198,7 +198,7 @@ export default function Navigation() {
             aria-label="Susan Chapas - Home"
           >
             <Image
-              src="/assets/misc/navbar-favicon.png"
+              src="/assets/misc/navbar-favicon.webp"
               alt="Susan Chapas logo"
               width={40}
               height={40}
@@ -435,7 +435,7 @@ export default function Navigation() {
       >
         <Link href="/" aria-label="Susan Chapas - Home">
           <Image
-            src="/assets/misc/navbar-favicon.png"
+            src="/assets/misc/navbar-favicon.webp"
             alt="Susan Chapas logo"
             width={32}
             height={32}
