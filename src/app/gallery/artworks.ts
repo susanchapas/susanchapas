@@ -106,6 +106,7 @@ export const artworks: readonly Artwork[] = [
     src: "/assets/projects/sous-sense/sous-sense-cover.webp",
     type: "image",
   },
+  /*
   {
     id: 22,
     title: "BrandComms",
@@ -120,6 +121,7 @@ export const artworks: readonly Artwork[] = [
     src: "/assets/projects/brandcomms/brandcomms-cover-photov4.webp",
     type: "image",
   },
+  */
   {
     id: 5,
     title: "EOP Explainer",
@@ -140,6 +142,7 @@ export const artworks: readonly Artwork[] = [
     type: "video",
     hero: true,
   },
+  /*
   {
     id: 20,
     title: "File Finder",
@@ -154,6 +157,7 @@ export const artworks: readonly Artwork[] = [
     src: "/assets/projects/file-finder/file finder cover photo.webp",
     type: "image",
   },
+  */
   {
     id: 8,
     title: "Watercolor Painting",
