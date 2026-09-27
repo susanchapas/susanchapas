@@ -6,6 +6,7 @@ import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
+import ProjectOutcomes from "@/components/ProjectOutcomes";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
@@ -23,6 +24,12 @@ const projectData = {
   role: "UX Researcher & Product Designer",
   team: "4-person team",
 };
+
+const outcomes = [
+  { label: "Scope", value: "10 personas across 5 stakeholder tiers" },
+  { label: "Key innovation", value: "AI agents providing real-time compliance feedback" },
+  { label: "Prototype", value: "4-screen interactive demo built in Lovable" },
+];
 
 const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
@@ -216,14 +223,18 @@ export default function BrandCommsProject() {
 
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <Reveal className="lg:col-span-2">
-            <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-              Overview
-            </h2>
-            <p className="font-body text-secondary/80 text-lg leading-relaxed">
-              {projectData.description}
-            </p>
-          </Reveal>
+          <div className="space-y-10 lg:col-span-2">
+            <Reveal>
+              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                Overview
+              </h2>
+              <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                {projectData.description}
+              </p>
+            </Reveal>
+
+            <ProjectOutcomes items={outcomes} />
+          </div>
 
           <Tile
             delay={0.1}

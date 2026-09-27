@@ -7,12 +7,14 @@ import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
 import ImageSlot from "@/components/ImageSlot";
+import ProjectOutcomes from "@/components/ProjectOutcomes";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
-import ChimeraPrototype from "@/components/ChimeraPrototype";
+// Interactive prototype preserved for future use:
+// import ChimeraPrototype from "@/components/ChimeraPrototype";
 import { ArrowRightIcon } from "@/components/Icons";
 import ChimeraLightbox from "./ChimeraLightbox";
 import { PrinciplesCarousel, ProductTourCarousel } from "./carousels";
@@ -30,6 +32,12 @@ const projectData = {
   team: "Solo designer",
   platform: "Figma, Mobile",
 };
+
+const outcomes = [
+  { label: "Core action depth", value: "Reduced from 3+ screens to 1 tap" },
+  { label: "Frictions resolved", value: "5 heuristic breakdowns identified and fixed" },
+  { label: "Design system", value: "Unified timeline interaction across all 4 flows" },
+];
 
 const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
@@ -226,23 +234,29 @@ export default function ChimeraProject() {
         </FadeIn>
       </ProjectHero>
 
+      {/* Interactive prototype preserved for future use:
       <div className="bg-primary">
         <div className="container mx-auto px-6 lg:px-12">
           <ChimeraPrototype />
         </div>
       </div>
+      */}
 
       {/* Overview + At a glance */}
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <Reveal className="lg:col-span-2">
-            <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-              Overview
-            </h2>
-            <p className="font-body text-secondary/80 text-lg leading-relaxed">
-              {projectData.description}
-            </p>
-          </Reveal>
+          <div className="space-y-10 lg:col-span-2">
+            <Reveal>
+              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                Overview
+              </h2>
+              <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                {projectData.description}
+              </p>
+            </Reveal>
+
+            <ProjectOutcomes items={outcomes} />
+          </div>
 
           <Tile
             delay={0.1}

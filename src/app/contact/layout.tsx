@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Susan Chapas for UX design, marketing strategy, or web development projects. Based in Jersey City, NJ.",
+    "Get in touch with Susan Chapas for internship opportunities, freelance projects, or collaborations. HCI student based in Jersey City, NJ.",
   openGraph: {
-    title: "Contact Susan Chapas | UX Strategist & Marketing Professional",
+    title: "Contact Susan Chapas | HCI Student & Developer",
     description:
-      "Let's discuss your next project. Get in touch for UX design, marketing strategy, or web development inquiries.",
+      "Currently seeking internships. Get in touch for UX design, development, or creative collaboration.",
   },
 };
 

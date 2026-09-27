@@ -9,12 +9,14 @@ import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
 import ResearchPinboard from "@/components/ResearchPinboard";
+import ProjectOutcomes from "@/components/ProjectOutcomes";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
-import ArchLogPrototype from "@/components/ArchLogPrototype";
+// Interactive prototype preserved for future use:
+// import ArchLogPrototype from "@/components/ArchLogPrototype";
 import { ArrowRightIcon } from "@/components/Icons";
 import { ProductTourCarousel } from "./carousels";
 
@@ -58,6 +60,12 @@ const projectData = {
   team: "3-person team",
   platform: "Figma",
 };
+
+const outcomes = [
+  { label: "Winning concept", value: "Design Decision Tracker ranked #1 out of 7 concepts" },
+  { label: "Validation", value: "A/B usability study confirmed the design direction" },
+  { label: "Deliverables", value: "Figma prototype, video walkthrough, and research report" },
+];
 
 const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
@@ -214,23 +222,29 @@ export default function ArchLogProject() {
         </FadeIn>
       </ProjectHero>
 
+      {/* Interactive prototype preserved for future use:
       <div className="bg-primary">
         <div className="container mx-auto px-6 lg:px-12">
           <ArchLogPrototype />
         </div>
       </div>
+      */}
 
       {/* Overview + At a glance */}
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <Reveal className="lg:col-span-2">
-            <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-              Overview
-            </h2>
-            <p className="font-body text-secondary/80 text-lg leading-relaxed">
-              {projectData.description}
-            </p>
-          </Reveal>
+          <div className="space-y-10 lg:col-span-2">
+            <Reveal>
+              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                Overview
+              </h2>
+              <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                {projectData.description}
+              </p>
+            </Reveal>
+
+            <ProjectOutcomes items={outcomes} />
+          </div>
 
           <Tile
             delay={0.1}

@@ -58,7 +58,7 @@ const schools = [
     status: "In progress",
     degree: "BS, Human-Computer Interaction",
     school: "New Jersey Institute of Technology",
-    body: "Studying the intersection of design, technology, and human cognition. Currently a research assistant investigating AI-assisted accessibility.",
+    body: "Studying the intersection of design, technology, and human cognition. Currently a research assistant investigating AI-assisted accessibility, and actively seeking an internship.",
   },
   {
     status: "Completed",
@@ -158,8 +158,9 @@ export default function AboutMobile() {
                 {...stagger(0.16)}
                 className="font-body text-secondary/70 mb-8 max-w-xl text-lg"
               >
-                I&apos;m a UX strategist, front-end developer, and artist
-                based in Jersey City. I enjoy every stage of a project:
+                I&apos;m an HCI student, front-end developer, and artist
+                based in Jersey City, looking for an internship where I can
+                apply all three. I enjoy every stage of a project:
                 understanding what people need, designing something that works
                 for everyone, then building and shipping it myself.
               </motion.p>

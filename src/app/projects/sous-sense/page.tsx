@@ -6,6 +6,7 @@ import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
+import ProjectOutcomes from "@/components/ProjectOutcomes";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
@@ -21,6 +22,12 @@ const projectData = {
   role: "Founder & Designer",
   type: "Academic Project",
 };
+
+const outcomes = [
+  { label: "Deliverables", value: "Brand identity, packaging, advertising, and 24-page business plan" },
+  { label: "Revenue model", value: "Hardware + SaaS dual-revenue with projected Year 2 profitability" },
+  { label: "Projected revenue", value: "$4.4M by Year 5 at 72.3% gross margin" },
+];
 
 const researchStats = [
   { value: "$161B", label: "Annual U.S. food waste losses" },
@@ -122,14 +129,18 @@ export default function SousSenseProject() {
 
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <FadeIn className="lg:col-span-2">
-            <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-              Overview
-            </h2>
-            <p className="font-body text-secondary/80 text-lg leading-relaxed">
-              {projectData.description}
-            </p>
-          </FadeIn>
+          <div className="space-y-10 lg:col-span-2">
+            <FadeIn>
+              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                Overview
+              </h2>
+              <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                {projectData.description}
+              </p>
+            </FadeIn>
+
+            <ProjectOutcomes items={outcomes} />
+          </div>
 
           <Tile
             delay={0.1}

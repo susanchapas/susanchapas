@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import ArtScroller from "./ArtScroller";
 import GlobalSkillsTicker from "./GlobalSkillsTicker";
 import Footer from "./Footer";
 
@@ -13,6 +14,15 @@ export default function SiteChrome() {
         <GlobalSkillsTicker />
         <Footer />
       </div>
+    );
+  }
+
+  if (pathname === "/resume") {
+    return (
+      <>
+        <ArtScroller />
+        <Footer />
+      </>
     );
   }
 

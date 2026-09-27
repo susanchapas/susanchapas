@@ -12,6 +12,7 @@ const navIcons = [
   { name: "About", href: "/about", icon: "/about-icon.svg" },
   { name: "Projects", href: "/projects", icon: "/project-icon.svg" },
   { name: "Gallery", href: "/gallery", icon: "/gallery-icon.svg" },
+  { name: "Resume", href: "/resume", icon: "/resume-icon.svg" },
   { name: "Contact", href: "/contact", icon: "/contact-icon.svg" },
 ];
 

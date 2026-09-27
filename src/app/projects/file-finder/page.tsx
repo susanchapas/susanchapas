@@ -10,6 +10,7 @@ import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
 import Eyebrow from "@/components/Eyebrow";
 import ImageSlot from "@/components/ImageSlot";
+import ProjectOutcomes from "@/components/ProjectOutcomes";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
@@ -65,6 +66,12 @@ const projectData = {
   team: "3-person team",
   platform: "Figma",
 };
+
+const outcomes = [
+  { label: "Research synthesis", value: "5 affinity themes from interview and survey data" },
+  { label: "Design direction", value: "Tag-based retrieval replacing rigid folder hierarchy" },
+  { label: "Key shift", value: "Organization moved to point of upload, not retrieval" },
+];
 
 const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
@@ -256,14 +263,18 @@ export default function FileFinderProject() {
 
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <Reveal className="lg:col-span-2">
-            <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-              Overview
-            </h2>
-            <p className="font-body text-secondary/80 text-lg leading-relaxed">
-              {projectData.description}
-            </p>
-          </Reveal>
+          <div className="space-y-10 lg:col-span-2">
+            <Reveal>
+              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                Overview
+              </h2>
+              <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                {projectData.description}
+              </p>
+            </Reveal>
+
+            <ProjectOutcomes items={outcomes} />
+          </div>
 
           <Tile
             delay={0.1}

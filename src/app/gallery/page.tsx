@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { artworks, categories } from "./artworks";
 import BentoGrid from "./BentoGrid";
@@ -18,6 +18,30 @@ export default function GalleryPage() {
       : artworks.filter((art) => art.category === activeCategory);
 
   const activeArtwork = artworks.find((art) => art.id === activeId) ?? null;
+
+  useEffect(() => {
+    const openArtworkFromHash = () => {
+      const slug = window.location.hash.slice(1);
+      if (!slug) return;
+
+      const artwork = artworks.find(
+        (art) =>
+          art.title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "") === slug
+      );
+
+      if (artwork) {
+        setActiveCategory("All");
+        setActiveId(artwork.id);
+      }
+    };
+
+    openArtworkFromHash();
+    window.addEventListener("hashchange", openArtworkFromHash);
+    return () => window.removeEventListener("hashchange", openArtworkFromHash);
+  }, []);
 
   return (
     <div className="">

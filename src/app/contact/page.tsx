@@ -197,8 +197,8 @@ export default function ContactPage() {
                   </span>
                 </div>
                 <p className="font-body text-secondary/70 text-sm">
-                  Currently open to full-time roles, freelance projects, and creative
-                  collaborations.
+                  Currently seeking internships, and also open to freelance projects and
+                  creative collaborations.
                 </p>
               </FadeIn>
             </FadeIn>
@@ -333,6 +333,7 @@ export default function ContactPage() {
                       aria-describedby={errors.subject ? "subject-error" : undefined}
                     >
                       <option value="">Select a subject</option>
+                      <option value="internship">Internship Opportunity</option>
                       <option value="job">Job Opportunity</option>
                       <option value="freelance">Freelance Project</option>
                       <option value="collaboration">Collaboration</option>
