@@ -54,7 +54,7 @@ const AccessibleButton = forwardRef<
   const combinedClassName = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 
   if (isLinkProps(props)) {
-    const { href, external, ...linkRest } = props;
+    const { href, external, ...linkRest } = rest as Omit<LinkProps, keyof BaseProps>;
 
     if (external) {
       return (
@@ -67,6 +67,7 @@ const AccessibleButton = forwardRef<
           {...(linkRest as AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {children}
+          <span className="sr-only"> (opens in new tab)</span>
         </a>
       );
     }

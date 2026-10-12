@@ -2,11 +2,13 @@ import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectIndex from "@/components/ProjectIndex";
+import SkylineAscii from "@/components/SkylineAscii";
+// import LabBeaker from "@/components/LabBeaker";
 import { projects } from "@/lib/projects";
 import { ArrowRightIcon } from "@/components/Icons";
 
-const ready = projects.filter((p) => !p.inactive);
-const inProgress = projects.filter((p) => p.inactive);
+const ready = projects.filter((p) => !p.inactive && !p.lab);
+// const lab = projects.filter((p) => p.lab);
 
 export default function ProjectsPage() {
   const header = (
@@ -31,7 +33,7 @@ export default function ProjectsPage() {
           </div>
           <div className="lg:hidden">
             {header}
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <div className="grid auto-rows-fr grid-cols-1 gap-8 md:grid-cols-2">
               {ready.map((project, index) => (
                 <ProjectCard key={project.title} {...project} index={index} />
               ))}
@@ -40,40 +42,18 @@ export default function ProjectsPage() {
         </FadeIn>
       </section>
 
-      <section
-        className="bg-accent-blue/5 py-16 lg:py-24"
-        aria-labelledby="in-progress-heading"
-      >
-        <div className="container mx-auto px-6 lg:px-12">
-          <FadeIn>
-            <h2
-              id="in-progress-heading"
-              className="font-display text-secondary mb-3 text-3xl font-bold lg:text-4xl"
-            >
-              Currently Working On
-            </h2>
-            <p className="font-body text-secondary/70 mb-10 max-w-xl text-lg">
-              These projects are in progress. Case studies will follow.
-            </p>
-          </FadeIn>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {inProgress.map((project, index) => (
-              <ProjectCard key={project.title} {...project} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="bg-primary py-24 lg:py-32">
-        <div className="container mx-auto px-6 text-center lg:px-12">
+      <section className="bg-accent-blue/5 relative py-24 lg:py-32">
+        <SkylineAscii />
+        <div className="relative container mx-auto bg-[radial-gradient(ellipse_24rem_12rem_at_center,color-mix(in_srgb,var(--background)_65%,transparent),transparent)] px-6 text-center lg:px-12">
           <FadeIn>
             <h2 className="font-display text-secondary mb-6 text-3xl font-bold lg:text-4xl">
               Have a project in mind?
             </h2>
             <p className="font-body text-secondary/70 mx-auto mb-8 max-w-xl text-lg">
-              I like working on new problems. If you have a project, I&apos;d like to hear
-              about it.
+              I like working on new problems.
+              <br />
+              If you have a project, I&apos;d like to hear about it.
             </p>
             <Link
               href="/contact"
@@ -85,6 +65,11 @@ export default function ProjectsPage() {
           </FadeIn>
         </div>
       </section>
+      {/* <div className="pointer-events-none sticky inset-x-0 bottom-[10px] z-40 mb-[10px] h-0 lg:fixed lg:bottom-[calc(var(--footer-h,0px)+10px)] lg:left-[var(--nav-width,220px)] landscape:fixed landscape:bottom-[calc(var(--footer-h,0px)+10px)]">
+        <div className="container mx-auto flex h-0 items-end justify-end px-6 lg:px-12">
+          <LabBeaker count={lab.length} />
+        </div>
+      </div> */}
     </div>
   );
 }

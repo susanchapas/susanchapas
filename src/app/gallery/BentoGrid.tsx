@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import BentoTile from "./BentoTile";
-import type { Artwork } from "./artworks";
+import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 
 const GAP = 12;
 const MOBILE_BREAKPOINT = 640;
@@ -12,14 +10,20 @@ function targetHeight(width: number): number {
   return 300;
 }
 
-interface PlacedTile {
-  art: Artwork;
+export interface Sized {
+  id: number | string;
+  width: number;
+  height: number;
+}
+
+interface PlacedTile<T> {
+  art: T;
   width: number;
   height: number;
   index: number;
 }
 
-function buildRows(artworks: readonly Artwork[], containerWidth: number): PlacedTile[][] {
+function buildRows<T extends Sized>(artworks: readonly T[], containerWidth: number): PlacedTile<T>[][] {
   if (containerWidth <= 0) return [];
   if (containerWidth < MOBILE_BREAKPOINT) {
     return artworks.map((art, index) => [
@@ -32,8 +36,8 @@ function buildRows(artworks: readonly Artwork[], containerWidth: number): Placed
     ]);
   }
   const target = targetHeight(containerWidth);
-  const rows: PlacedTile[][] = [];
-  let row: Artwork[] = [];
+  const rows: PlacedTile<T>[][] = [];
+  let row: T[] = [];
   let aspectSum = 0;
   let placed = 0;
 
@@ -67,13 +71,17 @@ function buildRows(artworks: readonly Artwork[], containerWidth: number): Placed
   return rows;
 }
 
-interface BentoGridProps {
-  artworks: readonly Artwork[];
-  activeKey: string;
-  onOpen: (id: number) => void;
+interface BentoGridProps<T extends Sized> {
+  items: readonly T[];
+  activeKey?: string;
+  renderTile: (item: T, width: number, height: number, index: number) => ReactNode;
 }
 
-export default function BentoGrid({ artworks, activeKey, onOpen }: BentoGridProps) {
+export default function BentoGrid<T extends Sized>({
+  items,
+  activeKey,
+  renderTile,
+}: BentoGridProps<T>) {
   const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -87,7 +95,7 @@ export default function BentoGrid({ artworks, activeKey, onOpen }: BentoGridProp
     return () => observer.disconnect();
   }, []);
 
-  const rows = buildRows(artworks, width);
+  const rows = buildRows(items, width);
 
   return (
     <div ref={ref} className="group/grid">
@@ -96,14 +104,7 @@ export default function BentoGrid({ artworks, activeKey, onOpen }: BentoGridProp
           {rows.map((row, i) => (
             <div key={i} className="flex gap-3">
               {row.map(({ art, width: w, height: h, index }) => (
-                <BentoTile
-                  key={art.id}
-                  artwork={art}
-                  width={w}
-                  height={h}
-                  index={index}
-                  onOpen={() => onOpen(art.id)}
-                />
+                <Fragment key={art.id}>{renderTile(art, w, h, index)}</Fragment>
               ))}
             </div>
           ))}

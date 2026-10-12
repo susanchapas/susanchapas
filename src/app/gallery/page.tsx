@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { artworks, categories } from "./artworks";
 import BentoGrid from "./BentoGrid";
+import BentoTile from "./BentoTile";
 import ArtworkModal from "./ArtworkModal";
 import { m } from "@/lib/motion";
 
@@ -90,9 +91,22 @@ export default function GalleryPage() {
       <section className="bg-primary py-12 lg:py-20" aria-label="Artwork gallery">
         <div className="container mx-auto px-6 lg:px-12">
           <BentoGrid
-            artworks={filtered}
+            items={filtered}
             activeKey={activeCategory}
-            onOpen={setActiveId}
+            renderTile={(art, width, height, index) => (
+              <BentoTile
+                title={art.title}
+                eyebrow={art.category}
+                src={art.src}
+                type={art.type}
+                award={!!art.award}
+                hero={art.hero}
+                width={width}
+                height={height}
+                index={index}
+                onOpen={() => setActiveId(art.id)}
+              />
+            )}
           />
         </div>
       </section>

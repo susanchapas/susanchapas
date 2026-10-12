@@ -4,6 +4,7 @@ import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { Hash } from "lucide-react";
 import { ArrowRightIcon } from "@/components/Icons";
 import { SPRING_HOVER, SPRING_GENTLE } from "@/lib/motion";
 
@@ -32,6 +33,16 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const reduce = useReducedMotion();
   const encodedImage = image ? encodeURI(image) : "";
+  const handles = !inactive && (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-30 opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100"
+    >
+      {["-top-1 -left-1", "-top-1 -right-1", "-bottom-1 -left-1", "-bottom-1 -right-1"].map((pos) => (
+        <span key={pos} className={`absolute ${pos} size-2 border border-[#0d99ff] bg-white`} />
+      ))}
+    </div>
+  );
 
   const content = (
     <>
@@ -91,11 +102,11 @@ export default function ProjectCard({
           ))}
         </div>
 
-        <h3 className={`font-display text-secondary mb-3 text-2xl font-bold transition-colors duration-700 ease-[var(--ease-liquid)] lg:text-3xl ${!inactive ? "group-hover:text-accent-lime" : ""}`}>
+        <h3 className={`font-display text-secondary mb-3 text-2xl font-bold transition-colors duration-700 ease-[var(--ease-liquid)] line-clamp-2 lg:text-3xl ${!inactive ? "group-hover:text-accent-lime" : ""}`}>
           {title}
         </h3>
 
-        <p className="text-secondary/70 font-body line-clamp-2">{description}</p>
+        <p className="text-secondary/70 font-body line-clamp-2 min-h-[2lh]">{description}</p>
 
         {!inactive ? (
           <motion.div
@@ -116,23 +127,37 @@ export default function ProjectCard({
   );
 
   return (
-    <FadeIn as="article" delay={index * 0.1} className={inactive ? "opacity-60" : "group"}>
+    <FadeIn
+      as="article"
+      delay={index * 0.1}
+      className={`relative flex flex-col ${inactive ? "opacity-60" : "group"}`}
+    >
+      <div className="text-secondary/50 mb-2 flex items-center gap-1 font-mono text-xs transition-colors duration-300 group-focus-within:text-[#0d99ff] group-hover:text-[#0d99ff]">
+        <Hash className="size-3" aria-hidden="true" />
+        {title}
+      </div>
       {inactive ? (
         <div
-          className="bg-accent-blue/5 border-accent-blue/10 relative flex h-full flex-col overflow-hidden rounded-2xl border"
+          className="bg-accent-blue/5 relative flex flex-1 flex-col overflow-hidden border border-secondary/15 group-hover:border-[#0d99ff] group-focus-within:border-[#0d99ff]"
           aria-label={`${title} — in progress`}
         >
           {content}
         </div>
       ) : (
-        <motion.div initial="rest" whileHover={reduce ? undefined : "hover"} animate="rest">
+        <motion.div
+          className="relative flex flex-1 flex-col"
+          initial="rest"
+          whileHover={reduce ? undefined : "hover"}
+          animate="rest"
+        >
           <Link
             href={href}
-            className="bg-accent-blue/5 border-accent-blue/10 hover:border-accent-lime/30 relative flex h-full flex-col overflow-hidden rounded-2xl border transition-[border-color] duration-500 ease-[var(--ease-liquid)]"
+            className="bg-accent-blue/5 border-secondary/15 relative flex flex-1 flex-col overflow-hidden border transition-[border-color] duration-500 ease-[var(--ease-liquid)] group-focus-within:border-[#0d99ff] group-hover:border-[#0d99ff]"
             aria-label={`View ${title} case study`}
           >
             {content}
           </Link>
+          {handles}
         </motion.div>
       )}
     </FadeIn>

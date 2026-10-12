@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+// import { FlaskConical, type LucideIcon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 import { projects } from "@/lib/projects";
 
 const navIcons = [
@@ -16,9 +18,23 @@ const navIcons = [
   { name: "Contact", href: "/contact", icon: "/contact-icon.svg" },
 ];
 
-const projectChildren = projects
-  .filter((p) => !p.inactive && p.href !== "#")
-  .map((p) => ({ name: p.href.split("/").pop()!, path: p.href }));
+type NavChild = { name: string; path: string; icon?: LucideIcon; children?: NavChild[] };
+
+const navProjects = projects.filter((p) => !p.inactive && p.href !== "#");
+const toChild = (p: (typeof projects)[number]): NavChild => ({
+  name: p.href.split("/").pop()!,
+  path: p.href,
+});
+// const labFolder: NavChild = {
+//   name: "the-lab",
+//   path: "/projects/the-lab",
+//   icon: FlaskConical,
+// };
+// const firstLab = navProjects.findIndex((p) => p.lab);
+const projectChildren: NavChild[] = navProjects
+  .filter((p) => !p.lab)
+  .map(toChild);
+// .toSpliced(firstLab, 0, labFolder);
 
 function SocialLinks({ vertical = false, size = "sm" }: { vertical?: boolean; size?: "sm" | "md" }) {
   const iconClass = size === "md" ? "h-6 w-6" : "h-5 w-5";
@@ -84,6 +100,7 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expanded, setExpanded] = useState(true);
   const [projectsOpen, setProjectsOpen] = useState(false);
+  const [labOpen, setLabOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [animating, setAnimating] = useState(false);
   const pathname = usePathname();
@@ -116,7 +133,7 @@ export default function Navigation() {
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--nav-width",
-      expanded ? "260px" : "80px",
+      expanded ? "220px" : "80px",
     );
   }, [expanded]);
 
@@ -170,12 +187,110 @@ export default function Navigation() {
     </motion.svg>
   );
 
+  const renderDesktopChildren = (items: NavChild[], depth = 0) =>
+    items.map((child) => {
+      const childActive = pathname === child.path;
+      return (
+        <li key={child.path}>
+          <div
+            className={`flex items-center rounded transition-colors ${
+              childActive
+                ? "bg-accent-lime/10"
+                : "hover:bg-accent-blue/10"
+            }`}
+          >
+            <Link
+              href={child.path}
+              className={`flex flex-1 items-center gap-2 py-1.5 pr-3 font-body text-[15px] transition-colors ${
+                depth ? "pl-16" : "pl-12"
+              } ${
+                childActive
+                  ? "text-accent-lime"
+                  : "text-secondary/50 hover:text-secondary/70"
+              }`}
+              aria-current={childActive ? "page" : undefined}
+            >
+              {child.icon && <child.icon className="size-4 shrink-0" aria-hidden="true" />}
+              {child.name}
+            </Link>
+            {child.children && (
+              <button
+                onClick={() => setLabOpen(!labOpen)}
+                className="text-secondary/40 hover:text-secondary flex h-8 w-7 shrink-0 items-center justify-center pr-2 transition-colors"
+                aria-label={labOpen ? `Collapse ${child.name}` : `Expand ${child.name}`}
+                aria-expanded={labOpen}
+              >
+                <FolderChevron open={labOpen} />
+              </button>
+            )}
+          </div>
+          <AnimatePresence>
+            {child.children && labOpen && (
+              <motion.ul
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                {renderDesktopChildren(child.children, depth + 1)}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </li>
+      );
+    });
+
+  const renderMobileChildren = (items: NavChild[]) =>
+    items.map((child) => (
+      <li key={child.path}>
+        <div className="flex items-center gap-2">
+          <Link
+            href={child.path}
+            className={`flex items-center gap-2 font-body text-lg transition-colors ${
+              pathname === child.path
+                ? "text-accent-lime"
+                : "text-secondary/60 hover:text-secondary"
+            }`}
+            onClick={() => setMobileOpen(false)}
+            aria-current={pathname === child.path ? "page" : undefined}
+          >
+            {child.icon && <child.icon className="size-5 shrink-0" aria-hidden="true" />}
+            {child.name}
+          </Link>
+          {child.children && (
+            <button
+              onClick={() => setLabOpen(!labOpen)}
+              className="text-secondary/40 hover:text-secondary transition-colors"
+              aria-expanded={labOpen}
+              aria-label={labOpen ? `Collapse ${child.name}` : `Expand ${child.name}`}
+            >
+              <FolderChevron open={labOpen} size={12} />
+            </button>
+          )}
+        </div>
+        <AnimatePresence>
+          {child.children && labOpen && (
+            <motion.ul
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="ml-6 mt-1 space-y-1 overflow-hidden"
+            >
+              {renderMobileChildren(child.children)}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </li>
+    ));
+
   return (
     <>
       {/* Desktop Side Navigation */}
       <motion.nav
-        initial={{ x: -100, opacity: 0, width: 260 }}
-        animate={{ x: 0, opacity: 1, width: expanded ? 260 : 80 }}
+        initial={{ x: -100, opacity: 0, width: 220 }}
+        animate={{ x: 0, opacity: 1, width: expanded ? 220 : 80 }}
         transition={{
           x: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
           opacity: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
@@ -253,10 +368,10 @@ export default function Navigation() {
                         {isProjects ? (
                           <>
                             <div
-                              className={`flex items-center rounded-r border-l-[3px] transition-colors ${
+                              className={`flex items-center rounded transition-colors ${
                                 active
-                                  ? "border-accent-lime bg-accent-lime/10"
-                                  : "border-transparent hover:bg-accent-blue/10"
+                                  ? "bg-accent-lime/10"
+                                  : "hover:bg-accent-blue/10"
                               }`}
                             >
                               <Link
@@ -315,29 +430,7 @@ export default function Navigation() {
                                   }}
                                   className="overflow-hidden"
                                 >
-                                  {projectChildren.map((child) => {
-                                    const childActive =
-                                      pathname === child.path;
-                                    return (
-                                      <li key={child.path}>
-                                        <Link
-                                          href={child.path}
-                                          className={`flex items-center rounded-r border-l-[3px] py-1.5 pl-12 pr-3 font-body text-[15px] transition-colors ${
-                                            childActive
-                                              ? "border-accent-lime bg-accent-lime/10 text-accent-lime"
-                                              : "border-transparent text-secondary/50 hover:bg-accent-blue/10 hover:text-secondary/70"
-                                          }`}
-                                          aria-current={
-                                            childActive
-                                              ? "page"
-                                              : undefined
-                                          }
-                                        >
-                                          {child.name}
-                                        </Link>
-                                      </li>
-                                    );
-                                  })}
+                                  {renderDesktopChildren(projectChildren)}
                                 </motion.ul>
                               )}
                             </AnimatePresence>
@@ -345,10 +438,10 @@ export default function Navigation() {
                         ) : (
                           <Link
                             href={item.href}
-                            className={`flex items-center gap-3 rounded-r border-l-[3px] py-2 pl-3 pr-3 transition-colors ${
+                            className={`flex items-center gap-3 rounded py-2 pl-3 pr-3 transition-colors ${
                               active
-                                ? "border-accent-lime bg-accent-lime/10 text-accent-lime"
-                                : "border-transparent text-secondary/70 hover:bg-accent-blue/10 hover:text-secondary"
+                                ? "bg-accent-lime/10 text-accent-lime"
+                                : "text-secondary/70 hover:bg-accent-blue/10 hover:text-secondary"
                             }`}
                             aria-current={
                               pathname === item.href ? "page" : undefined
@@ -554,24 +647,7 @@ export default function Navigation() {
                                   transition={{ duration: 0.2 }}
                                   className="ml-8 mt-1 space-y-1 overflow-hidden"
                                 >
-                                  {projectChildren.map((child) => (
-                                    <li key={child.path}>
-                                      <Link
-                                        href={child.path}
-                                        className={`font-body text-lg transition-colors ${
-                                          pathname === child.path
-                                            ? "text-accent-lime"
-                                            : "text-secondary/60 hover:text-secondary"
-                                        }`}
-                                        onClick={() => setMobileOpen(false)}
-                                        aria-current={
-                                          pathname === child.path ? "page" : undefined
-                                        }
-                                      >
-                                        {child.name}
-                                      </Link>
-                                    </li>
-                                  ))}
+                                  {renderMobileChildren(projectChildren)}
                                 </motion.ul>
                               )}
                             </AnimatePresence>

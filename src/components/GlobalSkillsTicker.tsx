@@ -6,7 +6,7 @@ import SkillsTicker from "./SkillsTicker";
 export default function GlobalSkillsTicker() {
   const pathname = usePathname();
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname.startsWith("/projects/")) {
     return null;
   }
 

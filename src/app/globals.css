@@ -34,6 +34,7 @@
   --color-mint-ink: var(--mint-ink);
   --color-clay-ink: var(--clay-ink);
   --color-sky-ink: var(--sky-ink);
+  --color-figma: #0d99ff;
   --font-display: var(--font-instrument-sans);
   --font-body: var(--font-hanken-grotesk);
   --font-mono: var(--font-geist-mono);
@@ -339,7 +340,7 @@ body {
 /* Nav-aware content offset */
 @media (min-width: 1024px) {
   .nav-content {
-    padding-left: var(--nav-width, 260px);
+    padding-left: var(--nav-width, 220px);
     transition: padding-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
@@ -419,5 +420,136 @@ body {
   .trace-flow-slow,
   .animate-comp-pulse {
     animation: none;
+  }
+}
+
+@keyframes beaker-bubble {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+}
+
+@keyframes beaker-tilt {
+  0%,
+  80%,
+  100% {
+    transform: rotate(0);
+  }
+  86% {
+    transform: rotate(-5deg);
+  }
+  93% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes beaker-spark {
+  0%,
+  60% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--spark-x), var(--spark-y)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.animate-beaker-spark {
+  animation: beaker-spark 2.4s ease-out infinite;
+  box-shadow: 0 0 6px var(--color-accent-lime);
+}
+
+.animate-beaker-bubble {
+  animation: beaker-bubble 3.5s ease-out infinite;
+}
+
+.animate-beaker-tilt {
+  transform-origin: 50% 90%;
+  animation: beaker-tilt 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-beaker-bubble,
+  .animate-beaker-tilt {
+    animation: none;
+  }
+
+  .animate-beaker-spark {
+    display: none;
+  }
+}
+
+@keyframes ember-wander {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(48px, -40px);
+  }
+  50% {
+    transform: translate(-12px, -90px);
+  }
+  75% {
+    transform: translate(-56px, -36px);
+  }
+}
+
+@keyframes ember-blink {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.ember {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  color: #ffbe4d;
+  background: currentColor;
+  box-shadow: 0 0 6px 1px currentColor;
+  animation:
+    ember-wander 9.6s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+    ember-blink 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.ember:nth-child(3n + 2) {
+  color: #f7e6ad;
+  animation-duration: 12.8s, 2.4s;
+  animation-direction: reverse, normal;
+}
+
+.ember:nth-child(3n) {
+  animation-duration: 7.2s, 2.4s;
+}
+
+.ember:nth-child(4n) {
+  width: 3px;
+  height: 3px;
+  color: #c690f5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember {
+    animation: none;
+    opacity: 0.6;
   }
 }

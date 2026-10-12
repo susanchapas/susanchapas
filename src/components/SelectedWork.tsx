@@ -1,55 +1,34 @@
 "use client";
 
-import FadeIn from "./FadeIn";
-import Link from "next/link";
-import ProjectCard from "./ProjectCard";
-import { featuredProjects } from "@/lib/projects";
-import { ArrowRightIcon } from "@/components/Icons";
+import ProjectCard from "@/components/ProjectCard";
+import { projects } from "@/lib/projects";
+
+const homeProjects = ["/projects/archlog", "/projects/sous-sense", "/projects/chimera"]
+  .map((href) => projects.find((p) => p.href === href)!);
 
 export default function SelectedWork() {
   return (
     <section
       className="bg-primary content-visibility-auto py-[5rem] lg:py-32"
-      aria-labelledby="selected-work-heading"
+      aria-labelledby="projects-heading"
     >
       <div className="container mx-auto px-6 lg:px-12">
-        <FadeIn className="mb-16 lg:mb-24">
-          <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-            Portfolio
-          </span>
-          <h2
-            id="selected-work-heading"
-            className="font-display text-secondary mb-6 text-4xl font-bold lg:text-5xl xl:text-6xl"
-          >
-            Selected Work
-          </h2>
-          <p className="font-body text-secondary/70 max-w-2xl text-lg">
-            Recent projects spanning research, product design, and front-end development.
-            Each case study walks through the problem, the process, and the outcome.
-          </p>
-        </FadeIn>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              {...project}
-              index={index}
-              priority={index === 0}
-            />
+        <h2
+          id="projects-heading"
+          className="font-display text-secondary mb-6 text-4xl font-bold lg:text-5xl xl:text-6xl"
+        >
+          Projects
+        </h2>
+        <p className="font-body text-secondary/70 mb-10 max-w-2xl text-lg lg:mb-16">
+          Research, full-stack development, and product work. I like being part of
+          every step, from talking to people about their problems to building and
+          shipping the fix, and honestly, all of it is a lot of fun to me.
+        </p>
+        <div className="grid auto-rows-fr grid-cols-1 gap-8 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+          {homeProjects.map((project, index) => (
+            <ProjectCard key={project.href} {...project} index={index} />
           ))}
         </div>
-
-        <FadeIn direction="none" delay={0.3} className="mt-16 text-center">
-          <Link
-            href="/projects"
-            className="text-accent-lime font-display inline-flex items-center gap-3 text-lg font-semibold transition-[gap] duration-700 ease-[var(--ease-liquid)] hover:gap-4"
-          >
-            View All Projects
-            <ArrowRightIcon className="h-5 w-5" />
-          </Link>
-        </FadeIn>
       </div>
     </section>
   );

@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   BadgeCheck,
   ChevronDown,
   Code2,
   Download,
+  Hash,
   ExternalLink,
   Palette,
   Search,
@@ -15,8 +16,14 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import EmberReveal from "@/components/EmberReveal";
 import FadeIn from "@/components/FadeIn";
 import Eyebrow from "@/components/Eyebrow";
+import { ConnectorArrow, useConnector } from "@/components/HoverConnector";
+import { projects } from "@/lib/projects";
+import { artworks } from "@/app/gallery/artworks";
+import { SPRING_GENTLE, SPRING_HOVER } from "@/lib/motion";
 
 interface TimelineEntry {
   id: string;
@@ -26,9 +33,12 @@ interface TimelineEntry {
   title: string;
   org: string;
   logo?: string;
+  image?: string;
+  overlay?: string;
   location?: string;
   bullets: string[];
   badges?: string[];
+  project?: string;
   link?: {
     href: string;
     label: string;
@@ -121,7 +131,26 @@ const education: TimelineEntry[] = [
   },
 ];
 
+const linkProps = (href: string) =>
+  href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {};
+
 const awards: TimelineEntry[] = [
+  {
+    id: "girlhacks",
+    type: "award",
+    date: "Oct 2026",
+    startYear: 2026,
+    title: "Best Use of ElevenLabs\nBest Beginner Hack",
+    org: "NJIT GirlHacks",
+    project: "/projects/wick",
+    image: "/assets/projects/wick/wick-cover-card/wick-voice-sc.webp",
+    overlay: "/assets/projects/wick/wick-cover-card/wick-logo.webp",
+    link: {
+      href: "https://www.wick.courses/welcome",
+      label: "See the project",
+    },
+    bullets: [],
+  },
   {
     id: "hccc-award",
     type: "award",
@@ -129,6 +158,7 @@ const awards: TimelineEntry[] = [
     startYear: 2025,
     title: "HCCC Foundation Art Award",
     org: "Hudson County Community College",
+    image: "/gallery/Mindless-Mirth-final.webp",
     link: {
       href: "/gallery#mindless-mirth",
       label: "See my work",
@@ -476,9 +506,9 @@ function TimelineCard({ entry, index }: { entry: TimelineEntry; index: number })
 function TimelineColumn({ entries, label }: { entries: TimelineEntry[]; label: string }) {
   return (
     <div>
-      <h3 className="font-display text-secondary mb-8 text-xl font-semibold lg:text-2xl">
+      <h2 className="font-display text-secondary mb-8 text-3xl font-bold lg:text-4xl">
         {label}
-      </h3>
+      </h2>
       {entries.map((entry, i) => (
         <div key={entry.id}>
           <DateMarker label={entry.date} />
@@ -509,7 +539,7 @@ function SkillsSection() {
 
   return (
     <FadeIn direction="up" className="mt-16 lg:mt-20">
-      <h2 className="font-display text-secondary mb-8 text-xl font-semibold lg:text-2xl">
+      <h2 className="font-display text-secondary mb-8 text-3xl font-bold lg:text-4xl">
         Skills &amp; Tools
       </h2>
       <div className="mb-8">
@@ -551,35 +581,203 @@ function SkillsSection() {
   );
 }
 
-function CertificationsSection() {
+const FRAME_HANDLES = [
+  "-top-1 -left-1",
+  "-top-1 -right-1",
+  "-bottom-1 -left-1",
+  "-bottom-1 -right-1",
+];
+
+function FigmaFrame({
+  name,
+  size,
+  className = "",
+  children,
+}: {
+  name: string;
+  size: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={className}>
+      <p className="text-secondary/50 mb-1.5 flex items-center gap-1 font-mono text-xs">
+        <Hash className="h-3 w-3" aria-hidden="true" />
+        {name}
+      </p>
+      <div className="outline-figma relative outline-1">
+        {children}
+        {FRAME_HANDLES.map((pos) => (
+          <span
+            key={pos}
+            className={`border-figma pointer-events-none absolute h-2 w-2 border bg-white ${pos}`}
+            aria-hidden="true"
+          />
+        ))}
+      </div>
+      <p className="mt-2.5 text-center" aria-hidden="true">
+        <span className="bg-figma rounded px-1.5 py-0.5 font-mono text-[11px] text-white">
+          {size}
+        </span>
+      </p>
+    </div>
+  );
+}
+
+function AwardPreview({ award }: { award: TimelineEntry }) {
+  const reduce = useReducedMotion();
+  const project = projects.find((p) => p.href === award.project);
+
+  if (project && award.image && award.link)
+    return (
+      <FadeIn as="article">
+        <FigmaFrame name={project.title} size="1400 × 900">
+          <Link
+            href={award.link.href}
+            {...linkProps(award.link.href)}
+            className="group group/pane relative block aspect-[14/9] overflow-hidden"
+            aria-label={`View ${project.title}`}
+          >
+            <EmberReveal
+              src={award.image}
+              overlay={award.overlay}
+              veil="bg-black/80"
+              sizes="384px"
+            />
+          </Link>
+        </FigmaFrame>
+      </FadeIn>
+    );
+  const artwork = artworks.find((a) => a.src === award.image);
+  if (!artwork || !award.link) return null;
+
+  return (
+    <FadeIn as="article">
+      <FigmaFrame name={artwork.title} size="1080 × 1350" className="max-w-[16.2rem]">
+        <motion.div
+          initial="rest"
+          whileHover={reduce ? undefined : "hover"}
+          animate="rest"
+        >
+          <Link
+            href={award.link.href}
+            className="relative block aspect-[4/5] overflow-hidden"
+            aria-label={`View ${artwork.title} in the gallery`}
+          >
+            <motion.div
+              className="absolute inset-0"
+              variants={{ rest: { scale: 1 }, hover: { scale: 1.06 } }}
+              transition={SPRING_GENTLE}
+            >
+              <Image
+                src={artwork.src}
+                alt=""
+                fill
+                sizes="288px"
+                className="object-cover"
+              />
+            </motion.div>
+            <div className="from-primary/90 via-primary/20 absolute inset-0 bg-gradient-to-t to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-6">
+              <motion.span
+                className="text-accent-lime mt-2 flex items-center gap-2 font-medium"
+                variants={{ rest: { x: 0 }, hover: { x: 8 } }}
+                transition={SPRING_HOVER}
+              >
+                View in Gallery
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </motion.span>
+            </div>
+          </Link>
+        </motion.div>
+      </FigmaFrame>
+    </FadeIn>
+  );
+}
+
+function AwardsSection() {
+  const [active, setActive] = useState(0);
+  const { connector, rootRef, slotRef, targetRefs } = useConnector(active);
+
   return (
     <FadeIn direction="up" className="mt-20 lg:mt-28">
-      <h2 className="font-display text-secondary mb-8 text-xl font-semibold lg:text-2xl">
-        Awards &amp; Certifications
+      <div
+        ref={rootRef}
+        className="relative isolate lg:grid lg:grid-cols-[1fr_24rem] lg:items-start lg:gap-32"
+      >
+        <div className="relative z-10">
+          <h2 className="font-display text-secondary mb-8 text-3xl font-bold lg:text-4xl">
+            Awards
+          </h2>
+          <ul className="space-y-7">
+            {awards.map((award, i) => (
+              <li
+                key={award.id}
+                ref={(el) => {
+                  targetRefs.current[i] = el;
+                }}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                className="flex w-fit items-start gap-4"
+              >
+                <span
+                  className="bg-accent-blue/10 text-accent-blue inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                  aria-label="Award"
+                >
+                  <Trophy className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                </span>
+                <div>
+                  <h3
+                    className={`font-display text-lg font-bold whitespace-pre-line transition-colors duration-500 ease-[var(--ease-liquid)] lg:text-xl ${
+                      active === i
+                        ? "lg:text-accent-lime text-secondary"
+                        : "text-secondary"
+                    }`}
+                  >
+                    {award.title}
+                  </h3>
+                  <p className="font-body text-secondary/60 mt-0.5 text-base">
+                    {award.org} · {award.date}
+                  </p>
+                  {award.link && (
+                    <Link
+                      href={award.link.href}
+                      {...linkProps(award.link.href)}
+                      className="border-accent-lime/30 font-body text-accent-lime hover:bg-accent-lime/10 mt-3 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium transition-colors"
+                    >
+                      {award.link.label}
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+                    </Link>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div
+          ref={slotRef}
+          aria-live="polite"
+          className="relative z-10 hidden min-h-[25rem] items-start lg:flex"
+        >
+          <div className="w-full">
+            <AwardPreview key={awards[active].id} award={awards[active]} />
+          </div>
+        </div>
+
+        <ConnectorArrow connector={connector} active={active} />
+      </div>
+    </FadeIn>
+  );
+}
+
+function CertificationsSection() {
+  return (
+    <FadeIn direction="up" className="mt-16 lg:mt-20">
+      <h2 className="font-display text-secondary mb-8 text-3xl font-bold lg:text-4xl">
+        Certifications
       </h2>
       <ul className="space-y-5">
-        {awards.map((award) => (
-          <li key={award.id} className="flex flex-wrap items-center gap-3">
-            <span
-              className="bg-accent-blue/10 text-accent-blue inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
-              aria-label="Award"
-            >
-              <Trophy className="h-3.5 w-3.5" strokeWidth={1.8} aria-hidden="true" />
-            </span>
-            <span className="font-body text-secondary text-lg">
-              {award.title} · {award.org}
-            </span>
-            {award.link && (
-              <a
-                href={award.link.href}
-                className="border-accent-lime/30 font-body text-accent-lime hover:bg-accent-lime/10 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium transition-colors"
-              >
-                {award.link.label}
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </a>
-            )}
-          </li>
-        ))}
         {certifications.map((cert) => (
           <li key={cert.name} className="flex flex-wrap items-center gap-3">
             <span
@@ -597,6 +795,7 @@ function CertificationsSection() {
             >
               View Credential
               <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
           </li>
         ))}
@@ -709,6 +908,7 @@ export default function ResumeTimeline() {
           </AnimatePresence>
         </div>
 
+        <AwardsSection />
         <CertificationsSection />
         <SkillsSection />
       </div>

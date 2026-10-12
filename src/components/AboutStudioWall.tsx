@@ -28,7 +28,6 @@ import {
   Palette,
   PenTool,
   RotateCcw,
-  Rocket,
   Utensils,
   X,
 } from "lucide-react";
@@ -92,14 +91,14 @@ const FACETS: Facet[] = [
     pos: { x: 0.27, y: 0.17 },
   },
   {
-    id: "founder",
-    kicker: "Did the scary thing",
-    title: "I built an agency",
+    id: "learning",
+    kicker: "Still a student",
+    title: "Always learning",
     detail:
-      "At Schematic Marketing I ran everything: pitching, branding, building, invoicing. Founding a company teaches you fast what matters.",
-    Icon: Rocket,
-    pin: "lime",
-    tags: ["Schematic Marketing", "Branding", "Web"],
+      "I'm finishing a BS in Human-Computer Interaction at NJIT, after a full-stack program at MIT xPRO. I like to keep learning.",
+    Icon: GraduationCap,
+    pin: "blue",
+    tags: ["HCI @ NJIT", "MIT xPRO"],
     rot: 7,
     pos: { x: 0.2, y: 0.72 },
   },
@@ -138,18 +137,6 @@ const FACETS: Facet[] = [
     tags: ["English / Español", "Community Outreach"],
     rot: -9,
     pos: { x: 0.9, y: 0.56 },
-  },
-  {
-    id: "learning",
-    kicker: "Still a student",
-    title: "Always learning",
-    detail:
-      "I'm finishing a BS in Human-Computer Interaction at NJIT, after a full-stack program at MIT xPRO. I like to keep learning.",
-    Icon: GraduationCap,
-    pin: "blue",
-    tags: ["HCI @ NJIT", "MIT xPRO"],
-    rot: -4,
-    pos: { x: 0.3, y: 0.4 },
   },
   {
     id: "location",
@@ -477,7 +464,7 @@ function PhysicsBoard({
   return (
     <div
       ref={boardRef}
-      className="border-accent-clay/20 bg-accent-clay/[0.06] relative hidden h-[32rem] w-full touch-none overflow-hidden rounded-3xl border lg:absolute lg:inset-0 lg:block lg:h-full lg:rounded-none lg:border-0"
+      className="border-accent-clay/20 relative hidden h-[32rem] w-full touch-none overflow-hidden rounded-3xl border lg:absolute lg:inset-0 lg:block lg:h-full lg:rounded-none lg:border-0"
       style={{
         backgroundImage:
           "radial-gradient(rgba(224,159,125,0.18) 1.5px, transparent 1.5px)",
@@ -485,7 +472,7 @@ function PhysicsBoard({
       }}
     >
       <div className="pointer-events-none absolute inset-0 z-0 flex flex-col items-center justify-center px-8 text-center">
-        <h1 className="text-gradient font-display text-5xl font-bold sm:text-6xl">
+        <h1 className="text-secondary font-display text-5xl font-bold sm:text-6xl">
           About Me
         </h1>
         <p className="font-body text-secondary/70 mt-6 max-w-xl text-lg lg:text-xl">
@@ -813,7 +800,7 @@ export default function AboutStudioWall() {
             backgroundSize: "22px 22px",
           }}
           className={cn(
-            "border-accent-clay/20 bg-accent-clay/[0.06] grid grid-cols-2 items-start gap-2 rounded-3xl border p-3 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5",
+            "border-accent-clay/20 grid grid-cols-2 items-start gap-2 rounded-3xl border p-3 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5",
             reduce ? "grid" : "lg:hidden"
           )}
         >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 const stack = [
   { name: "React", src: "/assets/stack/react.ico" },
   { name: "TypeScript", src: "/assets/stack/typescript.ico" },
@@ -9,9 +11,22 @@ const stack = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current!;
+    const observer = new ResizeObserver(() =>
+      document.documentElement.style.setProperty("--footer-h", `${el.offsetHeight}px`)
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <footer className="bg-primary border-accent-blue/20 border-t px-6 py-3 lg:sticky lg:bottom-0 lg:z-40 lg:px-12 landscape:sticky landscape:bottom-0 landscape:z-40 landscape:py-1.5">
+    <footer
+      ref={ref}
+      className="bg-primary border-accent-blue/20 border-t px-6 py-3 lg:sticky lg:bottom-0 lg:z-40 lg:px-12 landscape:sticky landscape:bottom-0 landscape:z-40 landscape:py-1.5"
+    >
       <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
         <div className="font-body text-secondary/70 flex items-center gap-2 text-sm">
           <span>Built with:</span>

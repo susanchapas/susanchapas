@@ -3,6 +3,7 @@
 import FadeIn from "@/components/FadeIn";
 import { useState } from "react";
 import AccessibleButton from "@/components/AccessibleButton";
+import HeroPortrait from "@/components/HeroPortrait";
 
 interface FormData {
   name: string;
@@ -127,9 +128,18 @@ export default function ContactPage() {
     <div className="">
       <section className="bg-primary py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
+          <div className="grid gap-16 lg:grid-cols-[1fr_2fr] lg:gap-24">
             {/* Contact Info */}
             <FadeIn direction="left">
+              <div className="group relative mb-8 w-[16rem]">
+                <HeroPortrait className="h-auto w-full select-none" />
+                <span
+                  role="tooltip"
+                  className="ring-accent-lime/20 bg-panel font-body text-secondary pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-xl px-3 py-2 text-sm whitespace-nowrap opacity-0 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.75)] ring-1 transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100"
+                >
+                  Drawn in iPad Procreate, 2026
+                </span>
+              </div>
               <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
                 Contact Information
               </h2>
@@ -183,24 +193,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-
-              {/* Availability */}
-              <FadeIn
-                delay={0.3}
-                className="bg-accent-lime/10 border-accent-lime/20 mt-12 rounded-xl border p-6"
-                style={{ "--ty": "20px" } as React.CSSProperties}
-              >
-                <div className="mb-3 flex items-center gap-3">
-                  <div className="bg-accent-lime h-3 w-3 animate-pulse rounded-full" />
-                  <span className="font-display text-secondary font-semibold">
-                    Available for opportunities
-                  </span>
-                </div>
-                <p className="font-body text-secondary/70 text-sm">
-                  Currently seeking internships, and also open to freelance projects and
-                  creative collaborations.
-                </p>
-              </FadeIn>
             </FadeIn>
 
             {/* Contact Form */}

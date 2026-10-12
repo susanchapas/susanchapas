@@ -527,7 +527,7 @@ export default function ChimeraProject() {
         ]}
       />
 
-      <ProjectNavFooter nextHref="/projects/archlog" />
+      <ProjectNavFooter nextHref="/projects/wick" />
     </div>
   );
 }
