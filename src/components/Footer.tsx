@@ -27,8 +27,8 @@ export default function Footer() {
       ref={ref}
       className="bg-primary border-accent-blue/20 border-t px-6 py-3 lg:sticky lg:bottom-0 lg:z-40 lg:px-12 landscape:sticky landscape:bottom-0 landscape:z-40 landscape:py-1.5"
     >
-      <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
-        <div className="font-body text-secondary/70 flex items-center gap-2 text-sm">
+      <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between landscape:flex-row landscape:justify-between">
+        <div className="font-body text-secondary/70 flex items-center gap-2 text-sm max-sm:landscape:text-xs">
           <span>Built with:</span>
           <ul className="flex items-center gap-1.5" aria-label="Project technologies">
             {stack.map(({ name, src }) => (
@@ -43,7 +43,7 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-        <p className="font-body text-secondary/70 text-center text-sm">
+        <p className="font-body text-secondary/70 text-center text-sm max-sm:landscape:text-xs">
           © {currentYear} Susan Chapas. All rights reserved.
         </p>
       </div>
