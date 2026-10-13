@@ -1,15 +1,10 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Get in touch with Susan Chapas for internship opportunities, freelance projects, or collaborations. HCI student based in Jersey City, NJ.",
-  openGraph: {
-    title: "Contact Susan Chapas | HCI Student & Developer",
-    description:
-      "Currently seeking internships. Get in touch for UX design, development, or creative collaboration.",
-  },
-};
+    "Contact Susan Chapas about UX internships, research collaborations, or freelance design work. HCI student based in Jersey City, NJ.",
+});
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return children;

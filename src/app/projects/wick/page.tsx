@@ -13,6 +13,7 @@ import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
 import { ArrowRightIcon, GitHubIcon } from "@/components/Icons";
+import { pageMetadata } from "@/lib/metadata";
 
 const projectData = {
   title: "Wick",
@@ -32,6 +33,12 @@ const projectData = {
   role: "Product Designer & Frontend Developer",
   platform: "Web (React)",
 };
+
+export const metadata = pageMetadata({
+  title: projectData.title,
+  description: projectData.subtitle,
+  image: "/assets/projects/wick/wick-grove.webp",
+});
 
 const outcomes = [
   {

@@ -11,6 +11,7 @@ import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
+import { pageMetadata } from "@/lib/metadata";
 
 const projectData = {
   title: "Sous Sense",
@@ -22,6 +23,12 @@ const projectData = {
   role: "Founder & Designer",
   type: "Academic Project",
 };
+
+export const metadata = pageMetadata({
+  title: projectData.title,
+  description: projectData.subtitle,
+  image: "/assets/projects/sous-sense/sous-sense-cover.webp",
+});
 
 const outcomes = [
   { label: "Deliverables", value: "Brand identity, packaging, advertising, and 24-page business plan" },

@@ -10,6 +10,7 @@ import ProjectOutcomes from "@/components/ProjectOutcomes";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import ResearchStats from "@/components/ResearchStats";
 import FeatureGrid from "@/components/FeatureGrid";
+import { pageMetadata } from "@/lib/metadata";
 
 const B = "/assets/projects/BLV";
 
@@ -24,6 +25,12 @@ const projectData = {
   role: "Accessibility Researcher",
   lab: "NJIT Community-Centered Accessibility Lab",
 };
+
+export const metadata = pageMetadata({
+  title: projectData.title,
+  description: projectData.subtitle,
+  image: "/assets/projects/BLV/meta-coming-soon.webp",
+});
 
 const outcomes = [
   { label: "Publication", value: "Paper submitted to ACM CHI 2027" },

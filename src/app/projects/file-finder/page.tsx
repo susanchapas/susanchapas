@@ -18,6 +18,7 @@ import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
 import { ArrowRightIcon } from "@/components/Icons";
 import { StrengthsCarousel } from "./carousels";
+import { pageMetadata } from "@/lib/metadata";
 
 const FB = "/assets/projects/file-finder/file-finder-challenge";
 
@@ -66,6 +67,12 @@ const projectData = {
   team: "3-person team",
   platform: "Figma",
 };
+
+export const metadata = pageMetadata({
+  title: projectData.title,
+  description: projectData.subtitle,
+  image: "/assets/projects/file-finder/File-Finder-Hero.webp",
+});
 
 const outcomes = [
   { label: "Research synthesis", value: "5 affinity themes from interview and survey data" },

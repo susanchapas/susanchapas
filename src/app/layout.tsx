@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import LazyCustomCursor from "@/components/LazyCustomCursor";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import SiteChrome from "@/components/SiteChrome";
+import { baseOpenGraph, siteDescription, siteName, siteTitle } from "@/lib/metadata";
 
 
 const instrumentSans = Instrument_Sans({
@@ -37,32 +38,18 @@ const dmSans = DM_Sans({
   preload: false,
 });
 
-// Base URL for production
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://susanchapas.com";
+const baseUrl = "https://susanchapas.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Susan Chapas | UX Strategist & Marketing Professional",
-    template: "%s | Susan Chapas",
+    default: siteTitle,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "The Strategic Architect — bridging design, marketing strategy, and technical implementation. UX Designer, Marketing Strategist, and Full-Stack Developer based in Jersey City.",
-  keywords: [
-    "UX Design",
-    "Marketing Strategy",
-    "Full Stack Developer",
-    "React",
-    "Jersey City",
-    "HCI",
-    "Portfolio",
-    "User Experience",
-    "Web Development",
-    "Brand Strategy",
-  ],
-  authors: [{ name: "Susan Chapas", url: baseUrl }],
-  creator: "Susan Chapas",
-  publisher: "Susan Chapas",
+  description: siteDescription,
+  authors: [{ name: siteName, url: baseUrl }],
+  creator: siteName,
+  publisher: siteName,
   robots: {
     index: true,
     follow: true,
@@ -75,38 +62,24 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Susan Chapas | UX Strategist & Marketing Professional",
-    description:
-      "The Strategic Architect — bridging design, marketing strategy, and technical implementation.",
-    type: "website",
-    locale: "en_US",
-    url: baseUrl,
-    siteName: "Susan Chapas Portfolio",
+    ...baseOpenGraph,
+    title: siteTitle,
+    description: siteDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Susan Chapas | UX Strategist & Marketing Professional",
-    description:
-      "The Strategic Architect — bridging design, marketing strategy, and technical implementation.",
-    creator: "@susanchapas",
   },
   alternates: {
-    canonical: baseUrl,
-  },
-  verification: {
-    // Add your verification tokens when available
-    // google: "your-google-verification-token",
+    canonical: "./",
   },
 };
 
-// JSON-LD Structured Data for SEO
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Susan Chapas",
-  jobTitle: "UX Strategist & Marketing Professional",
-  description:
-    "The Strategic Architect — bridging design, marketing strategy, and technical implementation.",
+  name: siteName,
+  jobTitle: "UX Researcher & Designer",
+  description: siteDescription,
   url: baseUrl,
   sameAs: ["https://linkedin.com/in/susan-chapas", "https://github.com/susanchapas"],
   address: {
@@ -116,13 +89,13 @@ const jsonLd = {
     addressCountry: "US",
   },
   knowsAbout: [
+    "UX Research",
     "UX Design",
-    "Marketing Strategy",
-    "Full Stack Development",
-    "React",
-    "Next.js",
-    "Brand Strategy",
+    "Human-Computer Interaction",
     "Accessibility",
+    "Usability Testing",
+    "Heuristic Evaluation",
+    "Prototyping",
   ],
 };
 

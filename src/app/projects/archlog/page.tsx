@@ -19,6 +19,7 @@ import FeatureGrid from "@/components/FeatureGrid";
 // import ArchLogPrototype from "@/components/ArchLogPrototype";
 import { ArrowRightIcon } from "@/components/Icons";
 import { ProductTourCarousel } from "./carousels";
+import { pageMetadata } from "@/lib/metadata";
 
 const AB = "/assets/projects/archlog/ArchLog%20challenge%20pinboard";
 
@@ -60,6 +61,12 @@ const projectData = {
   team: "3-person team",
   platform: "Figma",
 };
+
+export const metadata = pageMetadata({
+  title: projectData.title,
+  description: projectData.subtitle,
+  image: "/assets/projects/archlog/ArchLog-Hero.webp",
+});
 
 const outcomes = [
   { label: "Winning concept", value: "Design Decision Tracker ranked #1 out of 7 concepts" },

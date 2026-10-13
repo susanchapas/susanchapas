@@ -18,6 +18,7 @@ import FeatureGrid from "@/components/FeatureGrid";
 import { ArrowRightIcon } from "@/components/Icons";
 import ChimeraLightbox from "./ChimeraLightbox";
 import { PrinciplesCarousel, ProductTourCarousel } from "./carousels";
+import { pageMetadata } from "@/lib/metadata";
 
 const projectData = {
   title: "Chimera 2.0",
@@ -32,6 +33,12 @@ const projectData = {
   team: "Solo designer",
   platform: "Figma, Mobile",
 };
+
+export const metadata = pageMetadata({
+  title: projectData.title,
+  description: projectData.subtitle,
+  image: "/assets/projects/chimera/Chimera-Hero-1600.webp",
+});
 
 const outcomes = [
   { label: "Core action depth", value: "Reduced from 3+ screens to 1 tap" },

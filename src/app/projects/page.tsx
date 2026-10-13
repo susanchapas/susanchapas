@@ -6,6 +6,13 @@ import SkylineAscii from "@/components/SkylineAscii";
 // import LabBeaker from "@/components/LabBeaker";
 import { projects } from "@/lib/projects";
 import { ArrowRightIcon } from "@/components/Icons";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "UX Case Studies",
+  description:
+    "UX case studies by Susan Chapas covering user research, heuristic evaluation, accessibility research, and product design.",
+});
 
 const ready = projects.filter((p) => !p.inactive && !p.lab);
 // const lab = projects.filter((p) => p.lab);

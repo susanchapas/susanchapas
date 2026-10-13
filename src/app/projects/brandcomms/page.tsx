@@ -13,6 +13,7 @@ import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
 import { ScreenshotCarousel, PersonaCarousel } from "./carousels";
+import { pageMetadata } from "@/lib/metadata";
 
 const projectData = {
   title: "BrandComms",
@@ -24,6 +25,12 @@ const projectData = {
   role: "UX Researcher & Product Designer",
   team: "4-person team",
 };
+
+export const metadata = pageMetadata({
+  title: projectData.title,
+  description: projectData.subtitle,
+  image: "/assets/projects/brandcomms/brandcomms-cover-photov4.webp",
+});
 
 const outcomes = [
   { label: "Scope", value: "10 personas across 5 stakeholder tiers" },

@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import FadeIn from "@/components/FadeIn";
 import LabNotebook from "@/components/LabNotebook";
 import BackToProjects from "@/components/BackToProjects";
 import { projects } from "@/lib/projects";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "The Lab",
   description: "Side projects and early concepts that are still in development.",
-};
+});
 
 const lab = projects.filter((p) => p.lab);
 

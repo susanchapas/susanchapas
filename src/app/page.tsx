@@ -15,7 +15,7 @@ export default function Home() {
           <div className="animate-hero-enter relative z-10 container mx-auto max-w-7xl px-6 lg:px-12">
             <div className="relative">
               <div className="mb-10 grid items-end gap-8 lg:mb-14 xl:grid-cols-[minmax(0,1fr)_auto]">
-                <div className="@container min-w-0">
+                <div className="@container min-w-0 select-none">
                   <AsciiName
                     lines={["Susan", "Chapas"]}
                     className="font-dm text-accent-blue text-[clamp(3rem,19cqi,10.5rem)] leading-[0.88] font-black tracking-[-0.03em] uppercase"
@@ -23,7 +23,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 select-none">
                   <p className="font-display text-secondary text-2xl leading-[1.2] font-bold sm:text-3xl lg:text-4xl">
                     AI-native designer who enjoys going beyond the mockup.
                   </p>

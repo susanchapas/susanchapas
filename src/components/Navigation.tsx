@@ -314,7 +314,7 @@ export default function Navigation() {
             aria-label="Susan Chapas - Home"
           >
             <Image
-              src="/assets/misc/navbar-favicon.webp"
+              src="/assets/misc/navbar-lilypad.svg"
               alt="Susan Chapas logo"
               width={40}
               height={40}
@@ -529,7 +529,7 @@ export default function Navigation() {
       >
         <Link href="/" aria-label="Susan Chapas - Home">
           <Image
-            src="/assets/misc/navbar-favicon.webp"
+            src="/assets/misc/navbar-lilypad.svg"
             alt="Susan Chapas logo"
             width={32}
             height={32}
