@@ -16,9 +16,6 @@ export default function ArtScroller() {
   return (
     <section className="gradient-mesh content-visibility-auto overflow-hidden border-t border-white/5 py-[5rem] lg:py-24">
       <div className="container mx-auto mb-12 px-6 text-center lg:px-12">
-        <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-          Creative Side
-        </span>
         <h2 className="font-display text-secondary mb-4 text-3xl font-bold lg:text-4xl">
           Beyond the Code
         </h2>
