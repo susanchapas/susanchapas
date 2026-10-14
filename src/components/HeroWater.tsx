@@ -81,6 +81,89 @@ const FLY = [":", "."].map((v) => {
   ];
 });
 
+const FROG = [
+  String.raw`
+                      +++
+                   :+#+::+
+                 :+##+:o+++
+               ++####+:##+##
+           :##########+::+###
+        +++############+++##+
+       +#############++:: +:
+      +##+#+####+#### :+:
+     +###+####+#+##+++##:
+   :#+    ########:+###
+  ++:+++++ :##+#+::+#+
+ +#########:+###: +##:
++#++#++##+#+ #+#  #+:
+##++#++##+#+ ##: :#+
+:###+:+###+  ##:  +#:
+ ++ :+##++ + ##:  :#+
+   +##++  :: +##   :#+
+ :+##::  :    ##+   +##+++
++####:::+ +    ##++   +++ +
+ +########++  #:++ #: + +:`,
+  String.raw`
+                                       #+:
+                                     +#++::
+                                    +#:#o+++
+                                  +###++#+##+
+                                ++#####: +###
+                              +#############:
+                           :+##+####+###+:
+                         ++#+#++#+##+#+  +:
+                       +#######+#####+:##:
+                     :+##+#++#++#+##::##:
+                     #+#####+####### :#:
+                    +#+#######++#+##+:         ++
+                    #++##+#++++++ +#+#        ++
+                   +##+########:   +#####+:::#+:::
+                  :+++++++#++:      +########   :+
+                  ++##+  :::          ::::+###:
+                + #+++++                    + ++
+             :+#:+#+##+                     ++ ::
+           :+##+ +#++++
+         :###### +#+#+
+        :+#++:   ++++
+        ##+   :+++#+
+       ##   :+#####:
+      #+   ++###++
+     +#  +####+::
+    +#: +#+++
+   +#+  #+
+ +:##  +#
++:++:  +:
+ ++:  :+
++ :+  #+
+  +  +#+
+     ##
+    :++
+   + +
+  : ::
+    :`,
+  String.raw`
+                         +++
+               ::     ++#+::+
+          :++###########+:#o++
+        :##+############+:##+##
+      :+#################+ :+##+
+     +###+#+###++#########+++##+
+     ###+::+############++:: +:
+ ++  :++#++ :+#########:  +
++###+  +###+ :######+++:+#+
+######+::###+ :##### ++##+
++# +++#+:+#+#  ++### +++#:
++#: +########+   ::: + :##
+ #+  :#####+##       #+ :#+:
+ ++    +##+++        ++: :##+
+ +#+    +##+         :##   +#+
+ :##+     ##++        :#:    ##+++:
+  ++++:    +++++       +#+:   ++
+  : ::++:              +:++:+
+ :  + + +              :  + +:`,
+].map((s) => s.slice(1).split("\n"));
+const HOP = 700;
+
 const clamp = (v: number, lo: number, hi: number) => (v < lo ? lo : v > hi ? hi : v);
 const mix = (a: RGB, b: RGB, t: number): RGB => {
   t = clamp(t, 0, 1);
@@ -190,6 +273,40 @@ export default function HeroWater({ className }: { className?: string }) {
     };
     let pads: Pad[] = [];
     const fly = { x: 0, y: 0, dir: 1, wait: 0, t: 0 };
+    let rocks: { x: number; y: number }[] = [];
+    const frog = { at: 0, to: 0, t0: 0, dir: 1, stuck: false };
+    let room = false;
+    let frogImg: HTMLCanvasElement[] = [],
+      flyImg: HTMLCanvasElement[] = [],
+      dot = 0;
+    const bake = (
+      rows: string[],
+      w: number,
+      h: number,
+      size: number,
+      paint: (ch: string, j: number) => string,
+      bg?: string
+    ) => {
+      const [el, x] = layer();
+      el.width = Math.ceil(Math.max(...rows.map((r) => r.length)) * w * dpr);
+      el.height = Math.ceil(rows.length * h * dpr);
+      x.setTransform(dpr, 0, 0, dpr, 0, 0);
+      x.font = `${size}px ${FONT}`;
+      x.textAlign = "center";
+      x.textBaseline = "middle";
+      rows.forEach((row, j) => {
+        for (let k = 0; k < row.length; k++) {
+          if (row[k] === " ") continue;
+          if (bg) {
+            x.fillStyle = bg;
+            x.fillRect(k * w, j * h, w + 0.5, h + 0.5);
+          }
+          x.fillStyle = paint(row[k], j);
+          x.fillText(row[k], (k + 0.5) * w, (j + 0.5) * h);
+        }
+      });
+      return el;
+    };
     let queue: number[] = [];
     let stars: { i: number; ch: string; a: number; ph: number; sp: number; b: number }[] =
       [];
@@ -375,6 +492,7 @@ export default function HeroWater({ className }: { className?: string }) {
       }
 
       const L = [0.55, -0.55, 0.63];
+      const stones: number[][] = [];
       for (let k = Math.round(cols / 30) + 4; k > 0; k--) {
         const x0 = rng() * W,
           hz = hzAt(x0),
@@ -385,6 +503,7 @@ export default function HeroWater({ className }: { className?: string }) {
           : hz + chh * 2 + rng() * Math.max(0, sy - hz - chh * 4);
         const rx = cw * (4 + rng() * (onShore ? 9 : 5));
         const ry = Math.max(chh * 1.3, rx * (0.55 + rng() * 0.2));
+        stones.push([x0, y0, rx, ry]);
         for (let r = Math.floor((y0 - ry) / chh); r <= Math.ceil((y0 + ry) / chh); r++)
           for (let c = Math.floor((x0 - rx) / cw); c <= Math.ceil((x0 + rx) / cw); c++) {
             if (c < 0 || c >= cols || r > shore[c]) continue;
@@ -400,6 +519,18 @@ export default function HeroWater({ className }: { className?: string }) {
             put(c, r, band(lum, c, r), mix([34, 38, 48], [192, 198, 210], lum), 1);
           }
       }
+
+      rocks = stones.flatMap(([x0, y0, rx, ry]) => {
+        if (rx < cw * 7 || x0 < cw * 8 || x0 > W - cw * 8) return [];
+        const top = y0 - ry * Math.sqrt(1 - ((cw * 5.5) / rx) ** 2);
+        const y = (Math.ceil(top / chh - 0.5) + 2) * chh;
+        const hidden = stones.some(
+          ([qx, qy, qrx, qry]) =>
+            qx !== x0 && ((x0 - qx) / qrx) ** 2 + ((y - chh * 3 - qy) / qry) ** 2 < 1
+        );
+        return hidden ? [] : [{ x: Math.round(x0 / cw) * cw, y }];
+      });
+      fit();
 
       stars = stars.filter((s) => chA[s.i] === s.ch);
       queue = [];
@@ -513,6 +644,23 @@ export default function HeroWater({ className }: { className?: string }) {
       srOf = Int16Array.from({ length: rows }, (_, r) =>
         clamp(Math.floor(((r + 0.5) * chh) / cw), 1, sRows - 2)
       );
+      const [br, bgr, bb] = bsx.getImageData(0, Math.round(H * 0.28 * dpr), 1, 1).data;
+      dot = cw * 0.34;
+      frogImg = FROG.map((pose) =>
+        bake(
+          pose,
+          dot,
+          dot,
+          dot / 0.6,
+          (ch) => (ch === "o" ? "rgb(255,240,200)" : "rgb(136,84,44)"),
+          `rgb(${br},${bgr},${bb})`
+        )
+      );
+      flyImg = FLY.map((pose) =>
+        bake(pose, cw, chh, f, (_, j) =>
+          j === 4 ? "rgba(120,212,196,0.95)" : "rgba(196,222,240,0.95)"
+        )
+      );
       spawnFly(performance.now(), 1500);
     };
 
@@ -540,12 +688,89 @@ export default function HeroWater({ className }: { className?: string }) {
         Math.round(fly.x) * dpr,
         Math.round(y) * dpr
       );
-      FLY[Math.floor(t / 160) % 2].forEach((row, j) => {
-        ctx.fillStyle = j === 4 ? "rgba(120,212,196,0.95)" : "rgba(196,222,240,0.95)";
-        for (let k = 0; k < row.length; k++)
-          if (row[k] !== " ") ctx.fillText(row[k], (k - 11) * cw, (j - 4) * chh);
-      });
+      const img = flyImg[Math.floor(t / 160) % 2];
+      ctx.drawImage(img, -11.5 * cw, -4.5 * chh, img.width / dpr, img.height / dpr);
       ctx.setTransform(1, 0, 0, 1, 0, 0);
+    };
+
+    const clear = (q: { x: number; y: number }) => {
+      const c = canvas.getBoundingClientRect();
+      const range = document.createRange();
+      return [...(host.querySelector("h1")?.childNodes ?? [])].every((n) => {
+        if (n.nodeType !== Node.TEXT_NODE) return true;
+        range.selectNodeContents(n);
+        const r = range.getBoundingClientRect();
+        return (
+          q.y < r.top - c.top ||
+          q.y - chh * 8 > r.bottom - c.top ||
+          q.x - cw * 12 > r.right - c.left
+        );
+      });
+    };
+
+    const fit = () => {
+      const open = rocks.filter(clear);
+      const mid = cols * cw * 0.65;
+      room = open.length > 1;
+      frog.at = frog.to = rocks.indexOf(
+        open.reduce(
+          (a, q) => (Math.abs(q.x - mid) < Math.abs(a.x - mid) ? q : a),
+          open[0]
+        )
+      );
+    };
+
+    const drawFrog = (t: number) => {
+      let a = rocks[frog.at];
+      if (!a) return;
+      const near = ptrOn && Math.hypot(ptrX - a.x, ptrY - a.y + chh * 2) < cw * 14;
+      if (!near) frog.stuck = false;
+      if (frog.to === frog.at && near && !frog.stuck) {
+        const away = a.x >= ptrX ? 1 : -1;
+        let score = Infinity;
+        rocks.forEach((q, k) => {
+          const dx = (q.x - a.x) * away;
+          const s = dx > cw * 20 ? dx : cols * cw - dx;
+          if (k === frog.at || s >= score || !clear(q)) return;
+          score = s;
+          frog.to = k;
+        });
+        frog.t0 = t;
+        frog.stuck = frog.to === frog.at;
+        frog.dir = rocks[frog.to].x < a.x ? -1 : 1;
+      }
+      const b = rocks[frog.to];
+      const hops = Math.max(1, Math.round(Math.abs(b.x - a.x) / (cw * 20)));
+      const e = (t - frog.t0) / HOP;
+      if (e >= hops) {
+        frog.at = frog.to;
+        a = b;
+      }
+      const idle = a === b;
+      const h = idle ? 0 : Math.floor(e);
+      const u = idle ? 0 : clamp((e - h - 0.2) / 0.62, 0, 1);
+      const q = (h + u) / hops;
+      const x = Math.round(a.x + (b.x - a.x) * q);
+      const y = Math.round(a.y + (b.y - a.y) * q - Math.sin(u * Math.PI) * chh * 2.5);
+      const p = u === 0 ? 0 : u < 0.55 ? 1 : 2;
+      const img = frogImg[p];
+      const cover =
+        idle || (h === 0 && u < 0.5) ? a : h === hops - 1 && u >= 0.5 ? b : null;
+      ctx.save();
+      if (cover) {
+        ctx.beginPath();
+        ctx.rect(0, 0, canvas.width, (cover.y - chh * 2) * dpr);
+        ctx.clip();
+      }
+      ctx.setTransform(dpr * frog.dir, 0, 0, dpr, x * dpr, y * dpr);
+      ctx.drawImage(
+        img,
+        -(Math.max(...FROG[p].map((row) => row.length)) >> 1) * dot,
+        -FROG[p].length * dot,
+        img.width / dpr,
+        img.height / dpr
+      );
+      ctx.restore();
     };
 
     const disturb = (c: number, sr: number, s: number, rad = 0) => {
@@ -971,6 +1196,7 @@ export default function HeroWater({ className }: { className?: string }) {
           sh
         );
       }
+      if (room) drawFrog(t);
       if (!motion.matches) drawFly(t);
     };
 
@@ -1034,6 +1260,9 @@ export default function HeroWater({ className }: { className?: string }) {
     setup();
     const ro = new ResizeObserver(setup);
     ro.observe(canvas);
+    const nameRo = new ResizeObserver(fit);
+    const name = host.querySelector("h1");
+    if (name) nameRo.observe(name);
     const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting));
     io.observe(canvas);
     host.addEventListener("pointermove", onMove, { passive: true });
@@ -1044,6 +1273,7 @@ export default function HeroWater({ className }: { className?: string }) {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      nameRo.disconnect();
       io.disconnect();
       host.removeEventListener("pointermove", onMove);
       host.removeEventListener("pointerdown", onDown);
@@ -1055,7 +1285,7 @@ export default function HeroWater({ className }: { className?: string }) {
     <canvas
       ref={ref}
       role="img"
-      aria-label="ASCII night scene: a moon over a pine treeline, a grassy bank with stones, and a lake with drifting lily pads, one with a lotus, and a passing dragonfly, that mirrors it and ripples when touched"
+      aria-label="ASCII night scene: a moon over a pine treeline, a grassy bank with stones and a frog hiding behind one, and a lake with drifting lily pads, one with a lotus, and a passing dragonfly, that mirrors it and ripples when touched"
       className={className}
     />
   );

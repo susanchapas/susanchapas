@@ -21,7 +21,7 @@ export default function Home() {
                 <div className="@container min-w-0 select-none">
                   <AsciiName
                     lines={["Susan", "Chapas"]}
-                    className="font-dm text-accent-blue text-[clamp(3em,min(19cqi,28svh-2.5rem),10.5em)] leading-[0.88] font-black tracking-[-0.03em] uppercase"
+                    className="font-sora text-accent-blue text-[clamp(3em,min(19cqi,28svh-2.5rem),10.5em)] leading-[0.88] font-extrabold tracking-[-0.03em] uppercase"
                   />
                 </div>
               </div>
