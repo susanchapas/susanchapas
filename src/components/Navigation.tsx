@@ -112,6 +112,7 @@ export default function Navigation() {
   const [labOpen, setLabOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [animating, setAnimating] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -130,6 +131,16 @@ export default function Navigation() {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional: auto-expand on project pages
       setProjectsOpen(true);
     }
+  }, [pathname]);
+
+  useEffect(() => {
+    const hero = document.getElementById("hero");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Intentional: reset when the page has no hero
+    setHeroVisible(!!hero);
+    if (!hero) return;
+    const io = new IntersectionObserver(([e]) => setHeroVisible(e.isIntersecting));
+    io.observe(hero);
+    return () => io.disconnect();
   }, [pathname]);
 
   useEffect(() => {
@@ -330,7 +341,11 @@ export default function Navigation() {
               sizes="40px"
               className="shrink-0 transition-transform duration-500 ease-[var(--ease-liquid)] group-hover:scale-110"
             />
-            {expanded && <NavName className="h-10 text-[22px]" />}
+            {expanded && (
+              <NavName
+                className={`h-10 text-[22px] transition-opacity duration-[1200ms] ease-in-out ${heroVisible ? "opacity-0" : ""}`}
+              />
+            )}
           </Link>
           <button
             onClick={() => setExpanded(!expanded)}
@@ -547,9 +562,17 @@ export default function Navigation() {
             sizes="32px"
             className="shrink-0"
           />
-          {mobileOpen && (
-            <NavName className="h-8 text-[18px] min-[360px]:flex-row min-[360px]:items-center min-[360px]:gap-[0.25em] min-[360px]:text-[36px]" />
-          )}
+          <AnimatePresence>
+            {mobileOpen && (
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.6, delay: 0.15, ease: "easeOut" } }}
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
+              >
+                <NavName className="h-8 text-[18px] min-[320px]:flex-row min-[320px]:items-center min-[320px]:gap-[0.25em] min-[320px]:text-[24px]" />
+              </motion.span>
+            )}
+          </AnimatePresence>
         </Link>
 
         <button
