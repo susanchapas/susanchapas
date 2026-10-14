@@ -34,7 +34,7 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "800"],
+  weight: ["400", "500"],
   preload: false,
 });
 

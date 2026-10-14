@@ -20,8 +20,8 @@ export default function Home() {
               <div className="mb-[max(0.75rem,2.5em)] grid items-end gap-8 lg:mb-[3.5em] xl:grid-cols-[minmax(0,1fr)_auto]">
                 <div className="@container min-w-0 select-none">
                   <AsciiName
-                    lines={["Susan", "Chapas"]}
-                    className="font-dm text-accent-blue text-[clamp(3em,min(19cqi,28svh-2.5rem),10.5em)] leading-[0.88] font-extrabold tracking-[-0.03em] uppercase"
+                    lines={["susan", "chapas"]}
+                    className="font-body text-accent-blue text-[clamp(3em,min(19cqi,28svh-2.5rem),10.5em)] leading-[0.88] font-extrabold tracking-[-0.03em]"
                   />
                 </div>
               </div>

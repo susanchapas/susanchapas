@@ -66,6 +66,15 @@ function SocialLinks({ vertical = false, size = "sm" }: { vertical?: boolean; si
   );
 }
 
+function NavName({ className }: { className: string }) {
+  return (
+    <span className={`font-body text-accent-blue flex flex-col justify-center leading-[0.88] font-extrabold tracking-[-0.03em] whitespace-nowrap ${className}`}>
+      <span>susan</span>
+      <span>chapas</span>
+    </span>
+  );
+}
+
 function CopyButton({ pathname }: { pathname: string }) {
   const [copied, setCopied] = useState(false);
   const url = "www.susanchapas.com" + pathname;
@@ -310,7 +319,7 @@ export default function Navigation() {
         >
           <Link
             href="/"
-            className="shrink-0 transition-transform duration-500 ease-[var(--ease-liquid)] hover:scale-110"
+            className="group flex min-w-0 shrink-0 items-center gap-2.5"
             aria-label="Susan Chapas - Home"
           >
             <Image
@@ -319,7 +328,9 @@ export default function Navigation() {
               width={40}
               height={40}
               sizes="40px"
+              className="shrink-0 transition-transform duration-500 ease-[var(--ease-liquid)] group-hover:scale-110"
             />
+            {expanded && <NavName className="h-10 text-[22px]" />}
           </Link>
           <button
             onClick={() => setExpanded(!expanded)}
@@ -527,14 +538,16 @@ export default function Navigation() {
           scrolled ? "glass" : "border-b border-transparent bg-transparent"
         }`}
       >
-        <Link href="/" aria-label="Susan Chapas - Home">
+        <Link href="/" className="flex items-center gap-2" aria-label="Susan Chapas - Home">
           <Image
             src="/assets/misc/navbar-lilypad.svg"
             alt="Susan Chapas logo"
             width={32}
             height={32}
             sizes="32px"
+            className="shrink-0"
           />
+          {mobileOpen && <NavName className="h-8 text-[18px]" />}
         </Link>
 
         <button
