@@ -547,7 +547,9 @@ export default function Navigation() {
             sizes="32px"
             className="shrink-0"
           />
-          {mobileOpen && <NavName className="h-8 text-[18px]" />}
+          {mobileOpen && (
+            <NavName className="h-8 text-[18px] min-[360px]:flex-row min-[360px]:items-center min-[360px]:gap-[0.25em] min-[360px]:text-[36px]" />
+          )}
         </Link>
 
         <button
