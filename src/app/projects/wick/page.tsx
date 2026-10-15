@@ -5,13 +5,14 @@ import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
-import Eyebrow from "@/components/Eyebrow";
-import ProjectOutcomes from "@/components/ProjectOutcomes";
+import ProjectSummary from "@/components/ProjectSummary";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
-import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
+import WickUserFlow from "@/components/WickUserFlow";
+import WickStack from "@/components/WickStack";
+import BystanderAscii from "@/components/BystanderAscii";
 import { ArrowRightIcon, GitHubIcon } from "@/components/Icons";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -46,8 +47,8 @@ const outcomes = [
     value: "Best Use of ElevenLabs (MLH) and Best Beginner Hack, GirlHacks 2026",
   },
   {
-    label: "Validation",
-    value: "Live at wick.courses. Anyone can start a role-play in under a minute, no sign-in",
+    label: "Scope",
+    value: "Three campus scenarios, voice and text role-play, and a custom scenario studio",
   },
   {
     label: "Deliverables",
@@ -58,14 +59,13 @@ const outcomes = [
 const atAGlance = [
   {
     label: "My role",
-    value:
-      "Product design & frontend development. Led UX, the Enchanted Grove brand system, and the React frontend",
+    value: "Product Design and Frontend Development",
   },
-  { label: "Team", value: "3 people: Neta (PM, brand & content), Antony (backend & AI)" },
+  { label: "Team", value: "3 people" },
   { label: "Timeline", value: "24 hours" },
   {
     label: "Methods",
-    value: "Rapid prototyping, prompt iteration, contract-first API design, accessibility-first design",
+    value: "Rapid prototyping, prompt iteration, contract-first APIs, accessibility",
   },
 ];
 
@@ -121,27 +121,6 @@ const decisions = [
   },
 ];
 
-const shortcuts = [
-  { key: "Space", action: "Speak" },
-  { key: "P", action: "Pause" },
-  { key: "T", action: "Type instead" },
-  { key: "Esc", action: "Step out" },
-];
-
-const stack = [
-  { label: "Frontend", value: "React 19, TypeScript, and Vite, hosted on GitHub Pages" },
-  { label: "Backend", value: "Node.js 22 on Azure Functions" },
-  { label: "Role-play", value: "Google Gemini for character replies, coaching, and custom scenarios" },
-  { label: "Voice", value: "ElevenLabs Scribe v2 (speech-to-text) and Flash v2.5 (character voices)" },
-  { label: "Storage", value: "Azure Table Storage for sessions" },
-];
-
-const resultStats = [
-  { value: "2", label: "Awards won from the 3 tracks we entered" },
-  { value: "<1 min", label: "From opening wick.courses to a live role-play, with no sign-in" },
-  { value: "~2 s", label: "For an AI character to reply out loud" },
-];
-
 const shipped = [
   {
     name: "Three scenarios",
@@ -154,10 +133,6 @@ const shipped = [
   {
     name: "Coaching debrief",
     body: "Grounded in the user’s session transcript and mapped to the Five Ds.",
-  },
-  {
-    name: "Difficulty settings",
-    body: "Gentle, Realistic, and Intense, so users decide how much pressure the characters apply.",
   },
 ];
 
@@ -214,41 +189,11 @@ export default function WickProject() {
         </FadeIn>
       </ProjectHero>
 
-      <section className="bg-primary py-16 lg:py-24">
-        <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <div className="space-y-10 lg:col-span-2">
-            <Reveal>
-              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                Overview
-              </h2>
-              <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                {projectData.description}
-              </p>
-            </Reveal>
-
-            <ProjectOutcomes items={outcomes} />
-          </div>
-
-          <Tile
-            delay={0.1}
-            className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
-          >
-            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
-              At a glance
-            </h3>
-            <dl className="space-y-4">
-              {atAGlance.map((item) => (
-                <div key={item.label}>
-                  <dt className="text-secondary/50 text-xs tracking-wide uppercase">
-                    {item.label}
-                  </dt>
-                  <dd className="font-body text-secondary mt-0.5">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </Tile>
-        </div>
-      </section>
+      <ProjectSummary
+        overview={projectData.description}
+        glance={atAGlance}
+        outcomes={outcomes}
+      />
 
       <SectionTabs
         tabs={[
@@ -256,53 +201,33 @@ export default function WickProject() {
             id: "challenge",
             label: "Challenge",
             content: (
-              <section className="bg-accent-blue/5 py-16 lg:py-24">
-                <div className="container mx-auto px-6 lg:px-12">
-                  <div className="mb-12 grid items-center gap-10 lg:grid-cols-2">
-                    <Reveal>
-                      <Eyebrow>The Challenge</Eyebrow>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Bystander-intervention training already exists. Most of it is
-                        lectures and slide decks that students sit through once and
-                        forget. Pilots train in simulators and athletes run drills before
-                        games, while students facing the hardest social moments of college
-                        get a one-hour video. Most people care about what is happening
-                        around them. What they lack is practice: they have never rehearsed
-                        what to say, so they freeze.
-                      </p>
-                    </Reveal>
-
-                    <Tile className="bg-primary border-accent-blue/10 rounded-2xl border p-7 lg:p-8">
-                      <h3 className="text-accent-clay font-body mb-4 text-xs tracking-widest uppercase">
-                        Most training covers
-                      </h3>
-                      <ol className="mb-6 space-y-3">
-                        {trainingCovers.map((item, i) => (
-                          <li key={item} className="flex items-center gap-4">
-                            <span
-                              aria-hidden="true"
-                              className="bg-accent-blue/10 text-accent-blue font-display flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold"
-                            >
-                              {i + 1}
-                            </span>
-                            <span className="font-body text-secondary/80">{item}</span>
-                          </li>
-                        ))}
-                      </ol>
-                      <div className="border-accent-lime/50 rounded-xl border-2 p-5">
-                        <h3 className="text-accent-lime font-body mb-2 text-xs tracking-widest uppercase">
-                          What Wick adds
-                        </h3>
-                        <p className="font-display text-secondary text-lg leading-snug font-bold">
-                          What to do when you see it happen to someone else
+              <>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <div className="grid items-center gap-12 lg:grid-cols-[3fr_2fr]">
+                      <Reveal className="max-w-3xl">
+                        <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                          People freeze because they never practice.
+                        </h2>
+                        <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                          Bystander-intervention training already exists. Most of it is
+                          lectures and slide decks that students sit through once and
+                          forget. Pilots train in simulators and athletes run drills before
+                          games, while students facing the hardest social moments of college
+                          get a one-hour video. Most people care about what is happening
+                          around them. What they lack is practice: they have never rehearsed
+                          what to say, so they freeze.
                         </p>
-                      </div>
-                    </Tile>
-                  </div>
+                      </Reveal>
+                      <BystanderAscii className="mx-auto max-w-md" />
+                    </div>
 
-                  <HowMightWe>give people a safe place to rehearse intervening under realistic pressure, with zero risk, until the response feels natural?</HowMightWe>
-                </div>
-              </section>
+                    <div className="mt-12 max-w-3xl">
+                      <HowMightWe>give people a safe place to rehearse intervening under realistic pressure, with zero risk, until the response feels natural?</HowMightWe>
+                    </div>
+                  </div>
+                </section>
+              </>
             ),
           },
           {
@@ -310,10 +235,51 @@ export default function WickProject() {
             label: "Process",
             content: (
               <>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Most training covers
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        Existing bystander-intervention training explains the basics, but
+                        it rarely gives people a chance to practice responding in the
+                        moment.
+                      </p>
+                    </Reveal>
+
+                    <ol className="mb-6 grid gap-6 md:grid-cols-3">
+                      {trainingCovers.map((item, i) => (
+                        <li key={item}>
+                          <Tile
+                            delay={i * 0.08}
+                            className="bg-primary border-accent-blue/10 h-full rounded-2xl border p-7"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="bg-accent-blue/10 text-accent-blue font-display mb-4 flex h-10 w-10 items-center justify-center rounded-full font-bold"
+                            >
+                              {i + 1}
+                            </span>
+                            <p className="font-body text-secondary/80 text-lg">{item}</p>
+                          </Tile>
+                        </li>
+                      ))}
+                    </ol>
+
+                    <Tile className="border-accent-lime/50 rounded-2xl border-2 p-7">
+                      <h3 className="text-accent-lime font-body mb-2 text-xs tracking-widest uppercase">
+                        What Wick adds
+                      </h3>
+                      <p className="font-display text-secondary text-lg leading-snug font-bold">
+                        What to do when you see it happen to someone else
+                      </p>
+                    </Tile>
+                  </div>
+                </section>
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Framework</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Built on the Five Ds of bystander intervention
                       </h2>
@@ -330,7 +296,6 @@ export default function WickProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Design Decisions</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
                         Five decisions that defined the experience
                       </h2>
@@ -346,32 +311,29 @@ export default function WickProject() {
                         </>
                       }
                     />
-
-                    <Reveal delay={0.1} className="mt-8">
-                      <div className="bg-primary border-accent-blue/10 rounded-2xl border p-6 lg:p-8">
-                        <h3 className="font-body text-secondary/50 mb-5 text-xs tracking-widest uppercase">
-                          Keyboard controls
-                        </h3>
-                        <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                          {shortcuts.map((s) => (
-                            <div key={s.key} className="flex items-center gap-3">
-                              <dt>
-                                <kbd className="bg-accent-blue/10 border-accent-blue/20 text-accent-blue font-display inline-flex min-w-11 justify-center rounded-md border px-2.5 py-1.5 text-sm font-bold">
-                                  {s.key}
-                                </kbd>
-                              </dt>
-                              <dd className="font-body text-secondary/80 text-sm">{s.action}</dd>
-                            </div>
-                          ))}
-                        </dl>
-                      </div>
-                    </Reveal>
                   </div>
                 </section>
                 <section className="bg-primary py-16 lg:py-24">
-                  <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-2 lg:px-12">
-                    <Reveal>
-                      <Eyebrow>How We Worked</Eyebrow>
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Every path through Wick
+                      </h2>
+                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
+                        New visitors pass through Welcome, Access, and Awareness before they
+                        reach the Grove. Every role-play starts with a content note, and
+                        users can step out of the Clearing at any point.
+                      </p>
+                    </Reveal>
+
+                    <Reveal delay={0.1}>
+                      <WickUserFlow />
+                    </Reveal>
+                  </div>
+                </section>
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                  <div className="container mx-auto px-6 lg:px-12">
+                    <Reveal className="mb-12 max-w-3xl">
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Contract-first collaboration
                       </h2>
@@ -383,24 +345,9 @@ export default function WickProject() {
                       </p>
                     </Reveal>
 
-                    <Tile
-                      delay={0.1}
-                      className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
-                    >
-                      <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
-                        Live stack
-                      </h3>
-                      <dl className="space-y-4">
-                        {stack.map((item) => (
-                          <div key={item.label}>
-                            <dt className="text-secondary/50 text-xs tracking-wide uppercase">
-                              {item.label}
-                            </dt>
-                            <dd className="font-body text-secondary mt-0.5">{item.value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </Tile>
+                    <Reveal delay={0.1}>
+                      <WickStack />
+                    </Reveal>
                   </div>
                 </section>
               </>
@@ -413,31 +360,17 @@ export default function WickProject() {
               <>
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
-                    <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Results</Eyebrow>
-                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                        Two awards and a live app by morning
-                      </h2>
-                      <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Wick was live at wick.courses by the morning of judging. Anyone
-                        can open it and start a role-play without creating an account.
-                      </p>
-                    </Reveal>
-
-                    <ResearchStats stats={resultStats} />
-
-                    <Reveal delay={0.05} className="mt-16 mb-8">
+                    <Reveal className="mb-8">
                       <h3 className="font-display text-secondary text-xl font-bold lg:text-2xl">
                         What we shipped
                       </h3>
                     </Reveal>
-                    <FeatureGrid features={shipped} columns={2} />
+                    <FeatureGrid features={shipped} columns={3} />
                   </div>
                 </section>
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Reflection</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
                         What I took away
                       </h2>

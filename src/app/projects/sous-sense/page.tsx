@@ -4,9 +4,7 @@ import BackToProjects from "@/components/BackToProjects";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
-import Tile from "@/components/Tile";
-import Eyebrow from "@/components/Eyebrow";
-import ProjectOutcomes from "@/components/ProjectOutcomes";
+import ProjectSummary from "@/components/ProjectSummary";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
@@ -134,41 +132,11 @@ export default function SousSenseProject() {
         </FadeIn>
       </ProjectHero>
 
-      <section className="bg-primary py-16 lg:py-24">
-        <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <div className="space-y-10 lg:col-span-2">
-            <FadeIn>
-              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                Overview
-              </h2>
-              <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                {projectData.description}
-              </p>
-            </FadeIn>
-
-            <ProjectOutcomes items={outcomes} />
-          </div>
-
-          <Tile
-            delay={0.1}
-            className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
-          >
-            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
-              At a glance
-            </h3>
-            <dl className="space-y-4">
-              {atAGlance.map((item) => (
-                <div key={item.label}>
-                  <dt className="text-secondary/50 text-xs tracking-wide uppercase">
-                    {item.label}
-                  </dt>
-                  <dd className="font-body text-secondary mt-0.5">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </Tile>
-        </div>
-      </section>
+      <ProjectSummary
+        overview={projectData.description}
+        glance={atAGlance}
+        outcomes={outcomes}
+      />
 
       <SectionTabs
         tabs={[
@@ -180,7 +148,9 @@ export default function SousSenseProject() {
                 <div className="container mx-auto px-6 lg:px-12">
                   <div className="mb-12 grid items-center gap-10 lg:grid-cols-2">
                     <Reveal>
-                      <Eyebrow>The Challenge</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Smart fridges solve food waste at $2,500
+                      </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         American households throw away about $1,500 worth of food
                         every year. Small restaurants lose even more, sometimes over
@@ -228,7 +198,6 @@ export default function SousSenseProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Research</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Mapping the market
                       </h2>
@@ -249,7 +218,6 @@ export default function SousSenseProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Key Insights</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
                         Five findings informed the product strategy
                       </h2>
@@ -273,7 +241,6 @@ export default function SousSenseProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-8 max-w-3xl">
-                      <Eyebrow>Projected Outcome</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Financial model validation
                       </h2>
@@ -319,7 +286,6 @@ export default function SousSenseProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn>
-                      <Eyebrow>Branding</Eyebrow>
                       <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-stretch lg:gap-12 xl:gap-16">
                         <div className="max-w-xl xl:max-w-2xl">
                           <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
@@ -356,7 +322,6 @@ export default function SousSenseProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn>
-                      <Eyebrow>Advertising</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Consumer launch posters
                       </h2>
@@ -390,7 +355,6 @@ export default function SousSenseProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn>
-                      <Eyebrow>Revenue</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Hardware plus subscription pricing
                       </h2>
@@ -460,9 +424,8 @@ export default function SousSenseProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <FadeIn>
-                      <Eyebrow>Tools & Technologies</Eyebrow>
                       <h2 className="font-display text-secondary mb-8 text-2xl font-bold lg:text-3xl">
-                        What I used
+                        Tools and technologies
                       </h2>
                       <div className="flex flex-wrap gap-3">
                         {tools.map((tool, index) => (

@@ -7,9 +7,8 @@ import NeuralMap from "@/components/NeuralMap";
 import type { NeuralMapNode } from "@/components/NeuralMap";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
-import Eyebrow from "@/components/Eyebrow";
 import ResearchPinboard from "@/components/ResearchPinboard";
-import ProjectOutcomes from "@/components/ProjectOutcomes";
+import ProjectSummary from "@/components/ProjectSummary";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
@@ -237,42 +236,11 @@ export default function ArchLogProject() {
       </div>
       */}
 
-      {/* Overview + At a glance */}
-      <section className="bg-primary py-16 lg:py-24">
-        <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <div className="space-y-10 lg:col-span-2">
-            <Reveal>
-              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                Overview
-              </h2>
-              <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                {projectData.description}
-              </p>
-            </Reveal>
-
-            <ProjectOutcomes items={outcomes} />
-          </div>
-
-          <Tile
-            delay={0.1}
-            className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
-          >
-            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
-              At a glance
-            </h3>
-            <dl className="space-y-4">
-              {atAGlance.map((item) => (
-                <div key={item.label}>
-                  <dt className="text-secondary/50 text-xs tracking-wide uppercase">
-                    {item.label}
-                  </dt>
-                  <dd className="font-body text-secondary mt-0.5">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </Tile>
-        </div>
-      </section>
+      <ProjectSummary
+        overview={projectData.description}
+        glance={atAGlance}
+        outcomes={outcomes}
+      />
 
       <SectionTabs
         tabs={[
@@ -284,7 +252,9 @@ export default function ArchLogProject() {
                 <div className="container mx-auto px-6 lg:px-12">
                   <div className="mb-12 grid items-center gap-10 lg:grid-cols-2">
                     <Reveal>
-                      <Eyebrow>The Challenge</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Studio decisions get lost before critique
+                      </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Across studio environments, students struggle to initiate and
                         structure their process. Once they&apos;ve started, there&apos;s
@@ -311,7 +281,6 @@ export default function ArchLogProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Research</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         A mixed-method approach
                       </h2>
@@ -333,7 +302,6 @@ export default function ArchLogProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Key Insights</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
                         Five findings clarified the problem
                       </h2>
@@ -354,7 +322,6 @@ export default function ArchLogProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Scope Refinement</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Narrowing seven concepts to one
                       </h2>
@@ -462,7 +429,6 @@ export default function ArchLogProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Product Tour</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Designed for the studio desk
                       </h2>
@@ -504,7 +470,6 @@ export default function ArchLogProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Solution</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         ArchLog captures the move and the reasoning together
                       </h2>
@@ -521,9 +486,8 @@ export default function ArchLogProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>What We Recommend</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        For studios, beyond the tool
+                        What we recommend for studios
                       </h2>
                     </Reveal>
 

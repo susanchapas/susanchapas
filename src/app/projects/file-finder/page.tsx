@@ -8,9 +8,8 @@ import NeuralMap from "@/components/NeuralMap";
 import type { NeuralMapNode } from "@/components/NeuralMap";
 import Reveal from "@/components/Reveal";
 import Tile from "@/components/Tile";
-import Eyebrow from "@/components/Eyebrow";
 import ImageSlot from "@/components/ImageSlot";
-import ProjectOutcomes from "@/components/ProjectOutcomes";
+import ProjectSummary from "@/components/ProjectSummary";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
 import ResearchStats from "@/components/ResearchStats";
@@ -268,41 +267,11 @@ export default function FileFinderProject() {
         </FadeIn>
       </ProjectHero>
 
-      <section className="bg-primary py-16 lg:py-24">
-        <div className="container mx-auto grid gap-12 px-6 lg:grid-cols-3 lg:px-12">
-          <div className="space-y-10 lg:col-span-2">
-            <Reveal>
-              <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                Overview
-              </h2>
-              <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                {projectData.description}
-              </p>
-            </Reveal>
-
-            <ProjectOutcomes items={outcomes} />
-          </div>
-
-          <Tile
-            delay={0.1}
-            className="bg-accent-blue/5 border-accent-blue/10 rounded-2xl border p-6"
-          >
-            <h3 className="font-display mb-5 text-sm tracking-widest uppercase" style={{ color: 'var(--accent-lime)' }}>
-              At a glance
-            </h3>
-            <dl className="space-y-4">
-              {atAGlance.map((item) => (
-                <div key={item.label}>
-                  <dt className="text-secondary/50 text-xs tracking-wide uppercase">
-                    {item.label}
-                  </dt>
-                  <dd className="font-body text-secondary mt-0.5">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </Tile>
-        </div>
-      </section>
+      <ProjectSummary
+        overview={projectData.description}
+        glance={atAGlance}
+        outcomes={outcomes}
+      />
 
       <SectionTabs
         tabs={[
@@ -314,7 +283,9 @@ export default function FileFinderProject() {
                 <div className="container mx-auto px-6 lg:px-12">
                   <div className="mb-12 grid items-center gap-10 lg:grid-cols-2">
                     <Reveal>
-                      <Eyebrow>The Challenge</Eyebrow>
+                      <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
+                        Files that are hard to find mid-lecture
+                      </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Prof. S manages materials across different classes and semesters.
                         His files are color-coded by class in Google Drive, but there
@@ -345,7 +316,6 @@ export default function FileFinderProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Research</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Two methods, two perspectives
                       </h2>
@@ -374,7 +344,6 @@ export default function FileFinderProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Key Themes</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
                         Five themes from the affinity map
                       </h2>
@@ -389,7 +358,6 @@ export default function FileFinderProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Design Opportunities</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Five opportunities from the research
                       </h2>
@@ -414,7 +382,6 @@ export default function FileFinderProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>Product Tour</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Designed for the teaching desk
                       </h2>
@@ -478,7 +445,6 @@ export default function FileFinderProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>The Solution</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Three design concepts for a flexible resource system
                       </h2>
@@ -511,7 +477,6 @@ export default function FileFinderProject() {
                 <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>System Strengths</Eyebrow>
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         What the system does well
                       </h2>
@@ -528,9 +493,8 @@ export default function FileFinderProject() {
                 <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
-                      <Eyebrow>What We Recommend</Eyebrow>
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
-                        For educators, beyond the tool
+                        What we recommend for educators
                       </h2>
                     </Reveal>
 
