@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import BackToProjects from "@/components/BackToProjects";
 import AccessibleButton from "@/components/AccessibleButton";
@@ -21,7 +22,7 @@ const projectData = {
   subtitle:
     "Practice before the moment asks you to act: an AI bystander-intervention coach",
   description:
-    "Most harassment training covers how to recognize harassment, how to report it, and how to avoid doing it yourself. It does not teach what to do when you see it happen to someone else, so in the moment most people freeze. Wick is an AI bystander-intervention coach. You pick a campus scenario, rehearse stepping in through live voice or text role-play with AI characters who push back, and then get calm, specific coaching on what you said. Our team of three built it in 24 hours at GirlHacks (NJIT).",
+    "The mandatory harassment training at work and school teaches three things: how not to cause harm, how to recognize harassment, and how to report it. Almost none of it teaches what to do when you see harassment happen to someone else, so in the moment most people freeze. Wick is an AI bystander-intervention coach built to fill that need. You pick a campus scenario, rehearse stepping in through live voice or text role-play with AI characters who push back, and then get calm, specific coaching on what you said. Our team of three built it in 24 hours at GirlHacks (NJIT).",
   heroImage: "/assets/projects/wick/wick-hero-placeholder.svg",
   tags: [
     "UX Design",
@@ -70,9 +71,9 @@ const atAGlance = [
 ];
 
 const trainingCovers = [
-  "How to recognize harassment",
-  "How to report it",
-  "How to avoid doing it yourself",
+  { text: "How not to cause harm yourself", image: "/assets/projects/wick/wick-training.webp" },
+  { text: "How to recognize harassment", image: "/assets/projects/wick/wick-recognize.webp" },
+  { text: "How to report it", image: "/assets/projects/wick/wick-report.webp" },
 ];
 
 const fiveDs = [
@@ -207,16 +208,16 @@ export default function WickProject() {
                     <div className="grid items-center gap-12 lg:grid-cols-[3fr_2fr]">
                       <Reveal className="max-w-3xl">
                         <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
-                          People freeze because they never practice.
+                          Most people never get bystander training.
                         </h2>
                         <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                          Bystander-intervention training already exists. Most of it is
-                          lectures and slide decks that students sit through once and
-                          forget. Pilots train in simulators and athletes run drills before
-                          games, while students facing the hardest social moments of college
-                          get a one-hour video. Most people care about what is happening
-                          around them. What they lack is practice: they have never rehearsed
-                          what to say, so they freeze.
+                          The harassment training that schools and employers require is
+                          written for potential perpetrators and witnesses who report.
+                          Few people ever receive bystander-intervention training, and
+                          fewer still get to practice it. Most people care about what
+                          happens around them. They have never been taught or rehearsed
+                          what to say, so they freeze. Wick exists because nobody was
+                          filling that need.
                         </p>
                       </Reveal>
                       <BystanderAscii className="mx-auto max-w-md" />
@@ -235,49 +236,60 @@ export default function WickProject() {
             label: "Process",
             content: (
               <>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
                         Most training covers
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Existing bystander-intervention training explains the basics, but
-                        it rarely gives people a chance to practice responding in the
-                        moment.
+                        Mandatory training at work and school sticks to the same three
+                        topics. None of them prepare a bystander to step in while
+                        harassment is happening.
                       </p>
                     </Reveal>
 
-                    <ol className="mb-6 grid gap-6 md:grid-cols-3">
+                    <ul className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:gap-10">
                       {trainingCovers.map((item, i) => (
-                        <li key={item}>
+                        <li key={item.text}>
                           <Tile
                             delay={i * 0.08}
-                            className="bg-primary border-accent-blue/10 h-full rounded-2xl border p-7"
+                            className="bg-primary border-accent-blue/10 relative flex aspect-square items-end justify-center overflow-hidden rounded-2xl border p-5 text-center"
                           >
-                            <span
+                            <Image
+                              src={item.image}
+                              alt=""
+                              fill
+                              sizes="(min-width: 640px) 25vw, 50vw"
+                              className="object-cover"
+                            />
+                            <div
                               aria-hidden="true"
-                              className="bg-accent-blue/10 text-accent-blue font-display mb-4 flex h-10 w-10 items-center justify-center rounded-full font-bold"
-                            >
-                              {i + 1}
-                            </span>
-                            <p className="font-body text-secondary/80 text-lg">{item}</p>
+                              className="from-primary via-primary/60 absolute inset-0 bg-gradient-to-t to-transparent"
+                            />
+                            <p className="font-display text-secondary relative text-lg leading-snug font-bold lg:text-xl">
+                              {item.text}
+                            </p>
                           </Tile>
                         </li>
                       ))}
-                    </ol>
-
-                    <Tile className="border-accent-lime/50 rounded-2xl border-2 p-7">
-                      <h3 className="text-accent-lime font-body mb-2 text-xs tracking-widest uppercase">
-                        What Wick adds
-                      </h3>
-                      <p className="font-display text-secondary text-lg leading-snug font-bold">
-                        What to do when you see it happen to someone else
-                      </p>
-                    </Tile>
+                      <li>
+                        <Tile
+                          delay={trainingCovers.length * 0.08}
+                          className="border-accent-lime/50 flex aspect-square flex-col items-center justify-center rounded-2xl border-2 p-5 text-center"
+                        >
+                          <h3 className="text-accent-lime font-body mb-2 text-xs tracking-widest uppercase">
+                            What Wick adds
+                          </h3>
+                          <p className="font-display text-secondary text-lg leading-snug font-bold lg:text-xl">
+                            What to do when you see it happen to someone else
+                          </p>
+                        </Tile>
+                      </li>
+                    </ul>
                   </div>
                 </section>
-                <section className="bg-primary py-16 lg:py-24">
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
@@ -293,7 +305,7 @@ export default function WickProject() {
                     <FeatureGrid features={fiveDs} />
                   </div>
                 </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <h2 className="font-display text-secondary text-2xl font-bold lg:text-3xl">
@@ -313,7 +325,7 @@ export default function WickProject() {
                     />
                   </div>
                 </section>
-                <section className="bg-primary py-16 lg:py-24">
+                <section className="bg-accent-blue/5 py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
@@ -331,7 +343,7 @@ export default function WickProject() {
                     </Reveal>
                   </div>
                 </section>
-                <section className="bg-accent-blue/5 py-16 lg:py-24">
+                <section className="bg-primary py-16 lg:py-24">
                   <div className="container mx-auto px-6 lg:px-12">
                     <Reveal className="mb-12 max-w-3xl">
                       <h2 className="font-display text-secondary mb-6 text-2xl font-bold lg:text-3xl">
