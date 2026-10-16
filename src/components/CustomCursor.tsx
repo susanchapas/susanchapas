@@ -10,13 +10,12 @@ export default function CustomCursor() {
     if (!el) return;
 
     if (
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches ||
+      !window.matchMedia("(pointer: fine)").matches ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     )
       return;
     el.hidden = false;
+    document.documentElement.classList.add("custom-cursor");
 
     let frame = 0;
     const onMove = (e: MouseEvent) => {
@@ -52,6 +51,7 @@ export default function CustomCursor() {
 
     return () => {
       cancelAnimationFrame(frame);
+      document.documentElement.classList.remove("custom-cursor");
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
       window.removeEventListener("mousedown", onDown);
@@ -65,10 +65,8 @@ export default function CustomCursor() {
     <>
       <div ref={ref} className="cursor-dot" hidden aria-hidden="true" />
       <style jsx global>{`
-        @media (pointer: fine) {
-          * {
-            cursor: none !important;
-          }
+        .custom-cursor * {
+          cursor: none !important;
         }
 
         .cursor-dot {
