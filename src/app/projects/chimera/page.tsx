@@ -1,17 +1,17 @@
+import Image from "next/image";
 import BackToProjects from "@/components/BackToProjects";
 import FadeIn from "@/components/FadeIn";
 import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
-import Tile from "@/components/Tile";
 import ImageSlot from "@/components/ImageSlot";
 import ProjectSummary from "@/components/ProjectSummary";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
-import ResearchStats from "@/components/ResearchStats";
 import InsightGrid from "@/components/InsightGrid";
 import FeatureGrid from "@/components/FeatureGrid";
+import ChimeraUserFlow from "@/components/ChimeraUserFlow";
 // Interactive prototype preserved for future use:
 // import ChimeraPrototype from "@/components/ChimeraPrototype";
 import { ArrowRightIcon } from "@/components/Icons";
@@ -50,12 +50,6 @@ const atAGlance = [
   { label: "Team", value: "Solo designer" },
   { label: "Stakeholder", value: "Jay, the engineer who built the system" },
   { label: "Platform", value: "iOS, mobile-first" },
-];
-
-const researchStats = [
-  { value: "4", label: "Competitor apps benchmarked: Ring, Nest, Arlo, Eufy" },
-  { value: "10", label: "Usability heuristics applied to the existing app" },
-  { value: "4", label: "Core flows mapped and rebuilt end to end" },
 ];
 
 const competitors = [
@@ -197,7 +191,6 @@ const productScreens = [
   },
 ];
 
-
 export default function ChimeraProject() {
   return (
     <div className="">
@@ -269,12 +262,12 @@ export default function ChimeraProject() {
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Jay is a software engineer, and his camera system reflects that.
-                        The backend is reliable and capable. The mobile app he built
-                        for it grew feature by feature, so navigation and control
-                        became difficult to follow. Finding an event, scrubbing a timeline,
+                        The backend is reliable and capable. The mobile app he built for
+                        it grew feature by feature, so navigation and control became
+                        difficult to follow. Finding an event, scrubbing a timeline,
                         exporting a clip, and managing storage each sat in a separate part
-                        of the app, and the interface alternated between overloaded screens
-                        and functions placed two or three taps deep.
+                        of the app, and the interface alternated between overloaded
+                        screens and functions placed two or three taps deep.
                       </p>
                     </Reveal>
 
@@ -283,7 +276,11 @@ export default function ChimeraProject() {
                     </Reveal>
                   </div>
 
-                  <HowMightWe>rebuild Jay&apos;s camera app around the way he uses it, so live viewing, event retrieval, and exporting take fewer steps and less guesswork?</HowMightWe>
+                  <HowMightWe>
+                    rebuild Jay&apos;s camera app around the way he uses it, so live
+                    viewing, event retrieval, and exporting take fewer steps and less
+                    guesswork?
+                  </HowMightWe>
                 </div>
               </section>
             ),
@@ -308,16 +305,8 @@ export default function ChimeraProject() {
                       </p>
                     </Reveal>
 
-                    <ResearchStats stats={researchStats} />
-
                     <Reveal delay={0.1} className="mt-8">
-                      <ImageSlot
-                        src="/assets/projects/chimera/chimera-heuristic-eval.webp"
-                        alt="Heuristic evaluation flow map of Jay's camera app showing authentication, live feeds, scrubber, and data analysis"
-                        ratio="aspect-[16/9]"
-                        label="Heuristic evaluation in action"
-                        sizes="(min-width: 1024px) 75vw, 100vw"
-                      />
+                      <ChimeraUserFlow />
                     </Reveal>
                   </div>
                 </section>
@@ -345,61 +334,136 @@ export default function ChimeraProject() {
                       />
                     </Reveal>
 
-                    <div className="grid gap-6 md:grid-cols-2">
-                      {competitors.map((c, i) => (
-                        <Tile
-                          key={c.name}
-                          delay={(i % 2) * 0.08}
-                          className="group bg-primary border-accent-blue/10 hover:border-accent-lime/40 h-full rounded-2xl border p-7 transition-colors"
-                        >
-                          <div className="mb-4 flex items-baseline justify-between gap-3">
-                            <h3 className="font-display text-accent-blue group-hover:text-accent-lime text-lg font-bold transition-colors">
-                              {c.name}
-                            </h3>
-                            <span className="font-body text-secondary/50 text-xs">
-                              {c.style}
-                            </span>
-                          </div>
-                          <dl className="space-y-3">
-                            <div>
-                              <dt className="text-secondary/50 text-xs tracking-wide uppercase">
-                                Strengths
-                              </dt>
-                              <dd className="font-body text-secondary/80 mt-0.5 text-sm leading-relaxed">
-                                {c.strengths}
-                              </dd>
-                            </div>
-                            <div>
-                              <dt className="text-secondary/50 text-xs tracking-wide uppercase">
-                                Weaknesses
-                              </dt>
-                              <dd className="font-body text-secondary/80 mt-0.5 text-sm leading-relaxed">
-                                {c.weaknesses}
-                              </dd>
-                            </div>
-                            <div>
-                              <dt className="text-secondary/50 text-xs tracking-wide uppercase">
+                    <Reveal delay={0.08}>
+                      <div className="border-accent-blue/15 overflow-x-auto rounded-2xl border bg-[#06142b]">
+                        <table className="w-full min-w-225 border-collapse text-left">
+                          <caption className="sr-only">
+                            Competitive comparison of consumer home-security camera apps
+                          </caption>
+                          <thead className="bg-primary">
+                            <tr className="border-accent-blue/15 border-b">
+                              <th
+                                scope="col"
+                                className="font-body text-secondary/60 bg-primary sticky left-0 z-20 w-20 px-3 py-3 text-xs font-medium tracking-widest uppercase lg:static lg:w-36 lg:px-5 lg:py-4"
+                              >
+                                App
+                              </th>
+                              <th
+                                scope="col"
+                                className="font-body text-secondary/60 bg-primary w-48 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                              >
+                                Approach
+                              </th>
+                              <th
+                                scope="col"
+                                className="font-body text-secondary/60 bg-primary min-w-68 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                              >
+                                What works
+                              </th>
+                              <th
+                                scope="col"
+                                className="font-body text-secondary/60 bg-primary min-w-68 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                              >
+                                Trade-off
+                              </th>
+                              <th
+                                scope="col"
+                                className="font-body text-secondary/60 bg-primary w-44 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                              >
                                 Best for
-                              </dt>
-                              <dd className="font-body text-secondary mt-0.5 text-sm">
-                                {c.bestFor}
-                              </dd>
-                            </div>
-                          </dl>
-                        </Tile>
-                      ))}
-                    </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {competitors.map((c) => (
+                              <tr
+                                key={c.name}
+                                className="border-accent-blue/10 hover:bg-accent-blue/5 border-b last:border-b-0"
+                              >
+                                <th
+                                  scope="row"
+                                  className="font-display text-accent-blue sticky left-0 z-10 w-20 bg-[#06142b] px-3 py-3 text-base font-bold lg:static lg:w-36 lg:px-5 lg:py-5"
+                                >
+                                  {c.name === "Google Nest" ? (
+                                    <>
+                                      Google
+                                      <span className="lg:hidden">
+                                        <br />
+                                      </span>{" "}
+                                      Nest
+                                    </>
+                                  ) : (
+                                    c.name
+                                  )}
+                                </th>
+                                <td className="font-body text-secondary/65 px-5 py-3 text-sm leading-relaxed lg:py-5">
+                                  {c.style}
+                                </td>
+                                <td className="font-body text-secondary/80 px-5 py-3 text-sm leading-relaxed lg:py-5">
+                                  {c.strengths}
+                                </td>
+                                <td className="font-body text-secondary/80 px-5 py-3 text-sm leading-relaxed lg:py-5">
+                                  {c.weaknesses}
+                                </td>
+                                <td className="font-body text-secondary px-5 py-3 text-sm font-medium whitespace-nowrap lg:py-5">
+                                  {c.bestFor}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="font-body text-secondary/45 mt-3 text-xs lg:hidden">
+                        Scroll horizontally to compare all criteria.
+                      </p>
+                    </Reveal>
 
-                    <Reveal delay={0.1} className="mt-8">
-                      <div className="bg-primary border-accent-lime/50 rounded-2xl border-2 p-7 lg:p-8">
-                        <span className="text-accent-lime font-body text-xs tracking-widest uppercase">
-                          The pattern
+                    <Reveal
+                      delay={0.1}
+                      className="border-accent-blue/10 relative mt-10 overflow-hidden rounded-2xl border bg-[radial-gradient(rgba(187,205,243,0.18)_1px,transparent_1px)] bg-size-[18px_18px] px-4 pt-6 pb-28 sm:px-6 sm:pt-8 sm:pb-20 lg:px-12 lg:pt-10"
+                    >
+                      <div className="border-accent-blue/15 relative z-10 flex max-w-2xl items-start gap-3 rounded-[1.75rem] rounded-bl-md border bg-[#10264a] p-4 shadow-2xl shadow-black/40 sm:ml-[36%] sm:gap-4 sm:p-5 md:ml-[26%] lg:p-6">
+                        <div className="bg-accent-blue/25 relative size-12 shrink-0 overflow-hidden rounded-full">
+                          <Image
+                            src="/assets/misc/hero-portrait-768.webp"
+                            alt=""
+                            width={768}
+                            height={1004}
+                            sizes="108px"
+                            className="absolute -top-1 -left-10 w-27 max-w-none"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-body flex flex-wrap items-baseline gap-x-2">
+                            <span className="text-secondary font-bold">Susan Chapas</span>
+                            <span className="text-secondary/50">The pattern</span>
+                          </div>
+                          <p className="font-body text-secondary/90 mt-1 text-base leading-relaxed sm:text-lg lg:text-xl">
+                            No app handled both speed and clarity well, and the{" "}
+                            <span className="text-accent-lime">timeline</span> was
+                            consistently the interaction everyone relied on.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="absolute right-[45%] -bottom-20 w-72 sm:right-[60%] sm:-bottom-44 sm:w-xl md:right-[70%]">
+                        <span className="font-body absolute right-0 bottom-full mb-1.5 flex items-center gap-1 text-xs text-[#9747FF]">
+                          <svg
+                            viewBox="0 0 12 12"
+                            className="size-3 fill-current"
+                            aria-hidden
+                          >
+                            <path d="M6 0l2 2-2 2-2-2zM2 4l2 2-2 2-2-2zM10 4l2 2-2 2-2-2zM6 8l2 2-2 2-2-2z" />
+                          </svg>
+                          Dashboard / Original
                         </span>
-                        <p className="font-display text-secondary mt-3 text-xl leading-snug font-bold">
-                          No app handled both speed and clarity well, and the{" "}
-                          <span className="text-accent-lime">timeline</span> was consistently
-                          the interaction everyone relied on.
-                        </p>
+                        <Image
+                          src="/assets/projects/chimera/chimera%20og%20dashboard%20blurred.webp"
+                          alt=""
+                          width={5063}
+                          height={2413}
+                          sizes="(min-width: 640px) 576px, 288px"
+                          className="w-full border-t border-r border-[#9747FF] shadow-xl shadow-black/40"
+                        />
                       </div>
                     </Reveal>
                   </div>
@@ -412,14 +476,19 @@ export default function ChimeraProject() {
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Walking the existing flows identified five specific breakdowns
-                        behind the clutter. Five frictions came up repeatedly,
-                        and each one indicated a clear fix.
+                        behind the clutter. Five frictions came up repeatedly, and each
+                        one indicated a clear fix.
                       </p>
                     </Reveal>
 
                     <InsightGrid
                       items={frictions}
-                      thesis={<>The timeline was the answer. Anchor it across every flow and the friction disappears.</>}
+                      thesis={
+                        <>
+                          The timeline was the answer. Anchor it across every flow and the
+                          friction disappears.
+                        </>
+                      }
                     />
                   </div>
                 </section>

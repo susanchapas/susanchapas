@@ -1,33 +1,4 @@
-"use client";
-
-import { useId, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
-
-type Kind = "start" | "decision" | "screen" | "page";
-type Pt = [number, number];
-
-interface FlowNode {
-  id: string;
-  label: string[];
-  kind: Kind;
-  x: number;
-  y: number;
-}
-
-interface FlowEdge {
-  from: string;
-  to: string;
-  points: Pt[];
-  label?: string;
-  at?: Pt;
-  dashed?: boolean;
-  red?: boolean;
-}
-
-const W = 108;
-const H = 62;
-const D = 49;
+import UserFlow, { type FlowEdge, type FlowNode, type Journey } from "./UserFlow";
 
 const nodes: FlowNode[] = [
   { id: "home", label: ["wick.courses"], kind: "start", x: 117, y: 508 },
@@ -394,66 +365,14 @@ const edges: FlowEdge[] = [
   },
 ];
 
-const nodeById = Object.fromEntries(nodes.map((n) => [n.id, n]));
-
-function roundedPath(points: Pt[], r = 8) {
-  let d = `M${points[0][0]},${points[0][1]}`;
-  for (let i = 1; i < points.length - 1; i++) {
-    const [px, py] = points[i - 1];
-    const [x, y] = points[i];
-    const [nx, ny] = points[i + 1];
-    const r1 = Math.min(
-      r,
-      Math.hypot(x - px, y - py) / 2,
-      Math.hypot(nx - x, ny - y) / 2
-    );
-    const ax = x - Math.sign(x - px) * r1;
-    const ay = y - Math.sign(y - py) * r1;
-    const bx = x + Math.sign(nx - x) * r1;
-    const by = y + Math.sign(ny - y) * r1;
-    d += ` L${ax},${ay} Q${x},${y} ${bx},${by}`;
-  }
-  const [lx, ly] = points[points.length - 1];
-  return `${d} L${lx},${ly}`;
-}
-
-function arrowHead(points: Pt[], s = 6) {
-  const [px, py] = points[points.length - 2];
-  const [x, y] = points[points.length - 1];
-  const dx = Math.sign(x - px);
-  const dy = Math.sign(y - py);
-  return `M${x - dx * s - dy * s},${y - dy * s - dx * s} L${x},${y} L${x - dx * s + dy * s},${y - dy * s + dx * s}`;
-}
-
-function describe(id: string) {
-  const out = edges
-    .filter((e) => e.from === id)
-    .map((e) => `${e.label ? `${e.label} to ` : "to "}${nodeById[e.to].label.join(" ")}`);
-  const into = edges
-    .filter((e) => e.to === id)
-    .map(
-      (e) => `from ${nodeById[e.from].label.join(" ")}${e.label ? ` (${e.label})` : ""}`
-    );
-  return { out, into };
-}
-
-const fills: Record<Kind, { fill: string; stroke: string }> = {
+const fills = {
   start: { fill: "#ffffff", stroke: "#757575" },
   page: { fill: "#ffffff", stroke: "#757575" },
   screen: { fill: "#cdf4d3", stroke: "#66d575" },
   decision: { fill: "#ffecbd", stroke: "#ffcd29" },
 };
 
-const HIGHLIGHT = "#0d99ff";
-const BG = "#f4f4f4";
-const VIEW = { x: 40, y: 40, w: 1920, h: 720 };
-const FULL = `${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`;
-const ASPECT = 3 / 2;
-const CONTROL =
-  "bg-primary text-secondary hover:bg-accent-lime hover:text-primary absolute flex items-center justify-center rounded-full shadow-lg ring-2 ring-white transition disabled:pointer-events-none disabled:opacity-0";
-const ARROW = `${CONTROL} top-1/2 h-11 w-11 -translate-y-1/2`;
-
-const journeys = [
+const journeys: Journey[] = [
   {
     name: "First visit",
     steps: ["home", "new", "welcome", "access", "awareness", "grove"],
@@ -465,262 +384,18 @@ const journeys = [
   { name: "Find a trail", steps: ["grove", "trails", "studio", "trails", "note"] },
 ];
 
-function frame(id: string, w = 360) {
-  const { x, y } = nodeById[id];
-  const h = w / ASPECT;
-  return `${x - w / 2} ${y - h / 2} ${w} ${h}`;
-}
-
 export default function WickUserFlow() {
-  const [active, setActive] = useState<string | null>(null);
-  const [pinned, setPinned] = useState<string | null>(null);
-  const [journey, setJourney] = useState<number | null>(null);
-  const [step, setStep] = useState(0);
-  const reduce = useReducedMotion();
-  const path = journey !== null ? journeys[journey].steps : null;
-  const stepId = path?.[step];
-  const prevId = path?.[step - 1];
-  const stepLabel =
-    prevId && edges.find((e) => e.from === prevId && e.to === stepId)?.label;
-  const current = stepId ?? active ?? pinned;
-  const viewBox = stepId ? frame(stepId) : FULL;
-  const pick = (i: number | null) => {
-    setJourney(i);
-    setStep(0);
-  };
-  const go = (d: 1 | -1) => {
-    if (journey === null) return;
-    const next = step + d;
-    if (next >= 0 && next < journeys[journey].steps.length) return setStep(next);
-    const j = journey + d;
-    setJourney(j);
-    setStep(d > 0 ? 0 : journeys[j].steps.length - 1);
-  };
-  const info = current ? describe(current) : null;
-  const patternId = useId();
-  const togglePin = (id: string) => setPinned((p) => (p === id ? null : id));
-
-  const linked = new Set<string>();
-  if (current) {
-    linked.add(current);
-    edges.forEach((e) => {
-      if (e.from === current) linked.add(e.to);
-      if (e.to === current) linked.add(e.from);
-    });
-  }
-
   return (
-    <figure className="m-0">
-      <div className="mb-4 flex flex-wrap gap-2">
-        {journeys.map((j, i) => (
-          <button
-            key={j.name}
-            type="button"
-            aria-pressed={journey === i}
-            onClick={() => pick(i)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-              journey === i
-                ? "bg-accent-lime text-primary"
-                : "bg-accent-blue/10 text-accent-blue hover:bg-accent-blue/20"
-            }`}
-          >
-            {j.name}
-          </button>
-        ))}
-      </div>
-      <div className="border-accent-blue/10 relative overflow-hidden rounded-2xl border">
-        <motion.svg
-          initial={false}
-          animate={{ viewBox }}
-          transition={{ duration: reduce ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
-          viewBox={viewBox}
-          className="block aspect-[3/2] w-full md:aspect-[8/3]"
-          role="group"
-          aria-label="Wick user flow diagram"
-          onMouseLeave={() => setActive(null)}
-          style={{ fontFamily: "Inter, var(--font-dm), system-ui, sans-serif" }}
-        >
-          <defs>
-            <pattern id={patternId} width="16" height="16" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.9" fill="#d4d4d4" />
-            </pattern>
-          </defs>
-          <rect x="-2000" y="-2000" width="6000" height="5000" fill={BG} />
-          <rect
-            x="-2000"
-            y="-2000"
-            width="6000"
-            height="5000"
-            fill={`url(#${patternId})`}
-          />
-
-          {edges.map((e, i) => {
-            const on = !!current && (e.from === current || e.to === current);
-            const dim = !!current && !on;
-            const color = on ? HIGHLIGHT : e.red ? "#f24822" : "#757575";
-            return (
-              <g
-                key={i}
-                opacity={dim ? 0.15 : 1}
-                className="transition-opacity duration-200"
-                aria-hidden="true"
-              >
-                <path
-                  d={roundedPath(e.points)}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={on ? 2.5 : 2}
-                  strokeDasharray={e.dashed ? "8 5" : undefined}
-                />
-                <path
-                  d={arrowHead(e.points)}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={on ? 2.5 : 2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {e.label && e.at && (
-                  <text
-                    x={e.at[0]}
-                    y={e.at[1]}
-                    dy="0.35em"
-                    textAnchor="middle"
-                    fontSize="12"
-                    fill={on ? HIGHLIGHT : "#1e1e1e"}
-                    stroke={BG}
-                    strokeWidth="10"
-                    strokeLinejoin="round"
-                    paintOrder="stroke"
-                  >
-                    {e.label}
-                  </text>
-                )}
-              </g>
-            );
-          })}
-
-          {nodes.map((n) => {
-            const { fill, stroke } = fills[n.kind];
-            const on = current === n.id;
-            const dim = !!current && !linked.has(n.id);
-            return (
-              <g
-                key={n.id}
-                opacity={dim ? 0.3 : 1}
-                className="transition-opacity duration-200 outline-none"
-                tabIndex={0}
-                role="button"
-                aria-pressed={pinned === n.id}
-                aria-label={n.label.join(" ")}
-                onMouseEnter={() => setActive(n.id)}
-                onFocus={() => setActive(n.id)}
-                onBlur={() => setActive(null)}
-                onClick={() => togglePin(n.id)}
-                onKeyDown={(ev) => {
-                  if (ev.key === "Enter" || ev.key === " ") {
-                    ev.preventDefault();
-                    togglePin(n.id);
-                  }
-                  if (ev.key === "Escape") setPinned(null);
-                }}
-              >
-                {n.kind === "decision" ? (
-                  <rect
-                    x={n.x - D / Math.SQRT2}
-                    y={n.y - D / Math.SQRT2}
-                    width={D * Math.SQRT2}
-                    height={D * Math.SQRT2}
-                    rx="3"
-                    transform={`rotate(45 ${n.x} ${n.y})`}
-                    fill={fill}
-                    stroke={on ? HIGHLIGHT : stroke}
-                    strokeWidth="2"
-                  />
-                ) : (
-                  <rect
-                    x={n.x - W / 2}
-                    y={n.y - H / 2}
-                    width={W}
-                    height={H}
-                    rx={n.kind === "start" ? 30 : 2}
-                    fill={fill}
-                    stroke={on ? HIGHLIGHT : stroke}
-                    strokeWidth={on ? 3 : 2}
-                  />
-                )}
-                <text x={n.x} y={n.y} textAnchor="middle" fontSize="12" fill="#1e1e1e">
-                  {n.label.map((line, i) => (
-                    <tspan
-                      key={line}
-                      x={n.x}
-                      dy={i === 0 ? `${0.35 - (n.label.length - 1) * 0.6}em` : "1.2em"}
-                    >
-                      {line}
-                    </tspan>
-                  ))}
-                </text>
-              </g>
-            );
-          })}
-        </motion.svg>
-        {path && (
-          <>
-            <button
-              type="button"
-              aria-label="Show whole map"
-              onClick={() => pick(null)}
-              className="bg-primary/75 text-secondary hover:bg-accent-lime hover:text-primary absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full shadow-md ring-1 ring-white transition"
-            >
-              <Maximize2 className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              aria-label="Previous step"
-              disabled={journey === 0 && step === 0}
-              onClick={() => go(-1)}
-              className={`${ARROW} left-3`}
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next step"
-              disabled={journey === journeys.length - 1 && step === path.length - 1}
-              onClick={() => go(1)}
-              className={`${ARROW} right-3`}
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </>
-        )}
-      </div>
-      <figcaption
-        aria-live="polite"
-        className="font-body text-secondary/70 mt-4 min-h-12 text-sm leading-relaxed"
-      >
-        {path && stepId ? (
-          <>
-            <span className="text-secondary/50 block text-xs tracking-widest uppercase">
-              Step {step + 1} of {path.length}
-            </span>
-            <span className="text-secondary font-bold">
-              {nodeById[stepId].label.join(" ")}
-            </span>
-            {stepLabel && <span className="text-secondary/60"> · {stepLabel}</span>}
-          </>
-        ) : info && current ? (
-          <>
-            <span className="text-secondary font-bold">
-              {nodeById[current].label.join(" ")}
-            </span>
-            {info.into.length > 0 && <>. Reached {info.into.join(", ")}</>}
-            {info.out.length > 0 && <>. Leads {info.out.join(", ")}</>}.
-          </>
-        ) : (
-          "Select a step to trace its paths, or pick a journey to walk through the flow one step at a time. Green steps are main app screens, yellow steps are decisions, and dashed lines are sidebar links."
-        )}
-      </figcaption>
-    </figure>
+    <UserFlow
+      nodes={nodes}
+      edges={edges}
+      journeys={journeys}
+      fills={fills}
+      view={{ x: 40, y: 40, w: 1920, h: 720 }}
+      size={{ w: 108, h: 62 }}
+      label="Wick user flow diagram"
+      legend="Select a step to trace its paths, or pick a journey to walk through the flow one step at a time. Green steps are main app screens, yellow steps are decisions, and dashed lines are sidebar links."
+      className="aspect-[3/2] md:aspect-[8/3]"
+    />
   );
 }
