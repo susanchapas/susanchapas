@@ -61,10 +61,10 @@ describe("Home Page", () => {
     expect(screen.getByText(/beyond the/i)).toBeInTheDocument();
   });
 
-  it("renders the selected work section", () => {
+  it("renders the projects section", () => {
     render(<Home />);
 
-    expect(screen.getByText(/Selected Work/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Projects" })).toBeInTheDocument();
   });
 
   it("has accessible navigation links", () => {

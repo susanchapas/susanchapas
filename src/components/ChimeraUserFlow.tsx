@@ -103,6 +103,20 @@ const nodes: FlowNode[] = [
     y: 672,
     of: "stats",
   },
+  {
+    id: "noexport",
+    label: [
+      "No indicator of",
+      "export times or",
+      "confirmation, must",
+      "stay on screen to",
+      "finish process",
+    ],
+    kind: "issue",
+    x: 1765,
+    y: 604,
+    of: "wait",
+  },
 ];
 
 const straight = (
@@ -233,7 +247,7 @@ export default function ChimeraUserFlow() {
       size={{ w: 96, h: 96 }}
       zoom={520}
       label="Heuristic evaluation flow map of Jay's camera app"
-      legend="Select a step to trace its paths, or pick a flow to walk through it one step at a time. Blue steps are the main sections of the app, and red notes mark the friction we found."
+      legend="Select a step to trace its paths, or pick a flow to walk through it one step at a time. Blue steps are the main sections of the app, and red notes mark the friction I found."
       className="aspect-[3/2] md:aspect-[5/2]"
     />
   );

@@ -42,9 +42,9 @@ describe("Navigation", () => {
   it("contains navigation links", () => {
     render(<Navigation />);
 
-    expect(screen.getAllByText(/Home/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/About/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Projects/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /Home/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /About/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /Projects/i }).length).toBeGreaterThan(0);
   });
 
   it("has accessible mobile menu button", () => {

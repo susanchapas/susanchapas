@@ -399,9 +399,9 @@ export default function ChimeraProject() {
                         A heuristic-first approach
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        We benchmarked four leading consumer camera apps, then ran a
+                        I benchmarked four leading consumer camera apps, then ran a
                         heuristic evaluation of Jay&apos;s app against established
-                        usability principles. We mapped every core flow, live viewing,
+                        usability principles. I mapped every core flow, live viewing,
                         event retrieval, clip creation, and data management, to pin down
                         where the friction was.
                       </p>
@@ -420,7 +420,7 @@ export default function ChimeraProject() {
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Ring, Google Nest, Arlo, and Eufy each solve the same problem in a
-                        different way. Studying their choices showed us what users already
+                        different way. Studying their choices showed me what users already
                         expect from a camera app and where every one of them leaves room
                         to do better.
                       </p>
@@ -470,11 +470,11 @@ export default function ChimeraProject() {
                             {competitors.map((c) => (
                               <tr
                                 key={c.name}
-                                className="border-accent-blue/20 border-b last:border-b-0 hover:bg-accent-blue/5"
+                                className="border-accent-blue/20 hover:bg-accent-blue/5 border-b last:border-b-0"
                               >
                                 <th
                                   scope="row"
-                                  className="font-display text-secondary sticky left-0 z-10 w-20 bg-[color-mix(in_srgb,var(--accent-blue)_5%,var(--primary))] lg:bg-transparent px-3 py-3 text-base font-bold lg:static lg:w-36 lg:px-5 lg:py-5"
+                                  className="font-display text-secondary sticky left-0 z-10 w-20 bg-[color-mix(in_srgb,var(--accent-blue)_5%,var(--primary))] px-3 py-3 text-base font-bold lg:static lg:w-36 lg:bg-transparent lg:px-5 lg:py-5"
                                 >
                                   {c.name === "Google Nest" ? (
                                     <>
@@ -516,7 +516,7 @@ export default function ChimeraProject() {
                     >
                       <div
                         aria-hidden
-                        className="bg-[#cfe6ff]/50 pointer-events-none absolute inset-0 z-5"
+                        className="pointer-events-none absolute inset-0 z-5 bg-[#cfe6ff]/50"
                       />
                       <div className="relative mx-auto grid max-w-5xl gap-2 sm:grid-cols-2 lg:gap-3">
                         {compApps.map((app) => (
@@ -525,7 +525,7 @@ export default function ChimeraProject() {
                             aria-label={app.name}
                             className="relative rounded-md border border-black/10 bg-white px-2 pt-7 pb-3 shadow-black/15 transition duration-200 ease-out hover:z-1 hover:scale-[1.02] hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:scale-100 sm:px-3"
                           >
-                            <span className="font-body bg-black/5 text-black/60 absolute top-1.5 left-2 rounded-sm px-1.5 py-0.5 text-[10px]">
+                            <span className="font-body absolute top-1.5 left-2 rounded-sm bg-black/5 px-1.5 py-0.5 text-[10px] text-black/60">
                               {app.name}
                             </span>
                             <div className="flex items-start gap-2 sm:gap-3">
@@ -571,9 +571,9 @@ export default function ChimeraProject() {
                           <div
                             key={note.text}
                             aria-hidden
-                            className={`border-black/10 absolute z-2 flex w-[min(60%,16rem)] items-start gap-2 rounded-2xl rounded-bl-sm border bg-white p-2 shadow-xl shadow-black/15 transition duration-200 ease-out hover:scale-105 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:scale-100 sm:p-2.5 ${note.className}`}
+                            className={`absolute z-2 flex w-[min(60%,16rem)] items-start gap-2 rounded-2xl rounded-bl-sm border border-black/10 bg-white p-2 shadow-xl shadow-black/15 transition duration-200 ease-out hover:scale-105 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:scale-100 sm:p-2.5 ${note.className}`}
                           >
-                            <div className="bg-[#e5f4ff] relative size-6 shrink-0 overflow-hidden rounded-full">
+                            <div className="relative size-6 shrink-0 overflow-hidden rounded-full bg-[#e5f4ff]">
                               <Image
                                 src="/assets/misc/hero-portrait-768.webp"
                                 alt=""
@@ -584,13 +584,15 @@ export default function ChimeraProject() {
                               />
                             </div>
                             <div className="font-body min-w-0 text-[9px] leading-snug sm:text-[11px]">
-                              <span className="font-bold text-[#1e1e1e]">Susan Chapas</span>
+                              <span className="font-bold text-[#1e1e1e]">
+                                Susan Chapas
+                              </span>
                               <p className="mt-0.5 text-[#1e1e1e]/80">{note.text}</p>
                             </div>
                           </div>
                         ))}
-                        <div className="border-black/10 absolute top-1/2 left-1/2 z-10 flex w-[calc(100%-1rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 items-start gap-3 rounded-[1.75rem] rounded-bl-md border bg-white p-4 shadow-2xl shadow-black/15 transition duration-200 ease-out hover:scale-[1.02] hover:shadow-black/25 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:gap-4 sm:p-5 lg:p-6">
-                          <div className="bg-[#e5f4ff] relative size-12 shrink-0 overflow-hidden rounded-full">
+                        <div className="absolute top-1/2 left-1/2 z-10 flex w-[calc(100%-1rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 items-start gap-3 rounded-[1.75rem] rounded-bl-md border border-black/10 bg-white p-4 shadow-2xl shadow-black/15 transition duration-200 ease-out hover:scale-[1.02] hover:shadow-black/25 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:gap-4 sm:p-5 lg:p-6">
+                          <div className="relative size-12 shrink-0 overflow-hidden rounded-full bg-[#e5f4ff]">
                             <Image
                               src="/assets/misc/hero-portrait-768.webp"
                               alt=""
@@ -607,7 +609,7 @@ export default function ChimeraProject() {
                               </span>
                               <span className="text-[#1e1e1e]/50">The pattern</span>
                             </div>
-                            <p className="font-body mt-1 text-base text-[#1e1e1e]/90 leading-relaxed sm:text-lg lg:text-xl">
+                            <p className="font-body mt-1 text-base leading-relaxed text-[#1e1e1e]/90 sm:text-lg lg:text-xl">
                               No app handled both speed and clarity well, and the{" "}
                               <span className="text-[#007be5]">timeline</span> was
                               consistently the interaction everyone relied on.
@@ -658,7 +660,7 @@ export default function ChimeraProject() {
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Chimera is mobile-first. Jay checks his cameras from his phone, so
-                        we designed every flow for one-handed use on a small screen, with
+                        I designed every flow for one-handed use on a small screen, with
                         the timeline anchored where the thumb can reach it.
                       </p>
                     </Reveal>
@@ -687,7 +689,7 @@ export default function ChimeraProject() {
                         A dashboard that puts the timeline first
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        We rebuilt the app around a single dashboard hub. Four primary
+                        I rebuilt the app around a single dashboard hub. Four primary
                         actions sit one tap away, navigation depth drops, and viewing
                         stays cleanly separated from processing.
                       </p>
@@ -703,7 +705,7 @@ export default function ChimeraProject() {
                         Five principles guided every screen
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Each principle traces back to a friction we found, so the redesign
+                        Each principle traces back to a friction I found, so the redesign
                         stays accountable to the research at every step.
                       </p>
                     </Reveal>

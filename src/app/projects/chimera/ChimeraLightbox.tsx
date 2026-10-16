@@ -58,6 +58,25 @@ export default function ChimeraLightbox() {
             Chimera&apos;s Original Dashboard
           </span>
         </div>
+
+        <span
+          aria-hidden="true"
+          className="bg-accent-lime text-primary absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full shadow-lg ring-2 ring-black/20 transition-transform duration-500 ease-[var(--ease-liquid)] group-hover:scale-110"
+        >
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"
+            />
+          </svg>
+        </span>
       </button>
 
       {mounted &&

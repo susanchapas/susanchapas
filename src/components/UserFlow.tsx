@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useAnimate, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
 export type Pt = [number, number];
@@ -120,6 +120,7 @@ export default function UserFlow({
   const [journey, setJourney] = useState<number | null>(null);
   const [step, setStep] = useState(0);
   const reduce = useReducedMotion();
+  const [scope, animate] = useAnimate<SVGSVGElement>();
   const patternId = useId();
 
   const nodeById = Object.fromEntries(nodes.map((n) => [n.id, n]));
@@ -141,6 +142,12 @@ export default function UserFlow({
   const currentNode = current ? nodeById[current] : null;
   const viewBox = stepId ? frame(stepId) : `${view.x} ${view.y} ${view.w} ${view.h}`;
   const pick = (i: number | null) => {
+    if (!reduce && i !== null && i !== journey && journeys[i].steps[0] === stepId)
+      animate(
+        journeys[i].steps.map((id) => `[data-node="${id}"]`).join(","),
+        { scale: [1, 1.08, 1] },
+        { duration: 0.35, ease: "easeInOut" }
+      );
     setJourney(i);
     setStep(0);
   };
@@ -153,15 +160,19 @@ export default function UserFlow({
     setStep(d > 0 ? 0 : journeys[j].steps.length - 1);
   };
   const togglePin = (id: string) => setPinned((p) => (p === id ? null : id));
+  const touches = (e: FlowEdge) =>
+    !!current &&
+    (e.from === current || e.to === current) &&
+    (!path || path.some((id, k) => k > 0 && path[k - 1] === e.from && id === e.to));
 
   const linked = new Set<string>();
   if (currentNode) {
     linked.add(currentNode.id);
     if (currentNode.of) linked.add(currentNode.of);
     nodes.forEach((n) => n.of === currentNode.id && linked.add(n.id));
-    edges.forEach((e) => {
-      if (e.from === currentNode.id) linked.add(e.to);
-      if (e.to === currentNode.id) linked.add(e.from);
+    edges.filter(touches).forEach((e) => {
+      linked.add(e.from);
+      linked.add(e.to);
     });
   }
 
@@ -201,6 +212,7 @@ export default function UserFlow({
       </div>
       <div className="border-accent-blue/10 relative overflow-hidden rounded-2xl border">
         <motion.svg
+          ref={scope}
           initial={false}
           animate={{ viewBox }}
           transition={{ duration: reduce ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -282,7 +294,7 @@ export default function UserFlow({
           ))}
 
           {edges.map((e, i) => {
-            const on = !!current && (e.from === current || e.to === current);
+            const on = touches(e);
             const dim = !!current && !on;
             const color = on ? HIGHLIGHT : e.red ? "#f24822" : "#757575";
             return (
@@ -335,8 +347,9 @@ export default function UserFlow({
             return (
               <g
                 key={n.id}
+                data-node={n.id}
                 opacity={dim ? 0.3 : 1}
-                className="transition-opacity duration-200 outline-none"
+                className="origin-center transition-opacity duration-200 outline-none [transform-box:fill-box]"
                 tabIndex={0}
                 role="button"
                 aria-pressed={pinned === n.id}
