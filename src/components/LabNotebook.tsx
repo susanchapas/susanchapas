@@ -230,7 +230,10 @@ export default function LabNotebook({ projects }: { projects: Project[] }) {
                           key={a}
                           className="font-body text-secondary flex items-center gap-2 text-base"
                         >
-                          <Trophy className="text-accent-lime size-4 shrink-0" aria-hidden="true" />
+                          <Trophy
+                            className="text-accent-lime size-4 shrink-0"
+                            aria-hidden="true"
+                          />
                           {a}
                         </li>
                       ))}

@@ -40,9 +40,24 @@ const ffNodes: NeuralMapNode[] = [
 ];
 
 const ffEdges: [number, number][] = [
-  [0, 3], [0, 10], [1, 5], [1, 14], [2, 4], [2, 7], [3, 8], [3, 12],
-  [4, 9], [5, 6], [6, 7], [8, 9], [8, 12], [10, 14], [10, 13], [11, 1],
-  [11, 13], [12, 0],
+  [0, 3],
+  [0, 10],
+  [1, 5],
+  [1, 14],
+  [2, 4],
+  [2, 7],
+  [3, 8],
+  [3, 12],
+  [4, 9],
+  [5, 6],
+  [6, 7],
+  [8, 9],
+  [8, 12],
+  [10, 14],
+  [10, 13],
+  [11, 1],
+  [11, 13],
+  [12, 0],
 ];
 
 const ffTheme = {
@@ -74,8 +89,14 @@ export const metadata = pageMetadata({
 });
 
 const outcomes = [
-  { label: "Research synthesis", value: "5 affinity themes from interview and survey data" },
-  { label: "Design direction", value: "Tag-based retrieval replacing rigid folder hierarchy" },
+  {
+    label: "Research synthesis",
+    value: "5 affinity themes from interview and survey data",
+  },
+  {
+    label: "Design direction",
+    value: "Tag-based retrieval replacing rigid folder hierarchy",
+  },
   { label: "Key shift", value: "Organization moved to point of upload, not retrieval" },
 ];
 
@@ -83,7 +104,10 @@ const atAGlance = [
   { label: "My role", value: "UX Research & Product Design" },
   { label: "Team", value: "3 designers" },
   { label: "Timeline", value: "2 weeks" },
-  { label: "Methods", value: "Semi-structured interview, student survey, affinity mapping" },
+  {
+    label: "Methods",
+    value: "Semi-structured interview, student survey, affinity mapping",
+  },
 ];
 
 const researchStats = [
@@ -107,7 +131,7 @@ const themes = [
   },
   {
     title: "More structure increases time wasted.",
-    body: "Adding folders and \"best of\" collections only adds complexity. Reorganization attempts feel risky and unrewarding.",
+    body: 'Adding folders and "best of" collections only adds complexity. Reorganization attempts feel risky and unrewarding.',
   },
   {
     title: "His preferred mental model is already visible.",
@@ -191,7 +215,7 @@ const strengths = [
 const recommendations = [
   {
     title: "Organize by use",
-    body: "Let files exist in multiple places through tags and contextual grouping. A single \"correct\" location for a multipurpose document creates more problems than it solves.",
+    body: 'Let files exist in multiple places through tags and contextual grouping. A single "correct" location for a multipurpose document creates more problems than it solves.',
   },
   {
     title: "Reduce reliance on the instructor as intermediary",
@@ -288,13 +312,13 @@ export default function FileFinderProject() {
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         Prof. S manages materials across different classes and semesters.
-                        His files are color-coded by class in Google Drive, but there
-                        is no structure beyond that. Finding a specific resource means
+                        His files are color-coded by class in Google Drive, but there is
+                        no structure beyond that. Finding a specific resource means
                         remembering the file name, the folder, and which semester it came
-                        from. During lecture, searching for something takes long enough
-                        to interrupt the flow of class. Students depend on him to locate
-                        and interpret resources, which adds to his workload without
-                        making the next request any easier.
+                        from. During lecture, searching for something takes long enough to
+                        interrupt the flow of class. Students depend on him to locate and
+                        interpret resources, which adds to his workload without making the
+                        next request any easier.
                       </p>
                     </Reveal>
 
@@ -303,7 +327,9 @@ export default function FileFinderProject() {
                     </Reveal>
                   </div>
 
-                  <HowMightWe>let the system handle ambiguity so Prof. S doesn&apos;t have to?</HowMightWe>
+                  <HowMightWe>
+                    let the system handle ambiguity so Prof. S doesn&apos;t have to?
+                  </HowMightWe>
                 </div>
               </section>
             ),
@@ -322,10 +348,10 @@ export default function FileFinderProject() {
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         We ran a semi-structured interview with Prof. S to follow his
                         workflow and observe behaviors, emotional responses, and
-                        workarounds that would not appear in a structured format. We
-                        then surveyed current and former students via Google Forms to
-                        validate whether his problems were isolated or experienced
-                        across the board.
+                        workarounds that would not appear in a structured format. We then
+                        surveyed current and former students via Google Forms to validate
+                        whether his problems were isolated or experienced across the
+                        board.
                       </p>
                     </Reveal>
 
@@ -351,7 +377,14 @@ export default function FileFinderProject() {
 
                     <InsightGrid
                       items={themes}
-                      thesis={<>The core problem is <span className="text-accent-lime">retrieval</span>. His tools organize files by where they came from, which makes finding them later difficult.</>}
+                      thesis={
+                        <>
+                          The core problem is{" "}
+                          <span className="text-accent-lime">retrieval</span>. His tools
+                          organize files by where they came from, which makes finding them
+                          later difficult.
+                        </>
+                      }
                     />
                   </div>
                 </section>
@@ -387,9 +420,9 @@ export default function FileFinderProject() {
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         File Finder is desktop-first. Prof. S works from a laptop during
-                        lectures and office hours, so we built the Figma prototype for
-                        the screen he already uses. The layout stays calm and
-                        functional so finding a file takes seconds.
+                        lectures and office hours, so we built the Figma prototype for the
+                        screen he already uses. The layout stays calm and functional so
+                        finding a file takes seconds.
                       </p>
                     </Reveal>
 
@@ -449,10 +482,10 @@ export default function FileFinderProject() {
                         Three design concepts for a flexible resource system
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        File Finder organizes resources visually, by intent, topic,
-                        and reusability. It lets Prof. S find files dynamically and
-                        contextually. Students can also collaborate and find
-                        specific examples by searching for topics and keywords.
+                        File Finder organizes resources visually, by intent, topic, and
+                        reusability. It lets Prof. S find files dynamically and
+                        contextually. Students can also collaborate and find specific
+                        examples by searching for topics and keywords.
                       </p>
                     </Reveal>
 
@@ -481,9 +514,9 @@ export default function FileFinderProject() {
                         What the system does well
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        The system keeps class moving, freeing time and attention
-                        for learning. It lets Prof. S spend more time on
-                        higher-priority tasks.
+                        The system keeps class moving, freeing time and attention for
+                        learning. It lets Prof. S spend more time on higher-priority
+                        tasks.
                       </p>
                     </Reveal>
 

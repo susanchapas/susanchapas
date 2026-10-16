@@ -41,8 +41,11 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
   const navRef = useRef<HTMLDivElement | null>(null);
   const isScrollingRef = useRef(false);
   const tabsRef = useRef(tabs);
-  tabsRef.current = tabs;
   const rafRef = useRef(0);
+
+  useEffect(() => {
+    tabsRef.current = tabs;
+  }, [tabs]);
 
   const updateActive = useCallback(() => {
     if (isScrollingRef.current) return;
@@ -80,11 +83,15 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
     if (lenis) {
       lenis.scrollTo(target, {
         duration: 0.6,
-        onComplete: () => { isScrollingRef.current = false; },
+        onComplete: () => {
+          isScrollingRef.current = false;
+        },
       });
     } else {
       window.scrollTo({ top: target, behavior: "smooth" });
-      setTimeout(() => { isScrollingRef.current = false; }, 700);
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 700);
     }
   }
 
@@ -113,7 +120,9 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
               return (
                 <button
                   key={tab.id}
-                  ref={(el) => { tabRefs.current[i] = el; }}
+                  ref={(el) => {
+                    tabRefs.current[i] = el;
+                  }}
                   aria-current={selected ? "true" : undefined}
                   onClick={() => scrollToSection(tab.id)}
                   onKeyDown={(e) => handleKeyDown(e, i)}
@@ -141,7 +150,9 @@ export default function SectionTabs({ tabs }: { tabs: SectionTab[] }) {
       {tabs.map((tab, i) => (
         <div
           key={tab.id}
-          ref={(el) => { if (el) sectionRefs.current.set(tab.id, el); }}
+          ref={(el) => {
+            if (el) sectionRefs.current.set(tab.id, el);
+          }}
         >
           {i === 0 ? tab.content : <LazySection>{tab.content}</LazySection>}
         </div>

@@ -13,7 +13,10 @@ export default function Home() {
   return (
     <div className="bg-primary relative overflow-hidden">
       <div className="relative z-10">
-        <section id="hero" className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-[calc(4rem+1em)] pb-[max(2.5em,2.5rem)] lg:pt-[7em] lg:pb-[max(4em,2.5rem)] landscape:min-h-svh landscape:text-[min(1rem,2svh)]">
+        <section
+          id="hero"
+          className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-[calc(4rem+1em)] pb-[max(2.5em,2.5rem)] lg:pt-[7em] lg:pb-[max(4em,2.5rem)] landscape:min-h-svh landscape:text-[min(1rem,2svh)]"
+        >
           <HeroWater className="absolute inset-y-0 right-0 h-full w-full lg:w-[calc(100vw-80px)]" />
           <div className="animate-hero-enter relative z-10 container mx-auto max-w-7xl px-6 lg:px-12">
             <div className="@container relative">

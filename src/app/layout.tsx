@@ -7,7 +7,6 @@ import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import SiteChrome from "@/components/SiteChrome";
 import { baseOpenGraph, siteDescription, siteName, siteTitle } from "@/lib/metadata";
 
-
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
   subsets: ["latin"],

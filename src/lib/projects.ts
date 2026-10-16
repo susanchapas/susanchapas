@@ -78,7 +78,8 @@ export const projects: Project[] = [
     awards: ["Best Use of ElevenLabs", "Best Beginner Hack"],
     lab: {
       stage: 2,
-      question: "Can practicing out loud make it easier to step in when something goes wrong?",
+      question:
+        "Can practicing out loud make it easier to step in when something goes wrong?",
       reveal: "/assets/projects/wick/wick-grove.webp",
       cta: { label: "Try Wick", href: "https://www.wick.courses" },
     },
@@ -120,7 +121,8 @@ export const projects: Project[] = [
     badge: "In Progress",
     lab: {
       stage: 3,
-      question: "How do blind and low-vision people check what their AI glasses tell them?",
+      question:
+        "How do blind and low-vision people check what their AI glasses tell them?",
     },
   },
   {

@@ -23,7 +23,7 @@ export default function LazyIframe({
         tabIndex={revealed ? -1 : 0}
         className={`group absolute inset-0 z-20 flex items-center justify-center bg-[#253650] transition-opacity duration-300 hover:bg-[#2d405d] ${revealed ? "pointer-events-none opacity-0" : "opacity-100"}`}
       >
-        <span className="flex flex-col items-center gap-4 rounded-2xl border border-secondary/20 bg-primary/75 px-8 py-6 shadow-lg shadow-primary/30 transition-transform duration-300 group-hover:scale-105">
+        <span className="border-secondary/20 bg-primary/75 shadow-primary/30 flex flex-col items-center gap-4 rounded-2xl border px-8 py-6 shadow-lg transition-transform duration-300 group-hover:scale-105">
           <svg
             width="64"
             height="64"

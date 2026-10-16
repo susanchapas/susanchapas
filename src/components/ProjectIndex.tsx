@@ -58,7 +58,7 @@ export default function ProjectIndex({
             return (
               <li key={p.title} className="flex items-baseline gap-5">
                 <Icon
-                  className="text-[#7d9cd4] size-6 shrink-0 self-center"
+                  className="size-6 shrink-0 self-center text-[#7d9cd4]"
                   strokeWidth={2}
                   aria-hidden="true"
                 />
@@ -95,7 +95,11 @@ export default function ProjectIndex({
         className="absolute top-1/2 right-0 z-10 grid w-96 -translate-y-1/2"
       >
         {projects.map((p) => (
-          <div key={p.title} aria-hidden="true" className="invisible grid [grid-area:1/1]">
+          <div
+            key={p.title}
+            aria-hidden="true"
+            className="invisible grid [grid-area:1/1]"
+          >
             <ProjectCard {...p} index={0} />
           </div>
         ))}

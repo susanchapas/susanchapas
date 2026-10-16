@@ -13,7 +13,7 @@ export default function BystanderAscii({ className = "" }: { className?: string 
       className={`[container-type:inline-size] pointer-events-none w-full select-none ${className}`}
     >
       <div
-        className="relative font-mono leading-none [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
+        className="relative [mask-image:linear-gradient(to_bottom,black_70%,transparent)] font-mono leading-none"
         style={{
           fontSize: `calc(100cqw / ${BYSTANDER_COLS * 0.6})`,
           width: `${BYSTANDER_COLS * 0.6}em`,

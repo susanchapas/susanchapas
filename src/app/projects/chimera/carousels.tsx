@@ -63,7 +63,10 @@ export function PrinciplesCarousel({ items }: { items: Principle[] }) {
       renderSlide={(p, { index, count, direction }) => (
         <>
           <div className="flex flex-col items-center gap-6 lg:hidden">
-            <div className="shrink-0" style={{ height: "min(40vh, 380px)", aspectRatio: "9/19.5" }}>
+            <div
+              className="shrink-0"
+              style={{ height: "min(40vh, 380px)", aspectRatio: "9/19.5" }}
+            >
               <CarouselSlide slideKey={index} direction={direction}>
                 <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
               </CarouselSlide>
@@ -73,15 +76,22 @@ export function PrinciplesCarousel({ items }: { items: Principle[] }) {
                 <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
                   Principle {index + 1} of {count}
                 </span>
-                <h3 className="font-display text-secondary mb-3 text-xl font-bold">{p.name}</h3>
-                <p className="font-body text-secondary/70 max-w-lg text-base leading-relaxed">{p.body}</p>
+                <h3 className="font-display text-secondary mb-3 text-xl font-bold">
+                  {p.name}
+                </h3>
+                <p className="font-body text-secondary/70 max-w-lg text-base leading-relaxed">
+                  {p.body}
+                </p>
               </CarouselFade>
             </div>
           </div>
 
           <div className="border-accent-blue/10 hidden overflow-hidden rounded-2xl border lg:flex">
             <div className="bg-primary/60 border-accent-blue/10 flex items-center justify-center border-r px-8 py-8">
-              <div className="shrink-0" style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}>
+              <div
+                className="shrink-0"
+                style={{ height: "min(50vh, 480px)", aspectRatio: "9/19.5" }}
+              >
                 <CarouselSlide slideKey={index} direction={direction}>
                   <PhoneSlot src={p.src} alt={p.alt} label={p.name} />
                 </CarouselSlide>
@@ -93,8 +103,12 @@ export function PrinciplesCarousel({ items }: { items: Principle[] }) {
                   <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
                     Principle {index + 1} of {count}
                   </span>
-                  <h3 className="font-display text-secondary mb-3 text-2xl font-bold">{p.name}</h3>
-                  <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">{p.body}</p>
+                  <h3 className="font-display text-secondary mb-3 text-2xl font-bold">
+                    {p.name}
+                  </h3>
+                  <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">
+                    {p.body}
+                  </p>
                 </CarouselFade>
               </div>
             </div>
@@ -125,7 +139,12 @@ export function ProductTourCarousel({ items }: { items: ProductScreen[] }) {
         <>
           <div className="flex flex-col items-center gap-4 lg:hidden">
             <div className="flex w-full items-center justify-center gap-3">
-              <button type="button" onClick={prev} aria-label="Previous screen" className={arrowCls}>
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous screen"
+                className={arrowCls}
+              >
                 <ChevronLeftIcon className="h-4 w-4" />
               </button>
               <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-2xl">
@@ -144,7 +163,12 @@ export function ProductTourCarousel({ items }: { items: ProductScreen[] }) {
                   </div>
                 </CarouselSlide>
               </div>
-              <button type="button" onClick={next} aria-label="Next screen" className={arrowCls}>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next screen"
+                className={arrowCls}
+              >
                 <ChevronRightIcon className="h-4 w-4" />
               </button>
             </div>
@@ -154,14 +178,23 @@ export function ProductTourCarousel({ items }: { items: ProductScreen[] }) {
                 <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
                   {index + 1} of {count}
                 </span>
-                <h3 className="font-display text-secondary mb-2 text-xl font-bold">{screen.title}</h3>
-                <p className="font-body text-secondary/70 max-w-sm text-base leading-relaxed">{screen.description}</p>
+                <h3 className="font-display text-secondary mb-2 text-xl font-bold">
+                  {screen.title}
+                </h3>
+                <p className="font-body text-secondary/70 max-w-sm text-base leading-relaxed">
+                  {screen.description}
+                </p>
               </CarouselFade>
             </div>
           </div>
 
           <div className="hidden items-center gap-4 lg:flex">
-            <button type="button" onClick={prev} aria-label="Previous screen" className={arrowCls}>
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Previous screen"
+              className={arrowCls}
+            >
               <ChevronLeftIcon className="h-4 w-4" />
             </button>
             <div className="border-accent-blue/10 flex flex-1 overflow-hidden rounded-2xl border">
@@ -187,14 +220,23 @@ export function ProductTourCarousel({ items }: { items: ProductScreen[] }) {
                     <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
                       {index + 1} of {count}
                     </span>
-                    <h3 className="font-display text-secondary mb-3 text-2xl font-bold">{screen.title}</h3>
-                    <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">{screen.description}</p>
+                    <h3 className="font-display text-secondary mb-3 text-2xl font-bold">
+                      {screen.title}
+                    </h3>
+                    <p className="font-body text-secondary/70 max-w-lg text-lg leading-relaxed">
+                      {screen.description}
+                    </p>
                   </CarouselFade>
                 </div>
                 <div className="flex justify-center pt-4">{dots}</div>
               </div>
             </div>
-            <button type="button" onClick={next} aria-label="Next screen" className={arrowCls}>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next screen"
+              className={arrowCls}
+            >
               <ChevronRightIcon className="h-4 w-4" />
             </button>
           </div>

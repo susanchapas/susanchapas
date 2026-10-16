@@ -12,7 +12,7 @@ export default function HowMightWe({
   return (
     <Reveal delay={delay}>
       <div className="grid grid-cols-[auto_1fr] items-start gap-x-5">
-        <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
+        <div className="border-accent-lime mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2">
           <QuestionIcon className="text-accent-lime" />
         </div>
         <div>

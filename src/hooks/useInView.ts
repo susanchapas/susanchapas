@@ -1,18 +1,16 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { useReducedMotion } from "framer-motion";
 
 export function useInView(margin = "-40px 0px") {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setInView(true);
-      return;
-    }
+    if (!el || reduce) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -20,11 +18,11 @@ export function useInView(margin = "-40px 0px") {
           observer.unobserve(el);
         }
       },
-      { rootMargin: margin },
+      { rootMargin: margin }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [margin]);
+  }, [margin, reduce]);
 
-  return [ref, inView] as const;
+  return [ref, inView || !!reduce] as const;
 }

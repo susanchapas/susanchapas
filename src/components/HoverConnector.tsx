@@ -18,7 +18,9 @@ export function useConnector(active: number) {
 
   const measure = useCallback(() => {
     const root = rootRef.current?.getBoundingClientRect();
-    const slot = (slotRef.current?.firstElementChild ?? slotRef.current)?.getBoundingClientRect();
+    const slot = (
+      slotRef.current?.firstElementChild ?? slotRef.current
+    )?.getBoundingClientRect();
     const target = targetRefs.current[active]?.getBoundingClientRect();
     if (!root || !slot || !target || !slot.width) return setConnector(null);
     setConnector({

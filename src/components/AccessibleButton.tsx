@@ -15,7 +15,10 @@ interface ButtonProps
   href?: never;
 }
 
-interface LinkProps extends BaseProps, Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseProps | "href"> {
+interface LinkProps
+  extends
+    BaseProps,
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseProps | "href"> {
   href: string;
   external?: boolean;
 }

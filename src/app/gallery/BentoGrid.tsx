@@ -23,7 +23,10 @@ interface PlacedTile<T> {
   index: number;
 }
 
-function buildRows<T extends Sized>(artworks: readonly T[], containerWidth: number): PlacedTile<T>[][] {
+function buildRows<T extends Sized>(
+  artworks: readonly T[],
+  containerWidth: number
+): PlacedTile<T>[][] {
   if (containerWidth <= 0) return [];
   if (containerWidth < MOBILE_BREAKPOINT) {
     return artworks.map((art, index) => [

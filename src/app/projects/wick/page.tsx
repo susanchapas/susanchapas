@@ -49,7 +49,8 @@ const outcomes = [
   },
   {
     label: "Scope",
-    value: "Three campus scenarios, voice and text role-play, and a custom scenario studio",
+    value:
+      "Three campus scenarios, voice and text role-play, and a custom scenario studio",
   },
   {
     label: "Deliverables",
@@ -71,8 +72,14 @@ const atAGlance = [
 ];
 
 const trainingCovers = [
-  { text: "How not to cause harm yourself", image: "/assets/projects/wick/wick-training.webp" },
-  { text: "How to recognize harassment", image: "/assets/projects/wick/wick-recognize.webp" },
+  {
+    text: "How not to cause harm yourself",
+    image: "/assets/projects/wick/wick-training.webp",
+  },
+  {
+    text: "How to recognize harassment",
+    image: "/assets/projects/wick/wick-recognize.webp",
+  },
   { text: "How to report it", image: "/assets/projects/wick/wick-report.webp" },
 ];
 
@@ -212,19 +219,22 @@ export default function WickProject() {
                         </h2>
                         <p className="font-body text-secondary/80 text-lg leading-relaxed">
                           The harassment training that schools and employers require is
-                          written for potential perpetrators and witnesses who report.
-                          Few people ever receive bystander-intervention training, and
-                          fewer still get to practice it. Most people care about what
-                          happens around them. They have never been taught or rehearsed
-                          what to say, so they freeze. Wick exists because nobody was
-                          filling that need.
+                          written for potential perpetrators and witnesses who report. Few
+                          people ever receive bystander-intervention training, and fewer
+                          still get to practice it. Most people care about what happens
+                          around them. They have never been taught or rehearsed what to
+                          say, so they freeze. Wick exists because nobody was filling that
+                          need.
                         </p>
                       </Reveal>
                       <BystanderAscii className="mx-auto max-w-md" />
                     </div>
 
                     <div className="mt-12 max-w-3xl">
-                      <HowMightWe>give people a safe place to rehearse intervening under realistic pressure, with zero risk, until the response feels natural?</HowMightWe>
+                      <HowMightWe>
+                        give people a safe place to rehearse intervening under realistic
+                        pressure, with zero risk, until the response feels natural?
+                      </HowMightWe>
                     </div>
                   </div>
                 </section>
@@ -332,9 +342,9 @@ export default function WickProject() {
                         Every path through Wick
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        New visitors pass through Welcome, Access, and Awareness before they
-                        reach the Grove. Every role-play starts with a content note, and
-                        users can step out of the Clearing at any point.
+                        New visitors pass through Welcome, Access, and Awareness before
+                        they reach the Grove. Every role-play starts with a content note,
+                        and users can step out of the Clearing at any point.
                       </p>
                     </Reveal>
 
@@ -409,7 +419,11 @@ export default function WickProject() {
                       delay={0.1}
                       className="mt-12 flex flex-wrap justify-center gap-4"
                     >
-                      <AccessibleButton href="https://wick.courses" external variant="primary">
+                      <AccessibleButton
+                        href="https://wick.courses"
+                        external
+                        variant="primary"
+                      >
                         Try Wick
                         <ArrowRightIcon className="h-4 w-4" />
                       </AccessibleButton>

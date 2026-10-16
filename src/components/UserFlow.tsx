@@ -124,7 +124,8 @@ export default function UserFlow({
 
   const nodeById = Object.fromEntries(nodes.map((n) => [n.id, n]));
   const name = (id: string) => nodeById[id].label.join(" ");
-  const issuesOf = (id: string) => nodes.filter((n) => n.of === id).map((n) => name(n.id));
+  const issuesOf = (id: string) =>
+    nodes.filter((n) => n.of === id).map((n) => name(n.id));
   const frame = (id: string) => {
     const { x, y } = nodeById[id];
     const h = zoom / ASPECT;

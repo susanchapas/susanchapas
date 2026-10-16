@@ -39,9 +39,7 @@ export default function FadeIn({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let animationFrame: number | undefined;
     let releaseTimeout: number | undefined;
 
@@ -74,7 +72,7 @@ export default function FadeIn({
         // transitionend.
         releaseTimeout = window.setTimeout(
           releaseWillChange,
-          Math.max(0, delay) * 1000 + 800,
+          Math.max(0, delay) * 1000 + 800
         );
       });
     };
@@ -93,7 +91,7 @@ export default function FadeIn({
             observer.unobserve(el);
           }
         },
-        { rootMargin: `${margin} 0px` },
+        { rootMargin: `${margin} 0px` }
       );
       observer.observe(el);
       return () => {

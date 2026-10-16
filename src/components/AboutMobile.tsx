@@ -158,24 +158,16 @@ export default function AboutMobile() {
                 {...stagger(0.16)}
                 className="font-body text-secondary/70 mb-8 max-w-xl text-lg"
               >
-                I&apos;m an HCI student, front-end developer, and artist
-                based in Jersey City, looking for an internship where I can
-                apply all three. I enjoy every stage of a project:
-                understanding what people need, designing something that works
-                for everyone, then building and shipping it myself.
+                I&apos;m an HCI student, front-end developer, and artist based in Jersey
+                City, looking for an internship where I can apply all three. I enjoy every
+                stage of a project: understanding what people need, designing something
+                that works for everyone, then building and shipping it myself.
               </motion.p>
-              <motion.div
-                {...stagger(0.24)}
-                className="flex flex-wrap gap-4"
-              >
+              <motion.div {...stagger(0.24)} className="flex flex-wrap gap-4">
                 <AccessibleButton href="/projects" size="md">
                   View my work
                 </AccessibleButton>
-                <AccessibleButton
-                  href="/contact"
-                  variant="outline"
-                  size="md"
-                >
+                <AccessibleButton href="/contact" variant="outline" size="md">
                   Get in touch
                 </AccessibleButton>
               </motion.div>
@@ -247,16 +239,11 @@ export default function AboutMobile() {
                   aria-hidden="true"
                   className={`mb-5 h-1 w-12 rounded-full ${c.bar}`}
                 />
-                <c.Icon
-                  className="text-secondary/30 mb-4 h-6 w-6"
-                  aria-hidden="true"
-                />
+                <c.Icon className="text-secondary/30 mb-4 h-6 w-6" aria-hidden="true" />
                 <h3 className="font-display text-secondary mb-3 text-xl font-bold">
                   {c.title}
                 </h3>
-                <p className="text-secondary/70 font-body mb-6 flex-1">
-                  {c.body}
-                </p>
+                <p className="text-secondary/70 font-body mb-6 flex-1">{c.body}</p>
                 <ul className="flex flex-wrap gap-2">
                   {c.tags.map((t) => (
                     <li
@@ -306,9 +293,7 @@ export default function AboutMobile() {
                 <h3 className="font-display text-secondary mb-1 text-xl font-bold">
                   {s.degree}
                 </h3>
-                <p className="text-accent-blue font-body mb-4 font-medium">
-                  {s.school}
-                </p>
+                <p className="text-accent-blue font-body mb-4 font-medium">{s.school}</p>
                 <p className="text-secondary/70 font-body">{s.body}</p>
               </motion.article>
             ))}
@@ -339,10 +324,7 @@ export default function AboutMobile() {
                 {...stagger(i * 0.06)}
                 className={`border-accent-blue/10 hover:border-accent-blue/20 rounded-2xl border bg-white/[0.02] p-6 transition-colors ${p.span || ""}`}
               >
-                <p.Icon
-                  className={`mb-3 h-5 w-5 ${p.accent}`}
-                  aria-hidden="true"
-                />
+                <p.Icon className={`mb-3 h-5 w-5 ${p.accent}`} aria-hidden="true" />
                 <h3 className="font-display text-secondary mb-2 text-lg font-bold">
                   {p.title}
                 </h3>

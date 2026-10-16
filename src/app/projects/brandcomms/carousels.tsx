@@ -21,7 +21,12 @@ export function ScreenshotCarousel({ items }: { items: Screenshot[] }) {
       renderSlide={(slide, { index, count, direction }) => (
         <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
           <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <CarouselSlide slideKey={slide.src} direction={direction} offset={60} className="absolute inset-0">
+            <CarouselSlide
+              slideKey={slide.src}
+              direction={direction}
+              offset={60}
+              className="absolute inset-0"
+            >
               <Image
                 src={slide.src}
                 alt={slide.alt}
@@ -69,7 +74,12 @@ export function PersonaCarousel({ items }: { items: Persona[] }) {
       renderSlide={(persona, { index, count, direction }) => (
         <div className="bg-accent-blue/5 border-accent-blue/10 min-w-0 flex-1 overflow-hidden rounded-2xl border">
           <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <CarouselSlide slideKey={persona.image} direction={direction} offset={60} className="absolute inset-0">
+            <CarouselSlide
+              slideKey={persona.image}
+              direction={direction}
+              offset={60}
+              className="absolute inset-0"
+            >
               <Image
                 src={persona.image}
                 alt={`Persona sheet for ${persona.name}, ${persona.archetype}`}

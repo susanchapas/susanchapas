@@ -6,7 +6,7 @@ const CHIMERA_PROTOTYPE_URL =
 /** A responsive, lazy-loaded embed of the Chimera Figma prototype. */
 export default function ChimeraPrototype() {
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-secondary/10">
+    <div className="bg-secondary/10 relative aspect-video w-full overflow-hidden rounded-2xl">
       <LazyIframe
         className="h-full w-full"
         src={CHIMERA_PROTOTYPE_URL}

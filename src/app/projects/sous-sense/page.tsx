@@ -29,8 +29,14 @@ export const metadata = pageMetadata({
 });
 
 const outcomes = [
-  { label: "Deliverables", value: "Brand identity, packaging, advertising, and 24-page business plan" },
-  { label: "Revenue model", value: "Hardware + SaaS dual-revenue with projected Year 2 profitability" },
+  {
+    label: "Deliverables",
+    value: "Brand identity, packaging, advertising, and 24-page business plan",
+  },
+  {
+    label: "Revenue model",
+    value: "Hardware + SaaS dual-revenue with projected Year 2 profitability",
+  },
   { label: "Projected revenue", value: "$4.4M by Year 5 at 72.3% gross margin" },
 ];
 
@@ -85,7 +91,10 @@ const atAGlance = [
   { label: "My role", value: "Founder & Designer" },
   { label: "Team", value: "Solo" },
   { label: "Timeline", value: "Ongoing" },
-  { label: "Disciplines", value: "Brand identity, package design, advertising, business strategy" },
+  {
+    label: "Disciplines",
+    value: "Brand identity, package design, advertising, business strategy",
+  },
 ];
 
 const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma"];
@@ -93,7 +102,10 @@ const tools = ["Adobe Illustrator", "Procreate", "SCORE Financial Model", "Figma
 export default function SousSenseProject() {
   return (
     <div className="">
-      <ProjectHero src="/assets/projects/sous-sense/peppers.webp" alt="Sous Sense brand cover">
+      <ProjectHero
+        src="/assets/projects/sous-sense/peppers.webp"
+        alt="Sous Sense brand cover"
+      >
         <FadeIn trigger="mount">
           <BackToProjects />
 
@@ -152,19 +164,18 @@ export default function SousSenseProject() {
                         Smart fridges solve food waste at $2,500
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        American households throw away about $1,500 worth of food
-                        every year. Small restaurants lose even more, sometimes over
-                        $100,000 annually from spoiled inventory. Smart refrigerators
-                        have the right technology for this problem. The issue is
-                        price: they start at $2,500, and you need to replace your
-                        whole appliance to get one.
+                        American households throw away about $1,500 worth of food every
+                        year. Small restaurants lose even more, sometimes over $100,000
+                        annually from spoiled inventory. Smart refrigerators have the
+                        right technology for this problem. The issue is price: they start
+                        at $2,500, and you need to replace your whole appliance to get
+                        one.
                       </p>
                       <p className="font-body text-secondary/80 mt-4 text-lg leading-relaxed">
                         The project scope covered the full product from concept to
-                        investor presentation: brand identity, packaging for both
-                        consumer and commercial kits, advertising posters, a 24-page
-                        business plan with five-year projections, and a 16-slide
-                        investor pitch deck.
+                        investor presentation: brand identity, packaging for both consumer
+                        and commercial kits, advertising posters, a 24-page business plan
+                        with five-year projections, and a 16-slide investor pitch deck.
                       </p>
                     </Reveal>
 
@@ -185,7 +196,10 @@ export default function SousSenseProject() {
                     </Reveal>
                   </div>
 
-                  <HowMightWe>bring smart-fridge sensing technology to any kitchen without requiring a full appliance replacement?</HowMightWe>
+                  <HowMightWe>
+                    bring smart-fridge sensing technology to any kitchen without requiring
+                    a full appliance replacement?
+                  </HowMightWe>
                 </div>
               </section>
             ),
@@ -202,12 +216,12 @@ export default function SousSenseProject() {
                         Mapping the market
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        Research started with U.S. food waste data and the smart
-                        home market. Three competitor categories were analyzed:
-                        smart refrigerator manufacturers, manual pantry tracking
-                        apps, and general-purpose IoT platforms. The goal was to
-                        identify the disconnect between available technology and
-                        the price point that makes it accessible.
+                        Research started with U.S. food waste data and the smart home
+                        market. Three competitor categories were analyzed: smart
+                        refrigerator manufacturers, manual pantry tracking apps, and
+                        general-purpose IoT platforms. The goal was to identify the
+                        disconnect between available technology and the price point that
+                        makes it accessible.
                       </p>
                     </Reveal>
 
@@ -264,13 +278,13 @@ export default function SousSenseProject() {
                     </div>
                     <Reveal>
                       <p className="font-body text-secondary/80 max-w-3xl text-lg leading-relaxed">
-                        The financial model projects $200K in first-year revenue
-                        growing to $4.4M by Year 5, with profitability beginning
-                        in Year 2. Revenue comes from two sources: one-time
-                        hardware sales that build the installed base, and recurring
-                        SaaS subscriptions that grow with it. The subscription side
-                        carries gross margins above 85%, creating stable,
-                        predictable cash flow as the customer base expands.
+                        The financial model projects $200K in first-year revenue growing
+                        to $4.4M by Year 5, with profitability beginning in Year 2.
+                        Revenue comes from two sources: one-time hardware sales that build
+                        the installed base, and recurring SaaS subscriptions that grow
+                        with it. The subscription side carries gross margins above 85%,
+                        creating stable, predictable cash flow as the customer base
+                        expands.
                       </p>
                     </Reveal>
                   </div>
@@ -292,26 +306,27 @@ export default function SousSenseProject() {
                             Building the kitchen assistant brand
                           </h2>
                           <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                            The name comes from &ldquo;sous chef,&rdquo; the second-in-command
-                            in a professional kitchen. The product works in the background,
-                            tracking inventory and freshness so the cook can focus on cooking.
-                            The wordmark is set in Rubik, a geometric sans-serif, with three
-                            sensor lines extending from the final &ldquo;e&rdquo; to represent
-                            the product&rsquo;s detection capability. The visual identity is
-                            built around three principles:
-                            future-forward confidence, trustworthiness, and quality. In practice,
-                            that means minimal layouts and specific performance statistics in
-                            every product claim, because restaurant managers make purchasing
-                            decisions based on numbers.
+                            The name comes from &ldquo;sous chef,&rdquo; the
+                            second-in-command in a professional kitchen. The product works
+                            in the background, tracking inventory and freshness so the
+                            cook can focus on cooking. The wordmark is set in Rubik, a
+                            geometric sans-serif, with three sensor lines extending from
+                            the final &ldquo;e&rdquo; to represent the product&rsquo;s
+                            detection capability. The visual identity is built around
+                            three principles: future-forward confidence, trustworthiness,
+                            and quality. In practice, that means minimal layouts and
+                            specific performance statistics in every product claim,
+                            because restaurant managers make purchasing decisions based on
+                            numbers.
                           </p>
                         </div>
-                        <div className="group relative aspect-[4/5] w-full max-w-sm shrink-0 overflow-hidden rounded-xl mx-auto lg:mx-0 lg:h-full lg:w-auto lg:max-w-none">
+                        <div className="group relative mx-auto aspect-[4/5] w-full max-w-sm shrink-0 overflow-hidden rounded-xl lg:mx-0 lg:h-full lg:w-auto lg:max-w-none">
                           <Image
                             src="/assets/projects/sous-sense/sous-sense-branding.png"
                             alt="Sous Sense visual identity showing the Rubik wordmark, sensor hardware, and color palette"
                             fill
                             sizes="(min-width: 1024px) 400px, 100vw"
-                            className="object-cover rounded-xl transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.02]"
+                            className="rounded-xl object-cover transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.02]"
                           />
                         </div>
                       </div>

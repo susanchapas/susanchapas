@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -42,8 +42,8 @@ function HoverAnimation() {
           <span className="font-body text-primary/50 text-[0.55rem] tracking-widest uppercase">
             Based in Jersey City
           </span>
-          <span className="font-display text-primary text-sm font-bold leading-tight">
-            Hi, I'm Susan
+          <span className="font-display text-primary text-sm leading-tight font-bold">
+            Hi, I&apos;m Susan
           </span>
         </motion.div>
 
@@ -59,7 +59,7 @@ function HoverAnimation() {
           }}
         >
           <span className="text-secondary/80 font-body block text-[0.65rem] leading-relaxed">
-            I'm a UX strategist, developer, and artist.
+            I&apos;m a UX strategist, developer, and artist.
           </span>
         </motion.div>
 
@@ -115,7 +115,7 @@ function GrabAnimation() {
         <span className="font-body text-primary/50 text-[0.55rem] tracking-widest uppercase">
           How I approach work
         </span>
-        <span className="font-display text-primary text-sm font-bold leading-tight">
+        <span className="font-display text-primary text-sm leading-tight font-bold">
           Designed for everyone
         </span>
       </motion.div>
@@ -137,7 +137,9 @@ function GrabAnimation() {
       >
         <span className="bg-sky-ink h-1 w-full rounded-full" />
         <span className="bg-primary/10 block h-5 w-full rounded-md" />
-        <span className="font-display text-primary/60 text-xs font-bold">Always learning</span>
+        <span className="font-display text-primary/60 text-xs font-bold">
+          Always learning
+        </span>
       </motion.div>
 
       <motion.svg
@@ -244,6 +246,8 @@ function ResetAnimation() {
 
 const ANIMATIONS = [HoverAnimation, GrabAnimation, ResetAnimation];
 
+const subscribeNoop = () => () => {};
+
 export default function PinboardDemo({
   open,
   onClose,
@@ -252,20 +256,22 @@ export default function PinboardDemo({
   onClose: () => void;
 }) {
   const reduce = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false
+  );
   const [step, setStep] = useState(0);
+  const [prevOpen, setPrevOpen] = useState(open);
+  if (open !== prevOpen) {
+    setPrevOpen(open);
+    if (!open) setStep(0);
+  }
   const closeRef = useRef<HTMLButtonElement>(null);
   const restoreRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!open) {
-      setStep(0);
-      return;
-    }
+    if (!open) return;
     restoreRef.current = document.activeElement as HTMLElement | null;
     const root = document.documentElement;
     const prevHtml = root.style.overflow;

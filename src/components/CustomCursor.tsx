@@ -66,7 +66,9 @@ export default function CustomCursor() {
       <div ref={ref} className="cursor-dot" hidden aria-hidden="true" />
       <style jsx global>{`
         @media (pointer: fine) {
-          * { cursor: none !important; }
+          * {
+            cursor: none !important;
+          }
         }
 
         .cursor-dot {
@@ -83,23 +85,31 @@ export default function CustomCursor() {
           border-radius: 50%;
           opacity: 0;
           will-change: transform;
-          transition: width .2s, height .2s, margin .2s, opacity .15s;
+          transition:
+            width 0.2s,
+            height 0.2s,
+            margin 0.2s,
+            opacity 0.15s;
         }
 
         .cursor-dot::after {
-          content: '';
+          content: "";
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           width: 40px;
           height: 40px;
-          border: 2px solid rgb(111 205 157 / .5);
+          border: 2px solid rgb(111 205 157 / 0.5);
           border-radius: 50%;
-          transition: width .2s, height .2s;
+          transition:
+            width 0.2s,
+            height 0.2s;
         }
 
-        .cursor-dot.visible { opacity: 1; }
+        .cursor-dot.visible {
+          opacity: 1;
+        }
 
         .cursor-dot.hovering {
           width: 48px;

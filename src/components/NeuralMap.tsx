@@ -36,7 +36,8 @@ interface Props {
 
 function mulberry32(seed: number) {
   return () => {
-    seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
     let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -77,9 +78,7 @@ export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
   const initPos = computeInitPos(nodes.length);
 
   const svgRef = useRef<SVGSVGElement>(null);
-  const pos = useRef<Pt[]>(
-    initPos.map((p) => ({ ...p, vx: 0, vy: 0 }))
-  );
+  const pos = useRef<Pt[]>(initPos.map((p) => ({ ...p, vx: 0, vy: 0 })));
   const dragging = useRef<number | null>(null);
   const anchors = useRef<(null | { x: number; y: number })[]>(nodes.map(() => null));
   const raf = useRef(0);
@@ -134,72 +133,78 @@ export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
       if (!el) return;
       const on = h === i;
       const near = h !== null && adj[h]?.has(i);
-      el.setAttribute("stroke", on ? t.highlight : near ? `${t.highlight}80` : `${t.edge}4D`);
+      el.setAttribute(
+        "stroke",
+        on ? t.highlight : near ? `${t.highlight}80` : `${t.edge}4D`
+      );
       el.setAttribute("stroke-width", on ? "2.5" : near ? "2" : "1");
     });
   }, [adj, edges, nodes, t.edge, t.highlight]);
 
-  const step = useCallback(() => {
-    const n = pos.current;
-    const f = n.map(() => ({ x: 0, y: 0 }));
+  const step = useCallback(
+    function step() {
+      const n = pos.current;
+      const f = n.map(() => ({ x: 0, y: 0 }));
 
-    for (let i = 0; i < n.length; i++) {
-      for (let j = i + 1; j < n.length; j++) {
-        const dx = n[j].x - n[i].x;
-        const dy = n[j].y - n[i].y;
-        const d2 = dx * dx + dy * dy || 1;
-        const d = Math.sqrt(d2);
-        const isDragged = dragging.current === i || dragging.current === j;
-        const fr = (isDragged ? REPEL * 6 : REPEL) / d2;
-        f[i].x -= (dx / d) * fr;
-        f[i].y -= (dy / d) * fr;
-        f[j].x += (dx / d) * fr;
-        f[j].y += (dy / d) * fr;
+      for (let i = 0; i < n.length; i++) {
+        for (let j = i + 1; j < n.length; j++) {
+          const dx = n[j].x - n[i].x;
+          const dy = n[j].y - n[i].y;
+          const d2 = dx * dx + dy * dy || 1;
+          const d = Math.sqrt(d2);
+          const isDragged = dragging.current === i || dragging.current === j;
+          const fr = (isDragged ? REPEL * 6 : REPEL) / d2;
+          f[i].x -= (dx / d) * fr;
+          f[i].y -= (dy / d) * fr;
+          f[j].x += (dx / d) * fr;
+          f[j].y += (dy / d) * fr;
+        }
       }
-    }
 
-    for (const [a, b] of edges) {
-      const dx = n[b].x - n[a].x;
-      const dy = n[b].y - n[a].y;
-      const d = Math.sqrt(dx * dx + dy * dy) || 1;
-      const fa = ATTRACT * d;
-      f[a].x += (dx / d) * fa;
-      f[a].y += (dy / d) * fa;
-      f[b].x -= (dx / d) * fa;
-      f[b].y -= (dy / d) * fa;
-    }
-
-    let moving = false;
-    for (let i = 0; i < n.length; i++) {
-      f[i].x += (VW / 2 - n[i].x) * CTR;
-      f[i].y += (VH / 2 - n[i].y) * CTR;
-      if (n[i].x < PAD) f[i].x += (PAD - n[i].x) * 0.15;
-      if (n[i].x > VW - PAD) f[i].x += (VW - PAD - n[i].x) * 0.15;
-      if (n[i].y < PAD) f[i].y += (PAD - n[i].y) * 0.15;
-      if (n[i].y > VH - PAD) f[i].y += (VH - PAD - n[i].y) * 0.15;
-      const anchor = anchors.current[i];
-      if (anchor) {
-        f[i].x = (anchor.x - n[i].x) * 0.4;
-        f[i].y = (anchor.y - n[i].y) * 0.4;
+      for (const [a, b] of edges) {
+        const dx = n[b].x - n[a].x;
+        const dy = n[b].y - n[a].y;
+        const d = Math.sqrt(dx * dx + dy * dy) || 1;
+        const fa = ATTRACT * d;
+        f[a].x += (dx / d) * fa;
+        f[a].y += (dy / d) * fa;
+        f[b].x -= (dx / d) * fa;
+        f[b].y -= (dy / d) * fa;
       }
-      if (dragging.current === i) continue;
-      n[i].vx = (n[i].vx + f[i].x) * DAMP;
-      n[i].vy = (n[i].vy + f[i].y) * DAMP;
-      if (Math.abs(n[i].vx) < STOP) n[i].vx = 0;
-      if (Math.abs(n[i].vy) < STOP) n[i].vy = 0;
-      n[i].x += n[i].vx;
-      n[i].y += n[i].vy;
-      if (n[i].vx || n[i].vy) moving = true;
-    }
 
-    sync();
+      let moving = false;
+      for (let i = 0; i < n.length; i++) {
+        f[i].x += (VW / 2 - n[i].x) * CTR;
+        f[i].y += (VH / 2 - n[i].y) * CTR;
+        if (n[i].x < PAD) f[i].x += (PAD - n[i].x) * 0.15;
+        if (n[i].x > VW - PAD) f[i].x += (VW - PAD - n[i].x) * 0.15;
+        if (n[i].y < PAD) f[i].y += (PAD - n[i].y) * 0.15;
+        if (n[i].y > VH - PAD) f[i].y += (VH - PAD - n[i].y) * 0.15;
+        const anchor = anchors.current[i];
+        if (anchor) {
+          f[i].x = (anchor.x - n[i].x) * 0.4;
+          f[i].y = (anchor.y - n[i].y) * 0.4;
+        }
+        if (dragging.current === i) continue;
+        n[i].vx = (n[i].vx + f[i].x) * DAMP;
+        n[i].vy = (n[i].vy + f[i].y) * DAMP;
+        if (Math.abs(n[i].vx) < STOP) n[i].vx = 0;
+        if (Math.abs(n[i].vy) < STOP) n[i].vy = 0;
+        n[i].x += n[i].vx;
+        n[i].y += n[i].vy;
+        if (n[i].vx || n[i].vy) moving = true;
+      }
 
-    if (moving || dragging.current !== null) {
-      raf.current = requestAnimationFrame(step);
-    } else {
-      alive.current = false;
-    }
-  }, [edges, sync]);
+      sync();
+
+      if (moving || dragging.current !== null) {
+        raf.current = requestAnimationFrame(step);
+      } else {
+        alive.current = false;
+      }
+    },
+    [edges, sync]
+  );
 
   const wake = useCallback(() => {
     if (!alive.current) {
@@ -340,9 +345,18 @@ export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
       <button
         onClick={reset}
         aria-label="Reset neural map"
-        className="absolute top-2 right-2 z-10 flex h-7 w-7 items-center justify-center rounded-md bg-primary/60 backdrop-blur-sm text-secondary/50 hover:text-secondary hover:bg-primary/80 transition-colors"
+        className="bg-primary/60 text-secondary/50 hover:text-secondary hover:bg-primary/80 absolute top-2 right-2 z-10 flex h-7 w-7 items-center justify-center rounded-md backdrop-blur-sm transition-colors"
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M1 4v6h6" />
           <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
         </svg>
@@ -350,29 +364,25 @@ export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
       <svg
         ref={svgRef}
         viewBox={`0 0 ${VW} ${VH}`}
-        className="aspect-[4/3] w-full block select-none"
+        className="block aspect-[4/3] w-full select-none"
         style={{ touchAction: "none" }}
       >
         <defs>
-          {Array.from(
-            new Map(nodes.map((n) => [`${n.s}-${n.rx}`, n])).values()
-          ).map((n) => (
-            <clipPath key={`${n.s}-${n.rx}`} id={`nm-c${n.s}-${n.rx}`}>
-              <rect
-                x={-n.s / 2}
-                y={-n.s / 2}
-                width={n.s}
-                height={n.s}
-                rx={n.rx}
-              />
-            </clipPath>
-          ))}
+          {Array.from(new Map(nodes.map((n) => [`${n.s}-${n.rx}`, n])).values()).map(
+            (n) => (
+              <clipPath key={`${n.s}-${n.rx}`} id={`nm-c${n.s}-${n.rx}`}>
+                <rect x={-n.s / 2} y={-n.s / 2} width={n.s} height={n.s} rx={n.rx} />
+              </clipPath>
+            )
+          )}
         </defs>
 
         {edges.map(([a, b], idx) => (
           <line
             key={`${a}-${b}`}
-            ref={(el) => { edgeEls.current[idx] = el; }}
+            ref={(el) => {
+              edgeEls.current[idx] = el;
+            }}
             x1={n[a].x}
             y1={n[a].y}
             x2={n[b].x}
@@ -391,17 +401,14 @@ export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
           return (
             <g
               key={i}
-              ref={(el) => { nodeEls.current[i] = el; }}
+              ref={(el) => {
+                nodeEls.current[i] = el;
+              }}
               data-idx={i}
               transform={`translate(${n[i].x},${n[i].y})`}
               style={{ cursor: "grab" }}
             >
-              <circle
-                cx={0}
-                cy={0}
-                r={hs + 12}
-                fill="transparent"
-              />
+              <circle cx={0} cy={0} r={hs + 12} fill="transparent" />
 
               <g>
                 {!def.bare && (
@@ -436,7 +443,9 @@ export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
                       />
                     </g>
                     <rect
-                      ref={(el) => { borderEls.current[i] = el; }}
+                      ref={(el) => {
+                        borderEls.current[i] = el;
+                      }}
                       x={-hs}
                       y={-hs}
                       width={s}
@@ -455,7 +464,6 @@ export default function NeuralMap({ nodes, edges, theme: themeProp }: Props) {
             </g>
           );
         })}
-
       </svg>
     </div>
   );

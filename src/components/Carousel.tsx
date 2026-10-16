@@ -37,36 +37,26 @@ export function Carousel<T>({
   controlsClassName,
   className,
 }: CarouselProps<T>) {
-  const [active, setActive] = useState(0);
-  const dirRef = useRef(0);
+  const [{ active, direction }, setState] = useState({ active: 0, direction: 0 });
   const touchRef = useRef<number | null>(null);
 
-  const go = useCallback(
-    (i: number) => {
-      setActive((prev) => {
-        dirRef.current = i > prev ? 1 : -1;
-        return i;
-      });
-    },
-    [],
-  );
+  const go = useCallback((i: number) => {
+    setState(({ active }) => ({ active: i, direction: i > active ? 1 : -1 }));
+  }, []);
 
   const prev = useCallback(
     () =>
-      setActive((cur) => {
-        dirRef.current = -1;
-        return (cur - 1 + items.length) % items.length;
-      }),
-    [items.length],
+      setState(({ active }) => ({
+        active: (active - 1 + items.length) % items.length,
+        direction: -1,
+      })),
+    [items.length]
   );
 
   const next = useCallback(
     () =>
-      setActive((cur) => {
-        dirRef.current = 1;
-        return (cur + 1) % items.length;
-      }),
-    [items.length],
+      setState(({ active }) => ({ active: (active + 1) % items.length, direction: 1 })),
+    [items.length]
   );
 
   const onTouchStart = useCallback((e: React.TouchEvent) => {
@@ -80,7 +70,7 @@ export function Carousel<T>({
       if (Math.abs(delta) > 50) (delta < 0 ? next : prev)();
       touchRef.current = null;
     },
-    [next, prev],
+    [next, prev]
   );
 
   const touchProps = swipeable ? { onTouchStart, onTouchEnd } : {};
@@ -102,7 +92,15 @@ export function Carousel<T>({
   ));
 
   const dotsEl = <div className="flex gap-2">{dots}</div>;
-  const ctx: CarouselCtx = { index: active, count: items.length, direction: dirRef.current, prev, next, go, dots: dotsEl };
+  const ctx: CarouselCtx = {
+    index: active,
+    count: items.length,
+    direction,
+    prev,
+    next,
+    go,
+    dots: dotsEl,
+  };
 
   if (controlsLayout === "none") {
     return (
@@ -119,11 +117,21 @@ export function Carousel<T>({
     return (
       <div className={className} {...touchProps}>
         <div className="flex items-center gap-3">
-          <button type="button" onClick={prev} className={arrowCls} aria-label={`Previous ${ariaLabel}`}>
+          <button
+            type="button"
+            onClick={prev}
+            className={arrowCls}
+            aria-label={`Previous ${ariaLabel}`}
+          >
             <ChevronLeftIcon className="h-4 w-4 lg:h-5 lg:w-5" />
           </button>
           {renderSlide(items[active], ctx)}
-          <button type="button" onClick={next} className={arrowCls} aria-label={`Next ${ariaLabel}`}>
+          <button
+            type="button"
+            onClick={next}
+            className={arrowCls}
+            aria-label={`Next ${ariaLabel}`}
+          >
             <ChevronRightIcon className="h-4 w-4 lg:h-5 lg:w-5" />
           </button>
         </div>
@@ -138,13 +146,21 @@ export function Carousel<T>({
   return (
     <div className={`flex flex-col gap-6 ${className || ""}`} {...touchProps}>
       <div className="flex items-center gap-4">
-        <button type="button" onClick={prev} aria-label={`Previous ${ariaLabel}`} className={arrowCls}>
+        <button
+          type="button"
+          onClick={prev}
+          aria-label={`Previous ${ariaLabel}`}
+          className={arrowCls}
+        >
           <ChevronLeftIcon className="h-4 w-4" />
         </button>
-        <div className="min-w-0 flex-1">
-          {renderSlide(items[active], ctx)}
-        </div>
-        <button type="button" onClick={next} aria-label={`Next ${ariaLabel}`} className={arrowCls}>
+        <div className="min-w-0 flex-1">{renderSlide(items[active], ctx)}</div>
+        <button
+          type="button"
+          onClick={next}
+          aria-label={`Next ${ariaLabel}`}
+          className={arrowCls}
+        >
           <ChevronRightIcon className="h-4 w-4" />
         </button>
       </div>
@@ -177,7 +193,7 @@ export function CarouselSlide({
       // incoming slide.
       exit: (d: number) => ({ opacity: 0, x: d * -offset }),
     }),
-    [offset],
+    [offset]
   );
 
   return (

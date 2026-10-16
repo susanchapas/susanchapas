@@ -38,8 +38,16 @@ export default function ProjectCard({
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-30 opacity-0 transition-opacity duration-300 group-focus-within:opacity-100 group-hover:opacity-100"
     >
-      {["-top-1 -left-1", "-top-1 -right-1", "-bottom-1 -left-1", "-bottom-1 -right-1"].map((pos) => (
-        <span key={pos} className={`absolute ${pos} size-2 border border-[#0d99ff] bg-white`} />
+      {[
+        "-top-1 -left-1",
+        "-top-1 -right-1",
+        "-bottom-1 -left-1",
+        "-bottom-1 -right-1",
+      ].map((pos) => (
+        <span
+          key={pos}
+          className={`absolute ${pos} size-2 border border-[#0d99ff] bg-white`}
+        />
       ))}
     </div>
   );
@@ -76,7 +84,10 @@ export default function ProjectCard({
           >
             <motion.div
               className="bg-accent-lime flex h-14 w-14 items-center justify-center rounded-full"
-              variants={{ rest: { scale: 0.6, opacity: 0 }, hover: { scale: 1, opacity: 1 } }}
+              variants={{
+                rest: { scale: 0.6, opacity: 0 },
+                hover: { scale: 1, opacity: 1 },
+              }}
               transition={SPRING_HOVER}
             >
               <ArrowRightIcon className="text-primary h-7 w-7" />
@@ -102,11 +113,15 @@ export default function ProjectCard({
           ))}
         </div>
 
-        <h3 className={`font-display text-secondary mb-3 text-2xl font-bold transition-colors duration-700 ease-[var(--ease-liquid)] line-clamp-2 lg:text-3xl ${!inactive ? "group-hover:text-accent-lime" : ""}`}>
+        <h3
+          className={`font-display text-secondary mb-3 line-clamp-2 text-2xl font-bold transition-colors duration-700 ease-[var(--ease-liquid)] lg:text-3xl ${!inactive ? "group-hover:text-accent-lime" : ""}`}
+        >
           {title}
         </h3>
 
-        <p className="text-secondary/70 font-body line-clamp-2 min-h-[2lh]">{description}</p>
+        <p className="text-secondary/70 font-body line-clamp-2 min-h-[2lh]">
+          {description}
+        </p>
 
         {!inactive ? (
           <motion.div
@@ -118,9 +133,7 @@ export default function ProjectCard({
             <ArrowRightIcon className="h-4 w-4" />
           </motion.div>
         ) : (
-          <div className="text-secondary/40 mt-auto pt-6 font-medium">
-            Coming Soon
-          </div>
+          <div className="text-secondary/40 mt-auto pt-6 font-medium">Coming Soon</div>
         )}
       </div>
     </>
@@ -138,7 +151,7 @@ export default function ProjectCard({
       </div>
       {inactive ? (
         <div
-          className="bg-accent-blue/5 relative flex flex-1 flex-col overflow-hidden border border-secondary/15 group-hover:border-[#0d99ff] group-focus-within:border-[#0d99ff]"
+          className="bg-accent-blue/5 border-secondary/15 relative flex flex-1 flex-col overflow-hidden border group-focus-within:border-[#0d99ff] group-hover:border-[#0d99ff]"
           aria-label={`${title} — in progress`}
         >
           {content}

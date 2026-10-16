@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import AccessibleButton from "@/components/AccessibleButton";
 
-
 describe("AccessibleButton", () => {
   it("renders as a button by default", () => {
     render(<AccessibleButton>Click me</AccessibleButton>);

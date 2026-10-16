@@ -94,7 +94,12 @@ export function ChevronLeftIcon({ size = 20, className, ...props }: IconProps) {
       aria-hidden="true"
       {...props}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M15 19l-7-7 7-7"
+      />
     </svg>
   );
 }
@@ -111,7 +116,12 @@ export function ChevronRightIcon({ size = 20, className, ...props }: IconProps) 
       aria-hidden="true"
       {...props}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 5l7 7-7 7"
+      />
     </svg>
   );
 }

@@ -22,7 +22,7 @@ export function ProductTourCarousel({ items }: { items: ProductScreen[] }) {
         return (
           <div className="flex flex-col gap-6">
             <CarouselSlide slideKey={index} direction={direction}>
-              <div className="bg-accent-blue/5 overflow-hidden rounded-2xl ring-2 ring-accent-blue/0 transition-[ring-color] duration-700 ease-[var(--ease-liquid)]">
+              <div className="bg-accent-blue/5 ring-accent-blue/0 overflow-hidden rounded-2xl ring-2 transition-[ring-color] duration-700 ease-[var(--ease-liquid)]">
                 <Image
                   src={encodeURI(screen.src)}
                   alt={screen.alt}
@@ -41,7 +41,7 @@ export function ProductTourCarousel({ items }: { items: ProductScreen[] }) {
                 <h3 className="font-display text-secondary mb-1 text-lg font-bold">
                   {title}
                 </h3>
-                <p className="font-body text-secondary/60 max-w-lg whitespace-pre-line text-sm">
+                <p className="font-body text-secondary/60 max-w-lg text-sm whitespace-pre-line">
                   {description}
                 </p>
               </CarouselFade>

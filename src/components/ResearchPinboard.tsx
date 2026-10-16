@@ -6,14 +6,38 @@ import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 
 const items = [
-  { src: "/assets/projects/archlog/archlog-research/quote1.webp", alt: "Student quote about design process" },
-  { src: "/assets/projects/archlog/archlog-research/bar1.webp", alt: "Bar chart of survey responses" },
-  { src: "/assets/projects/archlog/archlog-research/pie-1.webp", alt: "Pie chart of design habits" },
-  { src: "/assets/projects/archlog/archlog-research/quote2.webp", alt: "Student quote about iteration" },
-  { src: "/assets/projects/archlog/archlog-research/bar2.webp", alt: "Bar chart of tool usage" },
-  { src: "/assets/projects/archlog/archlog-research/pie2.webp", alt: "Pie chart of process challenges" },
-  { src: "/assets/projects/archlog/archlog-research/quote3.webp", alt: "Student quote about critique prep" },
-  { src: "/assets/projects/archlog/archlog-research/bar3.webp", alt: "Bar chart of documentation habits" },
+  {
+    src: "/assets/projects/archlog/archlog-research/quote1.webp",
+    alt: "Student quote about design process",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-research/bar1.webp",
+    alt: "Bar chart of survey responses",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-research/pie-1.webp",
+    alt: "Pie chart of design habits",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-research/quote2.webp",
+    alt: "Student quote about iteration",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-research/bar2.webp",
+    alt: "Bar chart of tool usage",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-research/pie2.webp",
+    alt: "Pie chart of process challenges",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-research/quote3.webp",
+    alt: "Student quote about critique prep",
+  },
+  {
+    src: "/assets/projects/archlog/archlog-research/bar3.webp",
+    alt: "Bar chart of documentation habits",
+  },
 ];
 
 export default function ResearchPinboard() {
@@ -63,45 +87,59 @@ export default function ResearchPinboard() {
         </div>
       </div>
 
-      {selected !== null && createPortal(
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-10 lg:p-16"
-          >
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setSelected(null)} />
+      {selected !== null &&
+        createPortal(
+          <AnimatePresence>
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 200, damping: 24 }}
-              className="relative max-w-fit overflow-hidden rounded-2xl border border-accent-blue/30 bg-accent-blue/15 p-3 shadow-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-10 lg:p-16"
             >
-              <button
-                type="button"
+              <div
+                className="absolute inset-0 bg-black/70 backdrop-blur-sm"
                 onClick={() => setSelected(null)}
-                aria-label="Close"
-                className="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent-blue/30 text-white backdrop-blur transition-colors hover:bg-accent-blue/50"
-              >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 6l12 12M6 18L18 6" />
-                </svg>
-              </button>
-              <Image
-                src={items[selected].src}
-                alt={items[selected].alt}
-                width={1280}
-                height={800}
-                className="h-[350px] w-auto rounded-xl object-contain"
-                sizes="100vw"
               />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 200, damping: 24 }}
+                className="border-accent-blue/30 bg-accent-blue/15 relative max-w-fit overflow-hidden rounded-2xl border p-3 shadow-2xl"
+              >
+                <button
+                  type="button"
+                  onClick={() => setSelected(null)}
+                  aria-label="Close"
+                  className="bg-accent-blue/30 hover:bg-accent-blue/50 absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-white backdrop-blur transition-colors"
+                >
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 6l12 12M6 18L18 6"
+                    />
+                  </svg>
+                </button>
+                <Image
+                  src={items[selected].src}
+                  alt={items[selected].alt}
+                  width={1280}
+                  height={800}
+                  className="h-[350px] w-auto rounded-xl object-contain"
+                  sizes="100vw"
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </AnimatePresence>,
-        document.body
-      )}
+          </AnimatePresence>,
+          document.body
+        )}
     </div>
   );
 }

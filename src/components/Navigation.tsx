@@ -31,12 +31,16 @@ const toChild = (p: (typeof projects)[number]): NavChild => ({
 //   icon: FlaskConical,
 // };
 // const firstLab = navProjects.findIndex((p) => p.lab);
-const projectChildren: NavChild[] = navProjects
-  .filter((p) => !p.lab)
-  .map(toChild);
+const projectChildren: NavChild[] = navProjects.filter((p) => !p.lab).map(toChild);
 // .toSpliced(firstLab, 0, labFolder);
 
-function SocialLinks({ vertical = false, size = "sm" }: { vertical?: boolean; size?: "sm" | "md" }) {
+function SocialLinks({
+  vertical = false,
+  size = "sm",
+}: {
+  vertical?: boolean;
+  size?: "sm" | "md";
+}) {
   const iconClass = size === "md" ? "h-6 w-6" : "h-5 w-5";
   return (
     <div className={`flex ${vertical ? "flex-col" : ""} gap-4`}>
@@ -68,7 +72,9 @@ function SocialLinks({ vertical = false, size = "sm" }: { vertical?: boolean; si
 
 function NavName({ className }: { className: string }) {
   return (
-    <span className={`font-body text-accent-blue flex flex-col justify-center leading-[0.88] font-extrabold tracking-[-0.03em] whitespace-nowrap ${className}`}>
+    <span
+      className={`font-body text-accent-blue flex flex-col justify-center leading-[0.88] font-extrabold tracking-[-0.03em] whitespace-nowrap ${className}`}
+    >
       <span>susan</span>
       <span>chapas</span>
     </span>
@@ -85,7 +91,7 @@ function CopyButton({ pathname }: { pathname: string }) {
         setCopied(true);
         setTimeout(() => setCopied(false), 1500);
       }}
-      className="ml-2.5 shrink-0 inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-[inherit] leading-tight backdrop-blur-sm bg-white/[0.06] border border-white/[0.08] text-accent-lime/50 hover:text-accent-lime hover:bg-white/[0.1] transition-all"
+      className="text-accent-lime/50 hover:text-accent-lime ml-2.5 inline-flex shrink-0 items-center gap-1.5 rounded-md border border-white/[0.08] bg-white/[0.06] px-2.5 py-0.5 leading-tight text-[inherit] backdrop-blur-sm transition-all hover:bg-white/[0.1]"
       aria-label="Copy URL"
     >
       {copied ? (
@@ -95,7 +101,16 @@ function CopyButton({ pathname }: { pathname: string }) {
       ) : (
         <>
           <span>Copy</span>
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
             <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
           </svg>
@@ -153,7 +168,7 @@ export default function Navigation() {
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--nav-width",
-      expanded ? "220px" : "80px",
+      expanded ? "220px" : "80px"
     );
   }, [expanded]);
 
@@ -214,14 +229,12 @@ export default function Navigation() {
         <li key={child.path}>
           <div
             className={`flex items-center rounded transition-colors ${
-              childActive
-                ? "bg-accent-lime/10"
-                : "hover:bg-accent-blue/10"
+              childActive ? "bg-accent-lime/10" : "hover:bg-accent-blue/10"
             }`}
           >
             <Link
               href={child.path}
-              className={`flex flex-1 items-center gap-2 py-1.5 pr-3 font-body text-[15px] transition-colors ${
+              className={`font-body flex flex-1 items-center gap-2 py-1.5 pr-3 text-[15px] transition-colors ${
                 depth ? "pl-16" : "pl-12"
               } ${
                 childActive
@@ -230,7 +243,9 @@ export default function Navigation() {
               }`}
               aria-current={childActive ? "page" : undefined}
             >
-              {child.icon && <child.icon className="size-4 shrink-0" aria-hidden="true" />}
+              {child.icon && (
+                <child.icon className="size-4 shrink-0" aria-hidden="true" />
+              )}
               {child.name}
             </Link>
             {child.children && (
@@ -267,7 +282,7 @@ export default function Navigation() {
         <div className="flex items-center gap-2">
           <Link
             href={child.path}
-            className={`flex items-center gap-2 font-body text-lg transition-colors ${
+            className={`font-body flex items-center gap-2 text-lg transition-colors ${
               pathname === child.path
                 ? "text-accent-lime"
                 : "text-secondary/60 hover:text-secondary"
@@ -296,7 +311,7 @@ export default function Navigation() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="ml-6 mt-1 space-y-1 overflow-hidden"
+              className="mt-1 ml-6 space-y-1 overflow-hidden"
             >
               {renderMobileChildren(child.children)}
             </motion.ul>
@@ -349,17 +364,33 @@ export default function Navigation() {
           </Link>
           <button
             onClick={() => setExpanded(!expanded)}
-            className="group relative text-secondary/50 hover:text-accent-lime transition-colors"
+            className="group text-secondary/50 hover:text-accent-lime relative transition-colors"
             aria-label={expanded ? "Collapse menu" : "Expand menu"}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" />
-              <line x1="6" y1="10" x2="14" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <line
+                x1="6"
+                y1="10"
+                x2="14"
+                y2="10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
               {!expanded && (
-                <line x1="10" y1="6" x2="10" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line
+                  x1="10"
+                  y1="6"
+                  x2="10"
+                  y2="14"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               )}
             </svg>
-            <span className="bg-primary text-secondary pointer-events-none absolute left-8 top-1/2 -translate-y-1/2 rounded px-3 py-1 text-xs font-medium whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="bg-primary text-secondary pointer-events-none absolute top-1/2 left-8 -translate-y-1/2 rounded px-3 py-1 text-xs font-medium whitespace-nowrap opacity-0 transition-opacity group-hover:opacity-100">
               {expanded ? "Collapse Menu" : "Expand Menu"}
             </span>
           </button>
@@ -385,8 +416,7 @@ export default function Navigation() {
                   {navIcons.map((item) => {
                     const isProjects = item.href === "/projects";
                     const active = isProjects
-                      ? pathname === "/projects" ||
-                        pathname.startsWith("/projects/")
+                      ? pathname === "/projects" || pathname.startsWith("/projects/")
                       : pathname === item.href;
 
                     return (
@@ -395,9 +425,7 @@ export default function Navigation() {
                           <>
                             <div
                               className={`flex items-center rounded transition-colors ${
-                                active
-                                  ? "bg-accent-lime/10"
-                                  : "hover:bg-accent-blue/10"
+                                active ? "bg-accent-lime/10" : "hover:bg-accent-blue/10"
                               }`}
                             >
                               <Link
@@ -408,9 +436,7 @@ export default function Navigation() {
                                     : "text-secondary/70 hover:text-secondary"
                                 }`}
                                 aria-current={
-                                  pathname === "/projects"
-                                    ? "page"
-                                    : undefined
+                                  pathname === "/projects" ? "page" : undefined
                                 }
                               >
                                 <div className="relative h-[18px] w-[18px] shrink-0">
@@ -422,19 +448,13 @@ export default function Navigation() {
                                     className={`object-contain ${active ? "" : "opacity-50"}`}
                                   />
                                 </div>
-                                <span className="font-body text-[15px]">
-                                  /projects
-                                </span>
+                                <span className="font-body text-[15px]">/projects</span>
                               </Link>
                               <button
-                                onClick={() =>
-                                  setProjectsOpen(!projectsOpen)
-                                }
+                                onClick={() => setProjectsOpen(!projectsOpen)}
                                 className="text-secondary/40 hover:text-secondary ml-auto flex h-9 w-7 shrink-0 items-center justify-center pr-2 transition-colors"
                                 aria-label={
-                                  projectsOpen
-                                    ? "Collapse projects"
-                                    : "Expand projects"
+                                  projectsOpen ? "Collapse projects" : "Expand projects"
                                 }
                                 aria-expanded={projectsOpen}
                               >
@@ -464,14 +484,12 @@ export default function Navigation() {
                         ) : (
                           <Link
                             href={item.href}
-                            className={`flex items-center gap-3 rounded py-2 pl-3 pr-3 transition-colors ${
+                            className={`flex items-center gap-3 rounded py-2 pr-3 pl-3 transition-colors ${
                               active
                                 ? "bg-accent-lime/10 text-accent-lime"
                                 : "text-secondary/70 hover:bg-accent-blue/10 hover:text-secondary"
                             }`}
-                            aria-current={
-                              pathname === item.href ? "page" : undefined
-                            }
+                            aria-current={pathname === item.href ? "page" : undefined}
                           >
                             <div className="relative h-[18px] w-[18px] shrink-0">
                               <Image
@@ -553,7 +571,11 @@ export default function Navigation() {
           scrolled ? "glass" : "border-b border-transparent bg-transparent"
         }`}
       >
-        <Link href="/" className="flex items-center gap-2" aria-label="Susan Chapas - Home">
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          aria-label="Susan Chapas - Home"
+        >
           <Image
             src="/assets/misc/navbar-lilypad.svg"
             alt="Susan Chapas logo"
@@ -566,7 +588,10 @@ export default function Navigation() {
             {mobileOpen && (
               <motion.span
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 0.6, delay: 0.15, ease: "easeOut" } }}
+                animate={{
+                  opacity: 1,
+                  transition: { duration: 0.6, delay: 0.15, ease: "easeOut" },
+                }}
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
               >
                 <NavName className="h-8 text-[18px] min-[320px]:flex-row min-[320px]:items-center min-[320px]:gap-[0.25em] min-[320px]:text-[24px]" />
@@ -585,9 +610,7 @@ export default function Navigation() {
           <span
             className="block h-[2px] w-5 rounded-full bg-current transition-transform duration-300"
             style={
-              mobileOpen
-                ? { transform: "translateY(8px) rotate(45deg)" }
-                : undefined
+              mobileOpen ? { transform: "translateY(8px) rotate(45deg)" } : undefined
             }
           />
           <span
@@ -597,9 +620,7 @@ export default function Navigation() {
           <span
             className="block h-[2px] w-5 rounded-full bg-current transition-transform duration-300"
             style={
-              mobileOpen
-                ? { transform: "translateY(-8px) rotate(-45deg)" }
-                : undefined
+              mobileOpen ? { transform: "translateY(-8px) rotate(-45deg)" } : undefined
             }
           />
         </button>
@@ -646,13 +667,15 @@ export default function Navigation() {
                             <div className="flex items-center gap-2">
                               <Link
                                 href="/projects"
-                                className={`flex items-center gap-3 font-body text-2xl font-bold transition-colors ${
+                                className={`font-body flex items-center gap-3 text-2xl font-bold transition-colors ${
                                   active
                                     ? "text-accent-lime"
                                     : "text-secondary hover:text-accent-lime"
                                 }`}
                                 onClick={() => setMobileOpen(false)}
-                                aria-current={pathname === "/projects" ? "page" : undefined}
+                                aria-current={
+                                  pathname === "/projects" ? "page" : undefined
+                                }
                               >
                                 <div className="relative h-6 w-6 shrink-0">
                                   <Image
@@ -683,7 +706,7 @@ export default function Navigation() {
                                   animate={{ height: "auto", opacity: 1 }}
                                   exit={{ height: 0, opacity: 0 }}
                                   transition={{ duration: 0.2 }}
-                                  className="ml-8 mt-1 space-y-1 overflow-hidden"
+                                  className="mt-1 ml-8 space-y-1 overflow-hidden"
                                 >
                                   {renderMobileChildren(projectChildren)}
                                 </motion.ul>
@@ -693,7 +716,7 @@ export default function Navigation() {
                         ) : (
                           <Link
                             href={item.href}
-                            className={`flex items-center gap-3 font-body text-2xl font-bold transition-colors ${
+                            className={`font-body flex items-center gap-3 text-2xl font-bold transition-colors ${
                               active
                                 ? "text-accent-lime"
                                 : "text-secondary hover:text-accent-lime"

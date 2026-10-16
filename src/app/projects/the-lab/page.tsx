@@ -21,7 +21,8 @@ export default function LabPage() {
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: "radial-gradient(rgb(187 205 243 / 0.18) 1px, transparent 1px)",
+          backgroundImage:
+            "radial-gradient(rgb(187 205 243 / 0.18) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
         }}
       />

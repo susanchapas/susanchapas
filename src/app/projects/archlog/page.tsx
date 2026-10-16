@@ -23,28 +23,148 @@ import { pageMetadata } from "@/lib/metadata";
 const AB = "/assets/projects/archlog/ArchLog%20challenge%20pinboard";
 
 const archlogNodes: NeuralMapNode[] = [
-  { label: "To-Do", src: `${AB}/To-Do-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Render", src: `${AB}/building-render.webp`, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Sketch Paper", src: `${AB}/building-sketch-paper.webp`, s: 195, rx: 8, bare: true, z: 0 },
-  { label: "Building Sketch", src: `${AB}/building-sketch.webp`, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Site Photo", src: `${AB}/building-with-graffiti.webp`, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Cheesecloth", src: `${AB}/cheesecloth-texture.webp`, s: 165, rx: 8, bare: true, z: 1 },
-  { label: "Concrete", src: `${AB}/concrete-texture.webp`, s: 165, rx: 8, bare: true, z: 1 },
-  { label: "Crit Notes", src: `${AB}/crit-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Flood Zone", src: `${AB}/flood-zone-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Journal", src: `${AB}/house-sketch-in-journal.webp`, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Instagram", src: `${AB}/instagram-icon.webp`, s: 180, rx: 48, bare: false, z: 3 },
+  {
+    label: "To-Do",
+    src: `${AB}/To-Do-sticky-note.webp`,
+    s: 195,
+    rx: 8,
+    bare: true,
+    z: 2,
+  },
+  {
+    label: "Render",
+    src: `${AB}/building-render.webp`,
+    s: 265,
+    rx: 8,
+    bare: false,
+    z: 0,
+  },
+  {
+    label: "Sketch Paper",
+    src: `${AB}/building-sketch-paper.webp`,
+    s: 195,
+    rx: 8,
+    bare: true,
+    z: 0,
+  },
+  {
+    label: "Building Sketch",
+    src: `${AB}/building-sketch.webp`,
+    s: 265,
+    rx: 8,
+    bare: false,
+    z: 0,
+  },
+  {
+    label: "Site Photo",
+    src: `${AB}/building-with-graffiti.webp`,
+    s: 265,
+    rx: 8,
+    bare: false,
+    z: 0,
+  },
+  {
+    label: "Cheesecloth",
+    src: `${AB}/cheesecloth-texture.webp`,
+    s: 165,
+    rx: 8,
+    bare: true,
+    z: 1,
+  },
+  {
+    label: "Concrete",
+    src: `${AB}/concrete-texture.webp`,
+    s: 165,
+    rx: 8,
+    bare: true,
+    z: 1,
+  },
+  {
+    label: "Crit Notes",
+    src: `${AB}/crit-sticky-note.webp`,
+    s: 195,
+    rx: 8,
+    bare: true,
+    z: 2,
+  },
+  {
+    label: "Flood Zone",
+    src: `${AB}/flood-zone-sticky-note.webp`,
+    s: 195,
+    rx: 8,
+    bare: true,
+    z: 2,
+  },
+  {
+    label: "Journal",
+    src: `${AB}/house-sketch-in-journal.webp`,
+    s: 265,
+    rx: 8,
+    bare: false,
+    z: 0,
+  },
+  {
+    label: "Instagram",
+    src: `${AB}/instagram-icon.webp`,
+    s: 180,
+    rx: 48,
+    bare: false,
+    z: 3,
+  },
   { label: "Moss", src: `${AB}/moss-texture.webp`, s: 165, rx: 8, bare: true, z: 1 },
-  { label: "Circulation", src: `${AB}/new-circulation-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
-  { label: "Pinterest", src: `${AB}/pinterest-logo.webp`, s: 180, rx: 90, bare: false, z: 3 },
-  { label: "Sketchbook", src: `${AB}/sketchbook-with-triangle.webp`, s: 265, rx: 8, bare: false, z: 0 },
-  { label: "Window Detail", src: `${AB}/window-sketch-sticky-note.webp`, s: 195, rx: 8, bare: true, z: 2 },
+  {
+    label: "Circulation",
+    src: `${AB}/new-circulation-sticky-note.webp`,
+    s: 195,
+    rx: 8,
+    bare: true,
+    z: 2,
+  },
+  {
+    label: "Pinterest",
+    src: `${AB}/pinterest-logo.webp`,
+    s: 180,
+    rx: 90,
+    bare: false,
+    z: 3,
+  },
+  {
+    label: "Sketchbook",
+    src: `${AB}/sketchbook-with-triangle.webp`,
+    s: 265,
+    rx: 8,
+    bare: false,
+    z: 0,
+  },
+  {
+    label: "Window Detail",
+    src: `${AB}/window-sketch-sticky-note.webp`,
+    s: 195,
+    rx: 8,
+    bare: true,
+    z: 2,
+  },
 ];
 
 const archlogEdges: [number, number][] = [
-  [0, 3], [0, 9], [1, 5], [1, 13], [2, 8], [2, 11], [3, 7], [4, 12],
-  [4, 6], [5, 14], [6, 15], [7, 10], [8, 1], [9, 12], [10, 14], [11, 3],
-  [13, 15], [14, 0],
+  [0, 3],
+  [0, 9],
+  [1, 5],
+  [1, 13],
+  [2, 8],
+  [2, 11],
+  [3, 7],
+  [4, 12],
+  [4, 6],
+  [5, 14],
+  [6, 15],
+  [7, 10],
+  [8, 1],
+  [9, 12],
+  [10, 14],
+  [11, 3],
+  [13, 15],
+  [14, 0],
 ];
 
 const projectData = {
@@ -68,9 +188,15 @@ export const metadata = pageMetadata({
 });
 
 const outcomes = [
-  { label: "Winning concept", value: "Design Decision Tracker ranked #1 out of 7 concepts" },
+  {
+    label: "Winning concept",
+    value: "Design Decision Tracker ranked #1 out of 7 concepts",
+  },
   { label: "Validation", value: "A/B usability study confirmed the design direction" },
-  { label: "Deliverables", value: "Figma prototype, video walkthrough, and research report" },
+  {
+    label: "Deliverables",
+    value: "Figma prototype, video walkthrough, and research report",
+  },
 ];
 
 const atAGlance = [
@@ -260,15 +386,19 @@ export default function ArchLogProject() {
                         structure their process. Once they&apos;ve started, there&apos;s
                         no consistent way to capture <em>why</em> they made the moves they
                         made. Critiques rely on memory while decisions end up scattered
-                        across tools and notebooks. The result is a fragmented, hard-to-defend
-                        process that varies from project to project and critic to critic.
+                        across tools and notebooks. The result is a fragmented,
+                        hard-to-defend process that varies from project to project and
+                        critic to critic.
                       </p>
                     </Reveal>
 
                     <NeuralMap nodes={archlogNodes} edges={archlogEdges} />
                   </div>
 
-                  <HowMightWe>create a low-friction tool that helps architecture students develop concepts with greater clarity inside the studio?</HowMightWe>
+                  <HowMightWe>
+                    create a low-friction tool that helps architecture students develop
+                    concepts with greater clarity inside the studio?
+                  </HowMightWe>
                 </div>
               </section>
             ),
@@ -285,10 +415,10 @@ export default function ArchLogProject() {
                         A mixed-method approach
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
-                        A five-section survey mapped habits, blockers, and tooling shortfalls. A
-                        focus group revealed <em>why</em> the data looked the way it did.
-                        A/B usability studies then tested two design directions
-                        before we committed to a single path.
+                        A five-section survey mapped habits, blockers, and tooling
+                        shortfalls. A focus group revealed <em>why</em> the data looked
+                        the way it did. A/B usability studies then tested two design
+                        directions before we committed to a single path.
                       </p>
                     </Reveal>
 
@@ -312,8 +442,8 @@ export default function ArchLogProject() {
                       thesis={
                         <>
                           The hard part is{" "}
-                          <span className="text-accent-lime">traceability</span>: capturing
-                          the reasoning behind every design move.
+                          <span className="text-accent-lime">traceability</span>:
+                          capturing the reasoning behind every design move.
                         </>
                       }
                     />
@@ -327,11 +457,10 @@ export default function ArchLogProject() {
                       </h2>
                       <p className="font-body text-secondary/80 text-lg leading-relaxed">
                         We put seven feature concepts in front of participants and asked
-                        them to rank what they&apos;d use in practice. The Design
-                        Decision Tracker won by a wide margin, with three of four naming
-                        it their top choice. That result confirmed our research thesis:
-                        the hard part is traceability, capturing the reasoning behind each
-                        move.
+                        them to rank what they&apos;d use in practice. The Design Decision
+                        Tracker won by a wide margin, with three of four naming it their
+                        top choice. That result confirmed our research thesis: the hard
+                        part is traceability, capturing the reasoning behind each move.
                       </p>
                     </Reveal>
 
@@ -352,12 +481,14 @@ export default function ArchLogProject() {
                               direction="left"
                               delay={i * 0.06}
                               margin="-40px"
-                              style={{
-                                "--tx": "-16px",
-                                "--bar-w": `${(concept.score / maxScore) * 100}%`,
-                                "--bar-delay": `${0.3 + i * 0.08}s`,
-                              } as React.CSSProperties}
-                              className="hover:bg-accent-blue/5 hover:translate-x-1 flex flex-wrap items-center gap-x-4 gap-y-1 rounded-lg px-1 transition-[colors,transform] sm:flex-nowrap"
+                              style={
+                                {
+                                  "--tx": "-16px",
+                                  "--bar-w": `${(concept.score / maxScore) * 100}%`,
+                                  "--bar-delay": `${0.3 + i * 0.08}s`,
+                                } as React.CSSProperties
+                              }
+                              className="hover:bg-accent-blue/5 flex flex-wrap items-center gap-x-4 gap-y-1 rounded-lg px-1 transition-[colors,transform] hover:translate-x-1 sm:flex-nowrap"
                             >
                               <div className="flex w-full items-center justify-between sm:w-52 sm:shrink-0 sm:justify-start">
                                 <span
@@ -386,7 +517,7 @@ export default function ArchLogProject() {
                                   )}
                                 </div>
                               </div>
-                              <div className="bg-primary/60 relative h-3 w-full overflow-hidden rounded-full sm:flex-1 sm:w-auto">
+                              <div className="bg-primary/60 relative h-3 w-full overflow-hidden rounded-full sm:w-auto sm:flex-1">
                                 <div
                                   className={`bar-fill h-full rounded-full ${
                                     concept.winner
@@ -512,8 +643,20 @@ export default function ArchLogProject() {
                       delay={0.1}
                       className="grid grid-cols-[auto_1fr] items-start gap-x-5 p-8 lg:p-10"
                     >
-                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-accent-lime">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-accent-lime" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"/></svg>
+                      <div className="border-accent-lime mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2">
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          className="text-accent-lime"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z" />
+                        </svg>
                       </div>
                       <div>
                         <span className="text-accent-lime font-body text-xs tracking-widest uppercase">

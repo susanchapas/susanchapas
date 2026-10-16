@@ -25,7 +25,7 @@ export default function ProjectNavFooter({
               <ArrowRightIcon className="h-4 w-4" />
             </AccessibleButton>
             {nextProject?.title && (
-              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-secondary/90 px-3 py-1.5 text-sm text-primary opacity-0 transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100">
+              <span className="bg-secondary/90 text-primary pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded px-3 py-1.5 text-sm whitespace-nowrap opacity-0 transition-opacity duration-500 ease-[var(--ease-liquid)] group-hover:opacity-100">
                 {nextProject.title}
               </span>
             )}

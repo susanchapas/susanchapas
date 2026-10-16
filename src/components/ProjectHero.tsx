@@ -20,15 +20,22 @@ export default function ProjectHero({
       className={`relative flex min-h-[70vh] items-end py-16 lg:py-24 ${className}`}
     >
       <div className="absolute inset-0 z-0">
-        <Image src={encodedSrc} alt={alt} fill className="object-cover" priority sizes="100vw" />
-        <div className="from-primary via-primary/80 absolute inset-0 bg-gradient-to-t to-primary/30" />
+        <Image
+          src={encodedSrc}
+          alt={alt}
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        <div className="from-primary via-primary/80 to-primary/30 absolute inset-0 bg-gradient-to-t" />
       </div>
 
       <div className="relative z-10 container mx-auto px-6 lg:px-12">{children}</div>
 
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 z-10">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="h-px bg-accent-blue/25" />
+          <div className="bg-accent-blue/25 h-px" />
         </div>
       </div>
     </section>

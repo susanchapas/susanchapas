@@ -40,7 +40,7 @@ export default function ChimeraLightbox() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="group border-accent-blue/15 bg-primary/40 hover:border-accent-lime/40 relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl border text-left transition-colors duration-500 ease-[var(--ease-liquid)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-lime focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+        className="group border-accent-blue/15 bg-primary/40 hover:border-accent-lime/40 focus-visible:ring-accent-lime focus-visible:ring-offset-primary relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl border text-left transition-colors duration-500 ease-[var(--ease-liquid)] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         aria-label="View Chimera's Original Dashboard"
       >
         <Image
@@ -82,13 +82,13 @@ export default function ChimeraLightbox() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 200, damping: 24 }}
-                  className="relative max-w-fit overflow-hidden rounded-2xl border border-accent-blue/30 bg-accent-blue/15 p-3 shadow-2xl"
+                  className="border-accent-blue/30 bg-accent-blue/15 relative max-w-fit overflow-hidden rounded-2xl border p-3 shadow-2xl"
                 >
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
                     aria-label="Close"
-                    className="absolute top-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-accent-blue/30 text-white backdrop-blur transition-colors hover:bg-accent-blue/50 cursor-pointer"
+                    className="bg-accent-blue/30 hover:bg-accent-blue/50 absolute top-4 right-4 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-white backdrop-blur transition-colors"
                   >
                     <svg
                       className="h-4 w-4"

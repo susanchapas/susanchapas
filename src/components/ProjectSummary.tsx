@@ -5,7 +5,8 @@ export interface SummaryItem {
   value: string;
 }
 
-const heading = "font-display text-secondary text-3xl font-bold tracking-[-0.02em] lg:text-4xl";
+const heading =
+  "font-display text-secondary text-3xl font-bold tracking-[-0.02em] lg:text-4xl";
 
 export default function ProjectSummary({
   overview,
@@ -42,8 +43,12 @@ export default function ProjectSummary({
           <dl className="mt-6 space-y-6">
             {outcomes.map((item) => (
               <div key={item.label}>
-                <dt className="font-display text-accent-clay font-semibold">{item.label}</dt>
-                <dd className="font-body text-secondary/70 mt-1 leading-relaxed">{item.value}</dd>
+                <dt className="font-display text-accent-clay font-semibold">
+                  {item.label}
+                </dt>
+                <dd className="font-body text-secondary/70 mt-1 leading-relaxed">
+                  {item.value}
+                </dd>
               </div>
             ))}
           </dl>

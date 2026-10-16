@@ -20,10 +20,15 @@ export function StrengthsCarousel({ items }: { items: Strength[] }) {
                 <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
                   {index + 1} of {count}
                 </span>
-                <h3 className="font-display text-secondary mb-4 text-xl font-bold">{s.category}</h3>
+                <h3 className="font-display text-secondary mb-4 text-xl font-bold">
+                  {s.category}
+                </h3>
                 <ul className="mx-auto max-w-sm space-y-2 text-left">
                   {s.items.map((item) => (
-                    <li key={item} className="font-body text-secondary/70 flex items-start text-sm leading-relaxed">
+                    <li
+                      key={item}
+                      className="font-body text-secondary/70 flex items-start text-sm leading-relaxed"
+                    >
                       <span className="bg-accent-lime/20 mt-1.5 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
                       {item}
                     </li>
@@ -39,7 +44,9 @@ export function StrengthsCarousel({ items }: { items: Strength[] }) {
                 <span className="text-accent-lime font-body mb-2 block text-xs tracking-widest uppercase">
                   {index + 1} of {count}
                 </span>
-                <h3 className="font-display text-secondary text-2xl font-bold">{s.category}</h3>
+                <h3 className="font-display text-secondary text-2xl font-bold">
+                  {s.category}
+                </h3>
               </CarouselFade>
             </div>
             <div className="bg-accent-blue/5 flex flex-1 items-center px-10 py-8">
@@ -47,7 +54,10 @@ export function StrengthsCarousel({ items }: { items: Strength[] }) {
                 <CarouselFade slideKey={index}>
                   <ul className="space-y-3">
                     {s.items.map((item) => (
-                      <li key={item} className="font-body text-secondary/70 flex items-start text-base leading-relaxed">
+                      <li
+                        key={item}
+                        className="font-body text-secondary/70 flex items-start text-base leading-relaxed"
+                      >
                         <span className="bg-accent-lime/20 mt-2 mr-3 h-1.5 w-1.5 shrink-0 rounded-full" />
                         {item}
                       </li>

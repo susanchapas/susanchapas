@@ -745,7 +745,7 @@ export default function AboutStudioWall() {
             <span className="hidden lg:inline">Click a tile to read more.</span>
             <span className="lg:hidden">Tap a tile to read more.</span>
           </p>
-          <div className="ml-auto hidden items-center gap-2 lg:flex lg:pointer-events-auto">
+          <div className="ml-auto hidden items-center gap-2 lg:pointer-events-auto lg:flex">
             <motion.button
               type="button"
               onClick={() => resetRef.current?.()}
@@ -755,7 +755,7 @@ export default function AboutStudioWall() {
               aria-hidden={!activated}
               tabIndex={activated ? 0 : -1}
               style={{ pointerEvents: activated ? "auto" : "none" }}
-              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-[background-color,box-shadow] duration-500 ease-[var(--ease-liquid)] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none inline-flex"
+              className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary inline-flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-md transition-[background-color,box-shadow] duration-500 ease-[var(--ease-liquid)] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               <RotateCcw className="h-4 w-4" aria-hidden="true" />
               Reset board
@@ -774,14 +774,18 @@ export default function AboutStudioWall() {
                     mask: "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
                     WebkitMask:
                       "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
-                    filter: "drop-shadow(0 0 10px var(--accent-lime)) drop-shadow(0 0 4px #fff)",
+                    filter:
+                      "drop-shadow(0 0 10px var(--accent-lime)) drop-shadow(0 0 4px #fff)",
                     animation: "help-ring-spin 3s linear infinite",
                   }}
                 />
               )}
               <button
                 type="button"
-                onClick={() => { setHelpDismissed(true); setDemoOpen(true); }}
+                onClick={() => {
+                  setHelpDismissed(true);
+                  setDemoOpen(true);
+                }}
                 aria-label="How to use the board"
                 className="bg-accent-blue text-primary hover:bg-accent-blue/90 focus-visible:ring-accent-blue focus-visible:ring-offset-primary relative flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-[background-color,box-shadow] duration-500 ease-[var(--ease-liquid)] hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
               >

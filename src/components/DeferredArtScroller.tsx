@@ -24,12 +24,16 @@ export default function DeferredArtScroller() {
           observer.disconnect();
         }
       },
-      { rootMargin: "600px 0px" },
+      { rootMargin: "600px 0px" }
     );
 
     observer.observe(element);
     return () => observer.disconnect();
   }, [shouldLoad]);
 
-  return <div ref={ref}>{shouldLoad ? <ArtScroller /> : <div className="h-[40rem]" aria-hidden="true" />}</div>;
+  return (
+    <div ref={ref}>
+      {shouldLoad ? <ArtScroller /> : <div className="h-[40rem]" aria-hidden="true" />}
+    </div>
+  );
 }
