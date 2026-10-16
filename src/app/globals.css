@@ -158,8 +158,32 @@ body {
   }
 }
 
+@keyframes mobile-art-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-100% + 100vw), 0, 0);
+  }
+}
+
 .animate-marquee {
   animation: marquee 60s linear infinite;
+}
+
+/* Keep mobile autoplay light: one five-card track rather than a duplicated marquee. */
+@media (max-width: 1023px) {
+  .art-scroller-track {
+    animation: mobile-art-scroll 55s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+@media (min-width: 1024px) {
+  .art-scroller-track {
+    will-change: transform;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

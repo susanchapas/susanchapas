@@ -160,14 +160,11 @@ export default function CurrentExperience() {
           transition={{ duration: 0.8 }}
           className="mb-12"
         >
-          <span className="text-accent-lime font-body mb-4 block text-sm tracking-widest uppercase">
-            Currently
-          </span>
           <h2
             id="experience-heading"
             className="font-display text-secondary text-3xl font-bold lg:text-4xl"
           >
-            Where I am now
+            Current Experience
           </h2>
         </motion.div>
 

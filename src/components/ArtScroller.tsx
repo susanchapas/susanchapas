@@ -26,23 +26,44 @@ export default function ArtScroller() {
 
       <Link href="/gallery" className="group relative block">
         <div className="flex overflow-hidden">
-          {/* CSS-based infinite scroll - much more performant than JS animation */}
+          {/*
+           * Mobile uses a lighter auto-scrolling track with one copy of each image.
+           * Desktop keeps the duplicated, seamless marquee below.
+           */}
           <div
-            className="animate-marquee flex gap-8 px-4 hover:[animation-play-state:paused]"
+            className="animate-marquee art-scroller-track flex w-max gap-5 px-4 hover:[animation-play-state:paused] lg:gap-8"
             style={{
               width: "max-content",
-              willChange: "transform",
             }}
           >
-            {/* Double the items for seamless loop */}
-            {[...artPieces, ...artPieces].map((art, index) => (
+            {artPieces.map((art) => (
               <div
-                key={`${art.alt}-${index}`}
-                className="group-hover:border-accent-lime/50 relative h-64 w-96 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-[border-color] duration-500 ease-[var(--ease-liquid)]"
+                key={art.alt}
+                className="group-hover:border-accent-lime/50 relative h-52 w-[min(82vw,20rem)] flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-[border-color] duration-500 ease-[var(--ease-liquid)] lg:h-64 lg:w-96"
               >
                 <ArtImage
                   src={art.src}
                   alt={art.alt}
+                  loading="lazy"
+                  className={cn(
+                    "transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.05]",
+                    art.alt === "Mindless Mirth" && "scale-125 group-hover:scale-[1.33]"
+                  )}
+                  containerClassName="h-full w-full"
+                />
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-500 ease-[var(--ease-liquid)] group-hover:bg-black/20" />
+              </div>
+            ))}
+            {/* Desktop-only copies make the marquee loop seamlessly without adding mobile image work. */}
+            {artPieces.map((art) => (
+              <div
+                key={`${art.alt}-duplicate`}
+                className="group-hover:border-accent-lime/50 relative hidden h-64 w-96 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 transition-[border-color] duration-500 ease-[var(--ease-liquid)] lg:block"
+              >
+                <ArtImage
+                  src={art.src}
+                  alt=""
+                  aria-hidden="true"
                   loading="lazy"
                   className={cn(
                     "transition-transform duration-700 ease-[var(--ease-liquid)] group-hover:scale-[1.05]",

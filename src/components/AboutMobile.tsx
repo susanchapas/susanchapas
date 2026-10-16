@@ -141,12 +141,6 @@ export default function AboutMobile() {
         <div className="relative z-10 container mx-auto max-w-6xl px-6">
           <div className="grid items-center gap-12 sm:grid-cols-[1.2fr_1fr] sm:gap-16">
             <motion.div style={{ y: textY }}>
-              <motion.span
-                {...reveal}
-                className="text-accent-lime font-body mb-4 inline-block text-sm tracking-widest uppercase"
-              >
-                About Me
-              </motion.span>
               <motion.h1
                 {...stagger(0.08)}
                 className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl"
@@ -189,7 +183,7 @@ export default function AboutMobile() {
               >
                 <div className="relative aspect-[3/2] overflow-hidden rounded-2xl">
                   <Image
-                    src="/assets/misc/lake-erie.webp"
+                    src="/assets/misc/susan-umbrella.webp"
                     alt="Susan Chapas"
                     fill
                     sizes="(max-width: 640px) 100vw, 400px"
@@ -218,14 +212,11 @@ export default function AboutMobile() {
       >
         <div className="container mx-auto max-w-6xl px-6">
           <motion.div {...reveal} className="mb-14">
-            <span className="text-accent-clay font-body mb-4 block text-sm tracking-widest uppercase">
-              What I Do
-            </span>
             <h2
               id="what-heading"
               className="font-display text-secondary text-3xl font-bold"
             >
-              Three things, one person
+              What I Do
             </h2>
           </motion.div>
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
@@ -266,14 +257,11 @@ export default function AboutMobile() {
       >
         <div className="container mx-auto max-w-6xl px-6">
           <motion.div {...reveal} className="mb-14">
-            <span className="text-accent-blue font-body mb-4 block text-sm tracking-widest uppercase">
-              Education
-            </span>
             <h2
               id="edu-heading"
               className="font-display text-secondary text-3xl font-bold"
             >
-              Always learning
+              Education
             </h2>
           </motion.div>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -307,14 +295,11 @@ export default function AboutMobile() {
       >
         <div className="container mx-auto max-w-6xl px-6">
           <motion.div {...reveal} className="mb-14">
-            <span className="text-accent-clay font-body mb-4 block text-sm tracking-widest uppercase">
-              Off the Clock
-            </span>
             <h2
               id="personal-heading"
               className="font-display text-secondary text-3xl font-bold"
             >
-              A few more things about me
+              Off the Clock
             </h2>
           </motion.div>
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">

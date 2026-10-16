@@ -18,8 +18,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import EmberReveal from "@/components/EmberReveal";
-import FadeIn from "@/components/FadeIn";
 import Eyebrow from "@/components/Eyebrow";
+import FadeIn from "@/components/FadeIn";
 import { ConnectorArrow, useConnector } from "@/components/HoverConnector";
 import { projects } from "@/lib/projects";
 import { artworks } from "@/app/gallery/artworks";
@@ -833,9 +833,8 @@ export default function ResumeTimeline() {
     <div className="gradient-mesh relative py-20 lg:py-28">
       <div className="container mx-auto max-w-6xl px-6 lg:px-12">
         <FadeIn direction="up">
-          <Eyebrow>Resume</Eyebrow>
           <h1 className="font-display text-secondary mb-4 text-4xl font-bold lg:text-5xl">
-            Experience & Education
+            Resume
           </h1>
           <p className="font-body text-secondary/60 mb-8 max-w-2xl text-lg">
             Seeking a UX internship focused on accessibility and human-centered design.
