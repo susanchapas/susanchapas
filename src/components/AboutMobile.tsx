@@ -146,7 +146,7 @@ export default function AboutMobile() {
                 className="font-display text-secondary mb-6 text-4xl leading-[1.1] font-bold sm:text-5xl"
               >
                 Designer, developer, artist,{" "}
-                <span className="text-gradient">and more.</span>
+                <span className="text-accent-lime">and more.</span>
               </motion.h1>
               <motion.p
                 {...stagger(0.16)}
