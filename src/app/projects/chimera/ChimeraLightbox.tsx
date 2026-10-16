@@ -88,7 +88,7 @@ export default function ChimeraLightbox() {
                     type="button"
                     onClick={() => setOpen(false)}
                     aria-label="Close"
-                    className="bg-accent-blue/30 hover:bg-accent-blue/50 absolute top-4 right-4 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-white backdrop-blur transition-colors"
+                    className="bg-accent-lime text-primary focus-visible:ring-accent-lime absolute top-4 right-4 z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full shadow-lg ring-2 ring-black/20 transition-transform hover:scale-110 focus-visible:ring-offset-2 focus-visible:outline-none"
                   >
                     <svg
                       className="h-4 w-4"
@@ -99,7 +99,7 @@ export default function ChimeraLightbox() {
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth={2}
+                        strokeWidth={2.5}
                         d="M6 6l12 12M6 18L18 6"
                       />
                     </svg>

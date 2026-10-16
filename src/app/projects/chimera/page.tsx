@@ -5,7 +5,6 @@ import AccessibleButton from "@/components/AccessibleButton";
 import ProjectHero from "@/components/ProjectHero";
 import SectionTabs from "@/components/SectionTabs";
 import Reveal from "@/components/Reveal";
-import ImageSlot from "@/components/ImageSlot";
 import ProjectSummary from "@/components/ProjectSummary";
 import ProjectNavFooter from "@/components/ProjectNavFooter";
 import HowMightWe from "@/components/HowMightWe";
@@ -81,6 +80,109 @@ const competitors = [
     strengths: "Straightforward layout, fast and lightweight",
     weaknesses: "Less polished, hidden settings, weak organization",
     bestFor: "Cost-conscious users",
+  },
+];
+
+const CA = "/assets/projects/chimera/comp-apps";
+
+const compApps = [
+  {
+    name: "Ring",
+    frames: [
+      {
+        label: "Timeline",
+        src: `${CA}/Ring-timeline-settings.webp`,
+        width: 1422,
+        height: 900,
+        offset: "mt-2",
+      },
+      {
+        label: "Live view",
+        src: `${CA}/Ring-plus-settings-2.webp`,
+        width: 491,
+        height: 981,
+        offset: "mt-0",
+      },
+      {
+        label: "Doorbell",
+        src: `${CA}/ring-app.webp`,
+        width: 1200,
+        height: 675,
+        offset: "mt-1",
+      },
+    ],
+  },
+  {
+    name: "Google Nest",
+    frames: [
+      {
+        label: "Home",
+        src: `${CA}/goog-nest.webp`,
+        width: 576,
+        height: 695,
+        offset: "mt-2",
+      },
+      {
+        label: "Flows",
+        src: `${CA}/goognest.webp`,
+        width: 2048,
+        height: 1344,
+        offset: "mt-0",
+      },
+      {
+        label: "Live view",
+        src: `${CA}/google-nest.webp`,
+        width: 1300,
+        height: 731,
+        offset: "mt-2",
+      },
+    ],
+  },
+  {
+    name: "Arlo",
+    frames: [
+      {
+        label: "Dashboard",
+        src: `${CA}/arlo.webp`,
+        width: 1200,
+        height: 899,
+        offset: "mt-0",
+      },
+      {
+        label: "Notifications",
+        src: `${CA}/arlo2.webp`,
+        width: 1046,
+        height: 720,
+        offset: "mt-1",
+      },
+      {
+        label: "Library",
+        src: `${CA}/arlo3.webp`,
+        width: 720,
+        height: 720,
+        offset: "mt-1",
+      },
+    ],
+  },
+  {
+    name: "Eufy",
+    frames: [
+      { label: "Home", src: `${CA}/eufy.webp`, width: 1600, height: 792, offset: "mt-2" },
+      {
+        label: "Events",
+        src: `${CA}/eufy3.webp`,
+        width: 1035,
+        height: 720,
+        offset: "mt-0",
+      },
+      {
+        label: "Settings",
+        src: `${CA}/eufy2.webp`,
+        width: 1312,
+        height: 738,
+        offset: "mt-2",
+      },
+    ],
   },
 ];
 
@@ -324,51 +426,41 @@ export default function ChimeraProject() {
                       </p>
                     </Reveal>
 
-                    <Reveal delay={0.05} className="mb-8">
-                      <ImageSlot
-                        src="/assets/projects/chimera/chimera-comp-analysis.webp"
-                        alt="Competitive analysis audit board comparing interface flows across Ring, Arlo, and Eufy"
-                        ratio="aspect-[16/9]"
-                        label="Competitor apps studied"
-                        sizes="(min-width: 1024px) 75vw, 100vw"
-                      />
-                    </Reveal>
-
                     <Reveal delay={0.08}>
-                      <div className="border-accent-blue/15 overflow-x-auto rounded-2xl border bg-[#06142b]">
+                      <div className="overflow-x-auto rounded-2xl">
                         <table className="w-full min-w-225 border-collapse text-left">
                           <caption className="sr-only">
                             Competitive comparison of consumer home-security camera apps
                           </caption>
-                          <thead className="bg-primary">
-                            <tr className="border-accent-blue/15 border-b">
+                          <thead>
+                            <tr className="border-accent-lime/40 border-b">
                               <th
                                 scope="col"
-                                className="font-body text-secondary/60 bg-primary sticky left-0 z-20 w-20 px-3 py-3 text-xs font-medium tracking-widest uppercase lg:static lg:w-36 lg:px-5 lg:py-4"
+                                className="font-body text-accent-lime bg-primary sticky left-0 z-20 w-20 px-3 py-3 text-sm font-bold tracking-widest uppercase lg:static lg:w-36 lg:px-5 lg:py-4"
                               >
                                 App
                               </th>
                               <th
                                 scope="col"
-                                className="font-body text-secondary/60 bg-primary w-48 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                                className="font-body text-accent-lime bg-primary w-48 px-5 py-3 text-sm font-bold tracking-widest uppercase lg:py-4"
                               >
                                 Approach
                               </th>
                               <th
                                 scope="col"
-                                className="font-body text-secondary/60 bg-primary min-w-68 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                                className="font-body text-accent-lime bg-primary min-w-68 px-5 py-3 text-sm font-bold tracking-widest uppercase lg:py-4"
                               >
                                 What works
                               </th>
                               <th
                                 scope="col"
-                                className="font-body text-secondary/60 bg-primary min-w-68 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                                className="font-body text-accent-lime bg-primary min-w-68 px-5 py-3 text-sm font-bold tracking-widest uppercase lg:py-4"
                               >
                                 Trade-off
                               </th>
                               <th
                                 scope="col"
-                                className="font-body text-secondary/60 bg-primary w-44 px-5 py-3 text-xs font-medium tracking-widest uppercase lg:py-4"
+                                className="font-body text-accent-lime bg-primary w-44 px-5 py-3 text-sm font-bold tracking-widest uppercase lg:py-4"
                               >
                                 Best for
                               </th>
@@ -378,11 +470,11 @@ export default function ChimeraProject() {
                             {competitors.map((c) => (
                               <tr
                                 key={c.name}
-                                className="border-accent-blue/10 hover:bg-accent-blue/5 border-b last:border-b-0"
+                                className="border-accent-blue/20 border-b last:border-b-0 hover:bg-accent-blue/5"
                               >
                                 <th
                                   scope="row"
-                                  className="font-display text-accent-blue sticky left-0 z-10 w-20 bg-[#06142b] px-3 py-3 text-base font-bold lg:static lg:w-36 lg:px-5 lg:py-5"
+                                  className="font-display text-secondary sticky left-0 z-10 w-20 bg-[color-mix(in_srgb,var(--accent-blue)_5%,var(--primary))] lg:bg-transparent px-3 py-3 text-base font-bold lg:static lg:w-36 lg:px-5 lg:py-5"
                                 >
                                   {c.name === "Google Nest" ? (
                                     <>
@@ -396,16 +488,16 @@ export default function ChimeraProject() {
                                     c.name
                                   )}
                                 </th>
-                                <td className="font-body text-secondary/65 px-5 py-3 text-sm leading-relaxed lg:py-5">
+                                <td className="font-body text-secondary/70 px-5 py-3 text-base leading-relaxed lg:py-5">
                                   {c.style}
                                 </td>
-                                <td className="font-body text-secondary/80 px-5 py-3 text-sm leading-relaxed lg:py-5">
+                                <td className="font-body text-secondary/90 px-5 py-3 text-base leading-relaxed lg:py-5">
                                   {c.strengths}
                                 </td>
-                                <td className="font-body text-secondary/80 px-5 py-3 text-sm leading-relaxed lg:py-5">
+                                <td className="font-body text-secondary/90 px-5 py-3 text-base leading-relaxed lg:py-5">
                                   {c.weaknesses}
                                 </td>
-                                <td className="font-body text-secondary px-5 py-3 text-sm font-medium whitespace-nowrap lg:py-5">
+                                <td className="font-body text-secondary px-5 py-3 text-base font-semibold whitespace-nowrap lg:py-5">
                                   {c.bestFor}
                                 </td>
                               </tr>
@@ -413,57 +505,115 @@ export default function ChimeraProject() {
                           </tbody>
                         </table>
                       </div>
-                      <p className="font-body text-secondary/45 mt-3 text-xs lg:hidden">
+                      <p className="font-body text-secondary/70 mt-3 text-sm lg:hidden">
                         Scroll horizontally to compare all criteria.
                       </p>
                     </Reveal>
 
                     <Reveal
                       delay={0.1}
-                      className="border-accent-blue/10 relative mt-10 overflow-hidden rounded-2xl border bg-[radial-gradient(rgba(187,205,243,0.18)_1px,transparent_1px)] bg-size-[18px_18px] px-4 pt-6 pb-28 sm:px-6 sm:pt-8 sm:pb-20 lg:px-12 lg:pt-10"
+                      className="relative mt-10 overflow-hidden rounded-2xl border border-black/10 bg-[#f5f5f5] bg-[radial-gradient(rgba(0,0,0,0.14)_1px,transparent_1px)] bg-size-[18px_18px] px-3 py-3 sm:px-4 sm:py-4 lg:px-6"
                     >
-                      <div className="border-accent-blue/15 relative z-10 flex max-w-2xl items-start gap-3 rounded-[1.75rem] rounded-bl-md border bg-[#10264a] p-4 shadow-2xl shadow-black/40 sm:ml-[36%] sm:gap-4 sm:p-5 md:ml-[26%] lg:p-6">
-                        <div className="bg-accent-blue/25 relative size-12 shrink-0 overflow-hidden rounded-full">
-                          <Image
-                            src="/assets/misc/hero-portrait-768.webp"
-                            alt=""
-                            width={768}
-                            height={1004}
-                            sizes="108px"
-                            className="absolute -top-1 -left-10 w-27 max-w-none"
-                          />
-                        </div>
-                        <div>
-                          <div className="font-body flex flex-wrap items-baseline gap-x-2">
-                            <span className="text-secondary font-bold">Susan Chapas</span>
-                            <span className="text-secondary/50">The pattern</span>
-                          </div>
-                          <p className="font-body text-secondary/90 mt-1 text-base leading-relaxed sm:text-lg lg:text-xl">
-                            No app handled both speed and clarity well, and the{" "}
-                            <span className="text-accent-lime">timeline</span> was
-                            consistently the interaction everyone relied on.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="absolute right-[45%] -bottom-20 w-72 sm:right-[60%] sm:-bottom-44 sm:w-xl md:right-[70%]">
-                        <span className="font-body absolute right-0 bottom-full mb-1.5 flex items-center gap-1 text-xs text-[#9747FF]">
-                          <svg
-                            viewBox="0 0 12 12"
-                            className="size-3 fill-current"
-                            aria-hidden
+                      <div
+                        aria-hidden
+                        className="bg-[#cfe6ff]/50 pointer-events-none absolute inset-0 z-5"
+                      />
+                      <div className="relative mx-auto grid max-w-5xl gap-2 sm:grid-cols-2 lg:gap-3">
+                        {compApps.map((app) => (
+                          <section
+                            key={app.name}
+                            aria-label={app.name}
+                            className="relative rounded-md border border-black/10 bg-white px-2 pt-7 pb-3 shadow-black/15 transition duration-200 ease-out hover:z-1 hover:scale-[1.02] hover:shadow-xl motion-reduce:transition-none motion-reduce:hover:scale-100 sm:px-3"
                           >
-                            <path d="M6 0l2 2-2 2-2-2zM2 4l2 2-2 2-2-2zM10 4l2 2-2 2-2-2zM6 8l2 2-2 2-2-2z" />
-                          </svg>
-                          Dashboard / Original
-                        </span>
-                        <Image
-                          src="/assets/projects/chimera/chimera%20og%20dashboard%20blurred.webp"
-                          alt=""
-                          width={5063}
-                          height={2413}
-                          sizes="(min-width: 640px) 576px, 288px"
-                          className="w-full border-t border-r border-[#9747FF] shadow-xl shadow-black/40"
-                        />
+                            <span className="font-body bg-black/5 text-black/60 absolute top-1.5 left-2 rounded-sm px-1.5 py-0.5 text-[10px]">
+                              {app.name}
+                            </span>
+                            <div className="flex items-start gap-2 sm:gap-3">
+                              {app.frames.map((f) => (
+                                <div
+                                  key={f.label}
+                                  className={`min-w-0 ${f.offset}`}
+                                  style={{ flex: `${f.width / f.height} 1 0%` }}
+                                >
+                                  <span className="font-body mb-1 flex items-center gap-1 text-[10px] whitespace-nowrap text-[#9747FF]">
+                                    <svg
+                                      viewBox="0 0 12 12"
+                                      className="size-2.5 shrink-0 fill-current"
+                                      aria-hidden
+                                    >
+                                      <path d="M6 0l2 2-2 2-2-2zM2 4l2 2-2 2-2-2zM10 4l2 2-2 2-2-2zM6 8l2 2-2 2-2-2z" />
+                                    </svg>
+                                    <span className="truncate">{f.label}</span>
+                                  </span>
+                                  <Image
+                                    src={f.src}
+                                    alt=""
+                                    width={f.width}
+                                    height={f.height}
+                                    sizes="(min-width: 640px) 220px, 140px"
+                                    className="h-auto w-full border border-[#9747FF] shadow-xl shadow-black/10"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          </section>
+                        ))}
+                        {[
+                          {
+                            text: "One focused view with list of other clips right below",
+                            className: "top-[8%] right-2 sm:top-[10%] sm:right-[6%]",
+                          },
+                          {
+                            text: "Event summary --> pre-suggest clips based on detected motion",
+                            className: "bottom-[8%] left-2 sm:bottom-[10%] sm:left-[6%]",
+                          },
+                        ].map((note) => (
+                          <div
+                            key={note.text}
+                            aria-hidden
+                            className={`border-black/10 absolute z-2 flex w-[min(60%,16rem)] items-start gap-2 rounded-2xl rounded-bl-sm border bg-white p-2 shadow-xl shadow-black/15 transition duration-200 ease-out hover:scale-105 hover:shadow-2xl motion-reduce:transition-none motion-reduce:hover:scale-100 sm:p-2.5 ${note.className}`}
+                          >
+                            <div className="bg-[#e5f4ff] relative size-6 shrink-0 overflow-hidden rounded-full">
+                              <Image
+                                src="/assets/misc/hero-portrait-768.webp"
+                                alt=""
+                                width={768}
+                                height={1004}
+                                sizes="54px"
+                                className="absolute -top-0.5 -left-5 w-13.5 max-w-none"
+                              />
+                            </div>
+                            <div className="font-body min-w-0 text-[9px] leading-snug sm:text-[11px]">
+                              <span className="font-bold text-[#1e1e1e]">Susan Chapas</span>
+                              <p className="mt-0.5 text-[#1e1e1e]/80">{note.text}</p>
+                            </div>
+                          </div>
+                        ))}
+                        <div className="border-black/10 absolute top-1/2 left-1/2 z-10 flex w-[calc(100%-1rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 items-start gap-3 rounded-[1.75rem] rounded-bl-md border bg-white p-4 shadow-2xl shadow-black/15 transition duration-200 ease-out hover:scale-[1.02] hover:shadow-black/25 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:gap-4 sm:p-5 lg:p-6">
+                          <div className="bg-[#e5f4ff] relative size-12 shrink-0 overflow-hidden rounded-full">
+                            <Image
+                              src="/assets/misc/hero-portrait-768.webp"
+                              alt=""
+                              width={768}
+                              height={1004}
+                              sizes="108px"
+                              className="absolute -top-1 -left-10 w-27 max-w-none"
+                            />
+                          </div>
+                          <div>
+                            <div className="font-body flex flex-wrap items-baseline gap-x-2">
+                              <span className="font-bold text-[#1e1e1e]">
+                                Susan Chapas
+                              </span>
+                              <span className="text-[#1e1e1e]/50">The pattern</span>
+                            </div>
+                            <p className="font-body mt-1 text-base text-[#1e1e1e]/90 leading-relaxed sm:text-lg lg:text-xl">
+                              No app handled both speed and clarity well, and the{" "}
+                              <span className="text-[#007be5]">timeline</span> was
+                              consistently the interaction everyone relied on.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </Reveal>
                   </div>
